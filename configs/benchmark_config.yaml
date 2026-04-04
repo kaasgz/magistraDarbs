@@ -1,0 +1,14 @@
+paths:
+  instance_folder: data/raw/real
+  output_csv: data/results/benchmark_results.csv
+  run_summary: data/results/benchmark_results_run_summary.json
+
+run:
+  random_seed: 42
+  time_limit_seconds: 60
+
+solvers:
+  selected:
+    - random_baseline
+    - cpsat_solver
+    - simulated_annealing_solver

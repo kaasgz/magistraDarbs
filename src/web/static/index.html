@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sports Scheduling Dashboard</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Master's Thesis Dashboard</p>
+          <h1>Inspect real instances, demo synthetic ones, keep the pipelines separate.</h1>
+          <p class="hero-text">
+            This local Python-only dashboard is for thesis demos, parser walkthroughs, and
+            synthetic smoke runs. It is not the main experiment runner and it keeps demo
+            artifacts isolated from the core thesis outputs.
+          </p>
+        </div>
+
+        <div class="scope-card">
+          <div>
+            <p class="panel-kicker">For</p>
+            <p id="purposeText" class="scope-text"></p>
+          </div>
+          <div>
+            <p class="panel-kicker">Not For</p>
+            <p id="notForText" class="scope-text"></p>
+          </div>
+          <div class="scope-chip-row">
+            <span class="scope-chip">Real inspection only</span>
+            <span class="scope-chip is-synthetic">Synthetic demo only</span>
+            <span class="scope-chip">demo_* outputs</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="mode-grid">
+        <article class="panel-card mode-card">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Mode 1</p>
+              <h2>Load Real Instance</h2>
+            </div>
+          </div>
+          <p class="mode-text">
+            Reads one XML from <code>data/raw/real</code>, parses it, and shows a concise
+            structural summary plus extracted features. It does not run the full benchmark
+            pipeline.
+          </p>
+          <form id="realInstanceForm" class="mode-form">
+            <label>
+              <span>Real XML File</span>
+              <select id="realInstancePath" name="relative_path"></select>
+            </label>
+            <div class="button-row">
+              <button id="loadRealButton" class="secondary-button" type="submit">Load Real Instance</button>
+            </div>
+          </form>
+          <p id="realModeHint" class="mode-hint"></p>
+        </article>
+
+        <article class="panel-card mode-card">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Mode 2</p>
+              <h2>Generate Synthetic Instance</h2>
+            </div>
+          </div>
+          <p class="mode-text">
+            Generates a clearly labeled synthetic preview instance for demos and can also run
+            the existing synthetic demo pipeline without touching the main thesis artifacts.
+          </p>
+
+          <form id="syntheticPreviewForm" class="mode-form">
+            <div class="control-grid preview-grid">
+              <label>
+                <span>Difficulty</span>
+                <select id="syntheticDifficulty" name="difficulty_level"></select>
+              </label>
+              <label>
+                <span>Seed</span>
+                <input id="previewSeed" name="random_seed" type="number" min="1" step="1" />
+              </label>
+            </div>
+            <div class="button-row">
+              <button id="previewButton" class="secondary-button" type="submit">Generate Synthetic Preview</button>
+            </div>
+          </form>
+
+          <form id="demoPipelineForm" class="mode-form pipeline-form">
+            <div class="control-grid">
+              <label>
+                <span>Demo Instances</span>
+                <input id="instanceCount" name="instance_count" type="number" min="4" max="40" step="1" />
+              </label>
+              <label>
+                <span>Seed</span>
+                <input id="randomSeed" name="random_seed" type="number" min="1" step="1" />
+              </label>
+              <label>
+                <span>Time Limit</span>
+                <input id="timeLimit" name="time_limit_seconds" type="number" min="1" max="30" step="1" />
+              </label>
+            </div>
+            <div class="button-row">
+              <button id="runButton" class="primary-button" type="submit">Run Synthetic Demo Pipeline</button>
+              <button id="refreshButton" class="secondary-button" type="button">Refresh</button>
+            </div>
+          </form>
+          <p class="mode-hint">
+            Demo pipeline outputs stay in <code>demo_*</code> files and synthetic-only folders.
+          </p>
+        </article>
+      </section>
+
+      <section id="statusBanner" class="status-banner"></section>
+
+      <section class="panel-card inspector-card">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Instance Inspector</p>
+            <h2>Summary and Structural Features</h2>
+          </div>
+          <div id="inspectorBadge" class="inspector-badge-row"></div>
+        </div>
+        <div class="inspector-grid">
+          <div>
+            <h3 id="inspectorTitle" class="inspector-title">No instance loaded</h3>
+            <p id="inspectorDescription" class="inspector-description"></p>
+            <div id="instanceSummary" class="summary-grid"></div>
+          </div>
+          <div>
+            <div id="parserNotes" class="notes-list"></div>
+          </div>
+        </div>
+        <div id="featureGroups" class="feature-group-grid"></div>
+      </section>
+
+      <section class="stats-grid" id="statsGrid"></section>
+
+      <section class="content-grid">
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Synthetic Demo Pipeline</p>
+              <h2>Solver leaderboard</h2>
+            </div>
+          </div>
+          <div id="solverLeaderboard" class="table-host"></div>
+        </article>
+
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Synthetic Demo Pipeline</p>
+              <h2>Best solver distribution</h2>
+            </div>
+          </div>
+          <div id="solverDistribution" class="bar-list"></div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Synthetic Demo Pipeline</p>
+              <h2>Feature importance</h2>
+            </div>
+          </div>
+          <div id="featureImportance" class="bar-list"></div>
+        </article>
+
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">Synthetic Demo Pipeline</p>
+              <h2>Demo catalog</h2>
+            </div>
+          </div>
+          <div id="instanceCatalog" class="table-host"></div>
+        </article>
+      </section>
+
+      <section class="panel-card">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">Demo Artifacts</p>
+            <h2>Dashboard output locations</h2>
+          </div>
+        </div>
+        <div id="artifactList" class="artifact-grid"></div>
+      </section>
+
+      <section class="panel-card">
+        <div class="panel-head preview-head">
+          <div>
+            <p class="panel-kicker">Synthetic Demo Pipeline</p>
+            <h2>Generated tables</h2>
+          </div>
+          <div id="previewTabs" class="tab-row"></div>
+        </div>
+        <div id="previewHost" class="table-host"></div>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

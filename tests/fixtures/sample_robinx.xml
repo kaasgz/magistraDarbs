@@ -1,0 +1,18 @@
+<Instance name="SampleRobinX">
+  <Teams>
+    <Team id="T1" name="Team A" />
+    <Team id="T2" name="Team B" />
+    <Team id="T3" name="Team C" />
+  </Teams>
+  <Slots>
+    <Slot id="S1" name="Round 1" />
+    <Slot id="S2" name="Round 2" />
+  </Slots>
+  <Constraints>
+    <Constraint id="C1" category="Capacity" type="Hard" />
+    <Constraint id="C2">
+      <Category>Break</Category>
+      <Tag>HomeAway</Tag>
+    </Constraint>
+  </Constraints>
+</Instance>

@@ -1,0 +1,7 @@
+paths:
+  instance_folder: data/raw/real
+  output_csv: data/processed/features.csv
+  run_summary: data/processed/features_run_summary.json
+
+run:
+  random_seed: 42

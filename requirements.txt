@@ -1,0 +1,12 @@
+lxml
+numpy
+ortools
+pandas
+pydantic
+pyyaml
+joblib
+scikit-learn
+xgboost
+matplotlib
+pytest
+jupyterlab

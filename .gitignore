@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local editor files
+.DS_Store
+Thumbs.db
+
+# Generated data and results
+data/processed/*
+!data/processed/.gitkeep
+data/results/*
+!data/results/.gitkeep

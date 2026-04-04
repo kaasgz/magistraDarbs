@@ -1,0 +1,6 @@
+<Instance>
+  <Teams>
+    <Team id="T1" name="Team A" />
+    <Team id="T2" name="Team B" />
+  </Teams>
+</Instance>
