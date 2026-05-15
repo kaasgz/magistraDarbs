@@ -118,3 +118,68 @@ def test_load_instance_preserves_unknown_constraint_category_and_tag(tmp_path: P
     assert summary.constraints[0].category == "ExperimentalWindow"
     assert summary.constraints[0].tag == "PrimeBlock"
     assert summary.constraints[0].type_name == "Soft"
+
+
+def test_load_instance_supports_itc2021_style_grouped_constraints_and_lowercase_resources(
+    tmp_path: Path,
+) -> None:
+    """Official-style ITC2021 XML should yield teams, slots, grouped constraints, and double RR metadata."""
+
+    xml_path = tmp_path / "itc2021_style.xml"
+    xml_path.write_text(
+        "\n".join(
+            [
+                '<?xml version="1.0" encoding="UTF-8"?>',
+                "<Instance>",
+                "  <MetaData>",
+                "    <InstanceName>ITC2021 Style</InstanceName>",
+                "  </MetaData>",
+                "  <Structure>",
+                "    <Format>",
+                "      <numberRoundRobin>2</numberRoundRobin>",
+                "    </Format>",
+                "  </Structure>",
+                "  <ObjectiveFunction>",
+                "    <Objective>SC</Objective>",
+                "  </ObjectiveFunction>",
+                "  <Resources>",
+                "    <Teams>",
+                '      <team id="0" name="Team 0" />',
+                '      <team id="1" name="Team 1" />',
+                '      <team id="2" name="Team 2" />',
+                '      <team id="3" name="Team 3" />',
+                "    </Teams>",
+                "    <Slots>",
+                '      <slot id="0" name="Slot 0" />',
+                '      <slot id="1" name="Slot 1" />',
+                '      <slot id="2" name="Slot 2" />',
+                '      <slot id="3" name="Slot 3" />',
+                '      <slot id="4" name="Slot 4" />',
+                '      <slot id="5" name="Slot 5" />',
+                "    </Slots>",
+                "  </Resources>",
+                "  <Constraints>",
+                "    <CapacityConstraints>",
+                '      <CA1 teams="0" slots="0;1" type="HARD" max="1" min="0" />',
+                '      <CA1 teams="1" slots="2;3" type="SOFT" max="1" min="0" />',
+                "    </CapacityConstraints>",
+                "    <BreakConstraints>",
+                '      <BR2 teams="0;1;2;3" slots="0;1;2;3;4;5" type="HARD" intp="2" />',
+                "    </BreakConstraints>",
+                "  </Constraints>",
+                "</Instance>",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    summary = load_instance(str(xml_path))
+
+    assert summary.metadata.name == "ITC2021 Style"
+    assert summary.metadata.objective_name == "SC"
+    assert summary.metadata.round_robin_mode == "double"
+    assert summary.team_count == 4
+    assert summary.slot_count == 6
+    assert summary.constraint_count == 3
+    assert {constraint.category for constraint in summary.constraints} == {"Break", "Capacity"}
+    assert {constraint.tag for constraint in summary.constraints} == {"BR2", "CA1"}

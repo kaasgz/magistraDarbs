@@ -27,6 +27,7 @@ from src.utils import (
     get_compat_path,
     get_random_seed,
     get_selected_solvers,
+    get_solver_settings_by_name,
     get_time_limit_seconds,
     load_yaml_config,
     register_observed_source_kind,
@@ -53,6 +54,7 @@ def run_benchmarks(
     config_path: str | Path | None = None,
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
+    solver_settings_by_name: dict[str, dict[str, object]] | None = None,
 ) -> Path:
     """Run selected solvers on all XML instances in a folder.
 
@@ -65,6 +67,8 @@ def run_benchmarks(
         config_path: Optional YAML config path used for the run.
         config: Optional loaded config snapshot to include in metadata.
         run_summary_path: Optional JSON sidecar path for run metadata.
+        solver_settings_by_name: Optional constructor kwargs keyed by solver
+            registry name.
 
     Returns:
         Path to the written benchmark results CSV.
@@ -147,6 +151,7 @@ def run_benchmarks(
                     solver_registry_name=solver_registry_name,
                     time_limit_seconds=time_limit_seconds,
                     random_seed=random_seed,
+                    solver_kwargs=(solver_settings_by_name or {}).get(solver_registry_name, {}),
                 )
             )
 
@@ -177,6 +182,7 @@ def run_benchmarks(
             "random_seed": random_seed,
             "time_limit_seconds": time_limit_seconds,
             "selected_solvers": list(selected_solver_names),
+            "solver_settings_by_name": solver_settings_by_name or {},
             "batch_started_at": batch_started_at,
             "input_source_kind": expected_source or "unknown",
         },
@@ -224,6 +230,7 @@ def run_benchmarks_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) ->
         config_path=config_path,
         config=config,
         run_summary_path=summary_path,
+        solver_settings_by_name=get_solver_settings_by_name(config),
     )
 
 
@@ -301,6 +308,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 ["paths.run_summary", "paths.run_summary_path"],
                 default_run_summary_path(resolved_output_path),
             ),
+            solver_settings_by_name=get_solver_settings_by_name(config),
         )
     except (FileNotFoundError, NotADirectoryError, ValueError, KeyError, BenchmarkValidationError) as exc:
         LOGGER.error("Benchmark run failed: %s", exc)
@@ -316,6 +324,7 @@ def _run_single_solver(
     solver_registry_name: str,
     time_limit_seconds: int,
     random_seed: int,
+    solver_kwargs: dict[str, object] | None = None,
 ) -> dict[str, object]:
     """Run one solver on one instance and return a result row."""
 
@@ -323,7 +332,7 @@ def _run_single_solver(
     started_at = time.perf_counter()
 
     try:
-        solver = get_solver(solver_registry_name)
+        solver = get_solver(solver_registry_name, **(solver_kwargs or {}))
         result = solver.solve(
             instance,
             time_limit_seconds=time_limit_seconds,
@@ -346,6 +355,10 @@ def _run_single_solver(
             runtime_seconds=runtime_seconds,
             feasible=False,
             status=f"FAILED:{type(exc).__name__}",
+            solver_support_status="failed",
+            scoring_status="failed_run",
+            modeling_scope="solver failed before returning a valid result",
+            scoring_notes=(str(exc),),
             metadata={"error": str(exc)},
         )
         error_message = str(exc)
@@ -378,11 +391,17 @@ def _result_to_row(
         "solver_name": result.solver_name,
         "solver_registry_name": solver_registry_name,
         "objective_value": result.objective_value,
+        "objective_sense": result.objective_sense,
+        "objective_value_valid": _objective_value_valid(result),
         "runtime_seconds": result.runtime_seconds,
         "feasible": result.feasible,
         "status": result.status,
+        "solver_support_status": result.solver_support_status,
+        "scoring_status": result.scoring_status,
+        "modeling_scope": result.modeling_scope,
+        "scoring_notes": _serialize_notes(result.scoring_notes),
         "random_seed": random_seed,
-        "configured_time_limit_seconds": time_limit_seconds,
+        "configured_time_limit_seconds": _effective_time_limit_seconds(result.metadata, time_limit_seconds),
         "timestamp": timestamp,
         "is_synthetic": _extract_is_synthetic(instance),
         "instance_source_path": _extract_instance_source_path(instance),
@@ -402,8 +421,11 @@ def _build_batch_results_summary(
     """Build benchmark batch summary metrics for the run summary artifact."""
 
     status_counts: dict[str, int] = {}
+    support_status_counts: dict[str, int] = {}
+    scoring_status_counts: dict[str, int] = {}
     failed_run_count = 0
     feasible_run_count = 0
+    valid_objective_count = 0
     aggregate_runtime_seconds = 0.0
     rows_per_solver: dict[str, int] = {}
 
@@ -412,8 +434,17 @@ def _build_batch_results_summary(
             str(key): int(value)
             for key, value in table["status"].astype("string").value_counts().to_dict().items()
         }
-        failed_run_count = int(table["status"].astype("string").str.startswith("FAILED", na=False).sum())
+        support_status_counts = {
+            str(key): int(value)
+            for key, value in table["solver_support_status"].astype("string").value_counts().to_dict().items()
+        }
+        scoring_status_counts = {
+            str(key): int(value)
+            for key, value in table["scoring_status"].astype("string").value_counts().to_dict().items()
+        }
+        failed_run_count = int((table["scoring_status"].astype("string") == "failed_run").sum())
         feasible_run_count = int(table["feasible"].astype(bool).sum())
+        valid_objective_count = int(table["objective_value_valid"].astype(bool).sum())
         aggregate_runtime_seconds = round(
             float(pd.to_numeric(table["runtime_seconds"], errors="coerce").fillna(0.0).sum()),
             6,
@@ -435,9 +466,12 @@ def _build_batch_results_summary(
         "num_failed_solver_runs": failed_run_count,
         "num_feasible_runs": feasible_run_count,
         "num_non_feasible_runs": len(table.index) - feasible_run_count,
+        "num_valid_objective_rows": valid_objective_count,
         "aggregate_runtime_seconds": aggregate_runtime_seconds,
         "rows_per_solver": rows_per_solver,
         "status_counts": status_counts,
+        "solver_support_status_counts": support_status_counts,
+        "scoring_status_counts": scoring_status_counts,
         "instance_load_failures": skipped_instances,
         "validation_issue_count": len(validation_issues),
         "validation_issues": [
@@ -458,9 +492,15 @@ def _benchmark_columns() -> list[str]:
         "solver_name",
         "solver_registry_name",
         "objective_value",
+        "objective_sense",
+        "objective_value_valid",
         "runtime_seconds",
         "feasible",
         "status",
+        "solver_support_status",
+        "scoring_status",
+        "modeling_scope",
+        "scoring_notes",
         "random_seed",
         "configured_time_limit_seconds",
         "timestamp",
@@ -507,6 +547,32 @@ def _extract_error_message(metadata: dict[str, Any]) -> str | None:
         return None
     text = str(value).strip()
     return text or None
+
+
+def _objective_value_valid(result: SolverResult) -> bool:
+    """Return whether objective_value is a fully comparable lower-is-better score."""
+
+    return result.objective_value is not None and result.scoring_status == "supported_feasible_run"
+
+
+def _serialize_notes(notes: Sequence[str]) -> str:
+    """Serialize scoring notes into one compact CSV field."""
+
+    return "; ".join(str(note).strip() for note in notes if str(note).strip())
+
+
+def _effective_time_limit_seconds(metadata: dict[str, Any], default: int) -> int:
+    """Extract the effective solver time limit from metadata when available."""
+
+    for key in ("effective_time_limit_seconds", "time_limit_seconds"):
+        value = metadata.get(key)
+        if value is None or isinstance(value, bool):
+            continue
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            continue
+    return int(default)
 
 
 def _serialize_metadata(metadata: dict[str, Any]) -> str:

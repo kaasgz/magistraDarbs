@@ -1,4 +1,4 @@
-"""First CP-SAT round-robin solver skeleton for sports scheduling."""
+"""CP-SAT round-robin baseline with explicit single/double-leg support."""
 
 from __future__ import annotations
 
@@ -6,35 +6,73 @@ import time
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
+from typing import Literal
 
 from ortools.sat.python import cp_model
 
 from src.solvers.base import Solver, SolverResult
 
 
-@dataclass(slots=True)
+RoundRobinMode = Literal["single", "double"]
+SupportLevel = Literal["supported", "partially_supported"]
+
+
+@dataclass(frozen=True, slots=True)
+class _MeetingDefinition:
+    """One directed meeting that must be scheduled exactly once."""
+
+    home_team_index: int
+    away_team_index: int
+    home_team_label: str
+    away_team_label: str
+    leg: int
+
+
+@dataclass(frozen=True, slots=True)
+class _ConstraintSupportSummary:
+    """Audit-friendly summary of what the current baseline actually supports."""
+
+    support_level: SupportLevel
+    supported_capabilities: tuple[str, ...]
+    declared_constraint_families: tuple[str, ...]
+    unsupported_constraint_families: tuple[str, ...]
+    notes: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class _RoundRobinProblemData:
     """Internal round-robin data prepared from a parsed instance."""
 
     instance_name: str
-    team_labels: list[str]
-    slot_labels: list[str]
-    matches: list[tuple[int, int]]
+    round_robin_mode: RoundRobinMode
+    team_labels: tuple[str, ...]
+    slot_labels: tuple[str, ...]
+    meetings: tuple[_MeetingDefinition, ...]
     num_slots: int
     requested_slot_count: int
     minimum_required_slots: int
+    constraint_support: _ConstraintSupportSummary
 
 
 class CPSatSolver(Solver):
-    """Minimal CP-SAT baseline for single round-robin scheduling.
+    """CP-SAT baseline for compact single and double round-robin schedules.
 
-    This first version only models a compact baseline schedule:
+    The solver now supports two structural formats:
 
-    - each unordered team pair is played exactly once
-    - a team cannot play more than once per slot
+    - single round robin: one directed meeting per unordered pair
+    - double round robin: two directed meetings per pair with opposite
+      home/away orientation
 
-    Advanced ITC2021-style constraints are intentionally left out for now so
-    the solver can act as a clean foundation for incremental extension.
+    The modeled hard structure is still intentionally narrow:
+
+    - every required meeting must be assigned exactly once
+    - a team cannot play more than once in the same slot
+    - the objective minimizes the number of used slots
+
+    Parsed RobinX / ITC2021 constraint families are recorded for auditability
+    but are not yet enforced directly in the model. When such constraints are
+    present, the returned metadata marks the support level as partial rather
+    than pretending full compliance.
     """
 
     def __init__(self, solver_name: str = "cpsat_round_robin") -> None:
@@ -48,7 +86,7 @@ class CPSatSolver(Solver):
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Build and solve a minimal round-robin CP-SAT model."""
+        """Build and solve a compact round-robin CP-SAT model."""
 
         start_time = time.perf_counter()
         problem = _prepare_problem_data(instance)
@@ -62,27 +100,28 @@ class CPSatSolver(Solver):
                 runtime_seconds=runtime_seconds,
                 feasible=True,
                 status="TRIVIAL",
-                metadata={
-                    "model_type": "cp_sat_round_robin_baseline",
-                    "schedule": [],
-                    "num_teams": len(problem.team_labels),
-                    "num_matches": 0,
-                    "num_slots": problem.num_slots,
-                    "minimum_required_slots": problem.minimum_required_slots,
-                },
+                solver_support_status=problem.constraint_support.support_level,
+                scoring_status=_scoring_status(problem, feasible=True),
+                modeling_scope=_modeling_scope(problem),
+                scoring_notes=problem.constraint_support.notes,
+                metadata=_result_metadata(
+                    problem=problem,
+                    schedule=[],
+                    used_slots=0,
+                    future_extensions=[
+                        "instance_specific_constraint_modeling",
+                        "soft_constraint_objectives",
+                        "venue_and_travel_constraints",
+                    ],
+                ),
             )
 
         model = cp_model.CpModel()
-        match_vars = _create_match_assignment_variables(model, problem)
+        meeting_vars = _create_meeting_assignment_variables(model, problem)
 
-        _add_match_assignment_constraints(model, problem, match_vars)
-        _add_team_availability_constraints(model, problem, match_vars)
-        slot_used = _add_compact_schedule_objective(model, problem, match_vars)
-
-        # Placeholder for future extension:
-        # - add home/away decision variables
-        # - add venue, break, fairness, and travel constraints
-        # - add soft-constraint penalties from richer ITC2021 formulations
+        _add_meeting_assignment_constraints(model, problem, meeting_vars)
+        _add_team_availability_constraints(model, problem, meeting_vars)
+        slot_used = _add_compact_schedule_objective(model, problem, meeting_vars)
 
         solver = cp_model.CpSolver()
         solver.parameters.max_time_in_seconds = max(0.0, float(time_limit_seconds))
@@ -94,7 +133,7 @@ class CPSatSolver(Solver):
         runtime_seconds = time.perf_counter() - start_time
         feasible = status_code in (cp_model.OPTIMAL, cp_model.FEASIBLE)
 
-        schedule = _extract_schedule(problem, match_vars, solver) if feasible else []
+        schedule = _extract_schedule(problem, meeting_vars, solver) if feasible else []
         objective_value = float(solver.ObjectiveValue()) if feasible else None
 
         return SolverResult(
@@ -104,23 +143,20 @@ class CPSatSolver(Solver):
             runtime_seconds=runtime_seconds,
             feasible=feasible,
             status=status_name,
-            metadata={
-                "model_type": "cp_sat_round_robin_baseline",
-                "schedule": schedule,
-                "num_teams": len(problem.team_labels),
-                "num_matches": len(problem.matches),
-                "num_slots": problem.num_slots,
-                "requested_slot_count": problem.requested_slot_count,
-                "minimum_required_slots": problem.minimum_required_slots,
-                "slot_labels": problem.slot_labels,
-                "team_labels": problem.team_labels,
-                "used_slots": _count_used_slots(slot_used, solver) if feasible else 0,
-                "future_extensions": [
-                    "home_away_assignment",
-                    "advanced_itc2021_constraints",
-                    "soft_constraint_objectives",
+            solver_support_status=problem.constraint_support.support_level,
+            scoring_status=_scoring_status(problem, feasible=feasible),
+            modeling_scope=_modeling_scope(problem),
+            scoring_notes=problem.constraint_support.notes,
+            metadata=_result_metadata(
+                problem=problem,
+                schedule=schedule,
+                used_slots=_count_used_slots(slot_used, solver) if feasible else 0,
+                future_extensions=[
+                    "instance_specific_capacity_constraints",
+                    "break_and_home_away_pattern_constraints",
+                    "soft_constraint_penalty_modeling",
                 ],
-            },
+            ),
         )
 
 
@@ -128,77 +164,81 @@ def _prepare_problem_data(instance: object) -> _RoundRobinProblemData:
     """Prepare round-robin inputs from a parsed instance-like object."""
 
     instance_name = _extract_instance_name(instance)
+    round_robin_mode = _extract_round_robin_mode(instance)
     explicit_team_count = _safe_nonnegative_int(getattr(instance, "team_count", 0))
-    team_labels = _build_team_labels(instance, explicit_team_count)
+    team_labels = tuple(_build_team_labels(instance, explicit_team_count))
     num_teams = len(team_labels)
 
-    minimum_required_slots = _minimum_required_slots(num_teams)
+    minimum_required_slots = _minimum_required_slots(num_teams, round_robin_mode)
     requested_slot_count = _safe_nonnegative_int(getattr(instance, "slot_count", 0))
     num_slots = requested_slot_count if requested_slot_count > 0 else minimum_required_slots
-    slot_labels = _build_slot_labels(instance, num_slots)
-    matches = list(combinations(range(num_teams), 2))
+    slot_labels = tuple(_build_slot_labels(instance, num_slots))
+    meetings = _build_meetings(team_labels, round_robin_mode)
+    constraint_support = _summarize_constraint_support(instance, round_robin_mode)
 
     return _RoundRobinProblemData(
         instance_name=instance_name,
+        round_robin_mode=round_robin_mode,
         team_labels=team_labels,
         slot_labels=slot_labels,
-        matches=matches,
+        meetings=meetings,
         num_slots=num_slots,
         requested_slot_count=requested_slot_count,
         minimum_required_slots=minimum_required_slots,
+        constraint_support=constraint_support,
     )
 
 
-def _create_match_assignment_variables(
+def _create_meeting_assignment_variables(
     model: cp_model.CpModel,
     problem: _RoundRobinProblemData,
-) -> dict[tuple[int, int, int], cp_model.IntVar]:
-    """Create one binary variable per match-slot assignment."""
+) -> dict[tuple[int, int], cp_model.IntVar]:
+    """Create one binary variable per meeting-slot assignment."""
 
-    match_vars: dict[tuple[int, int, int], cp_model.IntVar] = {}
-    for team_a, team_b in problem.matches:
+    meeting_vars: dict[tuple[int, int], cp_model.IntVar] = {}
+    for meeting_index, meeting in enumerate(problem.meetings):
         for slot in range(problem.num_slots):
-            match_vars[(team_a, team_b, slot)] = model.NewBoolVar(
-                f"match_t{team_a}_t{team_b}_s{slot}",
+            meeting_vars[(meeting_index, slot)] = model.NewBoolVar(
+                f"meeting_{meeting_index}_leg{meeting.leg}_h{meeting.home_team_index}_a{meeting.away_team_index}_s{slot}",
             )
-    return match_vars
+    return meeting_vars
 
 
-def _add_match_assignment_constraints(
+def _add_meeting_assignment_constraints(
     model: cp_model.CpModel,
     problem: _RoundRobinProblemData,
-    match_vars: dict[tuple[int, int, int], cp_model.IntVar],
+    meeting_vars: dict[tuple[int, int], cp_model.IntVar],
 ) -> None:
-    """Ensure each pair of teams is scheduled exactly once."""
+    """Ensure each required meeting is scheduled exactly once."""
 
-    for team_a, team_b in problem.matches:
+    for meeting_index in range(len(problem.meetings)):
         model.Add(
-            sum(match_vars[(team_a, team_b, slot)] for slot in range(problem.num_slots)) == 1,
+            sum(meeting_vars[(meeting_index, slot)] for slot in range(problem.num_slots)) == 1,
         )
 
 
 def _add_team_availability_constraints(
     model: cp_model.CpModel,
     problem: _RoundRobinProblemData,
-    match_vars: dict[tuple[int, int, int], cp_model.IntVar],
+    meeting_vars: dict[tuple[int, int], cp_model.IntVar],
 ) -> None:
     """Prevent teams from playing more than once in the same slot."""
 
     for slot in range(problem.num_slots):
-        for team in range(len(problem.team_labels)):
-            incident_matches = [
-                match_vars[(team_a, team_b, slot)]
-                for team_a, team_b in problem.matches
-                if team in (team_a, team_b)
+        for team_index in range(len(problem.team_labels)):
+            incident_meetings = [
+                meeting_vars[(meeting_index, slot)]
+                for meeting_index, meeting in enumerate(problem.meetings)
+                if team_index in {meeting.home_team_index, meeting.away_team_index}
             ]
-            if incident_matches:
-                model.Add(sum(incident_matches) <= 1)
+            if incident_meetings:
+                model.Add(sum(incident_meetings) <= 1)
 
 
 def _add_compact_schedule_objective(
     model: cp_model.CpModel,
     problem: _RoundRobinProblemData,
-    match_vars: dict[tuple[int, int, int], cp_model.IntVar],
+    meeting_vars: dict[tuple[int, int], cp_model.IntVar],
 ) -> list[cp_model.IntVar]:
     """Minimize the number of used slots in the baseline formulation."""
 
@@ -206,14 +246,14 @@ def _add_compact_schedule_objective(
     for slot in range(problem.num_slots):
         used = model.NewBoolVar(f"slot_used_{slot}")
         slot_used.append(used)
-        slot_matches = [
-            match_vars[(team_a, team_b, slot)]
-            for team_a, team_b in problem.matches
+        slot_meetings = [
+            meeting_vars[(meeting_index, slot)]
+            for meeting_index in range(len(problem.meetings))
         ]
-        if slot_matches:
-            for var in slot_matches:
+        if slot_meetings:
+            for var in slot_meetings:
                 model.Add(var <= used)
-            model.Add(sum(slot_matches) >= used)
+            model.Add(sum(slot_meetings) >= used)
         else:
             model.Add(used == 0)
 
@@ -223,24 +263,77 @@ def _add_compact_schedule_objective(
 
 def _extract_schedule(
     problem: _RoundRobinProblemData,
-    match_vars: dict[tuple[int, int, int], cp_model.IntVar],
+    meeting_vars: dict[tuple[int, int], cp_model.IntVar],
     solver: cp_model.CpSolver,
 ) -> list[dict[str, object]]:
     """Extract a readable slot-by-slot schedule from a solved model."""
 
     schedule: list[dict[str, object]] = []
     for slot in range(problem.num_slots):
-        for team_a, team_b in problem.matches:
-            if solver.BooleanValue(match_vars[(team_a, team_b, slot)]):
-                schedule.append(
-                    {
-                        "slot_index": slot,
-                        "slot": problem.slot_labels[slot],
-                        "team_1": problem.team_labels[team_a],
-                        "team_2": problem.team_labels[team_b],
-                    },
-                )
+        for meeting_index, meeting in enumerate(problem.meetings):
+            if not solver.BooleanValue(meeting_vars[(meeting_index, slot)]):
+                continue
+            schedule.append(
+                {
+                    "slot_index": slot,
+                    "slot": problem.slot_labels[slot],
+                    "meeting_index": meeting_index,
+                    "leg": meeting.leg,
+                    "home_team": meeting.home_team_label,
+                    "away_team": meeting.away_team_label,
+                    "team_1": meeting.home_team_label,
+                    "team_2": meeting.away_team_label,
+                }
+            )
     return schedule
+
+
+def _result_metadata(
+    *,
+    problem: _RoundRobinProblemData,
+    schedule: list[dict[str, object]],
+    used_slots: int,
+    future_extensions: list[str],
+) -> dict[str, object]:
+    """Build one audit-friendly metadata payload for solver results."""
+
+    return {
+        "model_type": "cp_sat_round_robin_baseline",
+        "round_robin_mode": problem.round_robin_mode,
+        "schedule": schedule,
+        "num_teams": len(problem.team_labels),
+        "num_meetings": len(problem.meetings),
+        "num_slots": problem.num_slots,
+        "requested_slot_count": problem.requested_slot_count,
+        "minimum_required_slots": problem.minimum_required_slots,
+        "slot_labels": list(problem.slot_labels),
+        "team_labels": list(problem.team_labels),
+        "used_slots": used_slots,
+        "support_level": problem.constraint_support.support_level,
+        "supported_capabilities": list(problem.constraint_support.supported_capabilities),
+        "declared_constraint_families": list(problem.constraint_support.declared_constraint_families),
+        "unsupported_constraint_families": list(problem.constraint_support.unsupported_constraint_families),
+        "support_notes": list(problem.constraint_support.notes),
+        "future_extensions": future_extensions,
+    }
+
+
+def _scoring_status(problem: _RoundRobinProblemData, *, feasible: bool) -> str:
+    """Return the common scoring-contract status for a CP-SAT result."""
+
+    if problem.constraint_support.support_level == "partially_supported":
+        return "partially_modeled_run"
+    return "supported_feasible_run" if feasible else "supported_infeasible_run"
+
+
+def _modeling_scope(problem: _RoundRobinProblemData) -> str:
+    """Describe the implemented CP-SAT model scope for benchmark exports."""
+
+    return (
+        f"compact {problem.round_robin_mode} round-robin CP-SAT model; "
+        "one meeting per required leg; at most one match per team per slot; "
+        "minimizes used slots; parsed RobinX constraint families are not enforced"
+    )
 
 
 def _count_used_slots(slot_used: list[cp_model.IntVar], solver: cp_model.CpSolver) -> int:
@@ -287,12 +380,119 @@ def _build_slot_labels(instance: object, num_slots: int) -> list[str]:
     return labels
 
 
-def _minimum_required_slots(num_teams: int) -> int:
-    """Return the minimum slot count for a single round-robin tournament."""
+def _build_meetings(
+    team_labels: tuple[str, ...],
+    round_robin_mode: RoundRobinMode,
+) -> tuple[_MeetingDefinition, ...]:
+    """Build the directed meetings implied by the requested round-robin mode."""
+
+    meetings: list[_MeetingDefinition] = []
+    for home_team_index, away_team_index in combinations(range(len(team_labels)), 2):
+        meetings.append(
+            _MeetingDefinition(
+                home_team_index=home_team_index,
+                away_team_index=away_team_index,
+                home_team_label=team_labels[home_team_index],
+                away_team_label=team_labels[away_team_index],
+                leg=1,
+            )
+        )
+        if round_robin_mode == "double":
+            meetings.append(
+                _MeetingDefinition(
+                    home_team_index=away_team_index,
+                    away_team_index=home_team_index,
+                    home_team_label=team_labels[away_team_index],
+                    away_team_label=team_labels[home_team_index],
+                    leg=2,
+                )
+            )
+    return tuple(meetings)
+
+
+def _minimum_required_slots(num_teams: int, round_robin_mode: RoundRobinMode = "single") -> int:
+    """Return the minimum slot count implied by the round-robin mode."""
 
     if num_teams <= 1:
         return 0
-    return num_teams if num_teams % 2 == 1 else num_teams - 1
+    single_round_slots = num_teams if num_teams % 2 == 1 else num_teams - 1
+    if round_robin_mode == "double":
+        return single_round_slots * 2
+    return single_round_slots
+
+
+def _extract_round_robin_mode(instance: object) -> RoundRobinMode:
+    """Extract a normalized round-robin mode with a conservative fallback."""
+
+    metadata = getattr(instance, "metadata", None)
+    raw_value = _first_non_empty(
+        [
+            _read_text_field(instance, "round_robin_mode"),
+            _read_text_field(metadata, "round_robin_mode"),
+        ]
+    )
+    if raw_value is None:
+        return "single"
+    if "double" in raw_value.casefold():
+        return "double"
+    return "single"
+
+
+def _summarize_constraint_support(
+    instance: object,
+    round_robin_mode: RoundRobinMode,
+) -> _ConstraintSupportSummary:
+    """Describe what the current baseline does and does not support."""
+
+    declared_constraint_families = _extract_constraint_families(instance)
+    unsupported_constraint_families = declared_constraint_families
+    notes = [
+        (
+            "Supports compact "
+            f"{round_robin_mode} round-robin scheduling with at most one match per team per slot."
+        ),
+    ]
+    if round_robin_mode == "single":
+        notes.append(
+            "Single round robin uses one canonical home/away orientation per pair for schedule reporting.",
+        )
+    else:
+        notes.append(
+            "Double round robin schedules both home/away legs for every team pair.",
+        )
+    if unsupported_constraint_families:
+        notes.append(
+            "Parsed RobinX / ITC2021 constraint families are recorded but not yet enforced directly by this baseline.",
+        )
+
+    return _ConstraintSupportSummary(
+        support_level="supported" if not unsupported_constraint_families else "partially_supported",
+        supported_capabilities=(
+            "single_round_robin" if round_robin_mode == "single" else "double_round_robin",
+            "one_meeting_per_required_leg",
+            "at_most_one_match_per_team_per_slot",
+            "compact_slot_minimization",
+        ),
+        declared_constraint_families=declared_constraint_families,
+        unsupported_constraint_families=unsupported_constraint_families,
+        notes=tuple(notes),
+    )
+
+
+def _extract_constraint_families(instance: object) -> tuple[str, ...]:
+    """Extract stable constraint-family labels from the parsed instance."""
+
+    constraints = list(getattr(instance, "constraints", []) or [])
+    families: set[str] = set()
+    for constraint in constraints:
+        for value in (
+            _read_text_field(constraint, "category"),
+            _read_text_field(constraint, "tag"),
+            _read_text_field(constraint, "type_name"),
+        ):
+            if value:
+                families.add(value)
+    return tuple(sorted(families))
 
 
 def _extract_instance_name(instance: object) -> str:
@@ -334,4 +534,13 @@ def _first_non_empty(values: list[str | None]) -> str | None:
     for value in values:
         if isinstance(value, str) and value.strip():
             return value.strip()
+    return None
+
+
+def _read_text_field(value: object, field_name: str) -> str | None:
+    """Read and normalize one text-like field from an object."""
+
+    field_value = getattr(value, field_name, None)
+    if isinstance(field_value, str) and field_value.strip():
+        return field_value.strip()
     return None

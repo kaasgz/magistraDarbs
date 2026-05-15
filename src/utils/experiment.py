@@ -110,6 +110,31 @@ def get_selected_solvers(config: dict[str, Any], default: list[str]) -> list[str
     return get_compat_string_list(config, ["solvers.selected", "selected_solvers"], default)
 
 
+def get_solver_settings_by_name(config: dict[str, Any]) -> dict[str, dict[str, object]]:
+    """Read optional per-solver constructor settings from a config mapping."""
+
+    raw_value = get_compat_value(config, ["solvers.settings", "solver_settings"], {})
+    if raw_value in ({}, None):
+        return {}
+    if not isinstance(raw_value, dict):
+        raise ValueError("Configuration key 'solvers.settings' must be a mapping of solver settings.")
+
+    settings: dict[str, dict[str, object]] = {}
+    for solver_name, solver_settings in raw_value.items():
+        normalized_name = str(solver_name).strip()
+        if not normalized_name:
+            raise ValueError("Solver setting names must be non-empty strings.")
+        if solver_settings is None:
+            settings[normalized_name] = {}
+            continue
+        if not isinstance(solver_settings, dict):
+            raise ValueError(
+                f"Configuration key 'solvers.settings.{normalized_name}' must be a mapping."
+            )
+        settings[normalized_name] = {str(key): value for key, value in solver_settings.items()}
+    return settings
+
+
 def get_include_solver_objectives(config: dict[str, Any], default: bool = True) -> bool:
     """Read the selection-dataset objective-column toggle."""
 
@@ -228,7 +253,7 @@ def _json_safe_value(value: Any) -> Any:
     if callable(item_method):
         try:
             return _json_safe_value(item_method())
-        except Exception:
+        except (TypeError, ValueError):
             pass
 
     return str(value)

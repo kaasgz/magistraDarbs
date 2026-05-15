@@ -138,13 +138,7 @@ def load_instance(xml_path: str) -> InstanceSummary:
                 ".//*[local-name()='Difficulty']",
             ],
         ),
-        round_robin_mode=_first_text(
-            root,
-            [
-                ".//*[local-name()='MetaData']/*[local-name()='RoundRobinMode']",
-                ".//*[local-name()='Format']/@mode",
-            ],
-        ),
+        round_robin_mode=_extract_round_robin_mode(root),
     )
     parser_notes = _build_parser_notes(
         root=root,
@@ -472,6 +466,7 @@ def _extract_objective_name(root: etree._Element) -> str | None:
                 root,
                 [
                     ".//*[local-name()='Objective']/@name",
+                    ".//*[local-name()='Objective']",
                     ".//*[local-name()='MetaData']/*[local-name()='ObjectiveName']",
                 ],
             ),
@@ -495,12 +490,47 @@ def _extract_objective_sense(root: etree._Element) -> str | None:
     )
 
 
+def _extract_round_robin_mode(root: etree._Element) -> str | None:
+    """Return a normalized round-robin mode when present."""
+
+    explicit_mode = _first_non_empty(
+        [
+            _first_text(
+                root,
+                [
+                    ".//*[local-name()='MetaData']/*[local-name()='RoundRobinMode']",
+                    ".//*[local-name()='Format']/@mode",
+                ],
+            )
+        ]
+    )
+    if explicit_mode:
+        normalized = explicit_mode.casefold()
+        if "double" in normalized:
+            return "double"
+        if "single" in normalized:
+            return "single"
+
+    round_robin_count = _first_integer(
+        [
+            _first_text(root, [".//*[local-name()='Format']/*[local-name()='numberRoundRobin']"]),
+        ]
+    )
+    if round_robin_count is None:
+        return None
+    if round_robin_count >= 2:
+        return "double"
+    if round_robin_count == 1:
+        return "single"
+    return None
+
+
 def _parse_teams(root: etree._Element) -> tuple[list[Team], int]:
     """Parse team entries from likely team sections."""
 
     team_elements = _find_elements(root, section_names=("Teams",), element_names=("Team",))
     if not team_elements:
-        team_elements = root.xpath(".//*[local-name()='Team']")
+        team_elements = _matching_descendants(root, ("Team",))
 
     teams: list[Team] = []
     seen: set[tuple[str | None, str | None]] = set()
@@ -547,6 +577,8 @@ def _parse_slots(root: etree._Element) -> tuple[list[Slot], int]:
         section_names=("Slots", "Rounds"),
         element_names=("Slot", "Round"),
     )
+    if not slot_elements:
+        slot_elements = _matching_descendants(root, ("Slot", "Round"))
 
     slots: list[Slot] = []
     seen: set[tuple[str | None, str | None]] = set()
@@ -586,12 +618,13 @@ def _parse_constraints(root: etree._Element) -> tuple[list[Constraint], int]:
         element_names=("Constraint",),
     )
     if not constraint_elements:
-        constraint_elements = root.xpath(".//*[contains(local-name(), 'Constraint')]")
+        constraint_elements = _find_grouped_constraint_elements(root)
 
     constraints: list[Constraint] = []
-    seen: set[tuple[str | None, str | None, str | None, str | None]] = set()
+    seen: set[tuple[tuple[tuple[str, str], ...], str | None, str | None, str | None, str | None]] = set()
     duplicate_count = 0
     for element in constraint_elements:
+        parent = element.getparent()
         identifier = _first_non_empty(
             [
                 _attribute_value(element, "id"),
@@ -605,6 +638,7 @@ def _parse_constraints(root: etree._Element) -> tuple[list[Constraint], int]:
                 _attribute_value(element, "category"),
                 _attribute_value(element, "Category"),
                 _attribute_value(element, "group"),
+                _constraint_category_from_parent(parent),
                 _first_text(
                     element,
                     [
@@ -626,6 +660,7 @@ def _parse_constraints(root: etree._Element) -> tuple[list[Constraint], int]:
                         "./*[local-name()='Name']",
                     ],
                 ),
+                _constraint_tag_from_element(element),
             ]
         )
         type_name = _first_non_empty(
@@ -635,7 +670,8 @@ def _parse_constraints(root: etree._Element) -> tuple[list[Constraint], int]:
                 _first_text(element, ["./*[local-name()='Type']"]),
             ]
         )
-        key = (identifier, category, tag, type_name)
+        attribute_signature = tuple(sorted((str(key), str(value)) for key, value in element.attrib.items()))
+        key = (attribute_signature, identifier, category, tag, type_name)
         if key in seen:
             duplicate_count += 1
             continue
@@ -709,16 +745,12 @@ def _find_elements(
 
     results: list[etree._Element] = []
     seen: set[int] = set()
-    for section_name in section_names:
-        sections = root.xpath(f".//*[local-name()='{section_name}']")
-        for section in sections:
-            for element_name in element_names:
-                matches = section.xpath(f".//*[local-name()='{element_name}']")
-                for match in matches:
-                    marker = id(match)
-                    if marker not in seen:
-                        seen.add(marker)
-                        results.append(match)
+    for section in _matching_descendants(root, section_names):
+        for match in _matching_descendants(section, element_names):
+            marker = id(match)
+            if marker not in seen:
+                seen.add(marker)
+                results.append(match)
     return results
 
 
@@ -815,3 +847,84 @@ def _normalize_text(value: str | None) -> str | None:
         return None
     normalized = value.strip()
     return normalized or None
+
+
+def _matching_descendants(
+    root: etree._Element,
+    names: tuple[str, ...],
+) -> list[etree._Element]:
+    """Return descendant elements whose local name matches any expected name."""
+
+    expected_names = {name.casefold() for name in names}
+    matches: list[etree._Element] = []
+    for element in root.iterdescendants():
+        if _element_name_matches(element, expected_names):
+            matches.append(element)
+    return matches
+
+
+def _element_name_matches(element: etree._Element, expected_names: set[str]) -> bool:
+    """Return whether one XML element matches any expected local name."""
+
+    local_name = _element_local_name(element)
+    return local_name is not None and local_name.casefold() in expected_names
+
+
+def _element_local_name(element: etree._Element | None) -> str | None:
+    """Return one element's local XML name while ignoring namespaces."""
+
+    if element is None or not isinstance(element.tag, str):
+        return None
+    try:
+        return _normalize_text(etree.QName(element).localname)
+    except ValueError:
+        return _normalize_text(str(element.tag))
+
+
+def _find_grouped_constraint_elements(root: etree._Element) -> list[etree._Element]:
+    """Find RobinX / ITC2021-style grouped constraint elements."""
+
+    constraint_sections = _matching_descendants(root, ("Constraints",))
+    results: list[etree._Element] = []
+    seen: set[int] = set()
+
+    for section in constraint_sections:
+        for child in section:
+            child_name = _element_local_name(child)
+            if child_name is None:
+                continue
+            normalized = child_name.casefold()
+            if normalized == "constraint":
+                marker = id(child)
+                if marker not in seen:
+                    seen.add(marker)
+                    results.append(child)
+                continue
+            if normalized.endswith("constraints"):
+                for grandchild in child:
+                    marker = id(grandchild)
+                    if marker not in seen:
+                        seen.add(marker)
+                        results.append(grandchild)
+
+    return results
+
+
+def _constraint_category_from_parent(parent: etree._Element | None) -> str | None:
+    """Infer a constraint category from the parent grouped-constraint section."""
+
+    parent_name = _element_local_name(parent)
+    if parent_name is None:
+        return None
+    if parent_name.casefold().endswith("constraints") and len(parent_name) > len("constraints"):
+        return parent_name[: -len("Constraints")]
+    return None
+
+
+def _constraint_tag_from_element(element: etree._Element) -> str | None:
+    """Infer a fallback constraint tag only for non-generic element names."""
+
+    local_name = _element_local_name(element)
+    if local_name is None or local_name.casefold() == "constraint":
+        return None
+    return local_name

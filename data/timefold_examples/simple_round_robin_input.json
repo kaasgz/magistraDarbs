@@ -1,0 +1,189 @@
+{
+  "schema": "timefold_round_robin_v1",
+  "config": {
+    "run": {
+      "name": "ExampleLeague",
+      "timeLimitSeconds": 60,
+      "randomSeed": 42
+    }
+  },
+  "modelInput": {
+    "instanceName": "ExampleLeague",
+    "roundRobinMode": "single",
+    "teams": [
+      {
+        "id": "T1",
+        "name": "Team 1",
+        "index": 0
+      },
+      {
+        "id": "T2",
+        "name": "Team 2",
+        "index": 1
+      },
+      {
+        "id": "T3",
+        "name": "Team 3",
+        "index": 2
+      },
+      {
+        "id": "T4",
+        "name": "Team 4",
+        "index": 3
+      }
+    ],
+    "slots": [
+      {
+        "id": "S1",
+        "name": "Round 1",
+        "index": 0
+      },
+      {
+        "id": "S2",
+        "name": "Round 2",
+        "index": 1
+      },
+      {
+        "id": "S3",
+        "name": "Round 3",
+        "index": 2
+      }
+    ],
+    "matches": [
+      {
+        "id": "M1",
+        "homeTeamId": "T1",
+        "awayTeamId": "T2",
+        "homeTeamName": "Team 1",
+        "awayTeamName": "Team 2",
+        "leg": 1
+      },
+      {
+        "id": "M2",
+        "homeTeamId": "T1",
+        "awayTeamId": "T3",
+        "homeTeamName": "Team 1",
+        "awayTeamName": "Team 3",
+        "leg": 1
+      },
+      {
+        "id": "M3",
+        "homeTeamId": "T1",
+        "awayTeamId": "T4",
+        "homeTeamName": "Team 1",
+        "awayTeamName": "Team 4",
+        "leg": 1
+      },
+      {
+        "id": "M4",
+        "homeTeamId": "T2",
+        "awayTeamId": "T3",
+        "homeTeamName": "Team 2",
+        "awayTeamName": "Team 3",
+        "leg": 1
+      },
+      {
+        "id": "M5",
+        "homeTeamId": "T2",
+        "awayTeamId": "T4",
+        "homeTeamName": "Team 2",
+        "awayTeamName": "Team 4",
+        "leg": 1
+      },
+      {
+        "id": "M6",
+        "homeTeamId": "T3",
+        "awayTeamId": "T4",
+        "homeTeamName": "Team 3",
+        "awayTeamName": "Team 4",
+        "leg": 1
+      }
+    ],
+    "meetings": [
+      {
+        "id": "M1",
+        "homeTeamId": "T1",
+        "awayTeamId": "T2",
+        "homeTeamName": "Team 1",
+        "awayTeamName": "Team 2",
+        "leg": 1
+      },
+      {
+        "id": "M2",
+        "homeTeamId": "T1",
+        "awayTeamId": "T3",
+        "homeTeamName": "Team 1",
+        "awayTeamName": "Team 3",
+        "leg": 1
+      },
+      {
+        "id": "M3",
+        "homeTeamId": "T1",
+        "awayTeamId": "T4",
+        "homeTeamName": "Team 1",
+        "awayTeamName": "Team 4",
+        "leg": 1
+      },
+      {
+        "id": "M4",
+        "homeTeamId": "T2",
+        "awayTeamId": "T3",
+        "homeTeamName": "Team 2",
+        "awayTeamName": "Team 3",
+        "leg": 1
+      },
+      {
+        "id": "M5",
+        "homeTeamId": "T2",
+        "awayTeamId": "T4",
+        "homeTeamName": "Team 2",
+        "awayTeamName": "Team 4",
+        "leg": 1
+      },
+      {
+        "id": "M6",
+        "homeTeamId": "T3",
+        "awayTeamId": "T4",
+        "homeTeamName": "Team 3",
+        "awayTeamName": "Team 4",
+        "leg": 1
+      }
+    ],
+    "constraints": [
+      {
+        "family": "Capacity"
+      }
+    ],
+    "metadata": {
+      "requestedSlotCount": 3,
+      "minimumRequiredSlots": 3,
+      "sourcePath": "data/raw/real/example_league.xml",
+      "parserNotes": [],
+      "ignoredConstraintFamilies": [
+        "Capacity"
+      ],
+      "adapterLimitations": {
+        "supported_scope": [
+          "single_round_robin_structure",
+          "double_round_robin_structure",
+          "stable_team_slot_and_match_identifiers",
+          "round_robin_solution_validation"
+        ],
+        "ignored_constraints": [
+          "capacity_constraints",
+          "break_constraints",
+          "venue_constraints",
+          "travel_constraints",
+          "fairness_constraints",
+          "sequence_constraints",
+          "soft_constraint_penalties"
+        ],
+        "approximated_behavior": [
+          "matches_are_inferred_from_team_set_and_round_robin_mode",
+          "declared_constraint_families_are_exported_as_metadata_only",
+          "slots_are_treated_as_simple_ordered_rounds_without_extra_semantics"
+        ]
+      }
+    }
+  }
+}

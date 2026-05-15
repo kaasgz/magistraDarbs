@@ -49,6 +49,10 @@ DEFAULT_CONFIG_PATH = Path("configs/selector_config.yaml")
 DEFAULT_DATASET_PATH = Path("data/processed/selection_dataset.csv")
 DEFAULT_MODEL_PATH = Path("data/results/random_forest_selector.joblib")
 DEFAULT_IMPORTANCE_PATH = Path("data/results/random_forest_feature_importance.csv")
+DEFAULT_FULL_DATASET_PATH = Path("data/processed/selection_dataset_full.csv")
+DEFAULT_FULL_MODEL_PATH = Path("data/results/full_selection/random_forest_selector.joblib")
+DEFAULT_FULL_IMPORTANCE_PATH = Path("data/results/full_selection/feature_importance.csv")
+DEFAULT_FULL_TRAINING_SUMMARY_PATH = Path("data/results/full_selection/selector_training_run_summary.json")
 
 
 @dataclass(slots=True)
@@ -188,6 +192,7 @@ def train_selector(
             "num_test_rows": result.num_test_rows,
             "num_labeled_rows": result.num_labeled_rows,
             "num_validation_splits": result.num_validation_splits,
+            "dataset_type_counts": _dataset_type_counts(dataset),
             "feature_columns": list(prepared_data.feature_columns),
             "excluded_columns": list(prepared_data.excluded_columns),
             "confusion_matrix": result.confusion_matrix.to_dict(),
@@ -224,6 +229,37 @@ def train_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) ->
     )
 
 
+def train_full_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> SelectorTrainingResult:
+    """Train the selector on the combined synthetic/real selection dataset."""
+
+    config = load_yaml_config(config_path)
+    split_settings = get_split_settings(config)
+    model_path = get_compat_path(config, ["paths.full_model_output"], DEFAULT_FULL_MODEL_PATH)
+    summary_path = get_compat_path(
+        config,
+        ["paths.full_training_run_summary"],
+        DEFAULT_FULL_TRAINING_SUMMARY_PATH,
+    )
+    return train_selector(
+        dataset_csv=get_compat_path(config, ["paths.full_selection_dataset_csv"], DEFAULT_FULL_DATASET_PATH),
+        model_path=model_path,
+        feature_importance_csv=get_compat_path(
+            config,
+            ["paths.full_feature_importance_csv"],
+            DEFAULT_FULL_IMPORTANCE_PATH,
+        ),
+        random_seed=get_random_seed(config, 42),
+        test_size=split_settings.test_size,
+        model_name=get_model_choice(config, "random_forest"),
+        split_strategy=split_settings.strategy,
+        cross_validation_folds=split_settings.cross_validation_folds,
+        repeats=split_settings.repeats,
+        config_path=config_path,
+        config=config,
+        run_summary_path=summary_path,
+    )
+
+
 def build_argument_parser() -> argparse.ArgumentParser:
     """Create the command-line parser for selector training."""
 
@@ -239,6 +275,11 @@ def build_argument_parser() -> argparse.ArgumentParser:
         "--dataset",
         default=None,
         help="Path to the selection dataset CSV.",
+    )
+    parser.add_argument(
+        "--full-dataset",
+        action="store_true",
+        help="Train on data/processed/selection_dataset_full.csv and write full_selection outputs.",
     )
     parser.add_argument(
         "--model-output",
@@ -297,13 +338,42 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         config = load_yaml_config(args.config)
         split_settings = get_split_settings(config)
-        resolved_model_path = args.model_output or get_compat_path(config, ["paths.model_output"], DEFAULT_MODEL_PATH)
+        if args.full_dataset:
+            default_dataset_path = get_compat_path(
+                config,
+                ["paths.full_selection_dataset_csv"],
+                DEFAULT_FULL_DATASET_PATH,
+            )
+            default_model_path = get_compat_path(config, ["paths.full_model_output"], DEFAULT_FULL_MODEL_PATH)
+            default_importance_path = get_compat_path(
+                config,
+                ["paths.full_feature_importance_csv"],
+                DEFAULT_FULL_IMPORTANCE_PATH,
+            )
+            default_run_summary = get_compat_path(
+                config,
+                ["paths.full_training_run_summary"],
+                DEFAULT_FULL_TRAINING_SUMMARY_PATH,
+            )
+        else:
+            default_dataset_path = get_compat_path(config, ["paths.selection_dataset_csv"], DEFAULT_DATASET_PATH)
+            default_model_path = get_compat_path(config, ["paths.model_output"], DEFAULT_MODEL_PATH)
+            default_importance_path = get_compat_path(
+                config,
+                ["paths.feature_importance_csv"],
+                DEFAULT_IMPORTANCE_PATH,
+            )
+            default_run_summary = get_compat_path(
+                config,
+                ["paths.training_run_summary", "paths.run_summary", "paths.run_summary_path"],
+                default_run_summary_path(args.model_output or default_model_path),
+            )
+
+        resolved_model_path = args.model_output or default_model_path
         result = train_selector(
-            dataset_csv=args.dataset
-            or get_compat_path(config, ["paths.selection_dataset_csv"], DEFAULT_DATASET_PATH),
+            dataset_csv=args.dataset or default_dataset_path,
             model_path=resolved_model_path,
-            feature_importance_csv=args.importance_output
-            or get_compat_path(config, ["paths.feature_importance_csv"], DEFAULT_IMPORTANCE_PATH),
+            feature_importance_csv=args.importance_output or default_importance_path,
             random_seed=(
                 args.random_seed
                 if args.random_seed is not None
@@ -328,11 +398,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             ),
             config_path=args.config,
             config=config,
-            run_summary_path=get_compat_path(
-                config,
-                ["paths.training_run_summary", "paths.run_summary", "paths.run_summary_path"],
-                default_run_summary_path(resolved_model_path),
-            ),
+            run_summary_path=default_run_summary,
         )
     except (FileNotFoundError, ValueError, pd.errors.EmptyDataError) as exc:
         print(f"Failed to train selector: {exc}", file=sys.stderr)
@@ -367,15 +433,28 @@ def _build_confusion_matrix(predictions: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def _dataset_type_counts(dataset: pd.DataFrame) -> dict[str, int]:
+    """Return source counts when the dataset carries synthetic/real labels."""
+
+    if "dataset_type" not in dataset.columns:
+        return {}
+    counts = dataset["dataset_type"].dropna().astype(str).value_counts().sort_index()
+    return {str(dataset_type): int(count) for dataset_type, count in counts.items()}
+
+
 __all__ = [
     "DEFAULT_CONFIG_PATH",
     "DEFAULT_DATASET_PATH",
+    "DEFAULT_FULL_DATASET_PATH",
+    "DEFAULT_FULL_IMPORTANCE_PATH",
+    "DEFAULT_FULL_MODEL_PATH",
     "DEFAULT_IMPORTANCE_PATH",
     "DEFAULT_MODEL_PATH",
     "SelectorTrainingResult",
     "build_selector_pipeline",
     "train_selector",
     "train_selector_from_config",
+    "train_full_selector_from_config",
 ]
 
 

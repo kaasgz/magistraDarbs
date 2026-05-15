@@ -1,4 +1,4 @@
-"""Minimal random baseline solver used for early pipeline testing."""
+"""Minimal diagnostic baseline for exercising the experiment pipeline."""
 
 from __future__ import annotations
 
@@ -10,11 +10,11 @@ from src.solvers.base import Solver, SolverResult
 
 
 class RandomBaselineSolver(Solver):
-    """Placeholder baseline solver that returns synthetic, reproducible results.
+    """Diagnostic control solver that returns a reproducible synthetic score.
 
     This solver does not construct an actual schedule. It exists so the parsing,
-    experiment, and result-collection pipeline can be exercised before real
-    optimization-based solvers are added.
+    experiment, and result-collection pipeline can be checked without implying
+    that the result is a real scheduling method.
     """
 
     def __init__(self, solver_name: str = "random_baseline") -> None:
@@ -28,15 +28,15 @@ class RandomBaselineSolver(Solver):
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Return a structured placeholder result for the given instance.
+        """Return a structured diagnostic result for the given instance.
 
         Args:
             instance: Parsed instance-like object with optional metadata and counts.
             time_limit_seconds: Included in metadata for pipeline compatibility.
-            random_seed: Seed controlling the synthetic objective value.
+            random_seed: Seed controlling the diagnostic objective value.
 
         Returns:
-            A standardized placeholder solver result.
+            A standardized solver result marked as a diagnostic baseline.
         """
 
         start_time = time.perf_counter()
@@ -49,7 +49,7 @@ class RandomBaselineSolver(Solver):
         rng = random.Random(random_seed)
         scale = max(1, num_teams) * max(1, num_slots)
 
-        # This is intentionally a synthetic score, not a real optimization result.
+        # This is intentionally synthetic, not a real optimization result.
         objective_value = round(float(scale + num_constraints + rng.random()), 6)
         runtime_seconds = time.perf_counter() - start_time
 
@@ -60,9 +60,16 @@ class RandomBaselineSolver(Solver):
             runtime_seconds=runtime_seconds,
             feasible=True,
             status="placeholder_feasible",
+            solver_support_status="partially_supported",
+            scoring_status="partially_modeled_run",
+            modeling_scope="deterministic diagnostic score; no schedule construction",
+            scoring_notes=(
+                "Objective is a synthetic diagnostic score used as a pipeline control.",
+                "This solver does not construct or validate a RobinX / ITC2021 schedule.",
+            ),
             metadata={
                 "is_placeholder": True,
-                "notes": "Synthetic baseline result for experiment pipeline testing.",
+                "notes": "Synthetic diagnostic result; not a scheduling objective.",
                 "time_limit_seconds": time_limit_seconds,
                 "random_seed": random_seed,
                 "num_teams": num_teams,

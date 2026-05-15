@@ -1,0 +1,157 @@
+{
+  "stage_name": "selector_training",
+  "generated_at": "2026-05-10T19:28:08+03:00",
+  "config_path": "configs/selector_config.yaml",
+  "settings": {
+    "random_seed": 42,
+    "model_name": "random_forest",
+    "split_strategy": "repeated_stratified_kfold",
+    "test_size": 0.25,
+    "cross_validation_folds": 3,
+    "repeats": 3,
+    "split_notes": []
+  },
+  "inputs": {
+    "selection_dataset_csv": "data/processed/selection_dataset_full.csv"
+  },
+  "outputs": {
+    "model_output": "data/results/full_selection/random_forest_selector.joblib",
+    "feature_importance_csv": "data/results/full_selection/feature_importance.csv",
+    "run_summary": "data/results/full_selection/selector_training_run_summary.json"
+  },
+  "results": {
+    "accuracy": 0.9957264957264957,
+    "balanced_accuracy": 0.9907407407407407,
+    "num_train_rows": 156,
+    "num_test_rows": 78,
+    "num_labeled_rows": 234,
+    "num_validation_splits": 9,
+    "dataset_type_counts": {
+      "real": 54,
+      "synthetic": 180
+    },
+    "feature_columns": [
+      "num_teams",
+      "num_slots",
+      "num_constraints",
+      "teams_is_even",
+      "estimated_minimum_slots",
+      "slot_pressure",
+      "slot_surplus",
+      "num_hard_constraints",
+      "num_soft_constraints",
+      "num_unclassified_constraints",
+      "num_constraints_missing_category",
+      "num_constraints_missing_tag",
+      "num_constraints_missing_type",
+      "ratio_hard_to_all",
+      "ratio_soft_to_all",
+      "ratio_unclassified_to_all",
+      "constraints_per_team",
+      "constraints_per_slot",
+      "constraints_per_team_slot",
+      "number_of_constraint_categories",
+      "number_of_constraint_tags",
+      "number_of_constraint_types",
+      "ratio_constraint_categories_to_constraints",
+      "ratio_constraint_tags_to_constraints",
+      "ratio_constraint_types_to_constraints"
+    ],
+    "excluded_columns": [
+      "dataset_type",
+      "objective_present",
+      "objective_name",
+      "objective_sense",
+      "objective_is_minimization",
+      "objective_is_maximization",
+      "benchmark_solver_support_coverage",
+      "benchmark_total_solver_count",
+      "benchmark_eligible_solver_count",
+      "benchmark_supported_solver_count",
+      "benchmark_partially_supported_solver_count",
+      "benchmark_unsupported_solver_count",
+      "benchmark_not_configured_solver_count",
+      "benchmark_failed_solver_count",
+      "benchmark_best_solver_support_status",
+      "benchmark_best_solver_scoring_status",
+      "benchmark_best_solver_mean_objective",
+      "benchmark_best_solver_mean_runtime_seconds",
+      "benchmark_best_solver_num_runs",
+      "objective_cpsat_solver",
+      "objective_random_baseline",
+      "objective_simulated_annealing_solver"
+    ],
+    "confusion_matrix": {
+      "cpsat_solver": {
+        "cpsat_solver": 540,
+        "simulated_annealing_solver": 3
+      },
+      "simulated_annealing_solver": {
+        "cpsat_solver": 0,
+        "simulated_annealing_solver": 159
+      }
+    }
+  },
+  "config_snapshot": {
+    "paths": {
+      "features_csv": "data/processed/features.csv",
+      "benchmark_results_csv": "data/results/benchmark_results.csv",
+      "selection_dataset_csv": "data/processed/selection_dataset.csv",
+      "selection_dataset_run_summary": "data/processed/selection_dataset_run_summary.json",
+      "synthetic_features_csv": "data/processed/synthetic_study/features.csv",
+      "synthetic_benchmark_results_csv": "data/results/synthetic_study/benchmark_results.csv",
+      "real_features_csv": "data/processed/real_pipeline_current/features.csv",
+      "real_benchmark_results_csv": "data/results/real_pipeline_current/benchmark_results.csv",
+      "full_selection_dataset_csv": "data/processed/selection_dataset_full.csv",
+      "full_selection_dataset_run_summary": "data/processed/selection_dataset_full_run_summary.json",
+      "full_combined_benchmark_results_csv": "data/results/full_selection/combined_benchmark_results.csv",
+      "full_model_output": "data/results/full_selection/random_forest_selector.joblib",
+      "full_feature_importance_csv": "data/results/full_selection/feature_importance.csv",
+      "full_training_run_summary": "data/results/full_selection/selector_training_run_summary.json",
+      "full_evaluation_report_csv": "data/results/full_selection/selector_evaluation.csv",
+      "full_evaluation_summary_csv": "data/results/full_selection/selector_evaluation_summary.csv",
+      "full_evaluation_summary_markdown": "data/results/full_selection/selector_evaluation_summary.md",
+      "full_evaluation_run_summary": "data/results/full_selection/selector_evaluation_run_summary.json",
+      "model_output": "data/results/random_forest_selector.joblib",
+      "feature_importance_csv": "data/results/random_forest_feature_importance.csv",
+      "training_run_summary": "data/results/random_forest_selector_run_summary.json",
+      "evaluation_report_csv": "data/results/selector_evaluation.csv",
+      "evaluation_summary_csv": "data/results/selector_evaluation_summary.csv",
+      "evaluation_summary_markdown": "data/results/selector_evaluation_summary.md",
+      "evaluation_run_summary": "data/results/selector_evaluation_run_summary.json",
+      "ablation_summary_csv": "data/results/selector_ablation_summary.csv",
+      "ablation_plot": "data/results/selector_ablation_regret.png",
+      "ablation_report_markdown": "data/results/selector_ablation_summary.md",
+      "ablation_run_summary": "data/results/selector_ablation_run_summary.json",
+      "error_analysis_output_dir": "data/results/error_analysis",
+      "error_analysis_run_summary": "data/results/error_analysis_run_summary.json"
+    },
+    "run": {
+      "random_seed": 42,
+      "time_limit_seconds": 60
+    },
+    "solvers": {
+      "selected": [
+        "random_baseline",
+        "cpsat_solver",
+        "simulated_annealing_solver"
+      ]
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

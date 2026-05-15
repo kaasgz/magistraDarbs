@@ -1,0 +1,28 @@
+paths:
+  instance_folder: data/raw/real
+  processed_dir: data/processed/real_pipeline_current
+  results_dir: data/results/real_pipeline_current
+
+run:
+  random_seed: 42
+  time_limit_seconds: 60
+  fail_on_unparseable_inventory: false
+
+solvers:
+  settings:
+    timefold:
+      executable_path: null
+      time_limit_seconds: 60
+      command_arguments: []
+
+split:
+  strategy: repeated_stratified_kfold
+  test_size: 0.25
+  cross_validation_folds: 3
+  repeats: 3
+
+selector:
+  model_choice: random_forest
+
+dataset:
+  include_solver_objectives: true

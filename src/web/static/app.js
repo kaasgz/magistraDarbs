@@ -1,517 +1,292 @@
 const state = {
-  dashboard: null,
-  activePreviewKey: "features",
-  pollingTimer: null,
+  presentation: null,
 };
 
-const previewOrder = [
-  ["features", "Features"],
-  ["benchmarks", "Benchmarks"],
-  ["selection_dataset", "Selection Dataset"],
-  ["evaluation", "Evaluation"],
-  ["instances", "Instances"],
-];
-
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("realInstanceForm").addEventListener("submit", handleRealInstanceLoad);
-  document.getElementById("syntheticPreviewForm").addEventListener("submit", handleSyntheticPreview);
-  document.getElementById("demoPipelineForm").addEventListener("submit", handleDemoRun);
-  document.getElementById("refreshButton").addEventListener("click", loadDashboardState);
-  loadDashboardState().catch((error) => {
-    renderTransientStatus("Dashboard load failed", error.message || String(error), "error");
+  document.getElementById("refreshButton").addEventListener("click", () => {
+    loadDashboardState().catch(renderLoadError);
   });
+  loadDashboardState().catch(renderLoadError);
 });
 
 async function loadDashboardState() {
   const response = await fetch("/api/state");
   const payload = await response.json();
-  state.dashboard = payload;
-  if (!state.dashboard.defaults) {
+  state.presentation = payload.presentation_dashboard || payload.thesis_visualization || null;
+  renderPresentation();
+}
+
+function renderLoadError(error) {
+  const host = document.getElementById("emptyState");
+  host.hidden = false;
+  host.textContent = error instanceof Error ? error.message : String(error);
+}
+
+function renderPresentation() {
+  const presentation = state.presentation;
+  const contentHost = document.getElementById("presentationContent");
+  const emptyHost = document.getElementById("emptyState");
+
+  if (!presentation?.available) {
+    emptyHost.hidden = false;
+    emptyHost.textContent = presentation?.empty_state || "Nav pieejamu datu rezultātu pārskatam.";
+    contentHost.hidden = true;
     return;
   }
 
-  hydrateControls(payload);
-  renderDashboard();
+  emptyHost.hidden = true;
+  contentHost.hidden = false;
 
-  if (payload.run_state?.is_running) {
-    startPolling();
-  } else {
-    stopPolling();
-  }
+  document.getElementById("pageTitle").textContent =
+    presentation.header?.title || "Maģistra darba praktiskās daļas pārskats";
+  document.getElementById("pageSubtitle").textContent = presentation.header?.subtitle || "";
+  document.getElementById("pageAccentNote").textContent = presentation.header?.accent_note || "";
+
+  renderSectionNav(presentation.navigation || []);
+  renderOverviewSection(presentation.sections?.overview || {});
+  renderWorkflowSection(presentation.sections?.workflow || {});
+  renderResultsSection(presentation.sections?.results || {});
+  renderSolverSection(presentation.sections?.solver || {});
+  renderBestSolverSection(presentation.sections?.best_solver || {});
+  renderFeatureSection(presentation.sections?.features || {});
+  renderDatasetSection(presentation.sections?.datasets || {});
+  renderMethodologySection(presentation.sections?.methodology || {});
+  renderImplementationSection(presentation.sections?.implementation || {});
 }
 
-async function handleRealInstanceLoad(event) {
-  event.preventDefault();
-  const relativePath = document.getElementById("realInstancePath").value;
-  await runAction("/api/load-real-instance", { relative_path: relativePath });
-}
-
-async function handleSyntheticPreview(event) {
-  event.preventDefault();
-  const payload = {
-    difficulty_level: document.getElementById("syntheticDifficulty").value,
-    random_seed: Number(document.getElementById("previewSeed").value || 42),
-  };
-  await runAction("/api/generate-synthetic-instance", payload);
-}
-
-async function handleDemoRun(event) {
-  event.preventDefault();
-  const payload = {
-    instance_count: Number(document.getElementById("instanceCount").value || 6),
-    random_seed: Number(document.getElementById("randomSeed").value || 42),
-    time_limit_seconds: Number(document.getElementById("timeLimit").value || 1),
-  };
-  await runAction("/api/bootstrap-demo", payload);
-}
-
-async function runAction(url, payload) {
-  toggleBusy(true);
-  startPolling();
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      throw new Error(result.error || "Dashboard request failed.");
-    }
-
-    state.dashboard = result;
-    hydrateControls(result);
-    renderDashboard();
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    renderTransientStatus("Dashboard action failed", message, "error");
-  } finally {
-    toggleBusy(false);
-    await loadDashboardState();
-  }
-}
-
-function hydrateControls(dashboard) {
-  const defaults = dashboard.defaults || {};
-  const modeControls = dashboard.mode_controls || {};
-
-  document.getElementById("instanceCount").value = defaults.instance_count ?? 6;
-  document.getElementById("randomSeed").value = defaults.random_seed ?? 42;
-  document.getElementById("timeLimit").value = defaults.time_limit_seconds ?? 1;
-  document.getElementById("previewSeed").value = defaults.random_seed ?? 42;
-
-  populateSelect(
-    document.getElementById("realInstancePath"),
-    modeControls.real?.available_instances || [],
-    (item) => item.relative_path,
-    (item) => item.relative_path,
-  );
-  populateSelect(
-    document.getElementById("syntheticDifficulty"),
-    (modeControls.synthetic?.difficulty_levels || []).map((value) => ({ value })),
-    (item) => item.value,
-    (item) => item.value,
-    defaults.synthetic_difficulty || "medium",
-  );
-
-  const realInstanceCount = modeControls.real?.instance_count || 0;
-  document.getElementById("realModeHint").textContent = realInstanceCount
-    ? `${realInstanceCount} real XML files available under ${modeControls.real.instance_folder}.`
-    : `No real XML files found under ${modeControls.real?.instance_folder || "data/raw/real"}.`;
-}
-
-function populateSelect(select, items, getValue, getLabel, selectedValue) {
-  const previousValue = selectedValue || select.value;
-  if (!items.length) {
-    select.innerHTML = `<option value="">No instances available</option>`;
-    select.disabled = true;
-    return;
-  }
-
-  select.disabled = false;
-  select.innerHTML = items
-    .map((item) => {
-      const value = getValue(item);
-      const label = getLabel(item);
-      const isSelected = value === previousValue ? " selected" : "";
-      return `<option value="${escapeHtml(value)}"${isSelected}>${escapeHtml(label)}</option>`;
-    })
+function renderSectionNav(items) {
+  const host = document.getElementById("sectionNav");
+  host.innerHTML = items
+    .map(
+      (item) => `
+        <a class="nav-link" href="#section-${escapeHtml(item.id)}">
+          ${escapeHtml(item.label)}
+        </a>
+      `,
+    )
     .join("");
 }
 
-function renderDashboard() {
-  const dashboard = state.dashboard;
-  if (!dashboard) {
-    return;
-  }
-
-  renderScope(dashboard.dashboard_scope);
-  renderStatusBanner(dashboard.run_state, dashboard.overview, dashboard.instance_inspector);
-  renderInstanceInspector(dashboard.instance_inspector);
-  renderStatsGrid(dashboard.overview, dashboard.training, dashboard.evaluation);
-  renderTable("solverLeaderboard", dashboard.solver_leaderboard);
-  renderBarList("solverDistribution", dashboard.best_solver_distribution, "count");
-  renderBarList("featureImportance", dashboard.feature_importance, "importance");
-  renderTable("instanceCatalog", dashboard.instance_catalog);
-  renderArtifacts(dashboard.artifacts);
-  renderPreviewTabs(dashboard.previews);
-  renderPreviewTable();
+function renderOverviewSection(section) {
+  setText("overviewTitle", section.title);
+  setText("overviewIntro", section.intro);
+  renderTakeaway("overviewTakeaway", section.takeaway);
+  renderCards("overviewCards", section.cards || []);
+  renderChipRow("overviewPortfolio", section.portfolio || []);
+  renderHighlights("overviewHighlights", section.highlights || []);
+  renderFigureGrid("overviewFigures", section.figures || []);
 }
 
-function renderScope(scope) {
-  document.getElementById("purposeText").textContent = scope?.purpose || "";
-  document.getElementById("notForText").textContent = scope?.not_for || "";
+function renderWorkflowSection(section) {
+  setText("workflowTitle", section.title);
+  setText("workflowIntro", section.intro);
+  renderTakeaway("workflowTakeaway", section.takeaway);
+  setText("workflowTableTitle", section.table_title);
+  setText("workflowTableNote", section.table_note);
+  setText("workflowArtifactTableTitle", section.artifact_table_title);
+  setText("workflowArtifactTableNote", section.artifact_table_note);
+  setText("workflowCodeTableTitle", section.code_table_title);
+  setText("workflowCodeTableNote", section.code_table_note);
+  renderCards("workflowCards", section.cards || []);
+  renderHighlights("workflowHighlights", section.highlights || []);
+  renderTable("workflowTable", section.table_rows || []);
+  renderTable("workflowArtifactTable", section.artifact_rows || []);
+  renderTable("workflowCodeTable", section.code_rows || []);
 }
 
-function renderStatusBanner(runState, overview, inspector) {
-  const host = document.getElementById("statusBanner");
-  const phase = runState?.phase ?? "idle";
-  const message = runState?.last_error || runState?.message || "Ready.";
-  const chipClass = runState?.last_error
-    ? "status-chip is-error"
-    : runState?.is_running
-      ? "status-chip is-running"
-      : "status-chip";
-
-  let chipText = "Idle";
-  if (runState?.is_running) {
-    chipText = "Running";
-  } else if (inspector?.source_kind === "synthetic") {
-    chipText = "Synthetic preview";
-  } else if (inspector?.source_kind === "real") {
-    chipText = "Real preview";
-  } else if (overview?.instance_count) {
-    chipText = `${overview.instance_count} demo instances ready`;
-  }
-
-  host.innerHTML = `
-    <div>
-      <strong>${escapeHtml(titleCase(phase))}</strong>
-      <span>${escapeHtml(message)}</span>
-    </div>
-    <div class="${chipClass}">
-      ${escapeHtml(chipText)}
-    </div>
-  `;
+function renderResultsSection(section) {
+  setText("resultsTitle", section.title);
+  setText("resultsIntro", section.intro);
+  renderTakeaway("resultsTakeaway", section.takeaway);
+  renderCards("resultsCards", section.cards || []);
+  renderFigureGrid("resultsFigures", section.figures || []);
 }
 
-function renderInstanceInspector(inspector) {
-  const payload = inspector || {};
-  document.getElementById("inspectorTitle").textContent = payload.title || "No instance loaded";
-  document.getElementById("inspectorDescription").textContent = payload.source_description || "";
-
-  const badgeHost = document.getElementById("inspectorBadge");
-  const badges = [];
-  if (payload.mode_label) {
-    badges.push(`<span class="scope-chip">${escapeHtml(payload.mode_label)}</span>`);
-  }
-  if (payload.source_badge) {
-    const badgeClass = payload.source_kind === "synthetic" ? "scope-chip is-synthetic" : "scope-chip";
-    badges.push(`<span class="${badgeClass}">${escapeHtml(payload.source_badge)}</span>`);
-  }
-  badgeHost.innerHTML = badges.join("");
-
-  const summaryHost = document.getElementById("instanceSummary");
-  const summaryItems = payload.summary_items || [];
-  summaryHost.innerHTML = summaryItems.length
-    ? summaryItems
-        .map(
-          (item) => `
-            <article class="summary-card">
-              <p class="label">${escapeHtml(item.label)}</p>
-              <p class="value">${escapeHtml(formatCell(item.value))}</p>
-            </article>
-          `,
-        )
-        .join("")
-    : `<div class="empty-state">Load a real XML or generate a synthetic preview to inspect one instance.</div>`;
-
-  const notesHost = document.getElementById("parserNotes");
-  const parserNotes = payload.parser_notes || [];
-  notesHost.innerHTML = parserNotes.length
-    ? `
-        <div class="notes-card">
-          <p class="panel-kicker">Parser Notes</p>
-          ${parserNotes
-            .map((note) => {
-              const badgeClass = note.severity === "warning" ? "note-badge is-warning" : "note-badge";
-              return `
-                <div class="note-row">
-                  <span class="${badgeClass}">${escapeHtml(note.severity)}</span>
-                  <div>
-                    <strong>${escapeHtml(note.code)}</strong>
-                    <p>${escapeHtml(note.message)}</p>
-                  </div>
-                </div>
-              `;
-            })
-            .join("")}
-        </div>
-      `
-    : `<div class="empty-state">No parser notes for the current instance.</div>`;
-
-  const featureGroupsHost = document.getElementById("featureGroups");
-  const featureGroups = payload.feature_groups || [];
-  featureGroupsHost.innerHTML = featureGroups.length
-    ? featureGroups
-        .map(
-          (group) => `
-            <article class="feature-group-card">
-              <div class="feature-group-head">
-                <p class="panel-kicker">${escapeHtml(group.label)}</p>
-              </div>
-              <div class="feature-list">
-                ${group.items
-                  .map(
-                    (item) => `
-                      <div class="feature-row">
-                        <span>${escapeHtml(labelize(item.name))}</span>
-                        <strong>${escapeHtml(formatCell(item.value))}</strong>
-                      </div>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            </article>
-          `,
-        )
-        .join("")
-    : `<div class="empty-state">Structural features will appear here after an instance is loaded.</div>`;
+function renderSolverSection(section) {
+  setText("solverTitle", section.title);
+  setText("solverIntro", section.intro);
+  renderTakeaway("solverTakeaway", section.takeaway);
+  setText("solverTableTitle", section.table_title);
+  setText("solverTableNote", section.table_note);
+  renderFigureGrid("solverFigures", section.figures || []);
+  renderTable("solverTable", section.table_rows || []);
 }
 
-function renderStatsGrid(overview, training, evaluation) {
-  const host = document.getElementById("statsGrid");
-  const cards = [
-    {
-      label: "Synthetic demo instances",
-      value: formatInt(overview.instance_count),
-      subtext: `${formatInt(overview.feature_rows)} feature rows`,
-    },
-    {
-      label: "Demo benchmark runs",
-      value: formatInt(overview.benchmark_rows),
-      subtext: `${formatInt(overview.solver_count)} solvers selected`,
-    },
-    {
-      label: "Selector accuracy",
-      value: formatPercent(training?.accuracy),
-      subtext: `${formatInt(training?.num_train_rows)} train / ${formatInt(training?.num_test_rows)} test`,
-    },
-    {
-      label: "Regret vs virtual best",
-      value: formatFloat(evaluation?.regret_vs_virtual_best),
-      subtext: `Improvement vs single best: ${formatFloat(evaluation?.improvement_vs_single_best)}`,
-    },
-  ];
+function renderBestSolverSection(section) {
+  setText("bestSolverTitle", section.title);
+  setText("bestSolverIntro", section.intro);
+  renderTakeaway("bestSolverTakeaway", section.takeaway);
+  setText("bestSolverTableTitle", section.table_title);
+  setText("bestSolverTableNote", section.table_note);
+  renderCards("bestSolverCards", section.cards || []);
+  renderHighlights("bestSolverHighlights", section.highlights || []);
+  renderFigureGrid("bestSolverFigures", section.figures || []);
+  renderTable("bestSolverTable", section.table_rows || []);
+}
 
+function renderFeatureSection(section) {
+  setText("featuresTitle", section.title);
+  setText("featuresIntro", section.intro);
+  renderTakeaway("featuresTakeaway", section.takeaway);
+  setText("featuresHighlight", section.highlight);
+  setText("featureTableTitle", section.table_title);
+  setText("featureSecondaryTableTitle", section.secondary_table_title);
+  renderFigureGrid("featureFigures", section.figures || []);
+  renderTable("featureTable", section.table_rows || []);
+  renderTable("featureSecondaryTable", section.secondary_table_rows || []);
+}
+
+function renderDatasetSection(section) {
+  setText("datasetsTitle", section.title);
+  setText("datasetsIntro", section.intro);
+  renderTakeaway("datasetsTakeaway", section.takeaway);
+  setText("datasetTableTitle", section.table_title);
+  setText("datasetTableNote", section.table_note);
+  renderFigureGrid("datasetFigures", section.figures || []);
+  renderTable("datasetTable", section.table_rows || []);
+}
+
+function renderMethodologySection(section) {
+  setText("methodologyTitle", section.title);
+  setText("methodologyIntro", section.intro);
+  renderTakeaway("methodologyTakeaway", section.takeaway);
+  setText("methodologyTableTitle", section.table_title);
+  setText("methodologyTableNote", section.table_note);
+  renderCards("methodologyCards", section.cards || []);
+  renderHighlights("methodologyHighlights", section.highlights || []);
+  renderFigureGrid("methodologyFigures", section.figures || []);
+  renderTable("methodologyTable", section.table_rows || []);
+}
+
+function renderImplementationSection(section) {
+  setText("implementationTitle", section.title);
+  setText("implementationIntro", section.intro);
+  renderTakeaway("implementationTakeaway", section.takeaway);
+  setText("implementationTableTitle", section.table_title);
+  setText("implementationTableNote", section.table_note);
+  setText("implementationArtifactTableTitle", section.artifact_table_title);
+  setText("implementationArtifactTableNote", section.artifact_table_note);
+  renderCards("implementationCards", section.cards || []);
+  renderTable("implementationTable", section.table_rows || []);
+  renderTable("implementationArtifactTable", section.artifact_rows || []);
+}
+
+function renderCards(hostId, cards) {
+  const host = document.getElementById(hostId);
   host.innerHTML = cards
     .map(
       (card) => `
-        <article class="stat-card">
-          <p class="label">${escapeHtml(card.label)}</p>
-          <p class="value">${escapeHtml(card.value)}</p>
-          <p class="subtext">${escapeHtml(card.subtext)}</p>
+        <article class="summary-card">
+          <p class="label">${escapeHtml(card.label || "")}</p>
+          <p class="value">${escapeHtml(formatCell(card.value))}</p>
+          <p class="card-description">${escapeHtml(card.description || "")}</p>
         </article>
       `,
     )
     .join("");
 }
 
+function renderChipRow(hostId, items) {
+  const host = document.getElementById(hostId);
+  const normalized = items.filter(Boolean);
+  host.innerHTML = normalized.map((item) => `<span class="chip">${escapeHtml(item)}</span>`).join("");
+  const block = host.closest(".chip-block");
+  if (block) {
+    block.hidden = normalized.length === 0;
+  }
+}
+
+function renderHighlights(hostId, items) {
+  const host = document.getElementById(hostId);
+  const normalized = items.filter(Boolean);
+  host.hidden = normalized.length === 0;
+  host.innerHTML = normalized
+    .map((item) => `<div class="highlight-item">${escapeHtml(item)}</div>`)
+    .join("");
+}
+
+function renderFigureGrid(hostId, figures) {
+  const host = document.getElementById(hostId);
+  const visibleFigures = figures.filter((figure) => figure.exists && figure.url);
+  host.hidden = visibleFigures.length === 0;
+  host.innerHTML = visibleFigures
+    .map(
+      (figure) => `
+        <article class="figure-card">
+          <img src="${escapeHtml(figure.url)}" alt="${escapeHtml(figure.title || "")}" />
+          <h3 class="figure-title">${escapeHtml(figure.title || "")}</h3>
+          <p class="chart-description">${escapeHtml(figure.description || "")}</p>
+          <p class="chart-meaning">${escapeHtml(figure.meaning || "")}</p>
+          <a class="figure-link" href="${escapeHtml(figure.url)}" target="_blank" rel="noopener">Atvērt attēlu pilnā izmērā</a>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderTakeaway(id, value) {
+  const element = document.getElementById(id);
+  if (!element) {
+    return;
+  }
+  const text = value || "";
+  element.hidden = text.length === 0;
+  element.innerHTML = text ? `<strong>${escapeHtml(text)}</strong>` : "";
+}
+
 function renderTable(hostId, rows) {
   const host = document.getElementById(hostId);
-  if (!rows || !rows.length) {
-    host.innerHTML = `<div class="empty-state">No rows yet.</div>`;
+  if (!host) {
     return;
   }
-
-  const headers = Object.keys(rows[0]);
-  const thead = headers.map((header) => `<th>${escapeHtml(labelize(header))}</th>`).join("");
-  const body = rows
-    .map((row) => {
-      const cells = headers
-        .map((header) => `<td>${escapeHtml(formatCell(row[header]))}</td>`)
-        .join("");
-      return `<tr>${cells}</tr>`;
-    })
-    .join("");
-
-  host.innerHTML = `<table><thead><tr>${thead}</tr></thead><tbody>${body}</tbody></table>`;
-}
-
-function renderBarList(hostId, rows, valueKey) {
-  const host = document.getElementById(hostId);
-  if (!rows || !rows.length) {
-    host.innerHTML = `<div class="empty-state">No values yet.</div>`;
-    return;
-  }
-
-  const maxValue = Math.max(...rows.map((row) => Number(row[valueKey] ?? 0)), 1);
-  host.innerHTML = rows
-    .map((row) => {
-      const label = row.solver_name || row.feature || row.label || "Value";
-      const value = Number(row[valueKey] ?? 0);
-      const percent = Math.max(4, (value / maxValue) * 100);
-      return `
-        <div class="bar-item">
-          <div class="bar-meta">
-            <span>${escapeHtml(String(label))}</span>
-            <span>${escapeHtml(formatCell(row[valueKey]))}</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width: ${percent}%"></div>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-function renderArtifacts(artifacts) {
-  const host = document.getElementById("artifactList");
-  const rows = Object.entries(artifacts || {});
   if (!rows.length) {
-    host.innerHTML = `<div class="empty-state">Artifacts will appear after the first run.</div>`;
+    host.innerHTML = `<div class="empty-state">Tabulas dati nav pieejami.</div>`;
     return;
   }
 
-  host.innerHTML = rows
-    .map(([key, artifact]) => {
-      const status = artifact.exists ? "Ready" : "Missing";
-      const details = artifact.path_type === "directory"
-        ? `${artifact.entry_count} files`
-        : artifact.modified_at || "Not generated yet";
-      return `
-        <article class="artifact-card">
-          <p class="label">${escapeHtml(labelize(key))}</p>
-          <p class="value">${escapeHtml(status)}</p>
-          <small>${escapeHtml(artifact.path || "")}</small>
-          <p class="subtext">${escapeHtml(details)}</p>
-        </article>
-      `;
-    })
-    .join("");
-}
-
-function renderPreviewTabs(previews) {
-  const host = document.getElementById("previewTabs");
-  host.innerHTML = previewOrder
-    .filter(([key]) => key in (previews || {}))
-    .map(([key, label]) => {
-      const activeClass = key === state.activePreviewKey ? "tab-button is-active" : "tab-button";
-      return `<button class="${activeClass}" data-preview-key="${key}" type="button">${escapeHtml(label)}</button>`;
-    })
+  const columns = Object.keys(rows[0]);
+  const header = columns.map((column) => `<th>${escapeHtml(column)}</th>`).join("");
+  const body = rows
+    .map(
+      (row) => `
+        <tr>
+          ${columns.map((column) => `<td>${escapeHtml(formatCell(row[column]))}</td>`).join("")}
+        </tr>
+      `,
+    )
     .join("");
 
-  host.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.activePreviewKey = button.dataset.previewKey;
-      renderPreviewTabs(previews);
-      renderPreviewTable();
-    });
-  });
-}
-
-function renderPreviewTable() {
-  const rows = state.dashboard?.previews?.[state.activePreviewKey] || [];
-  renderTable("previewHost", rows);
-}
-
-function renderTransientStatus(title, message, kind) {
-  const host = document.getElementById("statusBanner");
-  const chipClass = kind === "error" ? "status-chip is-error" : "status-chip";
   host.innerHTML = `
-    <div>
-      <strong>${escapeHtml(title)}</strong>
-      <span>${escapeHtml(message)}</span>
-    </div>
-    <div class="${chipClass}">
-      ${escapeHtml(kind === "error" ? "Attention" : "Info")}
-    </div>
+    <table>
+      <thead>
+        <tr>${header}</tr>
+      </thead>
+      <tbody>${body}</tbody>
+    </table>
   `;
 }
 
-function startPolling() {
-  if (state.pollingTimer) {
-    return;
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.textContent = value || "";
   }
-  state.pollingTimer = window.setInterval(() => {
-    loadDashboardState().catch(() => null);
-  }, 2500);
-}
-
-function stopPolling() {
-  if (!state.pollingTimer) {
-    return;
-  }
-  window.clearInterval(state.pollingTimer);
-  state.pollingTimer = null;
-}
-
-function toggleBusy(isBusy) {
-  [
-    "loadRealButton",
-    "previewButton",
-    "runButton",
-    "refreshButton",
-    "realInstancePath",
-    "syntheticDifficulty",
-    "previewSeed",
-    "instanceCount",
-    "randomSeed",
-    "timeLimit",
-  ].forEach((id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.disabled = isBusy;
-    }
-  });
 }
 
 function formatCell(value) {
   if (value === null || value === undefined || value === "") {
-    return "--";
+    return "—";
   }
   if (typeof value === "number") {
     if (Number.isInteger(value)) {
       return String(value);
     }
-    return value.toFixed(4);
+    return value.toFixed(4).replace(/0+$/, "").replace(/\.$/, "").replace(".", ",");
+  }
+  if (typeof value === "string" && /^-?\d+\.\d+$/.test(value.trim())) {
+    return Number(value).toFixed(4).replace(/0+$/, "").replace(/\.$/, "").replace(".", ",");
   }
   return String(value);
-}
-
-function formatPercent(value) {
-  if (value === null || value === undefined || Number.isNaN(Number(value))) {
-    return "--";
-  }
-  return `${(Number(value) * 100).toFixed(1)}%`;
-}
-
-function formatFloat(value) {
-  if (value === null || value === undefined || Number.isNaN(Number(value))) {
-    return "--";
-  }
-  return Number(value).toFixed(3);
-}
-
-function formatInt(value) {
-  if (value === null || value === undefined || Number.isNaN(Number(value))) {
-    return "0";
-  }
-  return Intl.NumberFormat().format(Number(value));
-}
-
-function titleCase(value) {
-  return String(value || "")
-    .replaceAll("_", " ")
-    .replace(/\b\w/g, (match) => match.toUpperCase());
-}
-
-function labelize(value) {
-  return titleCase(value);
 }
 
 function escapeHtml(value) {

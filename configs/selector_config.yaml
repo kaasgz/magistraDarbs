@@ -3,6 +3,20 @@ paths:
   benchmark_results_csv: data/results/benchmark_results.csv
   selection_dataset_csv: data/processed/selection_dataset.csv
   selection_dataset_run_summary: data/processed/selection_dataset_run_summary.json
+  synthetic_features_csv: data/processed/synthetic_study/features.csv
+  synthetic_benchmark_results_csv: data/results/synthetic_study/benchmark_results.csv
+  real_features_csv: data/processed/real_pipeline_current/features.csv
+  real_benchmark_results_csv: data/results/real_pipeline_current/benchmark_results.csv
+  full_selection_dataset_csv: data/processed/selection_dataset_full.csv
+  full_selection_dataset_run_summary: data/processed/selection_dataset_full_run_summary.json
+  full_combined_benchmark_results_csv: data/results/full_selection/combined_benchmark_results.csv
+  full_model_output: data/results/full_selection/random_forest_selector.joblib
+  full_feature_importance_csv: data/results/full_selection/feature_importance.csv
+  full_training_run_summary: data/results/full_selection/selector_training_run_summary.json
+  full_evaluation_report_csv: data/results/full_selection/selector_evaluation.csv
+  full_evaluation_summary_csv: data/results/full_selection/selector_evaluation_summary.csv
+  full_evaluation_summary_markdown: data/results/full_selection/selector_evaluation_summary.md
+  full_evaluation_run_summary: data/results/full_selection/selector_evaluation_run_summary.json
   model_output: data/results/random_forest_selector.joblib
   feature_importance_csv: data/results/random_forest_feature_importance.csv
   training_run_summary: data/results/random_forest_selector_run_summary.json

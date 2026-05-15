@@ -17,6 +17,12 @@ REQUIRED_BENCHMARK_COLUMNS = {
     "feasible",
     "status",
     "solver_registry_name",
+    "solver_support_status",
+    "scoring_status",
+    "modeling_scope",
+    "scoring_notes",
+    "objective_sense",
+    "objective_value_valid",
     "random_seed",
     "configured_time_limit_seconds",
     "timestamp",
@@ -59,7 +65,10 @@ def validate_benchmark_results(
     frame["instance_name"] = frame["instance_name"].astype("string")
     frame["solver_name"] = frame["solver_name"].astype("string")
     frame["solver_registry_name"] = frame["solver_registry_name"].astype("string")
+    frame["solver_support_status"] = frame["solver_support_status"].astype("string")
+    frame["scoring_status"] = frame["scoring_status"].astype("string")
     frame["status"] = frame["status"].astype("string")
+    frame["objective_sense"] = frame["objective_sense"].astype("string")
     frame["objective_value"] = pd.to_numeric(frame["objective_value"], errors="coerce")
     frame["runtime_seconds"] = pd.to_numeric(frame["runtime_seconds"], errors="coerce")
     frame["random_seed"] = pd.to_numeric(frame["random_seed"], errors="coerce")
@@ -69,6 +78,7 @@ def validate_benchmark_results(
     )
     frame["feasible"] = frame["feasible"].map(_coerce_bool)
     frame["is_synthetic"] = frame["is_synthetic"].map(_coerce_bool)
+    frame["objective_value_valid"] = frame["objective_value_valid"].map(_coerce_bool)
 
     issues: list[BenchmarkValidationIssue] = []
 
@@ -119,6 +129,59 @@ def validate_benchmark_results(
             )
         )
 
+    invalid_objective_sense_mask = frame["objective_sense"] != "lower_is_better"
+    if invalid_objective_sense_mask.any():
+        issues.append(
+            BenchmarkValidationIssue(
+                code="invalid_objective_sense",
+                message="Benchmark rows must mark objective_value as lower_is_better.",
+            )
+        )
+
+    valid_objective_without_value_mask = frame["objective_value_valid"] & frame["objective_value"].isna()
+    if valid_objective_without_value_mask.any():
+        issues.append(
+            BenchmarkValidationIssue(
+                code="valid_objective_missing_value",
+                message="Rows with objective_value_valid=true must provide a numeric objective value.",
+            )
+        )
+
+    invalid_scoring_status_mask = ~frame["scoring_status"].isin(_allowed_scoring_statuses())
+    if invalid_scoring_status_mask.any():
+        issues.append(
+            BenchmarkValidationIssue(
+                code="invalid_scoring_status",
+                message="Benchmark rows contain scoring_status values outside the scoring contract.",
+            )
+        )
+
+    invalid_support_status_mask = ~frame["solver_support_status"].isin(_allowed_support_statuses())
+    if invalid_support_status_mask.any():
+        issues.append(
+            BenchmarkValidationIssue(
+                code="invalid_solver_support_status",
+                message="Benchmark rows contain solver_support_status values outside the scoring contract.",
+            )
+        )
+
+    unsupported_or_not_configured_mask = frame["scoring_status"].isin(
+        {"unsupported_instance", "not_configured", "failed_run"}
+    )
+    invalid_unscored_objective_mask = unsupported_or_not_configured_mask & (
+        frame["objective_value_valid"] | frame["objective_value"].notna()
+    )
+    if invalid_unscored_objective_mask.any():
+        issues.append(
+            BenchmarkValidationIssue(
+                code="unscored_row_has_valid_objective",
+                message=(
+                    "Unsupported, failed, and not-configured rows must not expose "
+                    "objective values as valid scoring results."
+                ),
+            )
+        )
+
     if expected_solver_registry_names is not None:
         allowed_registry_names = {str(name) for name in expected_solver_registry_names}
         unexpected_registry_mask = ~frame["solver_registry_name"].isin(allowed_registry_names)
@@ -164,6 +227,31 @@ def _coerce_bool(value: object) -> bool:
 
     normalized = str(value).strip().casefold()
     return normalized in {"true", "1", "yes", "y"}
+
+
+def _allowed_support_statuses() -> set[str]:
+    """Return the benchmark support-status vocabulary."""
+
+    return {
+        "supported",
+        "partially_supported",
+        "unsupported",
+        "not_configured",
+        "failed",
+    }
+
+
+def _allowed_scoring_statuses() -> set[str]:
+    """Return the benchmark scoring-status vocabulary."""
+
+    return {
+        "supported_feasible_run",
+        "supported_infeasible_run",
+        "partially_modeled_run",
+        "unsupported_instance",
+        "failed_run",
+        "not_configured",
+    }
 
 
 def _is_invalid_runtime(value: object) -> bool:

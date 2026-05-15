@@ -1,0 +1,16 @@
+Rangs,Pazīme,Grupa,Nozīmīgums
+1,constraints_per_slot,Blīvums,0.1475495682348433
+2,ratio_constraint_tags_to_constraints,Daudzveidība,0.1295927391763068
+3,num_soft_constraints,Ierobežojumi,0.1266711058725058
+4,ratio_constraint_types_to_constraints,Daudzveidība,0.126568774800842
+5,constraints_per_team,Blīvums,0.1208462819227119
+6,num_constraints,Izmērs,0.0907153285892175
+7,ratio_constraint_categories_to_constraints,Daudzveidība,0.0834335022539751
+8,num_hard_constraints,Ierobežojumi,0.058893566228511
+9,slot_pressure,Izmērs,0.028822142080332
+10,slot_surplus,Izmērs,0.0210061383809699
+11,number_of_constraint_categories,Daudzveidība,0.0176615752916211
+12,constraints_per_team_slot,Blīvums,0.0123457022051199
+13,ratio_soft_to_all,Blīvums,0.0088138148741158
+14,num_slots,Izmērs,0.0066426722414903
+15,ratio_hard_to_all,Blīvums,0.0060496492541757

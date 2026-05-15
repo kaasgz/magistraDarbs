@@ -17,6 +17,12 @@ from src.features.feature_extractor import extract_features
 from src.features.manifest import grouped_feature_names
 from src.parsers import load_instance
 from src.utils import collect_xml_files, validate_loaded_instance_source
+from src.web.report_loader import (
+    build_mixed_dataset_state,
+    build_report_artifact_specs,
+    build_thesis_reports_state,
+    build_thesis_visualization_state,
+)
 
 
 LOGGER = logging.getLogger(__name__)
@@ -30,6 +36,7 @@ class DashboardPaths:
 
     workspace_root: Path
     real_instance_folder: Path
+    real_inventory_csv: Path
     synthetic_preview_folder: Path
     synthetic_preview_manifest_path: Path
     demo_instance_folder: Path
@@ -43,6 +50,44 @@ class DashboardPaths:
     demo_evaluation_summary_csv: Path
     demo_evaluation_summary_markdown: Path
     demo_summary_json: Path
+    main_features_csv: Path
+    main_benchmark_csv: Path
+    main_selection_dataset_csv: Path
+    main_model_output: Path
+    main_feature_importance_csv: Path
+    main_evaluation_csv: Path
+    main_evaluation_summary_csv: Path
+    main_evaluation_summary_markdown: Path
+    main_training_run_summary_json: Path
+    main_evaluation_run_summary_json: Path
+    thesis_dataset_metadata_csv: Path
+    thesis_features_csv: Path
+    thesis_benchmark_csv: Path
+    thesis_selection_dataset_csv: Path
+    thesis_model_output: Path
+    thesis_feature_importance_csv: Path
+    thesis_evaluation_csv: Path
+    thesis_evaluation_summary_csv: Path
+    thesis_evaluation_summary_markdown: Path
+    thesis_training_run_summary_json: Path
+    thesis_evaluation_run_summary_json: Path
+    thesis_pipeline_summary_markdown: Path
+    thesis_pipeline_run_summary_json: Path
+    report_output_dir: Path
+    report_solver_comparison_csv: Path
+    report_solver_comparison_markdown: Path
+    report_win_counts_csv: Path
+    report_win_counts_markdown: Path
+    report_average_objective_csv: Path
+    report_average_objective_markdown: Path
+    report_average_runtime_csv: Path
+    report_average_runtime_markdown: Path
+    report_selector_vs_baselines_csv: Path
+    report_selector_vs_baselines_markdown: Path
+    report_feature_importance_summary_csv: Path
+    report_feature_importance_summary_markdown: Path
+    report_summary_markdown: Path
+    report_run_summary_json: Path
 
     @classmethod
     def from_workspace(cls, workspace_root: str | Path) -> "DashboardPaths":
@@ -52,6 +97,7 @@ class DashboardPaths:
         return cls(
             workspace_root=root,
             real_instance_folder=root / "data" / "raw" / "real",
+            real_inventory_csv=root / "data" / "processed" / "real_dataset_inventory.csv",
             synthetic_preview_folder=root / "data" / "raw" / "synthetic" / "demo_preview",
             synthetic_preview_manifest_path=root / "data" / "processed" / "demo_preview_manifest.json",
             demo_instance_folder=root / "data" / "raw" / "synthetic" / "demo_instances",
@@ -65,6 +111,100 @@ class DashboardPaths:
             demo_evaluation_summary_csv=root / "data" / "results" / "demo_selector_evaluation_summary.csv",
             demo_evaluation_summary_markdown=root / "data" / "results" / "demo_selector_evaluation_summary.md",
             demo_summary_json=root / "data" / "results" / "demo_dashboard_summary.json",
+            main_features_csv=root / "data" / "processed" / "features.csv",
+            main_benchmark_csv=root / "data" / "results" / "benchmark_results.csv",
+            main_selection_dataset_csv=root / "data" / "processed" / "selection_dataset.csv",
+            main_model_output=root / "data" / "results" / "random_forest_selector.joblib",
+            main_feature_importance_csv=root / "data" / "results" / "random_forest_feature_importance.csv",
+            main_evaluation_csv=root / "data" / "results" / "selector_evaluation.csv",
+            main_evaluation_summary_csv=root / "data" / "results" / "selector_evaluation_summary.csv",
+            main_evaluation_summary_markdown=root / "data" / "results" / "selector_evaluation_summary.md",
+            main_training_run_summary_json=root / "data" / "results" / "random_forest_selector_run_summary.json",
+            main_evaluation_run_summary_json=root / "data" / "results" / "selector_evaluation_run_summary.json",
+            thesis_dataset_metadata_csv=root / "data" / "raw" / "synthetic" / "generated" / "metadata.csv",
+            thesis_features_csv=root / "data" / "processed" / "thesis_pipeline" / "features.csv",
+            thesis_benchmark_csv=root / "data" / "results" / "thesis_pipeline" / "full_benchmark_results.csv",
+            thesis_selection_dataset_csv=root / "data" / "processed" / "thesis_pipeline" / "selection_dataset.csv",
+            thesis_model_output=root / "data" / "results" / "thesis_pipeline" / "random_forest_selector.joblib",
+            thesis_feature_importance_csv=root / "data" / "results" / "thesis_pipeline" / "feature_importance.csv",
+            thesis_evaluation_csv=root / "data" / "results" / "thesis_pipeline" / "selector_evaluation.csv",
+            thesis_evaluation_summary_csv=root / "data" / "results" / "thesis_pipeline" / "selector_evaluation_summary.csv",
+            thesis_evaluation_summary_markdown=root
+            / "data"
+            / "results"
+            / "thesis_pipeline"
+            / "selector_evaluation_summary.md",
+            thesis_training_run_summary_json=root
+            / "data"
+            / "results"
+            / "thesis_pipeline"
+            / "selector_training_run_summary.json",
+            thesis_evaluation_run_summary_json=root
+            / "data"
+            / "results"
+            / "thesis_pipeline"
+            / "selector_evaluation_run_summary.json",
+            thesis_pipeline_summary_markdown=root
+            / "data"
+            / "results"
+            / "thesis_pipeline"
+            / "thesis_pipeline_summary.md",
+            thesis_pipeline_run_summary_json=root
+            / "data"
+            / "results"
+            / "thesis_pipeline"
+            / "thesis_pipeline_run_summary.json",
+            report_output_dir=root / "data" / "results" / "reports",
+            report_solver_comparison_csv=root / "data" / "results" / "reports" / "solver_comparison.csv",
+            report_solver_comparison_markdown=root / "data" / "results" / "reports" / "solver_comparison.md",
+            report_win_counts_csv=root / "data" / "results" / "reports" / "solver_win_counts.csv",
+            report_win_counts_markdown=root / "data" / "results" / "reports" / "solver_win_counts.md",
+            report_average_objective_csv=root
+            / "data"
+            / "results"
+            / "reports"
+            / "average_objective_per_solver.csv",
+            report_average_objective_markdown=root
+            / "data"
+            / "results"
+            / "reports"
+            / "average_objective_per_solver.md",
+            report_average_runtime_csv=root
+            / "data"
+            / "results"
+            / "reports"
+            / "average_runtime_per_solver.csv",
+            report_average_runtime_markdown=root
+            / "data"
+            / "results"
+            / "reports"
+            / "average_runtime_per_solver.md",
+            report_selector_vs_baselines_csv=root
+            / "data"
+            / "results"
+            / "reports"
+            / "selector_vs_baselines.csv",
+            report_selector_vs_baselines_markdown=root
+            / "data"
+            / "results"
+            / "reports"
+            / "selector_vs_baselines.md",
+            report_feature_importance_summary_csv=root
+            / "data"
+            / "results"
+            / "reports"
+            / "feature_importance_summary.csv",
+            report_feature_importance_summary_markdown=root
+            / "data"
+            / "results"
+            / "reports"
+            / "feature_importance_summary.md",
+            report_summary_markdown=root / "data" / "results" / "reports" / "thesis_benchmark_report.md",
+            report_run_summary_json=root
+            / "data"
+            / "results"
+            / "reports"
+            / "thesis_benchmark_report_run_summary.json",
         )
 
 
@@ -132,6 +272,14 @@ class DashboardService:
         training_summary = summary.get("training", {}) if isinstance(summary, dict) else {}
         evaluation_summary = summary.get("evaluation", {}) if isinstance(summary, dict) else {}
         generation_summary = summary.get("generation", {}) if isinstance(summary, dict) else {}
+        main_pipeline = _build_main_pipeline_state(self.paths)
+        thesis_pipeline = _build_thesis_pipeline_state(self.paths)
+        thesis_reports = build_thesis_reports_state(self.paths.workspace_root)
+        thesis_visualization = build_thesis_visualization_state(self.paths.workspace_root)
+        presentation_dashboard = thesis_visualization
+        mixed_dataset = build_mixed_dataset_state(self.paths.workspace_root)
+        benchmark_reports = thesis_reports
+        artifact_browser = _build_artifact_browser_state(self.paths)
 
         return {
             "workspace_root": self.paths.workspace_root.as_posix(),
@@ -185,6 +333,14 @@ class DashboardService:
             },
             "training": training_summary,
             "evaluation": evaluation_summary,
+            "thesis_pipeline": thesis_pipeline,
+            "thesis_reports": thesis_reports,
+            "thesis_visualization": thesis_visualization,
+            "presentation_dashboard": presentation_dashboard,
+            "mixed_dataset": mixed_dataset,
+            "main_pipeline": main_pipeline,
+            "benchmark_reports": benchmark_reports,
+            "artifact_browser": artifact_browser,
             "solver_leaderboard": solver_leaderboard,
             "best_solver_distribution": best_solver_distribution,
             "feature_importance": feature_importance_preview,
@@ -235,6 +391,60 @@ class DashboardService:
                 "evaluation": _frame_preview(evaluation, limit=6),
             },
         }
+
+    def preview_artifact(self, artifact_id: str) -> dict[str, Any]:
+        """Return a small read-only preview for one whitelisted artifact."""
+
+        artifact = _artifact_browser_lookup(self.paths).get(str(artifact_id or "").strip())
+        if artifact is None:
+            raise ValueError("Unknown dashboard artifact.")
+
+        path = artifact["path"]
+        if not isinstance(path, Path) or not path.exists() or not path.is_file():
+            raise FileNotFoundError(f"Artifact does not exist: {artifact.get('file_name', artifact_id)}")
+
+        preview_kind = str(artifact.get("preview_kind") or "")
+        base_payload = {
+            "artifact": _browser_artifact_payload(
+                artifact_id=str(artifact["artifact_id"]),
+                path=path,
+                workspace_root=self.paths.workspace_root,
+                artifact_type=str(artifact["artifact_type"]),
+                scope=str(artifact["scope"]),
+                preview_kind=preview_kind,
+            )
+        }
+        if preview_kind == "csv":
+            return {
+                **base_payload,
+                "preview_kind": "csv",
+                **_preview_csv_artifact(path),
+            }
+        if preview_kind == "markdown":
+            return {
+                **base_payload,
+                "preview_kind": "markdown",
+                **_preview_markdown_artifact(path),
+            }
+
+        raise ValueError("Only CSV and Markdown artifacts can be previewed in the dashboard.")
+
+    def resolve_generated_file(self, relative_path: str) -> Path:
+        """Resolve one generated thesis artifact file for read-only HTTP serving."""
+
+        clean_relative = str(relative_path or "").strip().replace("\\", "/")
+        if not clean_relative:
+            raise ValueError("Generated file path is required.")
+
+        candidate = (self.paths.workspace_root / clean_relative).resolve()
+        results_root = (self.paths.workspace_root / "data" / "results").resolve()
+        try:
+            candidate.relative_to(results_root)
+        except ValueError as exc:
+            raise ValueError("Generated file path is outside the allowed results directory.") from exc
+        if not candidate.exists() or not candidate.is_file():
+            raise FileNotFoundError(f"Generated file not found: {clean_relative}")
+        return candidate
 
     def load_real_instance(self, relative_path: str) -> dict[str, Any]:
         """Load one real XML instance and update the dashboard inspector."""
@@ -919,6 +1129,818 @@ def _build_feature_importance_preview(feature_importance: pd.DataFrame | None) -
     return _records(frame)
 
 
+def _build_main_pipeline_state(paths: DashboardPaths) -> dict[str, Any]:
+    """Build one dashboard section describing the latest core real-data pipeline run."""
+
+    inventory = _safe_read_csv(paths.real_inventory_csv)
+    features = _safe_read_csv(paths.main_features_csv)
+    benchmarks = _safe_read_csv(paths.main_benchmark_csv)
+    selection_dataset = _safe_read_csv(paths.main_selection_dataset_csv)
+    evaluation = _safe_read_csv(paths.main_evaluation_csv)
+    feature_importance = _safe_read_csv(paths.main_feature_importance_csv)
+    training_summary = _extract_training_summary(_load_json_file(paths.main_training_run_summary_json))
+    evaluation_summary = _extract_evaluation_summary(_load_json_file(paths.main_evaluation_run_summary_json))
+    inventory_summary = _summarize_inventory(inventory)
+
+    selected_solvers: list[str] = []
+    if benchmarks is not None and not benchmarks.empty and "solver_name" in benchmarks.columns:
+        selected_solvers = sorted(benchmarks["solver_name"].dropna().astype(str).unique().tolist())
+
+    labeled_instances = 0
+    distinct_best_solvers = 0
+    if selection_dataset is not None and "best_solver" in selection_dataset.columns:
+        labeled = selection_dataset["best_solver"].dropna().astype(str)
+        labeled_instances = int(labeled.count())
+        distinct_best_solvers = int(labeled.nunique())
+
+    available = any(
+        item is not None
+        for item in (
+            inventory,
+            features,
+            benchmarks,
+            selection_dataset,
+            evaluation,
+            feature_importance,
+        )
+    )
+
+    return {
+        "available": available,
+        "scope": {
+            "title": "Main Thesis Pipeline",
+            "description": (
+                "Core CLI outputs produced from real benchmark XML files under data/raw/real. "
+                "This section stays separate from synthetic dashboard demo artifacts."
+            ),
+        },
+        "overview": {
+            "parseable_real_files": inventory_summary["parseable_real_files"],
+            "failed_real_files": inventory_summary["failed_real_files"],
+            "inventory_rows": inventory_summary["inventory_rows"],
+            "instance_count": len(features.index) if features is not None else 0,
+            "feature_rows": len(features.index) if features is not None else 0,
+            "benchmark_rows": len(benchmarks.index) if benchmarks is not None else 0,
+            "selection_rows": len(selection_dataset.index) if selection_dataset is not None else 0,
+            "labeled_instances": labeled_instances,
+            "distinct_best_solvers": distinct_best_solvers,
+            "solver_count": len(selected_solvers),
+            "selected_solvers": selected_solvers,
+            "pipeline_mode": "main_real_pipeline",
+        },
+        "training": training_summary,
+        "evaluation": evaluation_summary,
+        "solver_leaderboard": _build_solver_leaderboard(benchmarks),
+        "best_solver_distribution": _build_best_solver_distribution(selection_dataset),
+        "feature_importance": _build_feature_importance_preview(feature_importance),
+        "artifacts": {
+            "real_inventory": _describe_path(paths.workspace_root, paths.real_inventory_csv),
+            "main_features": _describe_path(paths.workspace_root, paths.main_features_csv),
+            "main_benchmarks": _describe_path(paths.workspace_root, paths.main_benchmark_csv),
+            "main_selection_dataset": _describe_path(paths.workspace_root, paths.main_selection_dataset_csv),
+            "main_model": _describe_path(paths.workspace_root, paths.main_model_output),
+            "main_feature_importance": _describe_path(paths.workspace_root, paths.main_feature_importance_csv),
+            "main_evaluation": _describe_path(paths.workspace_root, paths.main_evaluation_csv),
+            "main_evaluation_summary_csv": _describe_path(paths.workspace_root, paths.main_evaluation_summary_csv),
+            "main_evaluation_summary_markdown": _describe_path(
+                paths.workspace_root,
+                paths.main_evaluation_summary_markdown,
+            ),
+        },
+        "previews": {
+            "inventory": _frame_preview(inventory, limit=6),
+            "features": _frame_preview(features, limit=6),
+            "benchmarks": _frame_preview(benchmarks, limit=6),
+            "selection_dataset": _frame_preview(selection_dataset, limit=6),
+            "evaluation": _frame_preview(evaluation, limit=6),
+        },
+    }
+
+
+def _build_thesis_pipeline_state(paths: DashboardPaths) -> dict[str, Any]:
+    """Build a dashboard section for the synthetic thesis-mode pipeline outputs."""
+
+    metadata = _safe_read_csv(paths.thesis_dataset_metadata_csv)
+    features = _safe_read_csv(paths.thesis_features_csv)
+    benchmarks = _safe_read_csv(paths.thesis_benchmark_csv)
+    selection_dataset = _safe_read_csv(paths.thesis_selection_dataset_csv)
+    evaluation = _safe_read_csv(paths.thesis_evaluation_csv)
+    evaluation_summary_csv = _safe_read_csv(paths.thesis_evaluation_summary_csv)
+    feature_importance = _safe_read_csv(paths.thesis_feature_importance_csv)
+    training_summary = _extract_training_summary(_load_json_file(paths.thesis_training_run_summary_json))
+    evaluation_summary = _extract_evaluation_summary(_load_json_file(paths.thesis_evaluation_run_summary_json))
+    if not evaluation_summary:
+        evaluation_summary = _extract_evaluation_summary_from_table(evaluation_summary_csv)
+    pipeline_run_summary = _load_json_file(paths.thesis_pipeline_run_summary_json)
+
+    selected_solvers = _solver_names_from_benchmarks(benchmarks)
+    labeled_instances = _count_labeled_instances(selection_dataset)
+    distinct_best_solvers = _count_distinct_best_solvers(selection_dataset)
+    feasible_runs = _count_feasible_runs(benchmarks)
+    support_counts = _column_value_counts(benchmarks, "solver_support_status")
+    status_counts = _column_value_counts(benchmarks, "status")
+    settings = pipeline_run_summary.get("settings", {}) if isinstance(pipeline_run_summary, dict) else {}
+    pipeline_results = pipeline_run_summary.get("results", {}) if isinstance(pipeline_run_summary, dict) else {}
+    solver_leaderboard = _build_solver_leaderboard(benchmarks)
+    selector_comparison = _build_selector_comparison(evaluation_summary)
+    feature_importance_preview = _frame_preview(feature_importance, limit=12)
+
+    available = any(
+        item is not None
+        for item in (
+            metadata,
+            features,
+            benchmarks,
+            selection_dataset,
+            evaluation,
+            evaluation_summary_csv,
+            feature_importance,
+        )
+    ) or paths.thesis_pipeline_summary_markdown.exists()
+
+    return {
+        "available": available,
+        "empty_state": (
+            "No thesis pipeline artifacts found yet. Run "
+            "`python -m src.experiments.run_thesis_pipeline --dataset-size 30 --time-limit-seconds 5 --seed 42` "
+            "and refresh this page."
+        ),
+        "scope": {
+            "title": "Thesis Pipeline Results",
+            "description": (
+                "Outputs produced by the thesis-mode synthetic experiment pipeline. "
+                "These artifacts are separate from the dashboard demo files and are never generated on page load."
+            ),
+            "source_folder": "data/results/thesis_pipeline",
+        },
+        "overview": {
+            "dataset_rows": len(metadata.index) if metadata is not None else 0,
+            "feature_rows": len(features.index) if features is not None else 0,
+            "benchmark_rows": len(benchmarks.index) if benchmarks is not None else 0,
+            "feasible_runs": feasible_runs,
+            "solver_count": len(selected_solvers),
+            "selected_solvers": selected_solvers,
+            "selection_rows": len(selection_dataset.index) if selection_dataset is not None else 0,
+            "labeled_instances": labeled_instances,
+            "distinct_best_solvers": distinct_best_solvers,
+            "time_limit_seconds": _json_safe_value(settings.get("time_limit_seconds")),
+            "random_seed": _json_safe_value(settings.get("seed")),
+            "generated_at": _json_safe_value(pipeline_run_summary.get("generated_at"))
+            if isinstance(pipeline_run_summary, dict)
+            else None,
+            "dataset_generated": _json_safe_value(pipeline_results.get("dataset_generated")),
+            "support_counts": support_counts,
+            "status_counts": status_counts,
+        },
+        "training": training_summary,
+        "evaluation": evaluation_summary,
+        "selector_comparison": selector_comparison,
+        "solver_leaderboard": solver_leaderboard,
+        "feature_importance": feature_importance_preview,
+        "charts": _build_thesis_chart_data(
+            solver_leaderboard=solver_leaderboard,
+            selector_comparison=selector_comparison,
+            feature_importance=feature_importance_preview,
+        ),
+        "artifacts": _build_thesis_artifact_map(paths),
+        "previews": {
+            "metadata": _frame_preview(metadata, limit=6),
+            "features": _frame_preview(features, limit=6),
+            "benchmarks": _frame_preview(benchmarks, limit=6),
+            "selection_dataset": _frame_preview(selection_dataset, limit=6),
+            "evaluation": _frame_preview(evaluation, limit=6),
+        },
+    }
+
+
+def _build_thesis_artifact_map(paths: DashboardPaths) -> dict[str, dict[str, Any]]:
+    """Return generated thesis artifact paths for the dashboard file list."""
+
+    return {
+        "thesis_dataset_metadata": _describe_path(paths.workspace_root, paths.thesis_dataset_metadata_csv),
+        "thesis_features": _describe_path(paths.workspace_root, paths.thesis_features_csv),
+        "thesis_benchmark_results": _describe_path(paths.workspace_root, paths.thesis_benchmark_csv),
+        "thesis_selection_dataset": _describe_path(paths.workspace_root, paths.thesis_selection_dataset_csv),
+        "thesis_selector_model": _describe_path(paths.workspace_root, paths.thesis_model_output),
+        "thesis_feature_importance": _describe_path(paths.workspace_root, paths.thesis_feature_importance_csv),
+        "thesis_evaluation_report": _describe_path(paths.workspace_root, paths.thesis_evaluation_csv),
+        "thesis_evaluation_summary_csv": _describe_path(paths.workspace_root, paths.thesis_evaluation_summary_csv),
+        "thesis_evaluation_summary_markdown": _describe_path(
+            paths.workspace_root,
+            paths.thesis_evaluation_summary_markdown,
+        ),
+        "thesis_training_run_summary": _describe_path(paths.workspace_root, paths.thesis_training_run_summary_json),
+        "thesis_evaluation_run_summary": _describe_path(paths.workspace_root, paths.thesis_evaluation_run_summary_json),
+        "thesis_summary_report": _describe_path(paths.workspace_root, paths.thesis_pipeline_summary_markdown),
+        "thesis_pipeline_run_summary": _describe_path(paths.workspace_root, paths.thesis_pipeline_run_summary_json),
+    }
+
+
+def _build_thesis_chart_data(
+    *,
+    solver_leaderboard: list[dict[str, Any]],
+    selector_comparison: list[dict[str, Any]],
+    feature_importance: list[dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]]:
+    """Build normalized chart rows for the thesis dashboard section."""
+
+    return {
+        "average_objective_per_solver": _metric_chart_rows(
+            solver_leaderboard,
+            label_key="solver_name",
+            value_key="average_objective",
+        ),
+        "average_runtime_per_solver": _metric_chart_rows(
+            solver_leaderboard,
+            label_key="solver_name",
+            value_key="average_runtime",
+        ),
+        "solver_win_counts": _metric_chart_rows(
+            solver_leaderboard,
+            label_key="solver_name",
+            value_key="wins",
+        ),
+        "selector_baseline_comparison": _metric_chart_rows(
+            selector_comparison,
+            label_key="method",
+            value_key="average_objective",
+        ),
+        "top_feature_importances": _metric_chart_rows(
+            feature_importance,
+            label_key="source_feature",
+            value_key="importance",
+        ),
+    }
+
+
+def _metric_chart_rows(
+    rows: list[dict[str, Any]],
+    *,
+    label_key: str,
+    value_key: str,
+) -> list[dict[str, Any]]:
+    """Convert generic records into simple label/value chart rows."""
+
+    chart_rows: list[dict[str, Any]] = []
+    for row in rows:
+        label = row.get(label_key) or row.get("feature") or row.get("solver_name")
+        value = _safe_float(row.get(value_key))
+        if label is None or value is None:
+            continue
+        chart_rows.append(
+            {
+                "label": _json_safe_value(label),
+                "value": value,
+            }
+        )
+    return chart_rows
+
+
+def _build_selector_comparison(evaluation_summary: dict[str, Any]) -> list[dict[str, Any]]:
+    """Build selector, single-best, and virtual-best comparison rows."""
+
+    selector_objective = _safe_float(evaluation_summary.get("average_selected_objective"))
+    single_best_objective = _safe_float(evaluation_summary.get("average_single_best_objective"))
+    virtual_best_objective = _safe_float(evaluation_summary.get("average_virtual_best_objective"))
+
+    if selector_objective is None and single_best_objective is None and virtual_best_objective is None:
+        return []
+
+    return [
+        {
+            "method": "Selector",
+            "average_objective": selector_objective,
+            "delta_vs_virtual_best": _safe_float(evaluation_summary.get("regret_vs_virtual_best")),
+            "note": "Predicted solver per instance",
+        },
+        {
+            "method": "Single Best Solver",
+            "average_objective": single_best_objective,
+            "delta_vs_virtual_best": (
+                single_best_objective - virtual_best_objective
+                if single_best_objective is not None and virtual_best_objective is not None
+                else None
+            ),
+            "note": evaluation_summary.get("single_best_solver_name") or "Best fixed solver from training split",
+        },
+        {
+            "method": "Virtual Best Solver",
+            "average_objective": virtual_best_objective,
+            "delta_vs_virtual_best": 0.0 if virtual_best_objective is not None else None,
+            "note": "Oracle lower bound",
+        },
+    ]
+
+
+def _build_artifact_browser_state(paths: DashboardPaths) -> dict[str, Any]:
+    """Build a read-only artifact browser state with explicit scope groups."""
+
+    group_definitions = [
+        {
+            "scope": "thesis",
+            "title": "Thesis Pipeline Artifacts",
+            "description": (
+                "Files produced by src.experiments.run_thesis_pipeline. "
+                "These are the thesis-mode outputs under data/processed/thesis_pipeline and data/results/thesis_pipeline."
+            ),
+        },
+        {
+            "scope": "reports",
+            "title": "Benchmark Report Artifacts",
+            "description": (
+                "Thesis-facing CSV and Markdown summaries produced by src.experiments.thesis_report "
+                "under data/results/reports."
+            ),
+        },
+        {
+            "scope": "real_current",
+            "title": "Refreshed Real Pipeline Artifacts",
+            "description": (
+                "Files produced by src.experiments.run_real_pipeline_current under "
+                "data/processed/real_pipeline_current and data/results/real_pipeline_current."
+            ),
+        },
+        {
+            "scope": "synthetic_study",
+            "title": "Synthetic Study Artifacts",
+            "description": (
+                "Files produced by the larger synthetic study under data/processed/synthetic_study "
+                "and data/results/synthetic_study."
+            ),
+        },
+        {
+            "scope": "mixed",
+            "title": "Mixed Dataset Artifacts",
+            "description": (
+                "Combined synthetic/real selector artifacts under data/processed/selection_dataset_full.csv "
+                "and data/results/full_selection."
+            ),
+        },
+        {
+            "scope": "demo",
+            "title": "Synthetic Demo Artifacts",
+            "description": (
+                "Files produced by dashboard demo actions. These stay in demo_* outputs and are separate from thesis results."
+            ),
+        },
+    ]
+    specs = _artifact_browser_specs(paths)
+    groups: list[dict[str, Any]] = []
+    for group in group_definitions:
+        scope = str(group["scope"])
+        scoped_specs = [spec for spec in specs if spec["scope"] == scope]
+        available_specs = [
+            spec for spec in scoped_specs if isinstance(spec["path"], Path) and spec["path"].exists()
+        ]
+        groups.append(
+            {
+                **group,
+                "available_count": len(available_specs),
+                "missing_count": len(scoped_specs) - len(available_specs),
+                "artifacts": [
+                    _browser_artifact_payload(
+                        artifact_id=str(spec["artifact_id"]),
+                        path=spec["path"],
+                        workspace_root=paths.workspace_root,
+                        artifact_type=str(spec["artifact_type"]),
+                        scope=scope,
+                        preview_kind=str(spec["preview_kind"]),
+                    )
+                    for spec in available_specs
+                ],
+            }
+        )
+
+    return {
+        "title": "Artifacts Browser",
+        "description": (
+            "Browse generated CSV and Markdown artifacts from localhost. "
+            "The browser uses a fixed whitelist and keeps thesis outputs separate from synthetic demo outputs."
+        ),
+        "groups": groups,
+    }
+
+
+def _artifact_browser_lookup(paths: DashboardPaths) -> dict[str, dict[str, Any]]:
+    """Return browsable artifact specs keyed by stable artifact id."""
+
+    return {str(spec["artifact_id"]): spec for spec in _artifact_browser_specs(paths)}
+
+
+def _artifact_browser_specs(paths: DashboardPaths) -> list[dict[str, Any]]:
+    """Return the fixed local artifact whitelist for browser previews."""
+
+    specs = [
+        _artifact_spec("thesis_benchmark_results", "thesis", "Benchmark Results", paths.thesis_benchmark_csv, "csv"),
+        _artifact_spec("thesis_features", "thesis", "Feature Table", paths.thesis_features_csv, "csv"),
+        _artifact_spec(
+            "thesis_selection_dataset",
+            "thesis",
+            "Selection Dataset",
+            paths.thesis_selection_dataset_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "thesis_selector_evaluation",
+            "thesis",
+            "Selector Evaluation",
+            paths.thesis_evaluation_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "thesis_selector_evaluation_summary",
+            "thesis",
+            "Selector Evaluation Summary",
+            paths.thesis_evaluation_summary_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "thesis_feature_importance",
+            "thesis",
+            "Feature Importance",
+            paths.thesis_feature_importance_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "thesis_evaluation_markdown",
+            "thesis",
+            "Markdown Summary",
+            paths.thesis_evaluation_summary_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "thesis_summary_report",
+            "thesis",
+            "Markdown Summary",
+            paths.thesis_pipeline_summary_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_solver_comparison",
+            "reports",
+            "Solver Comparison",
+            paths.report_solver_comparison_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "report_solver_comparison_markdown",
+            "reports",
+            "Markdown Report",
+            paths.report_solver_comparison_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_win_counts",
+            "reports",
+            "Solver Win Counts",
+            paths.report_win_counts_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "report_win_counts_markdown",
+            "reports",
+            "Markdown Report",
+            paths.report_win_counts_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_average_objective",
+            "reports",
+            "Average Objective",
+            paths.report_average_objective_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "report_average_objective_markdown",
+            "reports",
+            "Markdown Report",
+            paths.report_average_objective_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_average_runtime",
+            "reports",
+            "Average Runtime",
+            paths.report_average_runtime_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "report_average_runtime_markdown",
+            "reports",
+            "Markdown Report",
+            paths.report_average_runtime_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_selector_vs_baselines",
+            "reports",
+            "Selector Vs Baselines",
+            paths.report_selector_vs_baselines_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "report_selector_vs_baselines_markdown",
+            "reports",
+            "Markdown Report",
+            paths.report_selector_vs_baselines_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_feature_importance_summary",
+            "reports",
+            "Feature Importance Summary",
+            paths.report_feature_importance_summary_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "report_feature_importance_markdown",
+            "reports",
+            "Markdown Report",
+            paths.report_feature_importance_summary_markdown,
+            "markdown",
+        ),
+        _artifact_spec(
+            "report_summary_markdown",
+            "reports",
+            "Benchmark Report Summary",
+            paths.report_summary_markdown,
+            "markdown",
+        ),
+        _artifact_spec("demo_benchmark_results", "demo", "Benchmark Results", paths.demo_benchmark_csv, "csv"),
+        _artifact_spec("demo_features", "demo", "Feature Table", paths.demo_features_csv, "csv"),
+        _artifact_spec(
+            "demo_selection_dataset",
+            "demo",
+            "Selection Dataset",
+            paths.demo_selection_dataset_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "demo_selector_evaluation",
+            "demo",
+            "Selector Evaluation",
+            paths.demo_evaluation_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "demo_selector_evaluation_summary",
+            "demo",
+            "Selector Evaluation Summary",
+            paths.demo_evaluation_summary_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "demo_feature_importance",
+            "demo",
+            "Feature Importance",
+            paths.demo_feature_importance_csv,
+            "csv",
+        ),
+        _artifact_spec(
+            "demo_evaluation_markdown",
+            "demo",
+            "Markdown Summary",
+            paths.demo_evaluation_summary_markdown,
+            "markdown",
+        ),
+    ]
+    specs.extend(build_report_artifact_specs(paths.workspace_root))
+    return specs
+
+
+def _artifact_spec(
+    artifact_id: str,
+    scope: str,
+    artifact_type: str,
+    path: Path,
+    preview_kind: str,
+) -> dict[str, Any]:
+    """Build one artifact-browser whitelist entry."""
+
+    return {
+        "artifact_id": artifact_id,
+        "scope": scope,
+        "artifact_type": artifact_type,
+        "path": path,
+        "preview_kind": preview_kind,
+    }
+
+
+def _browser_artifact_payload(
+    *,
+    artifact_id: str,
+    path: Path,
+    workspace_root: Path,
+    artifact_type: str,
+    scope: str,
+    preview_kind: str,
+) -> dict[str, Any]:
+    """Return dashboard metadata for one available artifact file."""
+
+    stat = path.stat()
+    return {
+        "artifact_id": artifact_id,
+        "scope": scope,
+        "artifact_type": artifact_type,
+        "file_name": path.name,
+        "path": _relative_path(workspace_root, path),
+        "last_modified": _format_timestamp(stat.st_mtime),
+        "size_bytes": int(stat.st_size),
+        "size": _format_file_size(stat.st_size),
+        "preview_kind": preview_kind,
+    }
+
+
+def _preview_csv_artifact(path: Path) -> dict[str, Any]:
+    """Return a compact CSV preview for the artifact browser."""
+
+    try:
+        frame = pd.read_csv(path)
+    except pd.errors.EmptyDataError as exc:
+        raise ValueError("CSV artifact is empty.") from exc
+
+    preview_rows = frame.head(25)
+    return {
+        "columns": [str(column) for column in frame.columns],
+        "rows": _records(preview_rows),
+        "total_rows": int(len(frame.index)),
+        "shown_rows": int(len(preview_rows.index)),
+    }
+
+
+def _preview_markdown_artifact(path: Path) -> dict[str, Any]:
+    """Return a compact Markdown text preview for the artifact browser."""
+
+    text = path.read_text(encoding="utf-8")
+    max_chars = 12_000
+    return {
+        "text": text[:max_chars],
+        "total_chars": len(text),
+        "shown_chars": min(len(text), max_chars),
+        "truncated": len(text) > max_chars,
+    }
+
+
+def _format_file_size(size_bytes: int) -> str:
+    """Format a byte count for dashboard display."""
+
+    size = float(max(0, size_bytes))
+    for unit in ("B", "KB", "MB", "GB"):
+        if size < 1024.0 or unit == "GB":
+            return f"{size:.0f} {unit}" if unit == "B" else f"{size:.1f} {unit}"
+        size /= 1024.0
+    return f"{size_bytes} B"
+
+
+def _extract_evaluation_summary_from_table(summary: pd.DataFrame | None) -> dict[str, Any]:
+    """Extract aggregate selector metrics from the evaluation summary CSV."""
+
+    if summary is None or summary.empty:
+        return {}
+
+    frame = summary.copy()
+    if "summary_row_type" in frame.columns:
+        aggregate_rows = frame[frame["summary_row_type"].astype(str) == "aggregate_mean"]
+        if not aggregate_rows.empty:
+            frame = aggregate_rows
+
+    row = frame.iloc[0].to_dict()
+    return {
+        "single_best_solver_name": _json_safe_value(row.get("single_best_solver_name")),
+        "classification_accuracy": _json_safe_value(row.get("classification_accuracy")),
+        "balanced_accuracy": _json_safe_value(row.get("balanced_accuracy")),
+        "average_selected_objective": _json_safe_value(row.get("average_selected_objective")),
+        "average_virtual_best_objective": _json_safe_value(row.get("average_virtual_best_objective")),
+        "average_single_best_objective": _json_safe_value(row.get("average_single_best_objective")),
+        "regret_vs_virtual_best": _json_safe_value(row.get("regret_vs_virtual_best")),
+        "delta_vs_single_best": _json_safe_value(row.get("delta_vs_single_best")),
+        "improvement_vs_single_best": _json_safe_value(row.get("improvement_vs_single_best")),
+        "num_test_instances": _json_safe_value(row.get("num_test_rows") or row.get("num_test_instances")),
+        "num_validation_splits": int(len(summary.index)) if not summary.empty else 0,
+        "split_strategy": _json_safe_value(row.get("split_strategy")),
+    }
+
+
+def _solver_names_from_benchmarks(benchmarks: pd.DataFrame | None) -> list[str]:
+    """Return stable solver labels from a benchmark table."""
+
+    if benchmarks is None or benchmarks.empty:
+        return []
+
+    column = "solver_registry_name" if "solver_registry_name" in benchmarks.columns else "solver_name"
+    if column not in benchmarks.columns:
+        return []
+    return sorted(benchmarks[column].dropna().astype(str).unique().tolist())
+
+
+def _count_labeled_instances(selection_dataset: pd.DataFrame | None) -> int:
+    """Count labeled selector rows."""
+
+    if selection_dataset is None or selection_dataset.empty or "best_solver" not in selection_dataset.columns:
+        return 0
+    return int(selection_dataset["best_solver"].dropna().count())
+
+
+def _count_distinct_best_solvers(selection_dataset: pd.DataFrame | None) -> int:
+    """Count distinct non-missing best-solver labels."""
+
+    if selection_dataset is None or selection_dataset.empty or "best_solver" not in selection_dataset.columns:
+        return 0
+    return int(selection_dataset["best_solver"].dropna().astype(str).nunique())
+
+
+def _count_feasible_runs(benchmarks: pd.DataFrame | None) -> int:
+    """Count feasible benchmark rows."""
+
+    if benchmarks is None or benchmarks.empty or "feasible" not in benchmarks.columns:
+        return 0
+    return int(benchmarks["feasible"].map(_coerce_bool).sum())
+
+
+def _column_value_counts(frame: pd.DataFrame | None, column: str) -> dict[str, int]:
+    """Return stable counts for one optional dataframe column."""
+
+    if frame is None or frame.empty or column not in frame.columns:
+        return {}
+    counts = frame[column].fillna("missing").astype(str).value_counts().to_dict()
+    return {str(key): int(value) for key, value in sorted(counts.items())}
+
+
+def _summarize_inventory(inventory: pd.DataFrame | None) -> dict[str, int]:
+    """Summarize parseable and failed counts from one inventory table."""
+
+    if inventory is None or inventory.empty or "parseable" not in inventory.columns:
+        return {
+            "inventory_rows": 0,
+            "parseable_real_files": 0,
+            "failed_real_files": 0,
+        }
+
+    parseable = inventory["parseable"].fillna(False).astype(bool)
+    parseable_count = int(parseable.sum())
+    inventory_rows = int(len(inventory.index))
+    return {
+        "inventory_rows": inventory_rows,
+        "parseable_real_files": parseable_count,
+        "failed_real_files": inventory_rows - parseable_count,
+    }
+
+
+def _extract_training_summary(run_summary: dict[str, Any] | None) -> dict[str, Any]:
+    """Extract a compact dashboard summary from a selector-training run summary."""
+
+    if not isinstance(run_summary, dict):
+        return {}
+
+    results = run_summary.get("results", {})
+    settings = run_summary.get("settings", {})
+    outputs = run_summary.get("outputs", {})
+    if not isinstance(results, dict) or not isinstance(settings, dict) or not isinstance(outputs, dict):
+        return {}
+
+    return {
+        "accuracy": _json_safe_value(results.get("accuracy")),
+        "balanced_accuracy": _json_safe_value(results.get("balanced_accuracy")),
+        "num_train_rows": _json_safe_value(results.get("num_train_rows")),
+        "num_test_rows": _json_safe_value(results.get("num_test_rows")),
+        "num_labeled_rows": _json_safe_value(results.get("num_labeled_rows")),
+        "num_validation_splits": _json_safe_value(results.get("num_validation_splits")),
+        "split_strategy": _json_safe_value(settings.get("split_strategy")),
+        "generated_at": _json_safe_value(run_summary.get("generated_at")),
+        "model_output": _json_safe_value(outputs.get("model_output")),
+    }
+
+
+def _extract_evaluation_summary(run_summary: dict[str, Any] | None) -> dict[str, Any]:
+    """Extract a compact dashboard summary from a selector-evaluation run summary."""
+
+    if not isinstance(run_summary, dict):
+        return {}
+
+    results = run_summary.get("results", {})
+    settings = run_summary.get("settings", {})
+    outputs = run_summary.get("outputs", {})
+    if not isinstance(results, dict) or not isinstance(settings, dict) or not isinstance(outputs, dict):
+        return {}
+
+    return {
+        "single_best_solver_name": _json_safe_value(results.get("single_best_solver_name")),
+        "classification_accuracy": _json_safe_value(results.get("classification_accuracy")),
+        "balanced_accuracy": _json_safe_value(results.get("balanced_accuracy")),
+        "average_selected_objective": _json_safe_value(results.get("average_selected_objective")),
+        "average_virtual_best_objective": _json_safe_value(results.get("average_virtual_best_objective")),
+        "average_single_best_objective": _json_safe_value(results.get("average_single_best_objective")),
+        "regret_vs_virtual_best": _json_safe_value(results.get("regret_vs_virtual_best")),
+        "delta_vs_single_best": _json_safe_value(results.get("delta_vs_single_best")),
+        "improvement_vs_single_best": _json_safe_value(results.get("improvement_vs_single_best")),
+        "num_test_instances": _json_safe_value(results.get("num_test_instances")),
+        "num_validation_splits": _json_safe_value(results.get("num_validation_splits")),
+        "split_strategy": _json_safe_value(settings.get("split_strategy")),
+        "generated_at": _json_safe_value(run_summary.get("generated_at")),
+        "summary_csv": _json_safe_value(outputs.get("evaluation_summary_csv")),
+    }
+
+
 def _count_best_solver_labels(selection_dataset_csv: Path) -> int:
     """Return the number of distinct non-missing solver labels in a dataset."""
 
@@ -1015,12 +2037,39 @@ def _json_safe_value(value: object) -> object:
     if callable(item_method):
         try:
             return _json_safe_value(item_method())
-        except Exception:
+        except (TypeError, ValueError):
             pass
 
-    if pd.isna(value):
-        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
     return str(value) if not isinstance(value, str) else value
+
+
+def _coerce_bool(value: object) -> bool:
+    """Normalize bool-like CSV values."""
+
+    if isinstance(value, bool):
+        return value
+    if value is None or pd.isna(value):
+        return False
+    return str(value).strip().casefold() in {"true", "1", "yes", "y"}
+
+
+def _safe_float(value: object) -> float | None:
+    """Convert a scalar value to a JSON-safe float."""
+
+    if value is None or pd.isna(value):
+        return None
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return None
+    if math.isnan(parsed) or math.isinf(parsed):
+        return None
+    return round(parsed, 6)
 
 
 def _relative_path(workspace_root: Path, path: Path | None) -> str | None:

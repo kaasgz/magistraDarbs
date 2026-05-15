@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -97,6 +98,113 @@ def test_run_benchmarks_from_config_uses_yaml_values(tmp_path: Path) -> None:
     assert len(rows) == 1
     assert rows[0]["instance_name"] == "SampleRobinX"
     assert rows[0]["solver_name"] == "random_baseline"
+    assert summary_json.exists()
+
+
+def test_run_benchmarks_from_config_supports_timefold_solver_settings(tmp_path: Path) -> None:
+    """Benchmark YAML should forward per-solver settings to the Timefold wrapper."""
+
+    input_dir = tmp_path / "instances"
+    input_dir.mkdir()
+    (input_dir / "tiny.xml").write_text(
+        "\n".join(
+            [
+                "<Instance name=\"TinyTimefold\">",
+                "  <MetaData>",
+                "    <Name>TinyTimefold</Name>",
+                "    <RoundRobinMode>single</RoundRobinMode>",
+                "  </MetaData>",
+                "  <Teams>",
+                "    <Team id=\"T1\" name=\"Team 1\" />",
+                "    <Team id=\"T2\" name=\"Team 2\" />",
+                "  </Teams>",
+                "  <Slots>",
+                "    <Slot id=\"S1\" name=\"Round 1\" />",
+                "  </Slots>",
+                "</Instance>",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    adapter_path = tmp_path / "fake_timefold_adapter.py"
+    adapter_path.write_text(
+        "\n".join(
+            [
+                "from __future__ import annotations",
+                "",
+                "import argparse",
+                "import json",
+                "from pathlib import Path",
+                "",
+                "parser = argparse.ArgumentParser()",
+                "parser.add_argument('--input', required=True)",
+                "parser.add_argument('--output', required=True)",
+                "parser.add_argument('--time-limit-seconds', dest='time_limit_seconds', required=True)",
+                "parser.add_argument('--random-seed', dest='random_seed', required=True)",
+                "args = parser.parse_args()",
+                "",
+                "input_path = Path(args.input)",
+                "output_path = Path(args.output)",
+                "payload = json.loads(input_path.read_text(encoding='utf-8'))",
+                "meeting = payload['modelInput']['meetings'][0]",
+                "slot = payload['modelInput']['slots'][0]",
+                "result = {",
+                "    'status': 'SOLVED',",
+                "    'feasible': True,",
+                "    'objectiveValue': 1.0,",
+                "    'runtimeSeconds': 0.1,",
+                "    'schedule': [{'meetingId': meeting['id'], 'slotId': slot['id']}],",
+                "}",
+                "output_path.write_text(json.dumps(result), encoding='utf-8')",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    output_csv = tmp_path / "benchmark_results.csv"
+    summary_json = tmp_path / "benchmark_run_summary.json"
+    config_path = tmp_path / "benchmark_config.yaml"
+    config_path.write_text(
+        "\n".join(
+            [
+                "paths:",
+                f"  instance_folder: {input_dir.as_posix()}",
+                f"  output_csv: {output_csv.as_posix()}",
+                f"  run_summary: {summary_json.as_posix()}",
+                "run:",
+                "  random_seed: 9",
+                "  time_limit_seconds: 60",
+                "solvers:",
+                "  selected:",
+                "    - timefold",
+                "  settings:",
+                "    timefold:",
+                f"      executable_path: {Path(sys.executable).as_posix()}",
+                "      command_arguments:",
+                f"        - {adapter_path.as_posix()}",
+                "      time_limit_seconds: 2",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    written_path = run_benchmarks_from_config(config_path)
+
+    assert written_path == output_csv
+    with output_csv.open("r", encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    assert len(rows) == 1
+    assert rows[0]["instance_name"] == "TinyTimefold"
+    assert rows[0]["solver_name"] == "timefold"
+    assert rows[0]["solver_registry_name"] == "timefold"
+    assert rows[0]["configured_time_limit_seconds"] == "2"
+    assert rows[0]["feasible"] == "True"
+    assert rows[0]["error_message"] == ""
     assert summary_json.exists()
 
 

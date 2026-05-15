@@ -1,0 +1,7 @@
+result_scope,method,reference_solver_name,split_strategy,num_validation_splits,average_objective,objective_gap_vs_virtual_best,objective_gap_vs_single_best,classification_accuracy,classification_accuracy_std,balanced_accuracy,balanced_accuracy_std
+real,selector,,repeated_stratified_kfold,1,30.759259259259256,0.0,0.0,1.0,,,
+real,single_best_solver,simulated_annealing_baseline,repeated_stratified_kfold,1,30.759259259259256,0.0,0.0,,,,
+real,virtual_best_solver,oracle,repeated_stratified_kfold,1,30.759259259259256,0.0,0.0,,,,
+synthetic,selector,,repeated_stratified_kfold,3,16.15185185185185,0.0,0.0,1.0,0.0,,
+synthetic,single_best_solver,cpsat_round_robin,repeated_stratified_kfold,3,16.15185185185185,0.0,0.0,,,,
+synthetic,virtual_best_solver,oracle,repeated_stratified_kfold,3,16.15185185185185,0.0,0.0,,,,

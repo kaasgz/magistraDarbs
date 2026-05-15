@@ -1,0 +1,35 @@
+paths:
+  dataset_root: data/raw/synthetic/study
+  processed_dir: data/processed/synthetic_study
+  results_dir: data/results/synthetic_study
+
+run:
+  seeds:
+    - 42
+    - 43
+    - 44
+  time_limit_seconds: 60
+
+solvers:
+  selected:
+    - random_baseline
+    - cpsat_solver
+    - simulated_annealing_solver
+    - timefold
+  settings:
+    timefold:
+      executable_path: null
+      time_limit_seconds: 60
+      command_arguments: []
+
+split:
+  strategy: repeated_stratified_kfold
+  test_size: 0.25
+  cross_validation_folds: 3
+  repeats: 3
+
+selector:
+  model_choice: random_forest
+
+dataset:
+  include_solver_objectives: true

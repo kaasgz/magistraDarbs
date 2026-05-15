@@ -51,7 +51,7 @@ def generate_thesis_artifacts(
     *,
     run_summary_path: str | Path | None = None,
 ) -> ThesisArtifactResult:
-    """Generate thesis-ready tables, figures, and Markdown summaries."""
+    """Generate thesis-facing tables, figures, and Markdown summaries."""
 
     benchmark_path = Path(benchmark_csv)
     evaluation_summary_path = Path(evaluation_summary_csv)
@@ -532,17 +532,6 @@ def _to_float(value: object) -> float:
     except (TypeError, ValueError):
         return float("nan")
     return numeric
-
-
-def _to_int(value: object, *, fallback: int) -> int:
-    """Convert a scalar to int with a provided fallback."""
-
-    if isinstance(value, str) and not value.strip().isdigit():
-        return fallback
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        return fallback
 
 
 __all__ = [

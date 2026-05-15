@@ -1,0 +1,122 @@
+{
+  "stage_name": "selector_evaluation",
+  "generated_at": "2026-05-10T19:28:26+03:00",
+  "config_path": "configs/selector_config.yaml",
+  "settings": {
+    "random_seed": 42,
+    "model_name": "random_forest",
+    "split_strategy": "repeated_stratified_kfold",
+    "test_size": 0.25,
+    "cross_validation_folds": 3,
+    "repeats": 3,
+    "split_notes": [],
+    "evaluation_uses_out_of_sample_validation": true,
+    "model_path_recorded_for_traceability_only": true
+  },
+  "inputs": {
+    "selection_dataset_csv": "data/processed/selection_dataset_full.csv",
+    "benchmark_results_csv": "data/results/full_selection/combined_benchmark_results.csv",
+    "model_output": "data/results/full_selection/random_forest_selector.joblib"
+  },
+  "outputs": {
+    "evaluation_report_csv": "data/results/full_selection/selector_evaluation.csv",
+    "evaluation_summary_csv": "data/results/full_selection/selector_evaluation_summary.csv",
+    "evaluation_summary_markdown": "data/results/full_selection/selector_evaluation_summary.md",
+    "run_summary": "data/results/full_selection/selector_evaluation_run_summary.json"
+  },
+  "results": {
+    "single_best_solver_name": "cpsat_solver",
+    "classification_accuracy": 0.9957264957264957,
+    "balanced_accuracy": 0.9907407407407407,
+    "average_selected_objective": 19.525641025641026,
+    "average_virtual_best_objective": 19.51282051282051,
+    "average_single_best_objective": 19.9017094017094,
+    "regret_vs_virtual_best": 0.012820512820512973,
+    "delta_vs_single_best": -0.3760683760683759,
+    "improvement_vs_single_best": 0.3760683760683759,
+    "num_test_instances": 702,
+    "num_validation_splits": 9,
+    "metrics_by_dataset_type": {
+      "real": {
+        "classification_accuracy": 0.9814814814814815,
+        "balanced_accuracy": null,
+        "average_selected_objective": 30.814814814814813,
+        "average_virtual_best_objective": 30.759259259259263,
+        "average_single_best_objective": 32.444444444444436,
+        "regret_vs_virtual_best": 0.055555555555555164,
+        "delta_vs_single_best": -1.6296296296296293
+      },
+      "synthetic": {
+        "classification_accuracy": 1.0,
+        "balanced_accuracy": null,
+        "average_selected_objective": 16.13888888888889,
+        "average_virtual_best_objective": 16.13888888888889,
+        "average_single_best_objective": 16.13888888888889,
+        "regret_vs_virtual_best": 0.0,
+        "delta_vs_single_best": 0.0
+      }
+    }
+  },
+  "config_snapshot": {
+    "paths": {
+      "features_csv": "data/processed/features.csv",
+      "benchmark_results_csv": "data/results/benchmark_results.csv",
+      "selection_dataset_csv": "data/processed/selection_dataset.csv",
+      "selection_dataset_run_summary": "data/processed/selection_dataset_run_summary.json",
+      "synthetic_features_csv": "data/processed/synthetic_study/features.csv",
+      "synthetic_benchmark_results_csv": "data/results/synthetic_study/benchmark_results.csv",
+      "real_features_csv": "data/processed/real_pipeline_current/features.csv",
+      "real_benchmark_results_csv": "data/results/real_pipeline_current/benchmark_results.csv",
+      "full_selection_dataset_csv": "data/processed/selection_dataset_full.csv",
+      "full_selection_dataset_run_summary": "data/processed/selection_dataset_full_run_summary.json",
+      "full_combined_benchmark_results_csv": "data/results/full_selection/combined_benchmark_results.csv",
+      "full_model_output": "data/results/full_selection/random_forest_selector.joblib",
+      "full_feature_importance_csv": "data/results/full_selection/feature_importance.csv",
+      "full_training_run_summary": "data/results/full_selection/selector_training_run_summary.json",
+      "full_evaluation_report_csv": "data/results/full_selection/selector_evaluation.csv",
+      "full_evaluation_summary_csv": "data/results/full_selection/selector_evaluation_summary.csv",
+      "full_evaluation_summary_markdown": "data/results/full_selection/selector_evaluation_summary.md",
+      "full_evaluation_run_summary": "data/results/full_selection/selector_evaluation_run_summary.json",
+      "model_output": "data/results/random_forest_selector.joblib",
+      "feature_importance_csv": "data/results/random_forest_feature_importance.csv",
+      "training_run_summary": "data/results/random_forest_selector_run_summary.json",
+      "evaluation_report_csv": "data/results/selector_evaluation.csv",
+      "evaluation_summary_csv": "data/results/selector_evaluation_summary.csv",
+      "evaluation_summary_markdown": "data/results/selector_evaluation_summary.md",
+      "evaluation_run_summary": "data/results/selector_evaluation_run_summary.json",
+      "ablation_summary_csv": "data/results/selector_ablation_summary.csv",
+      "ablation_plot": "data/results/selector_ablation_regret.png",
+      "ablation_report_markdown": "data/results/selector_ablation_summary.md",
+      "ablation_run_summary": "data/results/selector_ablation_run_summary.json",
+      "error_analysis_output_dir": "data/results/error_analysis",
+      "error_analysis_run_summary": "data/results/error_analysis_run_summary.json"
+    },
+    "run": {
+      "random_seed": 42,
+      "time_limit_seconds": 60
+    },
+    "solvers": {
+      "selected": [
+        "random_baseline",
+        "cpsat_solver",
+        "simulated_annealing_solver"
+      ]
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

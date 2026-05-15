@@ -151,11 +151,14 @@ def _build_inventory_row(
 ) -> dict[str, Any]:
     """Build one auditable inventory row for a single XML file."""
 
+    instance = None
     try:
         instance = load_instance(str(xml_file))
+        validate_loaded_instance_source(instance, xml_file, expected_source=expected_source)
     except Exception as exc:
+        metadata = getattr(instance, "metadata", None) if instance is not None else None
         source_kind, source_evidence = resolve_instance_source_kind(
-            None,
+            instance,
             xml_file=xml_file,
             input_folder=input_path,
             expected_source=expected_source,
@@ -164,17 +167,17 @@ def _build_inventory_row(
             "filename": xml_file.name,
             "relative_path": xml_file.relative_to(input_path).as_posix(),
             "parseable": False,
-            "instance_name": None,
-            "teams": None,
-            "slots": None,
-            "number_of_constraints": None,
+            "instance_name": getattr(metadata, "name", None) or xml_file.stem,
+            "teams": getattr(instance, "team_count", None),
+            "slots": getattr(instance, "slot_count", None),
+            "number_of_constraints": getattr(instance, "constraint_count", None),
             "data_source": source_kind,
             "source_inference": source_evidence,
-            "parser_note_count": 0,
+            "parser_warnings": _parser_warning_summary(instance),
+            "parser_note_count": len(getattr(instance, "parser_notes", []) or []),
             "parse_error": f"{type(exc).__name__}: {exc}",
         }
 
-    validate_loaded_instance_source(instance, xml_file, expected_source=expected_source)
     source_kind, source_evidence = resolve_instance_source_kind(
         instance,
         xml_file=xml_file,
@@ -194,6 +197,7 @@ def _build_inventory_row(
         "number_of_constraints": getattr(instance, "constraint_count", None),
         "data_source": source_kind,
         "source_inference": source_evidence,
+        "parser_warnings": _parser_warning_summary(instance),
         "parser_note_count": len(getattr(instance, "parser_notes", []) or []),
         "parse_error": parse_error,
     }
@@ -212,6 +216,7 @@ def _inventory_columns() -> list[str]:
         "number_of_constraints",
         "data_source",
         "source_inference",
+        "parser_warnings",
         "parser_note_count",
         "parse_error",
     ]
@@ -234,6 +239,32 @@ def _coerce_bool(value: object) -> bool:
     if pd.isna(value):
         return False
     return str(value).strip().casefold() in {"true", "1", "yes", "y"}
+
+
+def _parser_warning_summary(instance: object | None) -> str | None:
+    """Render warning-level parser notes into a compact inventory field."""
+
+    if instance is None:
+        return None
+
+    parser_notes = getattr(instance, "parser_notes", []) or []
+    warning_messages: list[str] = []
+    for note in parser_notes:
+        severity = getattr(note, "severity", None)
+        if severity != "warning":
+            continue
+        code = getattr(note, "code", None)
+        message = getattr(note, "message", None)
+        if code and message:
+            warning_messages.append(f"{code}: {message}")
+        elif message:
+            warning_messages.append(str(message))
+        elif code:
+            warning_messages.append(str(code))
+
+    if not warning_messages:
+        return None
+    return " | ".join(warning_messages)
 
 
 if __name__ == "__main__":

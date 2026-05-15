@@ -1,0 +1,115 @@
+{
+  "stage_name": "selection_dataset_full_current_build",
+  "generated_at": "2026-05-10T19:27:43+03:00",
+  "config_path": null,
+  "settings": {
+    "include_solver_objectives": true,
+    "dataset_types": [
+      "synthetic",
+      "real"
+    ],
+    "feature_schema_policy": "intersection_of_synthetic_and_real_features",
+    "target_policy": "feasible_numeric_objective_excluding_unsupported_not_configured_failed",
+    "multi_seed_policy": "mean_objective_then_mean_runtime_then_solver_name",
+    "notes_markdown": "docs/selection_dataset_full_notes.md"
+  },
+  "inputs": {
+    "synthetic_features_csv": "data/processed/synthetic_study/features.csv",
+    "synthetic_benchmark_csv": "data/results/synthetic_study/benchmark_results.csv",
+    "real_features_csv": "data/processed/real_pipeline_current/features.csv",
+    "real_benchmark_csv": "data/results/real_pipeline_current/benchmark_results.csv"
+  },
+  "outputs": {
+    "selection_dataset_full_csv": "data/processed/selection_dataset_full.csv",
+    "run_summary": "data/processed/selection_dataset_full_run_summary.json",
+    "notes_markdown": "docs/selection_dataset_full_notes.md"
+  },
+  "results": {
+    "num_selection_rows": 234,
+    "num_labeled_instances": 234,
+    "num_missing_targets": 0,
+    "rows_by_dataset_type": {
+      "real": 54,
+      "synthetic": 180
+    },
+    "target_summary_by_source": {
+      "synthetic": {
+        "dataset_type": "synthetic",
+        "num_feature_rows": 180,
+        "num_benchmark_rows": 2160,
+        "num_selection_rows": 180,
+        "num_labeled_instances": 180,
+        "num_missing_targets": 0,
+        "num_instances_with_eligible_solver": 180,
+        "num_instances_without_eligible_solver": 0,
+        "num_target_eligible_solver_rows": 1359,
+        "num_excluded_unsupported_or_not_configured_rows": 801,
+        "num_instances_with_objective_ties": 33,
+        "num_instances_with_runtime_ties_after_objective": 0
+      },
+      "real": {
+        "dataset_type": "real",
+        "num_feature_rows": 54,
+        "num_benchmark_rows": 216,
+        "num_selection_rows": 54,
+        "num_labeled_instances": 54,
+        "num_missing_targets": 0,
+        "num_instances_with_eligible_solver": 54,
+        "num_instances_without_eligible_solver": 0,
+        "num_target_eligible_solver_rows": 162,
+        "num_excluded_unsupported_or_not_configured_rows": 54,
+        "num_instances_with_objective_ties": 20,
+        "num_instances_with_runtime_ties_after_objective": 0
+      }
+    },
+    "feature_schema": {
+      "policy": "intersection_of_synthetic_and_real_features",
+      "common_feature_column_count": 30,
+      "common_feature_columns": [
+        "num_teams",
+        "num_slots",
+        "num_constraints",
+        "teams_is_even",
+        "estimated_minimum_slots",
+        "slot_pressure",
+        "slot_surplus",
+        "num_hard_constraints",
+        "num_soft_constraints",
+        "num_unclassified_constraints",
+        "num_constraints_missing_category",
+        "num_constraints_missing_tag",
+        "num_constraints_missing_type",
+        "ratio_hard_to_all",
+        "ratio_soft_to_all",
+        "ratio_unclassified_to_all",
+        "constraints_per_team",
+        "constraints_per_slot",
+        "constraints_per_team_slot",
+        "number_of_constraint_categories",
+        "number_of_constraint_tags",
+        "number_of_constraint_types",
+        "ratio_constraint_categories_to_constraints",
+        "ratio_constraint_tags_to_constraints",
+        "ratio_constraint_types_to_constraints",
+        "objective_present",
+        "objective_name",
+        "objective_sense",
+        "objective_is_minimization",
+        "objective_is_maximization"
+      ],
+      "source_specific_columns_dropped": {
+        "synthetic": [],
+        "real": []
+      },
+      "columns_missing_from_source": {
+        "synthetic": [],
+        "real": []
+      }
+    }
+  },
+  "config_snapshot": null,
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

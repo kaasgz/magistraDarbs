@@ -1,209 +1,228 @@
 <!doctype html>
-<html lang="en">
+<html lang="lv">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sports Scheduling Dashboard</title>
+    <title>Maģistra darba praktiskās daļas pārskats</title>
     <link rel="stylesheet" href="/app.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="hero-card">
         <div class="hero-copy">
-          <p class="eyebrow">Master's Thesis Dashboard</p>
-          <h1>Inspect real instances, demo synthetic ones, keep the pipelines separate.</h1>
-          <p class="hero-text">
-            This local Python-only dashboard is for thesis demos, parser walkthroughs, and
-            synthetic smoke runs. It is not the main experiment runner and it keeps demo
-            artifacts isolated from the core thesis outputs.
-          </p>
+          <p class="eyebrow">Maģistra darba aizstāvēšana</p>
+          <h1 id="pageTitle">Maģistra darba praktiskās daļas pārskats</h1>
+          <p id="pageSubtitle" class="hero-text"></p>
+          <p id="pageAccentNote" class="hero-note"></p>
         </div>
-
-        <div class="scope-card">
-          <div>
-            <p class="panel-kicker">For</p>
-            <p id="purposeText" class="scope-text"></p>
-          </div>
-          <div>
-            <p class="panel-kicker">Not For</p>
-            <p id="notForText" class="scope-text"></p>
-          </div>
-          <div class="scope-chip-row">
-            <span class="scope-chip">Real inspection only</span>
-            <span class="scope-chip is-synthetic">Synthetic demo only</span>
-            <span class="scope-chip">demo_* outputs</span>
-          </div>
+        <div class="hero-actions">
+          <button id="refreshButton" class="secondary-button" type="button">Pārlādēt pārskatu</button>
         </div>
       </header>
 
-      <section class="mode-grid">
-        <article class="panel-card mode-card">
-          <div class="panel-head">
+      <nav id="sectionNav" class="section-nav"></nav>
+
+      <div id="emptyState" class="empty-state" hidden></div>
+
+      <main id="presentationContent">
+        <section id="section-overview" class="panel-card section-card">
+          <div class="section-head">
             <div>
-              <p class="panel-kicker">Mode 1</p>
-              <h2>Load Real Instance</h2>
+              <p class="panel-kicker">1. sadaļa</p>
+              <h2 id="overviewTitle">Eksperimentālās daļas uzbūve</h2>
             </div>
           </div>
-          <p class="mode-text">
-            Reads one XML from <code>data/raw/real</code>, parses it, and shows a concise
-            structural summary plus extracted features. It does not run the full benchmark
-            pipeline.
-          </p>
-          <form id="realInstanceForm" class="mode-form">
-            <label>
-              <span>Real XML File</span>
-              <select id="realInstancePath" name="relative_path"></select>
-            </label>
-            <div class="button-row">
-              <button id="loadRealButton" class="secondary-button" type="submit">Load Real Instance</button>
-            </div>
-          </form>
-          <p id="realModeHint" class="mode-hint"></p>
-        </article>
+          <p id="overviewIntro" class="section-intro"></p>
+          <p id="overviewTakeaway" class="section-takeaway"></p>
+          <div id="overviewCards" class="card-grid"></div>
+          <div class="chip-block">
+            <p class="block-title">Portfelī reģistrētie risināšanas varianti</p>
+            <div id="overviewPortfolio" class="chip-row"></div>
+          </div>
+          <div id="overviewHighlights" class="highlight-list"></div>
+          <div id="overviewFigures" class="figure-grid figure-grid--three"></div>
+        </section>
 
-        <article class="panel-card mode-card">
-          <div class="panel-head">
+        <section id="section-workflow" class="panel-card section-card section-card--workflow">
+          <div class="section-head">
             <div>
-              <p class="panel-kicker">Mode 2</p>
-              <h2>Generate Synthetic Instance</h2>
+              <p class="panel-kicker">2. sadaļa</p>
+              <h2 id="workflowTitle">Datu un pazīmju sagatavošana</h2>
             </div>
           </div>
-          <p class="mode-text">
-            Generates a clearly labeled synthetic preview instance for demos and can also run
-            the existing synthetic demo pipeline without touching the main thesis artifacts.
-          </p>
-
-          <form id="syntheticPreviewForm" class="mode-form">
-            <div class="control-grid preview-grid">
-              <label>
-                <span>Difficulty</span>
-                <select id="syntheticDifficulty" name="difficulty_level"></select>
-              </label>
-              <label>
-                <span>Seed</span>
-                <input id="previewSeed" name="random_seed" type="number" min="1" step="1" />
-              </label>
+          <p id="workflowIntro" class="section-intro"></p>
+          <p id="workflowTakeaway" class="section-takeaway"></p>
+          <div id="workflowCards" class="card-grid"></div>
+          <div id="workflowHighlights" class="highlight-list"></div>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="workflowTableTitle">Eksperimentālās sistēmas galvenie posmi</h3>
+              <p id="workflowTableNote" class="section-note"></p>
             </div>
-            <div class="button-row">
-              <button id="previewButton" class="secondary-button" type="submit">Generate Synthetic Preview</button>
+            <div id="workflowTable" class="table-host"></div>
+          </article>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="workflowArtifactTableTitle">Darba tekstā izmantotie projekta artefakti</h3>
+              <p id="workflowArtifactTableNote" class="section-note"></p>
             </div>
-          </form>
-
-          <form id="demoPipelineForm" class="mode-form pipeline-form">
-            <div class="control-grid">
-              <label>
-                <span>Demo Instances</span>
-                <input id="instanceCount" name="instance_count" type="number" min="4" max="40" step="1" />
-              </label>
-              <label>
-                <span>Seed</span>
-                <input id="randomSeed" name="random_seed" type="number" min="1" step="1" />
-              </label>
-              <label>
-                <span>Time Limit</span>
-                <input id="timeLimit" name="time_limit_seconds" type="number" min="1" max="30" step="1" />
-              </label>
+            <div id="workflowArtifactTable" class="table-host"></div>
+          </article>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="workflowCodeTableTitle">Svarīgākie koda faili</h3>
+              <p id="workflowCodeTableNote" class="section-note"></p>
             </div>
-            <div class="button-row">
-              <button id="runButton" class="primary-button" type="submit">Run Synthetic Demo Pipeline</button>
-              <button id="refreshButton" class="secondary-button" type="button">Refresh</button>
-            </div>
-          </form>
-          <p class="mode-hint">
-            Demo pipeline outputs stay in <code>demo_*</code> files and synthetic-only folders.
-          </p>
-        </article>
-      </section>
+            <div id="workflowCodeTable" class="table-host"></div>
+          </article>
+        </section>
 
-      <section id="statusBanner" class="status-banner"></section>
-
-      <section class="panel-card inspector-card">
-        <div class="panel-head">
-          <div>
-            <p class="panel-kicker">Instance Inspector</p>
-            <h2>Summary and Structural Features</h2>
-          </div>
-          <div id="inspectorBadge" class="inspector-badge-row"></div>
-        </div>
-        <div class="inspector-grid">
-          <div>
-            <h3 id="inspectorTitle" class="inspector-title">No instance loaded</h3>
-            <p id="inspectorDescription" class="inspector-description"></p>
-            <div id="instanceSummary" class="summary-grid"></div>
-          </div>
-          <div>
-            <div id="parserNotes" class="notes-list"></div>
-          </div>
-        </div>
-        <div id="featureGroups" class="feature-group-grid"></div>
-      </section>
-
-      <section class="stats-grid" id="statsGrid"></section>
-
-      <section class="content-grid">
-        <article class="panel-card">
-          <div class="panel-head">
+        <section id="section-results" class="panel-card section-card">
+          <div class="section-head">
             <div>
-              <p class="panel-kicker">Synthetic Demo Pipeline</p>
-              <h2>Solver leaderboard</h2>
+              <p class="panel-kicker">3. sadaļa</p>
+              <h2 id="resultsTitle">Modeļa apmācība un novērtēšana</h2>
             </div>
           </div>
-          <div id="solverLeaderboard" class="table-host"></div>
-        </article>
+          <p id="resultsIntro" class="section-intro"></p>
+          <p id="resultsTakeaway" class="section-takeaway"></p>
+          <div id="resultsCards" class="card-grid"></div>
+          <div id="resultsFigures" class="figure-grid"></div>
+        </section>
 
-        <article class="panel-card">
-          <div class="panel-head">
+        <section id="section-solver" class="panel-card section-card">
+          <div class="section-head">
             <div>
-              <p class="panel-kicker">Synthetic Demo Pipeline</p>
-              <h2>Best solver distribution</h2>
+              <p class="panel-kicker">4. sadaļa</p>
+              <h2 id="solverTitle">Risinātāju lomas un interpretācijas tvērums</h2>
             </div>
           </div>
-          <div id="solverDistribution" class="bar-list"></div>
-        </article>
-      </section>
+          <p id="solverIntro" class="section-intro"></p>
+          <p id="solverTakeaway" class="section-takeaway"></p>
+          <div id="solverFigures" class="figure-grid"></div>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="solverTableTitle">Risinātāju izpildes pārklājums un interpretācija</h3>
+              <p id="solverTableNote" class="section-note"></p>
+            </div>
+            <div id="solverTable" class="table-host"></div>
+          </article>
+        </section>
 
-      <section class="content-grid">
-        <article class="panel-card">
-          <div class="panel-head">
+        <section id="section-best_solver" class="panel-card section-card">
+          <div class="section-head">
             <div>
-              <p class="panel-kicker">Synthetic Demo Pipeline</p>
-              <h2>Feature importance</h2>
+              <p class="panel-kicker">5. sadaļa</p>
+              <h2 id="bestSolverTitle">best_solver klašu sadalījums</h2>
             </div>
           </div>
-          <div id="featureImportance" class="bar-list"></div>
-        </article>
+          <p id="bestSolverIntro" class="section-intro"></p>
+          <p id="bestSolverTakeaway" class="section-takeaway"></p>
+          <div id="bestSolverCards" class="card-grid"></div>
+          <div id="bestSolverHighlights" class="highlight-list"></div>
+          <div id="bestSolverFigures" class="figure-grid"></div>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="bestSolverTableTitle">Gala best_solver klašu sadalījums</h3>
+              <p id="bestSolverTableNote" class="section-note"></p>
+            </div>
+            <div id="bestSolverTable" class="table-host"></div>
+          </article>
+        </section>
 
-        <article class="panel-card">
-          <div class="panel-head">
+        <section id="section-features" class="panel-card section-card">
+          <div class="section-head">
             <div>
-              <p class="panel-kicker">Synthetic Demo Pipeline</p>
-              <h2>Demo catalog</h2>
+              <p class="panel-kicker">6. sadaļa</p>
+              <h2 id="featuresTitle">Strukturālo pazīmju nozīmīgums nejaušo mežu klasifikatorā</h2>
             </div>
           </div>
-          <div id="instanceCatalog" class="table-host"></div>
-        </article>
-      </section>
-
-      <section class="panel-card">
-        <div class="panel-head">
-          <div>
-            <p class="panel-kicker">Demo Artifacts</p>
-            <h2>Dashboard output locations</h2>
+          <p id="featuresIntro" class="section-intro"></p>
+          <p id="featuresTakeaway" class="section-takeaway"></p>
+          <p id="featuresHighlight" class="section-note"></p>
+          <div id="featureFigures" class="figure-grid"></div>
+          <div class="content-grid">
+            <article class="table-panel">
+              <div class="table-head">
+                <h3 id="featureTableTitle">Desmit nozīmīgākās strukturālās pazīmes</h3>
+              </div>
+              <div id="featureTable" class="table-host"></div>
+            </article>
+            <article class="table-panel">
+              <div class="table-head">
+                <h3 id="featureSecondaryTableTitle">Pazīmju grupu kopējais nozīmīgums</h3>
+              </div>
+              <div id="featureSecondaryTable" class="table-host"></div>
+            </article>
           </div>
-        </div>
-        <div id="artifactList" class="artifact-grid"></div>
-      </section>
+        </section>
 
-      <section class="panel-card">
-        <div class="panel-head preview-head">
-          <div>
-            <p class="panel-kicker">Synthetic Demo Pipeline</p>
-            <h2>Generated tables</h2>
+        <section id="section-datasets" class="panel-card section-card">
+          <div class="section-head">
+            <div>
+              <p class="panel-kicker">7. sadaļa</p>
+              <h2 id="datasetsTitle">Datu grupu rezultāti</h2>
+            </div>
           </div>
-          <div id="previewTabs" class="tab-row"></div>
-        </div>
-        <div id="previewHost" class="table-host"></div>
-      </section>
+          <p id="datasetsIntro" class="section-intro"></p>
+          <p id="datasetsTakeaway" class="section-takeaway"></p>
+          <div id="datasetFigures" class="figure-grid"></div>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="datasetTableTitle">Algoritmu izvēles modeļa rezultāti pa datu grupām</h3>
+              <p id="datasetTableNote" class="section-note"></p>
+            </div>
+            <div id="datasetTable" class="table-host"></div>
+          </article>
+        </section>
+
+        <section id="section-methodology" class="panel-card section-card section-card--methodology">
+          <div class="section-head">
+            <div>
+              <p class="panel-kicker">8. sadaļa</p>
+              <h2 id="methodologyTitle">Interpretācija un ierobežojumi</h2>
+            </div>
+          </div>
+          <p id="methodologyIntro" class="section-intro"></p>
+          <p id="methodologyTakeaway" class="section-takeaway section-takeaway--warning"></p>
+          <div id="methodologyCards" class="card-grid"></div>
+          <div id="methodologyHighlights" class="highlight-list highlight-list--warning"></div>
+          <div id="methodologyFigures" class="figure-grid figure-grid--three"></div>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="methodologyTableTitle">Eksperimenta ierobežojumu kopsavilkums</h3>
+              <p id="methodologyTableNote" class="section-note"></p>
+            </div>
+            <div id="methodologyTable" class="table-host"></div>
+          </article>
+        </section>
+
+        <section id="section-implementation" class="panel-card section-card section-card--implementation">
+          <div class="section-head">
+            <div>
+              <p class="panel-kicker">9. sadaļa</p>
+              <h2 id="implementationTitle">Artefakti un reproducēšana</h2>
+            </div>
+          </div>
+          <p id="implementationIntro" class="section-intro"></p>
+          <p id="implementationTakeaway" class="section-takeaway"></p>
+          <div id="implementationCards" class="card-grid"></div>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="implementationTableTitle">Īstenotie praktiskās daļas posmi</h3>
+              <p id="implementationTableNote" class="section-note"></p>
+            </div>
+            <div id="implementationTable" class="table-host"></div>
+          </article>
+          <article class="table-panel">
+            <div class="table-head">
+              <h3 id="implementationArtifactTableTitle">Galvenie rezultātu artefakti</h3>
+              <p id="implementationArtifactTableNote" class="section-note"></p>
+            </div>
+            <div id="implementationArtifactTable" class="table-host"></div>
+          </article>
+        </section>
+      </main>
     </div>
 
     <script src="/app.js"></script>

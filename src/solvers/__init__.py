@@ -2,16 +2,27 @@
 
 from src.solvers.base import Solver, SolverResult
 from src.solvers.random_baseline import RandomBaselineSolver
-from src.solvers.registry import available_solvers, get_solver
+from src.solvers.registry import (
+    SolverPortfolioMetadata,
+    available_solvers,
+    get_solver,
+    get_solver_metadata,
+    solver_portfolio_metadata,
+)
 from src.solvers.simulated_annealing_solver import SimulatedAnnealingSolver
+from src.solvers.timefold_solver import TimefoldSolver
 
 __all__ = [
     "RandomBaselineSolver",
     "SimulatedAnnealingSolver",
     "Solver",
+    "SolverPortfolioMetadata",
     "SolverResult",
+    "TimefoldSolver",
     "available_solvers",
     "get_solver",
+    "get_solver_metadata",
+    "solver_portfolio_metadata",
 ]
 
 try:

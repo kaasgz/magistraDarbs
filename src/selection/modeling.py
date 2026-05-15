@@ -18,7 +18,58 @@ from src.utils import ensure_parent_directory
 
 TARGET_COLUMN = "best_solver"
 INSTANCE_COLUMN = "instance_name"
-BENCHMARK_DERIVED_PREFIXES = ("objective_", "benchmark_", "label_", "target_")
+LEAKAGE_COLUMN_PREFIXES = (
+    "objective_",
+    "benchmark_",
+    "label_",
+    "target_",
+    "dataset_",
+    "source_",
+    "solver_",
+    "scoring_",
+    "selected_",
+    "true_",
+    "single_best_",
+    "virtual_best_",
+    "prediction_",
+    "regret_",
+    "delta_",
+    "improvement_",
+)
+LEAKAGE_COLUMN_NAMES = {
+    "dataset_type",
+    "is_synthetic",
+    "source_kind",
+    "source_type",
+    "dataset_source",
+    "source_dataset",
+    "instance_source_path",
+    "instance_path",
+    "xml_path",
+    "file_path",
+    "source_path",
+    "source_file",
+    "raw_file",
+    "generator_seed",
+    "generation_seed",
+    "random_seed",
+    "seed",
+    "solver_name",
+    "solver_registry_name",
+    "solver_support_status",
+    "support_status",
+    "scoring_status",
+    "modeling_scope",
+    "scoring_notes",
+    "objective_value",
+    "objective_value_valid",
+    "objective_sense",
+    "runtime_seconds",
+    "feasible",
+    "status",
+    "error_message",
+}
+BENCHMARK_DERIVED_PREFIXES = LEAKAGE_COLUMN_PREFIXES
 
 
 @dataclass(frozen=True, slots=True)
@@ -33,7 +84,7 @@ class PreparedSelectionData:
 
 
 def prepare_selection_data(dataset: pd.DataFrame) -> PreparedSelectionData:
-    """Return labeled selector data with benchmark-derived columns excluded."""
+    """Return labeled selector data with leakage-prone columns excluded."""
 
     if INSTANCE_COLUMN not in dataset.columns:
         raise ValueError("Selection dataset must contain an 'instance_name' column.")
@@ -50,7 +101,7 @@ def prepare_selection_data(dataset: pd.DataFrame) -> PreparedSelectionData:
         column
         for column in labeled.columns
         if column not in {INSTANCE_COLUMN, TARGET_COLUMN}
-        and not str(column).startswith(BENCHMARK_DERIVED_PREFIXES)
+        and not is_leakage_column(column)
     )
     if not feature_columns:
         raise ValueError("Selection dataset does not contain usable feature columns.")
@@ -65,6 +116,13 @@ def prepare_selection_data(dataset: pd.DataFrame) -> PreparedSelectionData:
         feature_columns=feature_columns,
         excluded_columns=excluded_columns,
     )
+
+
+def is_leakage_column(column: object) -> bool:
+    """Return whether a column is unsafe as a pre-solving structural feature."""
+
+    normalized = str(column).strip().casefold()
+    return normalized in LEAKAGE_COLUMN_NAMES or normalized.startswith(LEAKAGE_COLUMN_PREFIXES)
 
 
 def build_selector_pipeline(

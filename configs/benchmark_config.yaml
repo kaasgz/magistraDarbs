@@ -12,3 +12,8 @@ solvers:
     - random_baseline
     - cpsat_solver
     - simulated_annealing_solver
+  settings:
+    timefold:
+      executable_path: null
+      time_limit_seconds: 60
+      command_arguments: []

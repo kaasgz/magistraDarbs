@@ -17,12 +17,14 @@ class _ProblemData:
     """Prepared round-robin data used by the simulated annealing solver."""
 
     instance_name: str
+    round_robin_mode: str | None
     team_labels: tuple[str, ...]
     slot_labels: tuple[str, ...]
     matches: tuple[tuple[int, int], ...]
     num_slots: int
     requested_slot_count: int
     minimum_required_slots: int
+    constraint_families: tuple[str, ...]
 
 
 @dataclass(frozen=True, slots=True)
@@ -58,8 +60,8 @@ class SimulatedAnnealingSolver(Solver):
     - hard structure is approximated through penalties instead of exact repair
     - only team-per-slot conflicts and slot usage are scored
 
-    This makes the solver useful for experiment-pipeline testing while keeping
-    the code modular enough for future extensions.
+    This keeps the baseline small and auditable while leaving clear extension
+    points for richer constraint handling.
     """
 
     def __init__(
@@ -88,8 +90,35 @@ class SimulatedAnnealingSolver(Solver):
         rng = random.Random(random_seed)
         problem = _prepare_problem_data(instance)
 
+        if problem.round_robin_mode == "double":
+            runtime_seconds = time.perf_counter() - start_time
+            notes = (
+                "Unsupported round-robin mode: double.",
+                "The current simulated annealing baseline infers one unordered match per team pair.",
+            )
+            return SolverResult(
+                solver_name=self.solver_name,
+                instance_name=problem.instance_name,
+                objective_value=None,
+                runtime_seconds=runtime_seconds,
+                feasible=False,
+                status="UNSUPPORTED_INSTANCE",
+                solver_support_status="unsupported",
+                scoring_status="unsupported_instance",
+                modeling_scope=_modeling_scope(problem),
+                scoring_notes=notes,
+                metadata={
+                    "algorithm": "simulated_annealing",
+                    "error": "Double round-robin instances are outside the current simulated annealing model.",
+                    "round_robin_mode": problem.round_robin_mode,
+                    "unsupported_constraint_families": list(problem.constraint_families),
+                    "simplifications": _simplifications(),
+                },
+            )
+
         if len(problem.team_labels) <= 1:
             runtime_seconds = time.perf_counter() - start_time
+            support_status = _support_status(problem)
             return SolverResult(
                 solver_name=self.solver_name,
                 instance_name=problem.instance_name,
@@ -97,12 +126,19 @@ class SimulatedAnnealingSolver(Solver):
                 runtime_seconds=runtime_seconds,
                 feasible=True,
                 status="TRIVIAL",
+                solver_support_status=support_status,
+                scoring_status=_scoring_status(problem, feasible=True),
+                modeling_scope=_modeling_scope(problem),
+                scoring_notes=_scoring_notes(problem),
                 metadata={
                     "algorithm": "simulated_annealing",
                     "is_placeholder": True,
                     "schedule": [],
                     "iterations": 0,
                     "temperature": 0.0,
+                    "round_robin_mode": problem.round_robin_mode,
+                    "support_level": support_status,
+                    "unsupported_constraint_families": list(problem.constraint_families),
                     "num_teams": len(problem.team_labels),
                     "num_matches": 0,
                     "num_slots": problem.num_slots,
@@ -144,6 +180,7 @@ class SimulatedAnnealingSolver(Solver):
         runtime_seconds = time.perf_counter() - start_time
         feasible = best_eval.team_conflict_penalty == 0 and best_eval.duplicate_match_penalty == 0
         status = "FEASIBLE" if feasible else "APPROXIMATE"
+        support_status = _support_status(problem)
 
         return SolverResult(
             solver_name=self.solver_name,
@@ -152,6 +189,10 @@ class SimulatedAnnealingSolver(Solver):
             runtime_seconds=runtime_seconds,
             feasible=feasible,
             status=status,
+            solver_support_status=support_status,
+            scoring_status=_scoring_status(problem, feasible=feasible),
+            modeling_scope=_modeling_scope(problem),
+            scoring_notes=_scoring_notes(problem),
             metadata={
                 "algorithm": "simulated_annealing",
                 "is_placeholder": True,
@@ -169,6 +210,9 @@ class SimulatedAnnealingSolver(Solver):
                 "num_teams": len(problem.team_labels),
                 "num_matches": len(problem.matches),
                 "num_slots": problem.num_slots,
+                "round_robin_mode": problem.round_robin_mode,
+                "support_level": support_status,
+                "unsupported_constraint_families": list(problem.constraint_families),
                 "requested_slot_count": problem.requested_slot_count,
                 "minimum_required_slots": problem.minimum_required_slots,
                 "team_labels": list(problem.team_labels),
@@ -178,12 +222,7 @@ class SimulatedAnnealingSolver(Solver):
                     "itc2021_soft_constraint_penalties",
                     "repair_moves_and_hybrid_local_search",
                 ],
-                "simplifications": [
-                    "single_round_robin_inferred_from_team_set",
-                    "no_home_away_decisions",
-                    "no_venue_or_travel_modeling",
-                    "penalty_based_objective_with_team_slot_conflicts_only",
-                ],
+                "simplifications": _simplifications(),
             },
         )
 
@@ -192,6 +231,7 @@ def _prepare_problem_data(instance: object) -> _ProblemData:
     """Prepare team, slot, and inferred match data from an instance-like object."""
 
     instance_name = _extract_instance_name(instance)
+    round_robin_mode = _extract_round_robin_mode(instance)
     explicit_team_count = _safe_nonnegative_int(getattr(instance, "team_count", 0))
     team_labels = tuple(_build_team_labels(instance, explicit_team_count))
     num_teams = len(team_labels)
@@ -204,12 +244,14 @@ def _prepare_problem_data(instance: object) -> _ProblemData:
 
     return _ProblemData(
         instance_name=instance_name,
+        round_robin_mode=round_robin_mode,
         team_labels=team_labels,
         slot_labels=slot_labels,
         matches=matches,
         num_slots=num_slots,
         requested_slot_count=requested_slot_count,
         minimum_required_slots=minimum_required_slots,
+        constraint_families=_extract_constraint_families(instance),
     )
 
 
@@ -390,6 +432,98 @@ def _minimum_required_slots(num_teams: int) -> int:
     return num_teams if num_teams % 2 == 1 else num_teams - 1
 
 
+def _support_status(problem: _ProblemData) -> str:
+    """Return the modeling support level for the annealing baseline."""
+
+    if problem.round_robin_mode not in {"single", None}:
+        return "unsupported"
+    if problem.round_robin_mode is None or problem.constraint_families:
+        return "partially_supported"
+    return "supported"
+
+
+def _scoring_status(problem: _ProblemData, *, feasible: bool) -> str:
+    """Return the common scoring-contract status for annealing results."""
+
+    support_status = _support_status(problem)
+    if support_status == "unsupported":
+        return "unsupported_instance"
+    if support_status == "partially_supported":
+        return "partially_modeled_run"
+    return "supported_feasible_run" if feasible else "supported_infeasible_run"
+
+
+def _modeling_scope(problem: _ProblemData) -> str:
+    """Describe the implemented annealing model scope."""
+
+    return (
+        "simplified single round-robin simulated annealing model; one unordered "
+        "match per team pair; no home/away, venue, travel, or direct RobinX "
+        "constraint modeling"
+    )
+
+
+def _scoring_notes(problem: _ProblemData) -> tuple[str, ...]:
+    """Return concise scoring notes for benchmark exports."""
+
+    notes = [
+        "Objective is a penalty score: lower is better.",
+        "Team-per-slot conflicts dominate the objective; used slots are secondary.",
+    ]
+    if problem.round_robin_mode is None:
+        notes.append("Round-robin mode missing or ambiguous; solver assumes single round robin.")
+    if problem.constraint_families:
+        notes.append("Parsed RobinX / ITC2021 constraint families are not directly modeled.")
+    return tuple(notes)
+
+
+def _simplifications() -> list[str]:
+    """Return the stable list of annealing baseline simplifications."""
+
+    return [
+        "single_round_robin_inferred_from_team_set",
+        "no_home_away_decisions",
+        "no_venue_or_travel_modeling",
+        "penalty_based_objective_with_team_slot_conflicts_only",
+    ]
+
+
+def _extract_round_robin_mode(instance: object) -> str | None:
+    """Extract a normalized round-robin mode when available."""
+
+    metadata = getattr(instance, "metadata", None)
+    raw_value = _first_non_empty(
+        [
+            _read_text_field(instance, "round_robin_mode"),
+            _read_text_field(metadata, "round_robin_mode"),
+        ]
+    )
+    if raw_value is None:
+        return None
+    normalized = raw_value.casefold()
+    if "double" in normalized:
+        return "double"
+    if "single" in normalized:
+        return "single"
+    return None
+
+
+def _extract_constraint_families(instance: object) -> tuple[str, ...]:
+    """Extract stable constraint-family labels from the parsed instance."""
+
+    constraints = list(getattr(instance, "constraints", []) or [])
+    families: set[str] = set()
+    for constraint in constraints:
+        for value in (
+            _read_text_field(constraint, "category"),
+            _read_text_field(constraint, "tag"),
+            _read_text_field(constraint, "type_name"),
+        ):
+            if value:
+                families.add(value)
+    return tuple(sorted(families))
+
+
 def _extract_instance_name(instance: object) -> str:
     """Extract a readable instance name from common instance fields."""
 
@@ -429,4 +563,13 @@ def _first_non_empty(values: list[str | None]) -> str | None:
     for value in values:
         if isinstance(value, str) and value.strip():
             return value.strip()
+    return None
+
+
+def _read_text_field(value: object, field_name: str) -> str | None:
+    """Read and normalize one text-like field from an object."""
+
+    field_value = getattr(value, field_name, None)
+    if isinstance(field_value, str) and field_value.strip():
+        return field_value.strip()
     return None

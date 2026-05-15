@@ -1,0 +1,703 @@
+split_id,split_strategy,repeat_index,fold_index,stratified_split,instance_name,dataset_type,selected_solver,true_best_solver,prediction_correct,selected_solver_objective,best_possible_objective,single_best_solver,single_best_solver_objective,selected_objective_for_scoring,single_best_objective_for_scoring,regret_vs_virtual_best,delta_vs_single_best,improvement_vs_single_best
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Early 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Late 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Late 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Late 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Late 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Late 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Late 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Middle 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Middle 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Middle 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Test Instance 4,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,Test Instance 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_04t_double_seed42_0016,synthetic,cpsat_solver,cpsat_solver,True,6.0,6.0,cpsat_solver,6.0,6.0,6.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_04t_double_seed43_0076,synthetic,cpsat_solver,cpsat_solver,True,6.0,6.0,cpsat_solver,6.0,6.0,6.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_04t_single_seed42_0046,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_04t_single_seed43_0106,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_04t_single_seed44_0151,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_04t_single_seed44_0169,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_05t_double_seed42_0034,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_05t_double_seed44_0154,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_05t_double_seed44_0172,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_05t_single_seed43_0061,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_05t_single_seed43_0079,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_05t_single_seed44_0139,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_06t_single_seed42_0004,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_06t_single_seed42_0037,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_06t_single_seed43_0097,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_06t_single_seed43_0115,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_06t_single_seed44_0142,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_07t_double_seed42_0007,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_07t_double_seed44_0127,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_07t_single_seed43_0100,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_07t_single_seed44_0178,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_easy_08t_single_seed43_0070,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_13t_double_seed43_0120,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_13t_single_seed44_0177,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_14t_double_seed42_0033,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_15t_double_seed42_0015,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_15t_double_seed43_0075,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_15t_double_seed43_0096,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_15t_double_seed44_0135,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_15t_double_seed44_0156,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_16t_double_seed42_0018,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_16t_single_seed43_0099,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_17t_double_seed43_0102,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_17t_single_seed42_0021,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_18t_double_seed43_0084,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_19t_double_seed43_0087,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_19t_double_seed44_0147,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_hard_19t_single_seed43_0108,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_08t_double_seed44_0125,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_08t_single_seed43_0062,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_09t_double_seed42_0023,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_09t_double_seed43_0083,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_09t_double_seed44_0143,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_09t_single_seed42_0008,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_10t_single_seed43_0086,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_11t_double_seed42_0029,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_11t_double_seed43_0089,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_11t_double_seed44_0149,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_12t_single_seed42_0056,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_12t_single_seed43_0092,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_12t_single_seed43_0116,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_12t_single_seed44_0176,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_13t_double_seed42_0035,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_13t_double_seed43_0119,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_13t_double_seed44_0179,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_13t_single_seed42_0038,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_13t_single_seed44_0134,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_14t_double_seed43_0077,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_14t_double_seed43_0101,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f01,repeated_stratified_kfold,1,1,True,synthetic_study_medium_14t_single_seed44_0158,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Early 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Early 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Early 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Early 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Late 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Late 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Late 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Late 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Middle 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Test Instance 1,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Test Instance 3,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,Test Instance 7,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_04t_single_seed42_0049,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_04t_single_seed44_0166,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_05t_double_seed42_0052,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_05t_double_seed43_0112,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_05t_single_seed42_0001,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_05t_single_seed44_0121,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_06t_single_seed42_0040,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_06t_single_seed42_0055,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_06t_single_seed43_0082,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_06t_single_seed44_0124,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_06t_single_seed44_0175,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_double_seed42_0043,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_double_seed43_0067,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_double_seed43_0085,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_double_seed43_0103,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_double_seed44_0145,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_double_seed44_0163,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_07t_single_seed44_0160,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_08t_single_seed42_0028,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_08t_single_seed43_0073,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_easy_08t_single_seed44_0148,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_12t_double_seed44_0153,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_12t_single_seed43_0063,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_12t_single_seed43_0090,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_12t_single_seed44_0123,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_13t_double_seed42_0009,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_13t_double_seed42_0060,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_13t_double_seed43_0066,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_13t_double_seed43_0069,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_13t_single_seed42_0057,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_14t_single_seed42_0012,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_14t_single_seed43_0072,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_16t_double_seed43_0078,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_16t_single_seed44_0159,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_17t_double_seed44_0162,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_17t_single_seed43_0081,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_18t_double_seed42_0024,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_18t_double_seed43_0105,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_18t_double_seed44_0165,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_19t_single_seed42_0048,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_19t_single_seed44_0168,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_20t_double_seed43_0114,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_hard_20t_double_seed44_0171,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_08t_double_seed43_0065,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_08t_single_seed42_0044,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_08t_single_seed43_0104,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_09t_double_seed42_0047,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_10t_double_seed43_0071,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_10t_single_seed42_0050,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_10t_single_seed43_0110,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_10t_single_seed44_0146,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_10t_single_seed44_0170,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_12t_single_seed42_0032,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_12t_single_seed44_0152,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_13t_double_seed44_0155,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_13t_single_seed43_0098,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_14t_double_seed42_0041,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_14t_double_seed44_0161,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_14t_single_seed42_0020,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f02,repeated_stratified_kfold,1,2,True,synthetic_study_medium_14t_single_seed43_0080,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Early 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Early 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Early 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Early 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Late 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Late 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Late 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Late 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Late 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Middle 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Middle 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Middle 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Middle 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Middle 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Test Instance 2,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Test Instance 5,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Test Instance 8,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,Test Instance Demo,real,cpsat_solver,simulated_annealing_solver,False,6.0,3.0,cpsat_solver,6.0,6.0,6.0,3.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_04t_single_seed42_0031,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_04t_single_seed43_0091,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_04t_single_seed43_0109,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_05t_double_seed43_0094,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_05t_double_seed44_0136,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_05t_single_seed42_0019,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_06t_single_seed42_0022,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_06t_single_seed43_0064,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_06t_single_seed44_0157,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_07t_double_seed42_0025,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_07t_single_seed42_0058,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_07t_single_seed43_0118,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_08t_single_seed42_0010,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_08t_single_seed42_0013,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_08t_single_seed43_0088,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_08t_single_seed44_0130,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_easy_08t_single_seed44_0133,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_12t_double_seed43_0093,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_12t_single_seed42_0003,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_12t_single_seed42_0030,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_12t_single_seed44_0150,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_13t_double_seed42_0006,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_13t_double_seed44_0126,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_13t_single_seed43_0117,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_14t_double_seed44_0129,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_14t_double_seed44_0180,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_14t_single_seed44_0132,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_15t_double_seed42_0036,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_16t_double_seed44_0138,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_16t_single_seed42_0039,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_17t_double_seed42_0042,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_17t_single_seed44_0141,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_18t_double_seed42_0045,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_18t_double_seed44_0144,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_19t_double_seed42_0027,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_20t_double_seed42_0051,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_20t_double_seed42_0054,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_20t_double_seed43_0111,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_hard_20t_double_seed44_0174,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_08t_double_seed42_0005,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_08t_single_seed42_0002,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_08t_single_seed44_0122,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_08t_single_seed44_0164,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_09t_double_seed43_0107,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_09t_double_seed44_0167,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_09t_single_seed43_0068,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_09t_single_seed44_0128,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_10t_double_seed44_0131,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_10t_single_seed42_0026,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_11t_double_seed42_0053,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_11t_double_seed43_0113,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_11t_double_seed44_0173,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_12t_double_seed42_0011,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_13t_double_seed42_0059,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_13t_double_seed43_0095,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_13t_single_seed42_0014,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_13t_single_seed43_0074,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_14t_double_seed42_0017,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_14t_double_seed44_0137,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r01_f03,repeated_stratified_kfold,1,3,True,synthetic_study_medium_14t_single_seed44_0140,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Early 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Early 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Early 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Early 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Early 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Late 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Late 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Late 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Late 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Late 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Middle 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Middle 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Middle 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Middle 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Middle 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Test Instance 2,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Test Instance 3,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,Test Instance 5,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_04t_single_seed44_0166,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_04t_single_seed44_0169,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_05t_double_seed42_0052,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_05t_double_seed43_0094,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_05t_double_seed44_0172,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_05t_single_seed42_0019,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_05t_single_seed43_0061,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_06t_single_seed42_0004,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_06t_single_seed43_0115,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_06t_single_seed44_0124,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_06t_single_seed44_0157,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_06t_single_seed44_0175,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_07t_double_seed44_0163,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_easy_07t_single_seed44_0178,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_12t_double_seed43_0093,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_12t_single_seed42_0003,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_12t_single_seed43_0063,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_13t_double_seed42_0060,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_14t_single_seed44_0132,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_15t_double_seed42_0036,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_15t_double_seed43_0075,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_15t_double_seed44_0156,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_16t_double_seed42_0018,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_16t_double_seed43_0078,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_16t_double_seed44_0138,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_16t_single_seed42_0039,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_16t_single_seed43_0099,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_16t_single_seed44_0159,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_17t_double_seed44_0162,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_17t_single_seed43_0081,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_17t_single_seed44_0141,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_18t_double_seed42_0045,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_18t_double_seed43_0105,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_18t_double_seed44_0144,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_19t_single_seed42_0048,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_20t_double_seed42_0054,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_20t_double_seed43_0114,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_hard_20t_double_seed44_0171,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_08t_single_seed42_0044,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_08t_single_seed43_0062,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_08t_single_seed44_0164,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_09t_double_seed42_0023,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_09t_single_seed44_0128,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_10t_double_seed43_0071,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_10t_single_seed42_0050,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_10t_single_seed43_0110,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_10t_single_seed44_0146,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_10t_single_seed44_0170,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_11t_double_seed42_0029,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_11t_double_seed42_0053,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_12t_double_seed42_0011,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_12t_single_seed42_0056,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_12t_single_seed44_0152,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_12t_single_seed44_0176,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_13t_double_seed42_0035,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_13t_double_seed43_0095,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_13t_double_seed44_0155,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_14t_double_seed43_0101,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_14t_double_seed44_0137,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f01,repeated_stratified_kfold,2,1,True,synthetic_study_medium_14t_single_seed42_0020,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Early 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Early 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Early 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Early 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Late 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Late 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Late 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Late 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Middle 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Test Instance 1,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,Test Instance 8,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_double_seed42_0016,synthetic,cpsat_solver,cpsat_solver,True,6.0,6.0,cpsat_solver,6.0,6.0,6.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_double_seed43_0076,synthetic,cpsat_solver,cpsat_solver,True,6.0,6.0,cpsat_solver,6.0,6.0,6.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_single_seed42_0031,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_single_seed42_0046,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_single_seed43_0091,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_single_seed43_0106,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_single_seed43_0109,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_04t_single_seed44_0151,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_05t_double_seed42_0034,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_05t_single_seed44_0121,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_05t_single_seed44_0139,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed42_0037,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed42_0040,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed42_0055,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed43_0064,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed43_0082,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed43_0097,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_06t_single_seed44_0142,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_double_seed42_0007,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_double_seed42_0043,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_double_seed43_0085,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_double_seed44_0145,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_single_seed43_0100,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_single_seed43_0118,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_07t_single_seed44_0160,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_08t_single_seed42_0013,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_08t_single_seed43_0070,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_08t_single_seed43_0073,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_easy_08t_single_seed43_0088,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_12t_double_seed44_0153,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_12t_single_seed43_0090,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_13t_double_seed42_0006,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_13t_double_seed42_0009,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_13t_double_seed43_0069,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_13t_double_seed43_0120,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_13t_single_seed42_0057,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_13t_single_seed43_0117,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_14t_double_seed42_0033,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_14t_double_seed44_0180,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_15t_double_seed42_0015,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_15t_double_seed44_0135,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_19t_double_seed44_0147,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_20t_double_seed42_0051,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_20t_double_seed43_0111,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_hard_20t_double_seed44_0174,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_08t_double_seed44_0125,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_08t_single_seed44_0122,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_09t_double_seed43_0083,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_09t_double_seed43_0107,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_09t_double_seed44_0167,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_09t_single_seed43_0068,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_10t_single_seed42_0026,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_10t_single_seed43_0086,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_11t_double_seed44_0149,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_11t_double_seed44_0173,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_12t_single_seed42_0032,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_13t_double_seed42_0059,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_13t_double_seed44_0179,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_13t_single_seed42_0014,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f02,repeated_stratified_kfold,2,2,True,synthetic_study_medium_14t_single_seed43_0080,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Early 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Early 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Early 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Early 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Early 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Early 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Late 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Late 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Late 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Late 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Late 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Late 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Middle 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Middle 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Test Instance 4,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Test Instance 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Test Instance 7,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,Test Instance Demo,real,cpsat_solver,simulated_annealing_solver,False,6.0,3.0,cpsat_solver,6.0,6.0,6.0,3.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_04t_single_seed42_0049,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_05t_double_seed43_0112,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_05t_double_seed44_0136,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_05t_double_seed44_0154,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_05t_single_seed42_0001,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_05t_single_seed43_0079,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_06t_single_seed42_0022,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_07t_double_seed42_0025,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_07t_double_seed43_0067,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_07t_double_seed43_0103,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_07t_double_seed44_0127,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_07t_single_seed42_0058,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_08t_single_seed42_0010,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_08t_single_seed42_0028,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_08t_single_seed44_0130,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_08t_single_seed44_0133,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_easy_08t_single_seed44_0148,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_12t_single_seed42_0030,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_12t_single_seed44_0123,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_12t_single_seed44_0150,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_13t_double_seed43_0066,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_13t_double_seed44_0126,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_13t_single_seed44_0177,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_14t_double_seed44_0129,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_14t_single_seed42_0012,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_14t_single_seed43_0072,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_15t_double_seed43_0096,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_17t_double_seed42_0042,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_17t_double_seed43_0102,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_17t_single_seed42_0021,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_18t_double_seed42_0024,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_18t_double_seed43_0084,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_18t_double_seed44_0165,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_19t_double_seed42_0027,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_19t_double_seed43_0087,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_19t_single_seed43_0108,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_hard_19t_single_seed44_0168,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_08t_double_seed42_0005,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_08t_double_seed43_0065,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_08t_single_seed42_0002,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_08t_single_seed43_0104,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_09t_double_seed42_0047,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_09t_double_seed44_0143,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_09t_single_seed42_0008,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_10t_double_seed44_0131,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_11t_double_seed43_0089,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_11t_double_seed43_0113,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_12t_single_seed43_0092,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_12t_single_seed43_0116,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_13t_double_seed43_0119,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_13t_single_seed42_0038,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_13t_single_seed43_0074,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_13t_single_seed43_0098,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_13t_single_seed44_0134,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_14t_double_seed42_0017,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_14t_double_seed42_0041,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_14t_double_seed43_0077,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_14t_double_seed44_0161,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_14t_single_seed44_0140,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r02_f03,repeated_stratified_kfold,2,3,True,synthetic_study_medium_14t_single_seed44_0158,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Early 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Early 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Early 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Early 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Early 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Early 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Late 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Late 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Late 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Late 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Late 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Middle 12,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Middle 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Middle 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Middle 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Test Instance 1,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Test Instance 4,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,Test Instance 8,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_04t_double_seed42_0016,synthetic,cpsat_solver,cpsat_solver,True,6.0,6.0,cpsat_solver,6.0,6.0,6.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_04t_double_seed43_0076,synthetic,cpsat_solver,cpsat_solver,True,6.0,6.0,cpsat_solver,6.0,6.0,6.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_04t_single_seed44_0151,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_05t_double_seed43_0094,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_05t_double_seed44_0172,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_05t_single_seed43_0079,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_06t_single_seed42_0022,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_06t_single_seed43_0082,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_06t_single_seed43_0115,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_07t_double_seed42_0025,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_07t_double_seed43_0067,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_07t_single_seed43_0100,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_07t_single_seed43_0118,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_07t_single_seed44_0160,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_08t_single_seed42_0010,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_08t_single_seed42_0013,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_08t_single_seed42_0028,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_08t_single_seed43_0073,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_08t_single_seed43_0088,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_easy_08t_single_seed44_0148,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_12t_double_seed43_0093,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_12t_single_seed42_0003,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_12t_single_seed42_0030,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_12t_single_seed44_0123,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_12t_single_seed44_0150,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_13t_double_seed42_0060,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_14t_double_seed44_0129,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_14t_single_seed43_0072,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_15t_double_seed42_0036,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_15t_double_seed43_0075,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_16t_double_seed43_0078,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_16t_single_seed42_0039,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_16t_single_seed44_0159,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_17t_double_seed44_0162,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_17t_single_seed42_0021,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_18t_double_seed42_0024,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_18t_double_seed43_0084,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_18t_double_seed43_0105,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_20t_double_seed42_0051,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_hard_20t_double_seed44_0174,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_08t_double_seed42_0005,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_08t_single_seed42_0002,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_08t_single_seed43_0104,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_09t_double_seed42_0023,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_09t_double_seed42_0047,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_09t_double_seed43_0083,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_09t_double_seed44_0143,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_10t_double_seed44_0131,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_10t_single_seed42_0050,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_10t_single_seed43_0086,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_11t_double_seed42_0029,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_12t_single_seed42_0032,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_12t_single_seed42_0056,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_12t_single_seed44_0152,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_12t_single_seed44_0176,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_13t_double_seed42_0059,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_13t_double_seed43_0095,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_13t_single_seed42_0014,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_14t_double_seed42_0041,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f01,repeated_stratified_kfold,3,1,True,synthetic_study_medium_14t_single_seed43_0080,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Early 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Early 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Early 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Early 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Early 8,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Early 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Late 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Middle 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Middle 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Middle 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Middle 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Middle 3,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Middle 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Test Instance 2,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Test Instance 3,real,simulated_annealing_solver,simulated_annealing_solver,True,5.0,5.0,cpsat_solver,10.0,5.0,10.0,0.0,-5.0,5.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Test Instance 5,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Test Instance 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,Test Instance 7,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_04t_single_seed42_0031,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_04t_single_seed42_0046,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_04t_single_seed43_0106,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_04t_single_seed43_0109,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_05t_double_seed42_0052,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_05t_double_seed44_0154,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_05t_single_seed42_0019,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_05t_single_seed44_0121,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_06t_single_seed42_0004,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_06t_single_seed42_0037,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_06t_single_seed42_0055,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_06t_single_seed43_0064,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_06t_single_seed44_0157,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_06t_single_seed44_0175,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_07t_double_seed42_0007,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_07t_double_seed43_0085,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_07t_double_seed43_0103,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_07t_double_seed44_0127,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_07t_double_seed44_0163,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_08t_single_seed43_0070,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_easy_08t_single_seed44_0133,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_12t_single_seed43_0063,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_double_seed42_0009,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_double_seed43_0066,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_double_seed43_0069,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_double_seed43_0120,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_double_seed44_0126,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_single_seed42_0057,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_13t_single_seed43_0117,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_14t_double_seed44_0180,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_14t_single_seed44_0132,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_15t_double_seed43_0096,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_16t_double_seed42_0018,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_17t_double_seed43_0102,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_18t_double_seed44_0144,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_19t_double_seed42_0027,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_19t_double_seed44_0147,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_20t_double_seed43_0111,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_20t_double_seed43_0114,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_hard_20t_double_seed44_0171,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_08t_double_seed44_0125,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_08t_single_seed44_0164,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_09t_single_seed42_0008,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_09t_single_seed43_0068,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_09t_single_seed44_0128,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_10t_double_seed43_0071,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_10t_single_seed43_0110,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_10t_single_seed44_0170,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_11t_double_seed43_0089,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_11t_double_seed43_0113,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_11t_double_seed44_0149,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_11t_double_seed44_0173,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_13t_double_seed42_0035,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_13t_double_seed44_0179,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_13t_single_seed42_0038,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_13t_single_seed43_0098,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_14t_double_seed43_0101,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_14t_double_seed44_0161,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_14t_single_seed42_0020,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f02,repeated_stratified_kfold,3,2,True,synthetic_study_medium_14t_single_seed44_0158,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Early 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Early 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Early 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 1,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 11,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 14,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 15,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 4,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 6,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 7,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Late 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Middle 10,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Middle 13,real,simulated_annealing_solver,simulated_annealing_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Middle 2,real,simulated_annealing_solver,simulated_annealing_solver,True,27.0,27.0,cpsat_solver,30.0,27.0,30.0,0.0,-3.0,3.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Middle 5,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Middle 9,real,simulated_annealing_solver,simulated_annealing_solver,True,32.0,32.0,cpsat_solver,34.0,32.0,34.0,0.0,-2.0,2.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,Test Instance Demo,real,cpsat_solver,simulated_annealing_solver,False,6.0,3.0,cpsat_solver,6.0,6.0,6.0,3.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_04t_single_seed42_0049,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_04t_single_seed43_0091,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_04t_single_seed44_0166,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_04t_single_seed44_0169,synthetic,cpsat_solver,cpsat_solver,True,3.0,3.0,cpsat_solver,3.0,3.0,3.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_05t_double_seed42_0034,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_05t_double_seed43_0112,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_05t_double_seed44_0136,synthetic,cpsat_solver,cpsat_solver,True,10.0,10.0,cpsat_solver,10.0,10.0,10.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_05t_single_seed42_0001,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_05t_single_seed43_0061,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_05t_single_seed44_0139,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_06t_single_seed42_0040,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_06t_single_seed43_0097,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_06t_single_seed44_0124,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_06t_single_seed44_0142,synthetic,cpsat_solver,cpsat_solver,True,5.0,5.0,cpsat_solver,5.0,5.0,5.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_07t_double_seed42_0043,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_07t_double_seed44_0145,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_07t_single_seed42_0058,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_07t_single_seed44_0178,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_easy_08t_single_seed44_0130,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_12t_double_seed44_0153,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_12t_single_seed43_0090,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_13t_double_seed42_0006,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_13t_single_seed44_0177,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_14t_double_seed42_0033,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_14t_single_seed42_0012,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_15t_double_seed42_0015,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_15t_double_seed44_0135,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_15t_double_seed44_0156,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_16t_double_seed44_0138,synthetic,cpsat_solver,cpsat_solver,True,30.0,30.0,cpsat_solver,30.0,30.0,30.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_16t_single_seed43_0099,synthetic,cpsat_solver,cpsat_solver,True,15.0,15.0,cpsat_solver,15.0,15.0,15.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_17t_double_seed42_0042,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_17t_single_seed43_0081,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_17t_single_seed44_0141,synthetic,cpsat_solver,cpsat_solver,True,17.0,17.0,cpsat_solver,17.0,17.0,17.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_18t_double_seed42_0045,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_18t_double_seed44_0165,synthetic,cpsat_solver,cpsat_solver,True,34.0,34.0,cpsat_solver,34.0,34.0,34.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_19t_double_seed43_0087,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_19t_single_seed42_0048,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_19t_single_seed43_0108,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_19t_single_seed44_0168,synthetic,cpsat_solver,cpsat_solver,True,19.0,19.0,cpsat_solver,19.0,19.0,19.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_hard_20t_double_seed42_0054,synthetic,cpsat_solver,cpsat_solver,True,38.0,38.0,cpsat_solver,38.0,38.0,38.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_08t_double_seed43_0065,synthetic,cpsat_solver,cpsat_solver,True,14.0,14.0,cpsat_solver,14.0,14.0,14.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_08t_single_seed42_0044,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_08t_single_seed43_0062,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_08t_single_seed44_0122,synthetic,cpsat_solver,cpsat_solver,True,7.0,7.0,cpsat_solver,7.0,7.0,7.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_09t_double_seed43_0107,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_09t_double_seed44_0167,synthetic,cpsat_solver,cpsat_solver,True,18.0,18.0,cpsat_solver,18.0,18.0,18.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_10t_single_seed42_0026,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_10t_single_seed44_0146,synthetic,cpsat_solver,cpsat_solver,True,9.0,9.0,cpsat_solver,9.0,9.0,9.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_11t_double_seed42_0053,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_12t_double_seed42_0011,synthetic,cpsat_solver,cpsat_solver,True,22.0,22.0,cpsat_solver,22.0,22.0,22.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_12t_single_seed43_0092,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_12t_single_seed43_0116,synthetic,cpsat_solver,cpsat_solver,True,11.0,11.0,cpsat_solver,11.0,11.0,11.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_13t_double_seed43_0119,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_13t_double_seed44_0155,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_13t_single_seed43_0074,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_13t_single_seed44_0134,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_14t_double_seed42_0017,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_14t_double_seed43_0077,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_14t_double_seed44_0137,synthetic,cpsat_solver,cpsat_solver,True,26.0,26.0,cpsat_solver,26.0,26.0,26.0,0.0,0.0,-0.0
+stratified_cv_r03_f03,repeated_stratified_kfold,3,3,True,synthetic_study_medium_14t_single_seed44_0140,synthetic,cpsat_solver,cpsat_solver,True,13.0,13.0,cpsat_solver,13.0,13.0,13.0,0.0,0.0,-0.0

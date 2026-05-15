@@ -55,9 +55,15 @@ def test_run_benchmarks_writes_traceable_results_and_summary(tmp_path: Path) -> 
         "solver_name",
         "solver_registry_name",
         "objective_value",
+        "objective_sense",
+        "objective_value_valid",
         "runtime_seconds",
         "feasible",
         "status",
+        "solver_support_status",
+        "scoring_status",
+        "modeling_scope",
+        "scoring_notes",
         "random_seed",
         "configured_time_limit_seconds",
         "timestamp",
@@ -85,6 +91,9 @@ def test_run_benchmarks_writes_traceable_results_and_summary(tmp_path: Path) -> 
     assert all(row["timestamp"] for row in rows)
     assert all(row["instance_source_path"] for row in rows)
     assert all(row["solver_metadata_json"] for row in rows)
+    assert {row["objective_sense"] for row in rows} == {"lower_is_better"}
+    assert all(row["solver_support_status"] for row in rows)
+    assert all(row["scoring_status"] for row in rows)
 
     assert summary["results"]["num_input_xml_files"] == 2
     assert summary["results"]["num_solvers"] == 2
@@ -142,6 +151,9 @@ def test_run_benchmarks_continues_when_one_solver_fails(tmp_path: Path, monkeypa
     assert failed_row["solver_name"] == "failing_solver"
     assert failed_row["feasible"] == "False"
     assert failed_row["status"] == "FAILED:RuntimeError"
+    assert failed_row["solver_support_status"] == "failed"
+    assert failed_row["scoring_status"] == "failed_run"
+    assert failed_row["objective_value_valid"] == "False"
     assert failed_row["objective_value"] == ""
     assert failed_row["error_message"] == "simulated failure"
     assert "failed on instance" in caplog.text

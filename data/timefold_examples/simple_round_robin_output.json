@@ -1,0 +1,35 @@
+{
+  "status": "SOLVED",
+  "feasible": true,
+  "objectiveValue": 3.0,
+  "runtimeSeconds": 0.42,
+  "metadata": {
+    "adapter": "example"
+  },
+  "schedule": [
+    {
+      "matchId": "M1",
+      "slotId": "S1"
+    },
+    {
+      "matchId": "M6",
+      "slotId": "S1"
+    },
+    {
+      "matchId": "M2",
+      "slotId": "S2"
+    },
+    {
+      "matchId": "M5",
+      "slotId": "S2"
+    },
+    {
+      "matchId": "M3",
+      "slotId": "S3"
+    },
+    {
+      "matchId": "M4",
+      "slotId": "S3"
+    }
+  ]
+}

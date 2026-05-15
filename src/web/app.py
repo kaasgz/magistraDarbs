@@ -13,7 +13,7 @@ from functools import partial
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 from src.web.dashboard import DashboardService
 
@@ -26,7 +26,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     """Create the command-line parser for the local web app."""
 
     parser = argparse.ArgumentParser(
-        description="Run the local sports scheduling dashboard.",
+        description="Palaist lokālo maģistra darba rezultātu pārskata interfeisu.",
     )
     parser.add_argument("--host", default="127.0.0.1", help="Host interface to bind.")
     parser.add_argument("--port", type=int, default=8000, help="Port to listen on.")
@@ -51,12 +51,12 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--bootstrap-demo",
         action="store_true",
-        help="Generate demo data and run the full pipeline on startup.",
+        help="Generate isolated demo data and run the synthetic demo pipeline on startup.",
     )
     parser.add_argument(
         "--open-browser",
         action="store_true",
-        help="Open the dashboard in the default browser after startup.",
+        help="Pēc startēšanas atvērt interfeisu pārlūkā.",
     )
     return parser
 
@@ -122,8 +122,27 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         if parsed.path == "/app.js":
             self._serve_static("app.js")
             return
+        if parsed.path.startswith("/generated/"):
+            relative_path = unquote(parsed.path.removeprefix("/generated/"))
+            try:
+                file_path = self.service.resolve_generated_file(relative_path)
+                self._serve_file(file_path)
+            except FileNotFoundError as exc:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)})
+            except ValueError as exc:
+                self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+            return
         if parsed.path == "/api/state":
             self._send_json(HTTPStatus.OK, self.service.build_dashboard_state())
+            return
+        if parsed.path == "/api/artifact-preview":
+            artifact_id = parse_qs(parsed.query).get("artifact_id", [""])[0]
+            try:
+                self._send_json(HTTPStatus.OK, self.service.preview_artifact(artifact_id))
+            except FileNotFoundError as exc:
+                self._send_json(HTTPStatus.NOT_FOUND, {"error": str(exc)})
+            except ValueError as exc:
+                self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
             return
         if parsed.path == "/favicon.ico":
             self.send_response(HTTPStatus.NO_CONTENT)
@@ -191,11 +210,18 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         if not file_path.exists():
             self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Missing static asset: {file_name}"})
             return
+        self._serve_file(file_path)
+
+    def _serve_file(self, file_path: Path) -> None:
+        """Serve one already-resolved local file."""
 
         content_type = mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
         payload = file_path.read_bytes()
         self.send_response(HTTPStatus.OK)
-        self.send_header("Content-Type", f"{content_type}; charset=utf-8")
+        if content_type.startswith("image/"):
+            self.send_header("Content-Type", content_type)
+        else:
+            self.send_header("Content-Type", f"{content_type}; charset=utf-8")
         self.send_header("Content-Length", str(len(payload)))
         self.end_headers()
         self.wfile.write(payload)

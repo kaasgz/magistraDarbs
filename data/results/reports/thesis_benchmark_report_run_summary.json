@@ -1,0 +1,51 @@
+{
+  "stage_name": "thesis_benchmark_report",
+  "generated_at": "2026-05-10T19:28:41+03:00",
+  "config_path": null,
+  "settings": {
+    "result_scope": "auto",
+    "resolved_report_scope": "mixed",
+    "top_feature_count": 15
+  },
+  "inputs": {
+    "synthetic_benchmark_csv": "data/results/synthetic_study/benchmark_results.csv",
+    "real_benchmark_csv": "data/results/real_pipeline_current/benchmark_results.csv",
+    "synthetic_evaluation_summary_csv": "data/results/synthetic_study/aggregate_selector_summary.csv",
+    "real_evaluation_summary_csv": "data/results/real_pipeline_current/selector_evaluation_summary.csv",
+    "feature_importance_csv": null,
+    "compatibility_matrix_csv": "data/processed/real_pipeline_current/solver_compatibility_matrix.csv"
+  },
+  "outputs": {
+    "solver_comparison_csv": "data/results/reports/solver_comparison.csv",
+    "solver_comparison_markdown": "data/results/reports/solver_comparison.md",
+    "solver_support_summary_csv": "data/results/reports/solver_support_summary.csv",
+    "solver_support_summary_markdown": "data/results/reports/solver_support_summary.md",
+    "win_counts_csv": "data/results/reports/solver_win_counts.csv",
+    "win_counts_markdown": "data/results/reports/solver_win_counts.md",
+    "average_objective_csv": "data/results/reports/average_objective_per_solver.csv",
+    "average_objective_markdown": "data/results/reports/average_objective_per_solver.md",
+    "average_runtime_csv": "data/results/reports/average_runtime_per_solver.csv",
+    "average_runtime_markdown": "data/results/reports/average_runtime_per_solver.md",
+    "selector_vs_baselines_csv": "data/results/reports/selector_vs_baselines.csv",
+    "selector_vs_baselines_markdown": "data/results/reports/selector_vs_baselines.md",
+    "feature_importance_summary_csv": "data/results/reports/feature_importance_summary.csv",
+    "feature_importance_summary_markdown": "data/results/reports/feature_importance_summary.md",
+    "summary_markdown": "data/results/reports/thesis_benchmark_report.md",
+    "run_summary": "data/results/reports/thesis_benchmark_report_run_summary.json"
+  },
+  "results": {
+    "num_solver_rows": 8,
+    "num_solver_support_rows": 9,
+    "num_selector_rows": 6,
+    "num_feature_importance_rows": 0,
+    "result_scopes": [
+      "real",
+      "synthetic"
+    ]
+  },
+  "config_snapshot": null,
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

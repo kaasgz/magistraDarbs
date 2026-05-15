@@ -1,0 +1,9 @@
+result_scope,solver_registry_name,solver_name,num_runs,num_feasible_runs,num_valid_feasible_runs,num_instances_total,num_instances_feasible,num_instances_solved,num_instances_valid_feasible,feasible_coverage_ratio,valid_feasible_coverage_ratio,coverage_ratio,win_count,average_objective_valid_feasible,average_objective,average_runtime_seconds,compatibility_total_instances,compatibility_supported_instances,compatibility_partially_supported_instances,compatibility_unsupported_instances,compatibility_not_configured_instances
+real,simulated_annealing_solver,simulated_annealing_baseline,54,54,54,54,54,54,54,1.0,1.0,1.0,54,30.75925925925926,30.75925925925926,1.810334900007109,54,0,0,54,0
+real,cpsat_solver,cpsat_round_robin,54,54,54,54,54,54,54,1.0,1.0,1.0,0,32.44444444444444,32.44444444444444,54.861112622221874,54,0,54,0,0
+real,random_baseline,random_baseline,54,54,54,54,54,54,54,1.0,1.0,1.0,0,1209.8246121851853,1209.8246121851853,9.64777772659651e-05,54,0,54,0,0
+real,timefold,timefold,54,0,0,54,0,0,0,0.0,0.0,0.0,0,,,0.002081192594400944,54,0,0,0,54
+synthetic,random_baseline,random_baseline,540,540,0,180,180,0,0,1.0,0.0,0.0,0,,,0.00011138129737916727,0,0,0,0,0
+synthetic,cpsat_solver,cpsat_round_robin,540,540,0,180,180,0,0,1.0,0.0,0.0,0,,,109.85284443870466,0,0,0,0,0
+synthetic,simulated_annealing_solver,simulated_annealing_baseline,540,279,0,180,93,0,0,0.5166666666666667,0.0,0.0,0,,,0.4250671146311409,0,0,0,0,0
+synthetic,timefold,timefold,540,0,0,180,0,0,0,0.0,0.0,0.0,0,,,0.0006841911114018832,0,0,0,0,0

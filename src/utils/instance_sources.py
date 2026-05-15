@@ -33,7 +33,7 @@ def infer_expected_source_from_path(input_path: Path) -> InstanceSourceKind | No
 
 
 def validate_folder_source_hygiene(input_path: Path, xml_files: list[Path]) -> InstanceSourceKind | None:
-    """Reject folder layouts that obviously mix real and synthetic subtrees."""
+    """Reject folder layouts that mix real and synthetic subtrees."""
 
     nested_sources = nested_source_kinds(input_path, xml_files)
     if len(nested_sources) > 1:
