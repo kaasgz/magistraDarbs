@@ -409,6 +409,7 @@ def _generate_one_instance(
     final_xml = output_folder / f"{unique_instance_name}.xml"
 
     _rewrite_instance_identity(source_xml, unique_instance_name)
+    _ensure_home_away_category(source_xml)
     source_xml.replace(final_xml)
 
     final_spec = DemoInstanceSpec(
@@ -511,6 +512,24 @@ def _rewrite_instance_identity(xml_path: Path, instance_name: str) -> None:
     if metadata_name is not None:
         metadata_name.text = instance_name
     tree.write(xml_path, encoding="utf-8", xml_declaration=True)
+
+
+def _ensure_home_away_category(xml_path: Path) -> None:
+    """Normalize home-away semantics into an explicit HomeAway constraint category."""
+
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+    changed = False
+    for constraint in root.findall(".//Constraint"):
+        tag_value = (constraint.get("tag") or constraint.get("Tag") or "").casefold()
+        pattern_value = (constraint.get("pattern") or constraint.get("Pattern") or "").casefold()
+        if "homeaway" in tag_value or pattern_value == "home_away":
+            if constraint.get("category") != "HomeAway":
+                constraint.set("category", "HomeAway")
+                changed = True
+
+    if changed:
+        tree.write(xml_path, encoding="utf-8", xml_declaration=True)
 
 
 def _clear_existing_generated_dataset(output_folder: Path, metadata_path: Path) -> None:
