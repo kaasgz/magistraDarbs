@@ -1140,13 +1140,13 @@ def _build_presentation_feature_section(
         "takeaway": _build_feature_takeaway(feature_groups),
         "highlight": (
             f"Svarīgākā individuālā pazīme ir {top_feature}, savukārt dominējošā grupa ir {top_group}; "
-            "pazīmju grupu kopsavilkums zemāk ir UI tabula, nevis darba attēls."
+            "pazīmju grupu kopsavilkums zemāk redzams tabulā."
             if feature_rows and group_rows
             else "Pazīmju nozīmīguma kopsavilkums būs pieejams pēc artefaktu ģenerēšanas."
         ),
         "table_title": "Desmit nozīmīgākās strukturālās pazīmes",
         "table_rows": feature_rows,
-        "secondary_table_title": "UI kopsavilkums: pazīmju grupu kopējais nozīmīgums",
+        "secondary_table_title": "Pazīmju grupu kopējais nozīmīgums",
         "secondary_table_rows": group_rows,
         "figures": _select_section_figures(figure_payloads, "features"),
     }
