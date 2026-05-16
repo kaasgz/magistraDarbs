@@ -1,4 +1,4 @@
-"""Tests for the first CP-SAT solver skeleton."""
+# Tests for the first CP-SAT solver skeleton.
 
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ from src.solvers.cpsat_solver import CPSatSolver
 
 
 def test_cpsat_solver_builds_feasible_round_robin_schedule() -> None:
-    """The minimal solver should schedule each pair exactly once."""
 
+    # The minimal solver should schedule each pair exactly once.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="RoundRobin4"),
         teams=[
@@ -56,8 +56,8 @@ def test_cpsat_solver_builds_feasible_round_robin_schedule() -> None:
 
 
 def test_cpsat_solver_reports_infeasible_when_slots_are_insufficient() -> None:
-    """Too few slots should produce a structured infeasible result."""
 
+    # Too few slots should produce a structured infeasible result.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="TooFewSlots"),
         team_count=4,
@@ -75,8 +75,8 @@ def test_cpsat_solver_reports_infeasible_when_slots_are_insufficient() -> None:
 
 
 def test_cpsat_solver_supports_double_round_robin_with_explicit_legs() -> None:
-    """Double round robin mode should schedule both home/away legs for each pair."""
 
+    # Double round robin mode should schedule both home/away legs for each pair.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="DoubleRoundRobin4", round_robin_mode="double"),
         teams=[
@@ -126,8 +126,8 @@ def test_cpsat_solver_supports_double_round_robin_with_explicit_legs() -> None:
 
 
 def test_cpsat_solver_reports_partial_support_when_constraints_are_declared() -> None:
-    """Declared RobinX constraint families should be recorded as unsupported, not ignored silently."""
 
+    # Declared RobinX constraint families should be recorded as unsupported, not ignored silently.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="ConstrainedRoundRobin", round_robin_mode="double"),
         teams=[
@@ -180,8 +180,8 @@ def test_cpsat_solver_reports_partial_support_when_constraints_are_declared() ->
 
 
 def test_cpsat_solver_double_round_robin_requires_more_slots() -> None:
-    """Double round robin should report infeasible when fewer than the required slots are available."""
 
+    # Double round robin should report infeasible when fewer than the required slots are available.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="TooFewSlotsDouble", round_robin_mode="double"),
         team_count=4,

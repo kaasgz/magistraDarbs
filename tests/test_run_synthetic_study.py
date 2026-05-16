@@ -1,4 +1,4 @@
-"""Tests for the multi-seed synthetic study pipeline."""
+# Tests for the multi-seed synthetic study pipeline.
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ from src.experiments.run_synthetic_study import (
 
 
 def test_run_synthetic_study_writes_per_seed_and_aggregate_outputs(tmp_path: Path) -> None:
-    """A small synthetic study should keep per-seed and aggregate outputs separate."""
 
+    # A small synthetic study should keep per-seed and aggregate outputs separate.
     dataset_root = tmp_path / "data" / "raw" / "synthetic" / "study"
     processed_dir = tmp_path / "data" / "processed" / "synthetic_study"
     results_dir = tmp_path / "data" / "results" / "synthetic_study"
@@ -94,8 +94,8 @@ def test_run_synthetic_study_writes_per_seed_and_aggregate_outputs(tmp_path: Pat
 
 
 def test_aggregate_benchmark_summary_uses_only_valid_objectives() -> None:
-    """Aggregate objective means should ignore partial and not-configured rows."""
 
+    # Aggregate objective means should ignore partial and not-configured rows.
     benchmark_table = pd.DataFrame(
         [
             {

@@ -1,4 +1,4 @@
-"""Tests for the simulated annealing baseline solver."""
+# Tests for the simulated annealing baseline solver.
 
 from dataclasses import dataclass, field
 
@@ -34,8 +34,8 @@ class _Instance:
 
 
 def test_simulated_annealing_solver_returns_structured_result() -> None:
-    """The annealing solver should return a standardized solver result."""
 
+    # The annealing solver should return a standardized solver result.
     instance = _Instance(
         metadata=_Metadata(name="Annealing4"),
         teams=[
@@ -68,8 +68,8 @@ def test_simulated_annealing_solver_returns_structured_result() -> None:
 
 
 def test_simulated_annealing_solver_is_reproducible_for_fixed_seed() -> None:
-    """The best objective should be stable for a fixed seed and instance."""
 
+    # The best objective should be stable for a fixed seed and instance.
     instance = _Instance(
         metadata=_Metadata(name="ReproducibleAnnealing"),
         team_count=4,
@@ -87,8 +87,8 @@ def test_simulated_annealing_solver_is_reproducible_for_fixed_seed() -> None:
 
 
 def test_simulated_annealing_solver_marks_conflicted_small_slot_case_as_approximate() -> None:
-    """Too few slots should typically retain conflict penalties in version 1."""
 
+    # Too few slots should typically retain conflict penalties in version 1.
     instance = _Instance(
         metadata=_Metadata(name="TooFewSlotsAnnealing"),
         team_count=4,

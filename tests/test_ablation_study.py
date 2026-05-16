@@ -1,4 +1,4 @@
-"""Tests for selector ablation-study support."""
+# Tests for selector ablation-study support.
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ from src.selection.ablation_study import run_ablation_study
 
 
 def test_run_ablation_study_saves_summary_plot_and_report(tmp_path: Path) -> None:
-    """Ablation study should evaluate the required feature subsets and save outputs."""
 
+    # Ablation study should evaluate the required feature subsets and save outputs.
     dataset_csv = tmp_path / "selection_dataset.csv"
     benchmark_csv = tmp_path / "benchmark_results.csv"
     summary_csv = tmp_path / "ablation_summary.csv"

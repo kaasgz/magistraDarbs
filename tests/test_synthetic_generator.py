@@ -1,4 +1,4 @@
-"""Tests for the larger synthetic dataset generator."""
+# Tests for the larger synthetic dataset generator.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ FIXED_TIMESTAMP = "2026-04-19T12:00:00+00:00"
 
 
 def test_generate_synthetic_dataset_writes_diverse_xml_batch_and_metadata_csv(tmp_path: Path) -> None:
-    """The generator should produce a diverse mixed-difficulty batch and a metadata CSV."""
 
+    # The generator should produce a diverse mixed-difficulty batch and a metadata CSV.
     output_folder = tmp_path / "generated"
     metadata_csv = output_folder / "metadata.csv"
 
@@ -49,8 +49,8 @@ def test_generate_synthetic_dataset_writes_diverse_xml_batch_and_metadata_csv(tm
 
 
 def test_generate_synthetic_dataset_is_reproducible_for_same_seed(tmp_path: Path) -> None:
-    """The same seed and timestamp should reproduce identical XML and metadata outputs."""
 
+    # The same seed and timestamp should reproduce identical XML and metadata outputs.
     first_output = tmp_path / "first"
     second_output = tmp_path / "second"
 
@@ -85,8 +85,8 @@ def test_generate_synthetic_dataset_is_reproducible_for_same_seed(tmp_path: Path
 
 
 def test_generated_synthetic_dataset_works_with_feature_pipeline(tmp_path: Path) -> None:
-    """Generated experiment-scale XML should be consumable by the feature builder."""
 
+    # Generated experiment-scale XML should be consumable by the feature builder.
     output_folder = tmp_path / "generated"
     features_csv = tmp_path / "features.csv"
 
@@ -106,8 +106,8 @@ def test_generated_synthetic_dataset_works_with_feature_pipeline(tmp_path: Path)
 
 
 def test_synthetic_generator_cli_supports_instance_count_argument(tmp_path: Path) -> None:
-    """The CLI should honor the requested instance count and write the metadata CSV."""
 
+    # The CLI should honor the requested instance count and write the metadata CSV.
     output_folder = tmp_path / "generated"
     metadata_csv = tmp_path / "synthetic_metadata.csv"
 

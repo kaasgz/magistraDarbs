@@ -1,4 +1,4 @@
-"""CP-SAT round-robin baseline with explicit single/double-leg support."""
+# CP-SAT round-robin baseline with explicit single/double-leg support.
 
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ SupportLevel = Literal["supported", "partially_supported"]
 
 @dataclass(frozen=True, slots=True)
 class _MeetingDefinition:
-    """One directed meeting that must be scheduled exactly once."""
 
+    # One directed meeting that must be scheduled exactly once.
     home_team_index: int
     away_team_index: int
     home_team_label: str
@@ -30,8 +30,8 @@ class _MeetingDefinition:
 
 @dataclass(frozen=True, slots=True)
 class _ConstraintSupportSummary:
-    """Audit-friendly summary of what the current baseline actually supports."""
 
+    # Audit-friendly summary of what the current baseline actually supports.
     support_level: SupportLevel
     supported_capabilities: tuple[str, ...]
     declared_constraint_families: tuple[str, ...]
@@ -41,8 +41,8 @@ class _ConstraintSupportSummary:
 
 @dataclass(frozen=True, slots=True)
 class _RoundRobinProblemData:
-    """Internal round-robin data prepared from a parsed instance."""
 
+    # Internal round-robin data prepared from a parsed instance.
     instance_name: str
     round_robin_mode: RoundRobinMode
     team_labels: tuple[str, ...]
@@ -55,29 +55,29 @@ class _RoundRobinProblemData:
 
 
 class CPSatSolver(Solver):
-    """CP-SAT baseline for compact single and double round-robin schedules.
 
-    The solver now supports two structural formats:
-
-    - single round robin: one directed meeting per unordered pair
-    - double round robin: two directed meetings per pair with opposite
-      home/away orientation
-
-    The modeled hard structure is still intentionally narrow:
-
-    - every required meeting must be assigned exactly once
-    - a team cannot play more than once in the same slot
-    - the objective minimizes the number of used slots
-
-    Parsed RobinX / ITC2021 constraint families are recorded for auditability
-    but are not yet enforced directly in the model. When such constraints are
-    present, the returned metadata marks the support level as partial rather
-    than pretending full compliance.
-    """
-
+    # CP-SAT baseline for compact single and double round-robin schedules.
+    #
+    # The solver now supports two structural formats:
+    #
+    # - single round robin: one directed meeting per unordered pair
+    # - double round robin: two directed meetings per pair with opposite
+    # home/away orientation
+    #
+    # The modeled hard structure is still intentionally narrow:
+    #
+    # - every required meeting must be assigned exactly once
+    # - a team cannot play more than once in the same slot
+    # - the objective minimizes the number of used slots
+    #
+    # Parsed RobinX / ITC2021 constraint families are recorded for auditability
+    # but are not yet enforced directly in the model. When such constraints are
+    # present, the returned metadata marks the support level as partial rather
+    # than pretending full compliance.
+    #
     def __init__(self, solver_name: str = "cpsat_round_robin") -> None:
-        """Initialize the solver with a stable public name."""
 
+        # Initialize the solver with a stable public name.
         self.solver_name = solver_name
 
     def solve(
@@ -86,8 +86,8 @@ class CPSatSolver(Solver):
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Build and solve a compact round-robin CP-SAT model."""
 
+        # Build and solve a compact round-robin CP-SAT model.
         start_time = time.perf_counter()
         problem = _prepare_problem_data(instance)
 
@@ -161,8 +161,8 @@ class CPSatSolver(Solver):
 
 
 def _prepare_problem_data(instance: object) -> _RoundRobinProblemData:
-    """Prepare round-robin inputs from a parsed instance-like object."""
 
+    # Prepare round-robin inputs from a parsed instance-like object.
     instance_name = _extract_instance_name(instance)
     round_robin_mode = _extract_round_robin_mode(instance)
     explicit_team_count = _safe_nonnegative_int(getattr(instance, "team_count", 0))
@@ -193,8 +193,8 @@ def _create_meeting_assignment_variables(
     model: cp_model.CpModel,
     problem: _RoundRobinProblemData,
 ) -> dict[tuple[int, int], cp_model.IntVar]:
-    """Create one binary variable per meeting-slot assignment."""
 
+    # Create one binary variable per meeting-slot assignment.
     meeting_vars: dict[tuple[int, int], cp_model.IntVar] = {}
     for meeting_index, meeting in enumerate(problem.meetings):
         for slot in range(problem.num_slots):
@@ -209,8 +209,8 @@ def _add_meeting_assignment_constraints(
     problem: _RoundRobinProblemData,
     meeting_vars: dict[tuple[int, int], cp_model.IntVar],
 ) -> None:
-    """Ensure each required meeting is scheduled exactly once."""
 
+    # Ensure each required meeting is scheduled exactly once.
     for meeting_index in range(len(problem.meetings)):
         model.Add(
             sum(meeting_vars[(meeting_index, slot)] for slot in range(problem.num_slots)) == 1,
@@ -222,8 +222,8 @@ def _add_team_availability_constraints(
     problem: _RoundRobinProblemData,
     meeting_vars: dict[tuple[int, int], cp_model.IntVar],
 ) -> None:
-    """Prevent teams from playing more than once in the same slot."""
 
+    # Prevent teams from playing more than once in the same slot.
     for slot in range(problem.num_slots):
         for team_index in range(len(problem.team_labels)):
             incident_meetings = [
@@ -240,8 +240,8 @@ def _add_compact_schedule_objective(
     problem: _RoundRobinProblemData,
     meeting_vars: dict[tuple[int, int], cp_model.IntVar],
 ) -> list[cp_model.IntVar]:
-    """Minimize the number of used slots in the baseline formulation."""
 
+    # Minimize the number of used slots in the baseline formulation.
     slot_used: list[cp_model.IntVar] = []
     for slot in range(problem.num_slots):
         used = model.NewBoolVar(f"slot_used_{slot}")
@@ -266,8 +266,8 @@ def _extract_schedule(
     meeting_vars: dict[tuple[int, int], cp_model.IntVar],
     solver: cp_model.CpSolver,
 ) -> list[dict[str, object]]:
-    """Extract a readable slot-by-slot schedule from a solved model."""
 
+    # Extract a readable slot-by-slot schedule from a solved model.
     schedule: list[dict[str, object]] = []
     for slot in range(problem.num_slots):
         for meeting_index, meeting in enumerate(problem.meetings):
@@ -295,8 +295,8 @@ def _result_metadata(
     used_slots: int,
     future_extensions: list[str],
 ) -> dict[str, object]:
-    """Build one audit-friendly metadata payload for solver results."""
 
+    # Build one audit-friendly metadata payload for solver results.
     return {
         "model_type": "cp_sat_round_robin_baseline",
         "round_robin_mode": problem.round_robin_mode,
@@ -319,16 +319,16 @@ def _result_metadata(
 
 
 def _scoring_status(problem: _RoundRobinProblemData, *, feasible: bool) -> str:
-    """Return the common scoring-contract status for a CP-SAT result."""
 
+    # Return the common scoring-contract status for a CP-SAT result.
     if problem.constraint_support.support_level == "partially_supported":
         return "partially_modeled_run"
     return "supported_feasible_run" if feasible else "supported_infeasible_run"
 
 
 def _modeling_scope(problem: _RoundRobinProblemData) -> str:
-    """Describe the implemented CP-SAT model scope for benchmark exports."""
 
+    # Describe the implemented CP-SAT model scope for benchmark exports.
     return (
         f"compact {problem.round_robin_mode} round-robin CP-SAT model; "
         "one meeting per required leg; at most one match per team per slot; "
@@ -337,14 +337,14 @@ def _modeling_scope(problem: _RoundRobinProblemData) -> str:
 
 
 def _count_used_slots(slot_used: list[cp_model.IntVar], solver: cp_model.CpSolver) -> int:
-    """Count the slots that are active in the solved schedule."""
 
+    # Count the slots that are active in the solved schedule.
     return sum(1 for used in slot_used if solver.BooleanValue(used))
 
 
 def _build_team_labels(instance: object, explicit_team_count: int) -> list[str]:
-    """Build stable team labels from parsed teams or fallback names."""
 
+    # Build stable team labels from parsed teams or fallback names.
     teams = list(getattr(instance, "teams", []) or [])
     inferred_count = len(teams)
     num_teams = explicit_team_count if explicit_team_count > 0 else inferred_count
@@ -364,8 +364,8 @@ def _build_team_labels(instance: object, explicit_team_count: int) -> list[str]:
 
 
 def _build_slot_labels(instance: object, num_slots: int) -> list[str]:
-    """Build stable slot labels from parsed slots or fallback names."""
 
+    # Build stable slot labels from parsed slots or fallback names.
     slots = list(getattr(instance, "slots", []) or [])
     labels: list[str] = []
     for index in range(num_slots):
@@ -384,8 +384,8 @@ def _build_meetings(
     team_labels: tuple[str, ...],
     round_robin_mode: RoundRobinMode,
 ) -> tuple[_MeetingDefinition, ...]:
-    """Build the directed meetings implied by the requested round-robin mode."""
 
+    # Build the directed meetings implied by the requested round-robin mode.
     meetings: list[_MeetingDefinition] = []
     for home_team_index, away_team_index in combinations(range(len(team_labels)), 2):
         meetings.append(
@@ -411,8 +411,8 @@ def _build_meetings(
 
 
 def _minimum_required_slots(num_teams: int, round_robin_mode: RoundRobinMode = "single") -> int:
-    """Return the minimum slot count implied by the round-robin mode."""
 
+    # Return the minimum slot count implied by the round-robin mode.
     if num_teams <= 1:
         return 0
     single_round_slots = num_teams if num_teams % 2 == 1 else num_teams - 1
@@ -422,8 +422,8 @@ def _minimum_required_slots(num_teams: int, round_robin_mode: RoundRobinMode = "
 
 
 def _extract_round_robin_mode(instance: object) -> RoundRobinMode:
-    """Extract a normalized round-robin mode with a conservative fallback."""
 
+    # Extract a normalized round-robin mode with a conservative fallback.
     metadata = getattr(instance, "metadata", None)
     raw_value = _first_non_empty(
         [
@@ -442,8 +442,8 @@ def _summarize_constraint_support(
     instance: object,
     round_robin_mode: RoundRobinMode,
 ) -> _ConstraintSupportSummary:
-    """Describe what the current baseline does and does not support."""
 
+    # Describe what the current baseline does and does not support.
     declared_constraint_families = _extract_constraint_families(instance)
     unsupported_constraint_families = declared_constraint_families
     notes = [
@@ -480,8 +480,8 @@ def _summarize_constraint_support(
 
 
 def _extract_constraint_families(instance: object) -> tuple[str, ...]:
-    """Extract stable constraint-family labels from the parsed instance."""
 
+    # Extract stable constraint-family labels from the parsed instance.
     constraints = list(getattr(instance, "constraints", []) or [])
     families: set[str] = set()
     for constraint in constraints:
@@ -496,8 +496,8 @@ def _extract_constraint_families(instance: object) -> tuple[str, ...]:
 
 
 def _extract_instance_name(instance: object) -> str:
-    """Extract a readable instance name from common instance fields."""
 
+    # Extract a readable instance name from common instance fields.
     metadata = getattr(instance, "metadata", None)
     candidates = [
         getattr(metadata, "name", None),
@@ -516,8 +516,8 @@ def _extract_instance_name(instance: object) -> str:
 
 
 def _safe_nonnegative_int(value: object) -> int:
-    """Convert a count-like value to a non-negative integer."""
 
+    # Convert a count-like value to a non-negative integer.
     if isinstance(value, bool):
         return int(value)
     if isinstance(value, int):
@@ -529,8 +529,8 @@ def _safe_nonnegative_int(value: object) -> int:
 
 
 def _first_non_empty(values: list[str | None]) -> str | None:
-    """Return the first non-empty string from a list of candidates."""
 
+    # Return the first non-empty string from a list of candidates.
     for value in values:
         if isinstance(value, str) and value.strip():
             return value.strip()
@@ -538,8 +538,8 @@ def _first_non_empty(values: list[str | None]) -> str | None:
 
 
 def _read_text_field(value: object, field_name: str) -> str | None:
-    """Read and normalize one text-like field from an object."""
 
+    # Read and normalize one text-like field from an object.
     field_value = getattr(value, field_name, None)
     if isinstance(field_value, str) and field_value.strip():
         return field_value.strip()

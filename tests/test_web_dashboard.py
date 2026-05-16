@@ -1,4 +1,4 @@
-"""Tests for the local dashboard backend service."""
+# Tests for the local dashboard backend service.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 def test_dashboard_state_is_empty_before_first_run(tmp_path: Path) -> None:
-    """The dashboard should report an empty workspace cleanly."""
 
+    # The dashboard should report an empty workspace cleanly.
     service = DashboardService(workspace_root=tmp_path)
 
     state = service.build_dashboard_state()
@@ -41,8 +41,8 @@ def test_dashboard_state_is_empty_before_first_run(tmp_path: Path) -> None:
 
 
 def test_load_real_instance_updates_dashboard_inspector(tmp_path: Path) -> None:
-    """Loading a real XML should populate the inspector without running the demo pipeline."""
 
+    # Loading a real XML should populate the inspector without running the demo pipeline.
     real_dir = tmp_path / "data" / "raw" / "real"
     real_dir.mkdir(parents=True)
     (real_dir / "sample.xml").write_text(
@@ -63,8 +63,8 @@ def test_load_real_instance_updates_dashboard_inspector(tmp_path: Path) -> None:
 
 
 def test_generate_synthetic_preview_marks_instance_as_synthetic(tmp_path: Path) -> None:
-    """Synthetic preview mode should create a labeled synthetic instance in the demo preview area."""
 
+    # Synthetic preview mode should create a labeled synthetic instance in the demo preview area.
     service = DashboardService(
         workspace_root=tmp_path,
         default_random_seed=5,
@@ -82,8 +82,8 @@ def test_generate_synthetic_preview_marks_instance_as_synthetic(tmp_path: Path) 
 
 
 def test_bootstrap_demo_pipeline_creates_dashboard_artifacts(tmp_path: Path) -> None:
-    """Running the dashboard bootstrap should generate artifacts and metrics."""
 
+    # Running the dashboard bootstrap should generate artifacts and metrics.
     service = DashboardService(
         workspace_root=tmp_path,
         default_instance_count=4,
@@ -111,8 +111,8 @@ def test_bootstrap_demo_pipeline_creates_dashboard_artifacts(tmp_path: Path) -> 
 
 
 def test_dashboard_state_exposes_main_real_pipeline_artifacts(tmp_path: Path) -> None:
-    """The dashboard should expose the latest main real-data pipeline artifacts separately."""
 
+    # The dashboard should expose the latest main real-data pipeline artifacts separately.
     processed_dir = tmp_path / "data" / "processed"
     results_dir = tmp_path / "data" / "results"
     processed_dir.mkdir(parents=True)
@@ -238,8 +238,8 @@ def test_dashboard_state_exposes_main_real_pipeline_artifacts(tmp_path: Path) ->
 
 
 def test_dashboard_state_exposes_thesis_pipeline_results(tmp_path: Path) -> None:
-    """The dashboard should expose thesis-mode artifacts separately from demo outputs."""
 
+    # The dashboard should expose thesis-mode artifacts separately from demo outputs.
     raw_dir = tmp_path / "data" / "raw" / "synthetic" / "generated"
     processed_dir = tmp_path / "data" / "processed" / "thesis_pipeline"
     results_dir = tmp_path / "data" / "results" / "thesis_pipeline"
@@ -467,8 +467,8 @@ def test_dashboard_state_exposes_thesis_pipeline_results(tmp_path: Path) -> None
 
 
 def test_dashboard_state_exposes_thesis_benchmark_reports(tmp_path: Path) -> None:
-    """The dashboard should expose generated thesis benchmark reports in a separate section."""
 
+    # The dashboard should expose generated thesis benchmark reports in a separate section.
     reports_dir = tmp_path / "data" / "results" / "reports"
     reports_dir.mkdir(parents=True)
 
@@ -660,8 +660,8 @@ def test_dashboard_state_exposes_thesis_benchmark_reports(tmp_path: Path) -> Non
 
 
 def test_dashboard_state_exposes_mixed_dataset_results(tmp_path: Path) -> None:
-    """The dashboard should expose mixed synthetic/real outputs without running pipelines."""
 
+    # The dashboard should expose mixed synthetic/real outputs without running pipelines.
     processed_dir = tmp_path / "data" / "processed"
     full_results_dir = tmp_path / "data" / "results" / "full_selection"
     processed_dir.mkdir(parents=True)
@@ -766,8 +766,8 @@ def test_dashboard_state_exposes_mixed_dataset_results(tmp_path: Path) -> None:
 
 
 def test_dashboard_state_exposes_presentation_ready_sections(tmp_path: Path) -> None:
-    """The dashboard should expose the Latvian presentation-ready thesis view."""
 
+    # The dashboard should expose the Latvian presentation-ready thesis view.
     results_dir = tmp_path / "data" / "results"
     processed_dir = tmp_path / "data" / "processed"
     thesis_tables_dir = results_dir / "thesis_tables"
@@ -1018,8 +1018,8 @@ def test_dashboard_state_exposes_presentation_ready_sections(tmp_path: Path) -> 
 
 
 def test_dashboard_resolves_generated_results_files_only(tmp_path: Path) -> None:
-    """Generated-file serving should stay inside data/results."""
 
+    # Generated-file serving should stay inside data/results.
     results_dir = tmp_path / "data" / "results" / "figures"
     results_dir.mkdir(parents=True)
     figure_path = results_dir / "selector_performance.png"
@@ -1033,8 +1033,8 @@ def test_dashboard_resolves_generated_results_files_only(tmp_path: Path) -> None
 
 
 def test_dashboard_rejects_generated_path_outside_results(tmp_path: Path) -> None:
-    """A sibling folder with a similar prefix must not pass the results whitelist."""
 
+    # A sibling folder with a similar prefix must not pass the results whitelist.
     sibling_dir = tmp_path / "data" / "results_backup"
     sibling_dir.mkdir(parents=True)
     (sibling_dir / "selector_performance.png").write_bytes(b"png")

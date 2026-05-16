@@ -1,4 +1,4 @@
-"""External Timefold solver integration built on the adapter layer."""
+# External Timefold solver integration built on the adapter layer.
 
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ from src.solvers.timefold_adapter import (
 
 
 class TimefoldSolver(Solver):
-    """Call a Timefold-based external executable through the adapter layer."""
 
+    # Call a Timefold-based external executable through the adapter layer.
     def __init__(
         self,
         solver_name: str = "timefold",
@@ -34,8 +34,8 @@ class TimefoldSolver(Solver):
         working_directory: str | Path | None = None,
         timeout_buffer_seconds: int = 5,
     ) -> None:
-        """Initialize the external solver wrapper."""
 
+        # Initialize the external solver wrapper.
         self.solver_name = solver_name
         self.executable_path = str(executable_path).strip() if executable_path is not None else None
         self.configured_time_limit_seconds = (
@@ -51,8 +51,8 @@ class TimefoldSolver(Solver):
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Export the instance, run the external adapter, and normalize output."""
 
+        # Export the instance, run the external adapter, and normalize output.
         start_time = time.perf_counter()
         problem = build_timefold_problem(instance)
         effective_time_limit_seconds = self._effective_time_limit_seconds(time_limit_seconds)
@@ -273,8 +273,8 @@ class TimefoldSolver(Solver):
             )
 
     def _effective_time_limit_seconds(self, requested_time_limit_seconds: int) -> int:
-        """Resolve the effective time limit passed to the external executable."""
 
+        # Resolve the effective time limit passed to the external executable.
         if self.configured_time_limit_seconds is not None:
             return self.configured_time_limit_seconds
         return max(0, int(requested_time_limit_seconds))
@@ -287,8 +287,8 @@ class TimefoldSolver(Solver):
         time_limit_seconds: int,
         random_seed: int,
     ) -> list[str]:
-        """Build the external adapter command line."""
 
+        # Build the external adapter command line.
         return [
             self.executable_path or "",
             *self.command_arguments,
@@ -309,8 +309,8 @@ class TimefoldSolver(Solver):
         effective_time_limit_seconds: int,
         random_seed: int,
     ) -> dict[str, object]:
-        """Build stable solver metadata shared across all outcomes."""
 
+        # Build stable solver metadata shared across all outcomes.
         return {
             "exchange_format": "timefold_round_robin_v1",
             "round_robin_mode": problem.round_robin_mode,
@@ -331,8 +331,8 @@ class TimefoldSolver(Solver):
 
 
 def _read_adapter_output(output_path: Path, stdout_text: str) -> str | None:
-    """Read adapter output from file first, then fall back to stdout."""
 
+    # Read adapter output from file first, then fall back to stdout.
     if output_path.exists():
         text = output_path.read_text(encoding="utf-8").strip()
         if text:
@@ -356,8 +356,8 @@ def _failure_result(
     modeling_scope: str,
     scoring_notes: tuple[str, ...],
 ) -> SolverResult:
-    """Build one standardized non-feasible solver result."""
 
+    # Build one standardized non-feasible solver result.
     failure_metadata = dict(metadata)
     failure_metadata["error"] = message
     return SolverResult(
@@ -376,22 +376,22 @@ def _failure_result(
 
 
 def _timefold_support_status(problem: TimefoldProblem) -> str:
-    """Return support status for a configured Timefold adapter run."""
 
+    # Return support status for a configured Timefold adapter run.
     return "partially_supported" if problem.constraint_families else "supported"
 
 
 def _timefold_scoring_status(problem: TimefoldProblem, *, feasible: bool) -> str:
-    """Return the common scoring status for a configured Timefold adapter run."""
 
+    # Return the common scoring status for a configured Timefold adapter run.
     if problem.constraint_families:
         return "partially_modeled_run"
     return "supported_feasible_run" if feasible else "supported_infeasible_run"
 
 
 def _timefold_modeling_scope() -> str:
-    """Describe Python-side Timefold integration scope."""
 
+    # Describe Python-side Timefold integration scope.
     return (
         "external Timefold subprocess adapter; Python exports round-robin data "
         "and declared constraints; exact modeling scope depends on the external executable"
@@ -399,8 +399,8 @@ def _timefold_modeling_scope() -> str:
 
 
 def _timefold_scoring_notes(problem: TimefoldProblem) -> tuple[str, ...]:
-    """Return scoring notes for Timefold results."""
 
+    # Return scoring notes for Timefold results.
     notes = [
         "Objective is produced by the external adapter and interpreted as lower-is-better.",
     ]
@@ -412,8 +412,8 @@ def _timefold_scoring_notes(problem: TimefoldProblem) -> tuple[str, ...]:
 
 
 def _truncate_text(value: str | bytes | None, limit: int = 4_000) -> str | None:
-    """Trim large stdout or stderr payloads to keep metadata readable."""
 
+    # Trim large stdout or stderr payloads to keep metadata readable.
     if value is None:
         return None
     text = value.decode("utf-8", errors="replace") if isinstance(value, bytes) else str(value)

@@ -1,0 +1,112 @@
+{
+  "stage_name": "real_pipeline_current",
+  "generated_at": "2026-04-19T20:11:38+03:00",
+  "config_path": "configs/real_pipeline_current.yaml",
+  "settings": {
+    "random_seed": 42,
+    "time_limit_seconds": 60,
+    "solver_portfolio": [
+      "random_baseline",
+      "cpsat_solver",
+      "simulated_annealing_solver",
+      "timefold"
+    ],
+    "include_solver_objectives": true,
+    "model_name": "random_forest",
+    "split_strategy": "repeated_stratified_kfold",
+    "test_size": 0.25,
+    "cross_validation_folds": 3,
+    "repeats": 3,
+    "timefold_executable_path": null,
+    "timefold_time_limit_seconds": 60,
+    "timefold_command_arguments": [],
+    "fail_on_unparseable_inventory": false
+  },
+  "inputs": {
+    "instance_folder": "data/raw/real"
+  },
+  "outputs": {
+    "inventory_csv": "data/processed/real_pipeline_current/real_dataset_inventory.csv",
+    "features_csv": "data/processed/real_pipeline_current/features.csv",
+    "benchmark_csv": "data/results/real_pipeline_current/benchmark_results.csv",
+    "selection_dataset_csv": "data/processed/real_pipeline_current/selection_dataset.csv",
+    "model_path": "data/results/real_pipeline_current/random_forest_selector.joblib",
+    "feature_importance_csv": "data/results/real_pipeline_current/feature_importance.csv",
+    "evaluation_report_csv": "data/results/real_pipeline_current/selector_evaluation.csv",
+    "evaluation_summary_csv": "data/results/real_pipeline_current/selector_evaluation_summary.csv",
+    "evaluation_summary_markdown": "data/results/real_pipeline_current/selector_evaluation_summary.md",
+    "summary_markdown": "data/results/real_pipeline_current/real_pipeline_current_summary.md",
+    "run_summary_json": "data/results/real_pipeline_current/real_pipeline_current_run_summary.json"
+  },
+  "results": {
+    "total_files": 54,
+    "parseable_files": 54,
+    "failed_files": 0,
+    "feature_rows": 54,
+    "benchmark_rows": 216,
+    "selection_rows": 54,
+    "labeled_rows": 54,
+    "feasible_runs": 162,
+    "solver_rows": {
+      "cpsat_solver": 54,
+      "random_baseline": 54,
+      "simulated_annealing_solver": 54,
+      "timefold": 54
+    },
+    "support_counts": {
+      "not_configured": 54,
+      "partially_supported": 54,
+      "simplified_baseline": 108
+    },
+    "status_counts": {
+      "FEASIBLE": 103,
+      "NOT_CONFIGURED": 54,
+      "OPTIMAL": 5,
+      "placeholder_feasible": 54
+    },
+    "training_accuracy": 1.0,
+    "training_balanced_accuracy": null,
+    "evaluation_accuracy": 1.0,
+    "evaluation_balanced_accuracy": null,
+    "regret_vs_virtual_best": 0.0,
+    "delta_vs_single_best": 0.0,
+    "improvement_vs_single_best": -0.0
+  },
+  "config_snapshot": {
+    "paths": {
+      "instance_folder": "data/raw/real",
+      "processed_dir": "data/processed/real_pipeline_current",
+      "results_dir": "data/results/real_pipeline_current"
+    },
+    "run": {
+      "random_seed": 42,
+      "time_limit_seconds": 60,
+      "fail_on_unparseable_inventory": false
+    },
+    "solvers": {
+      "settings": {
+        "timefold": {
+          "executable_path": null,
+          "time_limit_seconds": 60,
+          "command_arguments": []
+        }
+      }
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

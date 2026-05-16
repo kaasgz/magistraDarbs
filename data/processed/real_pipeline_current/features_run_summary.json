@@ -1,0 +1,59 @@
+{
+  "stage_name": "feature_table_build",
+  "generated_at": "2026-04-19T19:20:21+03:00",
+  "config_path": "configs/real_pipeline_current.yaml",
+  "settings": {
+    "random_seed": 42
+  },
+  "inputs": {
+    "instance_folder": "data/raw/real"
+  },
+  "outputs": {
+    "features_csv": "data/processed/real_pipeline_current/features.csv",
+    "run_summary": "data/processed/real_pipeline_current/features_run_summary.json"
+  },
+  "results": {
+    "num_xml_files_found": 54,
+    "num_feature_rows": 54,
+    "num_failed_files": 0,
+    "failed_files": [],
+    "input_source_kind": "real"
+  },
+  "config_snapshot": {
+    "paths": {
+      "instance_folder": "data/raw/real",
+      "processed_dir": "data/processed/real_pipeline_current",
+      "results_dir": "data/results/real_pipeline_current"
+    },
+    "run": {
+      "random_seed": 42,
+      "time_limit_seconds": 60,
+      "fail_on_unparseable_inventory": false
+    },
+    "solvers": {
+      "settings": {
+        "timefold": {
+          "executable_path": null,
+          "time_limit_seconds": 60,
+          "command_arguments": []
+        }
+      }
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

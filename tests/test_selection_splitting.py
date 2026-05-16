@@ -1,4 +1,4 @@
-"""Tests for reproducible selector split planning."""
+# Tests for reproducible selector split planning.
 
 from __future__ import annotations
 
@@ -9,8 +9,8 @@ from src.utils import SplitSettings
 
 
 def test_repeated_holdout_split_plan_is_reproducible() -> None:
-    """Repeated holdout should produce stable train/test assignments for one seed."""
 
+    # Repeated holdout should produce stable train/test assignments for one seed.
     target = pd.Series(
         [
             "solver_a",
@@ -41,8 +41,8 @@ def test_repeated_holdout_split_plan_is_reproducible() -> None:
 
 
 def test_repeated_kfold_falls_back_when_stratification_is_not_feasible() -> None:
-    """Cross-validation should stay reproducible even when classes are too small for stratification."""
 
+    # Cross-validation should stay reproducible even when classes are too small for stratification.
     target = pd.Series(
         ["solver_a", "solver_a", "solver_a", "solver_b"],
         dtype="string",

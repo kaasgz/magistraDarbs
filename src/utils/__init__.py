@@ -1,4 +1,4 @@
-"""Shared utility helpers."""
+# Shared utility helpers.
 
 from src.utils.config import get_config_path, get_config_string_list, get_config_value, load_yaml_config
 from src.utils.experiment import (

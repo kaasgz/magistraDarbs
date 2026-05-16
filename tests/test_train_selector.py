@@ -1,4 +1,4 @@
-"""Tests for selector training."""
+# Tests for selector training.
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from src.selection.train_selector import main, train_selector
 
 
 def test_train_selector_saves_model_metrics_and_feature_importance(tmp_path: Path) -> None:
-    """Training should save the selector artifacts and report validation metrics."""
 
+    # Training should save the selector artifacts and report validation metrics.
     dataset_csv = tmp_path / "selection_dataset.csv"
     model_path = tmp_path / "selector.joblib"
     importance_path = tmp_path / "feature_importance.csv"
@@ -65,8 +65,8 @@ def test_train_selector_saves_model_metrics_and_feature_importance(tmp_path: Pat
 
 
 def test_train_selector_raises_for_dataset_without_labeled_rows(tmp_path: Path) -> None:
-    """Training requires at least one non-missing best_solver label."""
 
+    # Training requires at least one non-missing best_solver label.
     dataset_csv = tmp_path / "selection_dataset.csv"
 
     pd.DataFrame(
@@ -81,8 +81,8 @@ def test_train_selector_raises_for_dataset_without_labeled_rows(tmp_path: Path) 
 
 
 def test_train_selector_cli_supports_full_mixed_dataset_outputs(tmp_path: Path) -> None:
-    """Full-dataset CLI mode should write artifacts to explicit mixed-output paths."""
 
+    # Full-dataset CLI mode should write artifacts to explicit mixed-output paths.
     dataset_csv = tmp_path / "selection_dataset_full.csv"
     model_path = tmp_path / "full_selection" / "selector.joblib"
     importance_path = tmp_path / "full_selection" / "feature_importance.csv"

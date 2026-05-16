@@ -1,4 +1,4 @@
-"""Utilities for parsing RobinX / ITC2021 XML instances."""
+# Utilities for parsing RobinX / ITC2021 XML instances.
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ from pydantic import BaseModel, Field
 
 
 class TournamentMetadata(BaseModel):
-    """High-level metadata describing a tournament instance."""
 
+    # High-level metadata describing a tournament instance.
     name: str | None = None
     source_path: str | None = None
     objective_name: str | None = None
@@ -24,30 +24,30 @@ class TournamentMetadata(BaseModel):
 
 
 class ParserNote(BaseModel):
-    """One structured note describing a parsing ambiguity or recovery event."""
 
+    # One structured note describing a parsing ambiguity or recovery event.
     severity: Literal["info", "warning"] = "info"
     code: str
     message: str
 
 
 class Team(BaseModel):
-    """A team entry extracted from the instance."""
 
+    # A team entry extracted from the instance.
     identifier: str | None = None
     name: str | None = None
 
 
 class Slot(BaseModel):
-    """A time slot or round entry extracted from the instance."""
 
+    # A time slot or round entry extracted from the instance.
     identifier: str | None = None
     name: str | None = None
 
 
 class Constraint(BaseModel):
-    """A constraint entry extracted from the instance."""
 
+    # A constraint entry extracted from the instance.
     identifier: str | None = None
     category: str | None = None
     tag: str | None = None
@@ -55,8 +55,8 @@ class Constraint(BaseModel):
 
 
 class InstanceSummary(BaseModel):
-    """Summary view of a parsed sports timetabling instance."""
 
+    # Summary view of a parsed sports timetabling instance.
     metadata: TournamentMetadata
     teams: list[Team] = Field(default_factory=list)
     slots: list[Slot] = Field(default_factory=list)
@@ -69,20 +69,20 @@ class InstanceSummary(BaseModel):
 
 
 def load_instance(xml_path: str) -> InstanceSummary:
-    """Load a RobinX / ITC2021 XML instance into a typed summary object.
 
-    The parser is intentionally defensive. It extracts a compact summary from
-    common RobinX / ITC2021-like XML layouts while tolerating missing fields,
-    optional sections, XML namespaces, and recoverable XML syntax issues.
-
-    Args:
-        xml_path: Path to the XML instance file.
-
-    Returns:
-        Parsed instance summary with metadata, teams, slots, constraints,
-        count-based aggregates, and structured parser notes for auditability.
-    """
-
+    # Load a RobinX / ITC2021 XML instance into a typed summary object.
+    #
+    # The parser is intentionally defensive. It extracts a compact summary from
+    # common RobinX / ITC2021-like XML layouts while tolerating missing fields,
+    # optional sections, XML namespaces, and recoverable XML syntax issues.
+    #
+    # Args:
+    # xml_path: Path to the XML instance file.
+    #
+    # Returns:
+    # Parsed instance summary with metadata, teams, slots, constraints,
+    # count-based aggregates, and structured parser notes for auditability.
+    #
     path = Path(xml_path)
     parser = etree.XMLParser(remove_comments=True, recover=True)
     try:
@@ -194,8 +194,8 @@ def _build_parser_notes(
     duplicate_slot_count: int,
     duplicate_constraint_count: int,
 ) -> list[ParserNote]:
-    """Build structured parser notes for recoveries and ambiguities."""
 
+    # Build structured parser notes for recoveries and ambiguities.
     notes: list[ParserNote] = []
     notes.extend(_notes_from_error_log(parser.error_log))
 
@@ -288,8 +288,8 @@ def _build_parser_notes(
 
 
 def _notes_from_error_log(error_log: etree._ListErrorLog) -> list[ParserNote]:
-    """Convert recoverable XML parser issues into structured notes."""
 
+    # Convert recoverable XML parser issues into structured notes.
     notes: list[ParserNote] = []
     seen: set[tuple[str, int, int]] = set()
     for entry in error_log:
@@ -319,8 +319,8 @@ def _missing_section_notes(
     *,
     optional: bool,
 ) -> list[ParserNote]:
-    """Create notes for missing or empty sections."""
 
+    # Create notes for missing or empty sections.
     section_present = bool(root.xpath(f".//*[local-name()='{section_name}']"))
     items_present = bool(root.xpath(f".//*[local-name()='{item_name}']"))
     if section_present or items_present:
@@ -353,8 +353,8 @@ def _count_mismatch_notes(
     code: str,
     label: str,
 ) -> list[ParserNote]:
-    """Create a note when a declared count does not match parsed items."""
 
+    # Create a note when a declared count does not match parsed items.
     declared_count = _extract_declared_count(
         root,
         section_name=section_name,
@@ -378,8 +378,8 @@ def _count_mismatch_notes(
 
 
 def _constraint_ambiguity_notes(constraints: list[Constraint]) -> list[ParserNote]:
-    """Summarize ambiguous or partially specified constraints."""
 
+    # Summarize ambiguous or partially specified constraints.
     missing_category_count = sum(1 for constraint in constraints if _read_text_field(constraint, "category") is None)
     missing_tag_count = sum(1 for constraint in constraints if _read_text_field(constraint, "tag") is None)
     missing_type_count = sum(1 for constraint in constraints if _read_text_field(constraint, "type_name") is None)
@@ -417,8 +417,8 @@ def _constraint_ambiguity_notes(constraints: list[Constraint]) -> list[ParserNot
 
 
 def _extract_instance_name(root: etree._Element, path: Path) -> str | None:
-    """Return the instance name if present, otherwise fall back to file stem."""
 
+    # Return the instance name if present, otherwise fall back to file stem.
     candidates = [
         _attribute_value(root, "name"),
         _attribute_value(root, "InstanceName"),
@@ -439,8 +439,8 @@ def _extract_instance_name(root: etree._Element, path: Path) -> str | None:
 
 
 def _has_explicit_instance_name(root: etree._Element) -> bool:
-    """Return whether the XML contains an explicit instance name field."""
 
+    # Return whether the XML contains an explicit instance name field.
     candidates = [
         _attribute_value(root, "name"),
         _attribute_value(root, "InstanceName"),
@@ -457,8 +457,8 @@ def _has_explicit_instance_name(root: etree._Element) -> bool:
 
 
 def _extract_objective_name(root: etree._Element) -> str | None:
-    """Return the objective label when present."""
 
+    # Return the objective label when present.
     return _first_non_empty(
         [
             _attribute_value(root, "objective"),
@@ -475,8 +475,8 @@ def _extract_objective_name(root: etree._Element) -> str | None:
 
 
 def _extract_objective_sense(root: etree._Element) -> str | None:
-    """Return the optimization sense when present."""
 
+    # Return the optimization sense when present.
     return _first_non_empty(
         [
             _first_text(
@@ -491,8 +491,8 @@ def _extract_objective_sense(root: etree._Element) -> str | None:
 
 
 def _extract_round_robin_mode(root: etree._Element) -> str | None:
-    """Return a normalized round-robin mode when present."""
 
+    # Return a normalized round-robin mode when present.
     explicit_mode = _first_non_empty(
         [
             _first_text(
@@ -526,8 +526,8 @@ def _extract_round_robin_mode(root: etree._Element) -> str | None:
 
 
 def _parse_teams(root: etree._Element) -> tuple[list[Team], int]:
-    """Parse team entries from likely team sections."""
 
+    # Parse team entries from likely team sections.
     team_elements = _find_elements(root, section_names=("Teams",), element_names=("Team",))
     if not team_elements:
         team_elements = _matching_descendants(root, ("Team",))
@@ -570,8 +570,8 @@ def _parse_teams(root: etree._Element) -> tuple[list[Team], int]:
 
 
 def _parse_slots(root: etree._Element) -> tuple[list[Slot], int]:
-    """Parse slot or round entries from likely slot sections."""
 
+    # Parse slot or round entries from likely slot sections.
     slot_elements = _find_elements(
         root,
         section_names=("Slots", "Rounds"),
@@ -610,8 +610,8 @@ def _parse_slots(root: etree._Element) -> tuple[list[Slot], int]:
 
 
 def _parse_constraints(root: etree._Element) -> tuple[list[Constraint], int]:
-    """Parse constraints from likely constraint sections."""
 
+    # Parse constraints from likely constraint sections.
     constraint_elements = _find_elements(
         root,
         section_names=("Constraints",),
@@ -695,8 +695,8 @@ def _extract_count(
     count_attribute: str,
     fallback_attribute: str,
 ) -> int:
-    """Extract an explicit count when present, otherwise use parsed item count."""
 
+    # Extract an explicit count when present, otherwise use parsed item count.
     explicit_count = _extract_declared_count(
         root,
         section_name=section_name,
@@ -715,8 +715,8 @@ def _extract_declared_count(
     count_attribute: str,
     fallback_attribute: str,
 ) -> int | None:
-    """Extract an explicitly declared count from common XML layouts."""
 
+    # Extract an explicitly declared count from common XML layouts.
     return _first_integer(
         [
             _attribute_value(root, count_attribute),
@@ -741,8 +741,8 @@ def _find_elements(
     section_names: tuple[str, ...],
     element_names: tuple[str, ...],
 ) -> list[etree._Element]:
-    """Find elements under the given section names while ignoring namespaces."""
 
+    # Find elements under the given section names while ignoring namespaces.
     results: list[etree._Element] = []
     seen: set[int] = set()
     for section in _matching_descendants(root, section_names):
@@ -755,8 +755,8 @@ def _find_elements(
 
 
 def _first_text(root: etree._Element, expressions: list[str]) -> str | None:
-    """Return the first non-empty text value produced by the given XPaths."""
 
+    # Return the first non-empty text value produced by the given XPaths.
     for expression in expressions:
         values = root.xpath(expression)
         text = _coerce_xpath_result(values)
@@ -766,8 +766,8 @@ def _first_text(root: etree._Element, expressions: list[str]) -> str | None:
 
 
 def _coerce_xpath_result(value: object) -> str | None:
-    """Normalize an XPath result into plain text if possible."""
 
+    # Normalize an XPath result into plain text if possible.
     if isinstance(value, list):
         for item in value:
             text = _coerce_xpath_result(item)
@@ -782,14 +782,14 @@ def _coerce_xpath_result(value: object) -> str | None:
 
 
 def _attribute_value(element: etree._Element, attribute_name: str) -> str | None:
-    """Return a normalized attribute value if present."""
 
+    # Return a normalized attribute value if present.
     return _normalize_text(element.get(attribute_name))
 
 
 def _read_text_field(source: object, field_name: str) -> str | None:
-    """Read a text-like field from an object or mapping."""
 
+    # Read a text-like field from an object or mapping.
     if source is None:
         return None
 
@@ -805,8 +805,8 @@ def _read_text_field(source: object, field_name: str) -> str | None:
 
 
 def _first_non_empty(values: Iterable[str | None]) -> str | None:
-    """Return the first non-empty string from an iterable of candidates."""
 
+    # Return the first non-empty string from an iterable of candidates.
     for value in values:
         if value:
             return value
@@ -814,8 +814,8 @@ def _first_non_empty(values: Iterable[str | None]) -> str | None:
 
 
 def _first_integer(values: Iterable[str | None]) -> int | None:
-    """Return the first value that can be parsed as an integer."""
 
+    # Return the first value that can be parsed as an integer.
     for value in values:
         if value is None:
             continue
@@ -827,8 +827,8 @@ def _first_integer(values: Iterable[str | None]) -> int | None:
 
 
 def _extract_boolean(values: Iterable[str | None]) -> bool | None:
-    """Return the first value that can be interpreted as a boolean."""
 
+    # Return the first value that can be interpreted as a boolean.
     for value in values:
         if value is None:
             continue
@@ -841,8 +841,8 @@ def _extract_boolean(values: Iterable[str | None]) -> bool | None:
 
 
 def _normalize_text(value: str | None) -> str | None:
-    """Strip whitespace and collapse empty strings to ``None``."""
 
+    # Strip whitespace and collapse empty strings to ``None``.
     if value is None:
         return None
     normalized = value.strip()
@@ -853,8 +853,8 @@ def _matching_descendants(
     root: etree._Element,
     names: tuple[str, ...],
 ) -> list[etree._Element]:
-    """Return descendant elements whose local name matches any expected name."""
 
+    # Return descendant elements whose local name matches any expected name.
     expected_names = {name.casefold() for name in names}
     matches: list[etree._Element] = []
     for element in root.iterdescendants():
@@ -864,15 +864,15 @@ def _matching_descendants(
 
 
 def _element_name_matches(element: etree._Element, expected_names: set[str]) -> bool:
-    """Return whether one XML element matches any expected local name."""
 
+    # Return whether one XML element matches any expected local name.
     local_name = _element_local_name(element)
     return local_name is not None and local_name.casefold() in expected_names
 
 
 def _element_local_name(element: etree._Element | None) -> str | None:
-    """Return one element's local XML name while ignoring namespaces."""
 
+    # Return one element's local XML name while ignoring namespaces.
     if element is None or not isinstance(element.tag, str):
         return None
     try:
@@ -882,8 +882,8 @@ def _element_local_name(element: etree._Element | None) -> str | None:
 
 
 def _find_grouped_constraint_elements(root: etree._Element) -> list[etree._Element]:
-    """Find RobinX / ITC2021-style grouped constraint elements."""
 
+    # Find RobinX / ITC2021-style grouped constraint elements.
     constraint_sections = _matching_descendants(root, ("Constraints",))
     results: list[etree._Element] = []
     seen: set[int] = set()
@@ -911,8 +911,8 @@ def _find_grouped_constraint_elements(root: etree._Element) -> list[etree._Eleme
 
 
 def _constraint_category_from_parent(parent: etree._Element | None) -> str | None:
-    """Infer a constraint category from the parent grouped-constraint section."""
 
+    # Infer a constraint category from the parent grouped-constraint section.
     parent_name = _element_local_name(parent)
     if parent_name is None:
         return None
@@ -922,8 +922,8 @@ def _constraint_category_from_parent(parent: etree._Element | None) -> str | Non
 
 
 def _constraint_tag_from_element(element: etree._Element) -> str | None:
-    """Infer a fallback constraint tag only for non-generic element names."""
 
+    # Infer a fallback constraint tag only for non-generic element names.
     local_name = _element_local_name(element)
     if local_name is None or local_name.casefold() == "constraint":
         return None

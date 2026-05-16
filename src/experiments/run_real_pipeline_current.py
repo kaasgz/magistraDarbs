@@ -1,11 +1,10 @@
-"""Run the current real-data core pipeline in an isolated artifact namespace.
-
-This orchestrator is intentionally thin: it reuses the existing parser,
-feature-table builder, full solver benchmark, selection-dataset builder,
-selector training, and selector evaluation modules. Its job is to make the
-real-data rerun reproducible and keep its outputs separate from legacy default
-artifacts.
-"""
+# Run the current real-data core pipeline in an isolated artifact namespace.
+#
+# This orchestrator is intentionally thin: it reuses the existing parser,
+# feature-table builder, full solver benchmark, selection-dataset builder,
+# selector training, and selector evaluation modules. Its job is to make the
+# real-data rerun reproducible and keep its outputs separate from legacy default
+# artifacts.
 
 from __future__ import annotations
 
@@ -56,8 +55,8 @@ _StepResult = TypeVar("_StepResult")
 
 @dataclass(frozen=True, slots=True)
 class RealPipelineSettings:
-    """Resolved settings for one current real-data pipeline rerun."""
 
+    # Resolved settings for one current real-data pipeline rerun.
     input_folder: Path
     processed_dir: Path
     results_dir: Path
@@ -79,8 +78,8 @@ class RealPipelineSettings:
 
 @dataclass(frozen=True, slots=True)
 class RealPipelineArtifacts:
-    """All artifact paths written by the current real-data pipeline."""
 
+    # All artifact paths written by the current real-data pipeline.
     inventory_csv: Path
     features_csv: Path
     features_run_summary: Path
@@ -101,16 +100,16 @@ class RealPipelineArtifacts:
 
 @dataclass(frozen=True, slots=True)
 class SummaryStageResult:
-    """Summary artifacts written at the end of the real-data pipeline."""
 
+    # Summary artifacts written at the end of the real-data pipeline.
     summary_markdown: Path
     run_summary_json: Path
 
 
 @dataclass(frozen=True, slots=True)
 class RealPipelineResult:
-    """Main artifacts and headline metrics from one real-data rerun."""
 
+    # Main artifacts and headline metrics from one real-data rerun.
     inventory_csv: Path
     features_csv: Path
     benchmark_csv: Path
@@ -129,8 +128,8 @@ class RealPipelineResult:
 
 
 class RealPipelineError(RuntimeError):
-    """A critical real-data pipeline step failed."""
 
+    # A critical real-data pipeline step failed.
     def __init__(self, step_name: str, cause: Exception) -> None:
         self.step_name = step_name
         self.cause = cause
@@ -138,8 +137,8 @@ class RealPipelineError(RuntimeError):
 
 
 def run_real_pipeline_current(config_path: str | Path = DEFAULT_CONFIG_PATH) -> RealPipelineResult:
-    """Run the current real-data pipeline using one YAML configuration file."""
 
+    # Run the current real-data pipeline using one YAML configuration file.
     settings = _resolve_settings(config_path)
     artifacts = _build_artifact_paths(settings.processed_dir, settings.results_dir)
     _validate_pipeline_settings(settings, artifacts)
@@ -297,8 +296,8 @@ def run_real_pipeline_current(config_path: str | Path = DEFAULT_CONFIG_PATH) -> 
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for the current real-data rerun."""
 
+    # Create the CLI parser for the current real-data rerun.
     parser = argparse.ArgumentParser(
         description="Run the current real-data pipeline into isolated artifacts.",
     )
@@ -311,8 +310,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the current real-data pipeline from the command line."""
 
+    # Run the current real-data pipeline from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -333,8 +332,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _resolve_settings(config_path: str | Path) -> RealPipelineSettings:
-    """Resolve pipeline settings from a YAML config."""
 
+    # Resolve pipeline settings from a YAML config.
     resolved_config_path = Path(config_path)
     config = load_yaml_config(resolved_config_path)
     split_settings = get_split_settings(config)
@@ -371,8 +370,8 @@ def _resolve_settings(config_path: str | Path) -> RealPipelineSettings:
 
 
 def _build_artifact_paths(processed_dir: Path, results_dir: Path) -> RealPipelineArtifacts:
-    """Return stable current-pipeline artifact paths."""
 
+    # Return stable current-pipeline artifact paths.
     return RealPipelineArtifacts(
         inventory_csv=processed_dir / "real_dataset_inventory.csv",
         features_csv=processed_dir / "features.csv",
@@ -397,8 +396,8 @@ def _validate_pipeline_settings(
     settings: RealPipelineSettings,
     artifacts: RealPipelineArtifacts,
 ) -> None:
-    """Validate settings before any stage writes artifacts."""
 
+    # Validate settings before any stage writes artifacts.
     if not settings.input_folder.exists():
         raise FileNotFoundError(f"Real input folder does not exist: {settings.input_folder}")
     if not settings.input_folder.is_dir():
@@ -433,8 +432,8 @@ def _validate_pipeline_settings(
 
 
 def _reject_legacy_root(path: Path, legacy_root: Path, setting_name: str) -> None:
-    """Reject legacy top-level artifact roots for this isolated rerun."""
 
+    # Reject legacy top-level artifact roots for this isolated rerun.
     if path.resolve() == legacy_root.resolve():
         raise ValueError(
             f"paths.{setting_name} must be an isolated subfolder, not {legacy_root.as_posix()}."
@@ -445,8 +444,8 @@ def _validate_artifact_namespace(
     settings: RealPipelineSettings,
     artifacts: RealPipelineArtifacts,
 ) -> None:
-    """Ensure all outputs stay under the configured isolated folders."""
 
+    # Ensure all outputs stay under the configured isolated folders.
     processed_root = settings.processed_dir.resolve()
     results_root = settings.results_dir.resolve()
     for field_name, output_path in _artifact_items(artifacts):
@@ -459,8 +458,8 @@ def _validate_artifact_namespace(
 
 
 def _processed_artifact_fields() -> set[str]:
-    """Return artifact dataclass fields that belong under processed_dir."""
 
+    # Return artifact dataclass fields that belong under processed_dir.
     return {
         "inventory_csv",
         "features_csv",
@@ -471,8 +470,8 @@ def _processed_artifact_fields() -> set[str]:
 
 
 def _is_relative_to(path: Path, root: Path) -> bool:
-    """Return whether ``path`` is inside ``root`` without requiring Python 3.9 APIs."""
 
+    # Return whether ``path`` is inside ``root`` without requiring Python 3.9 APIs.
     try:
         path.relative_to(root)
     except ValueError:
@@ -481,16 +480,16 @@ def _is_relative_to(path: Path, root: Path) -> bool:
 
 
 def _timefold_executable_exists(executable_path: Path) -> bool:
-    """Return whether the configured Timefold executable can be launched."""
 
+    # Return whether the configured Timefold executable can be launched.
     if executable_path.exists():
         return True
     return shutil.which(str(executable_path)) is not None
 
 
 def _log_output_refresh(artifacts: RealPipelineArtifacts) -> None:
-    """Log any current-pipeline artifacts that already exist before refreshing them."""
 
+    # Log any current-pipeline artifacts that already exist before refreshing them.
     existing = [path for _, path in _artifact_items(artifacts) if path.exists()]
     if not existing:
         LOGGER.info("Writing all current real-data artifacts into a fresh isolated namespace.")
@@ -502,8 +501,8 @@ def _log_output_refresh(artifacts: RealPipelineArtifacts) -> None:
 
 
 def _artifact_items(artifacts: RealPipelineArtifacts) -> list[tuple[str, Path]]:
-    """Return artifact dataclass fields as name/path pairs."""
 
+    # Return artifact dataclass fields as name/path pairs.
     return [(field.name, getattr(artifacts, field.name)) for field in fields(artifacts)]
 
 
@@ -515,8 +514,8 @@ def _execute_step(
     *,
     success_message: Callable[[_StepResult], str],
 ) -> _StepResult:
-    """Run one pipeline step with clean progress logs."""
 
+    # Run one pipeline step with clean progress logs.
     print(f"[{step_index}/{total_steps}] {step_name}...", flush=True)
     started_at = time.perf_counter()
     try:
@@ -535,8 +534,8 @@ def _execute_step(
 
 
 def _validate_inventory(inventory_csv: Path, *, fail_on_unparseable: bool) -> None:
-    """Validate inventory output and optionally fail on any unparseable files."""
 
+    # Validate inventory output and optionally fail on any unparseable files.
     counts = _inventory_counts(inventory_csv)
     if counts["total_files"] <= 0:
         raise ValueError("Inventory did not find any XML files.")
@@ -550,16 +549,16 @@ def _validate_inventory(inventory_csv: Path, *, fail_on_unparseable: bool) -> No
 
 
 def _validate_non_empty_csv(csv_path: Path, label: str) -> None:
-    """Fail early when a required stage writes an empty CSV."""
 
+    # Fail early when a required stage writes an empty CSV.
     table = pd.read_csv(csv_path)
     if table.empty:
         raise ValueError(f"The {label} is empty: {csv_path.as_posix()}")
 
 
 def _validate_timefold_status(benchmark_csv: Path, *, timefold_configured: bool) -> None:
-    """Verify the Timefold benchmark rows communicate configured support explicitly."""
 
+    # Verify the Timefold benchmark rows communicate configured support explicitly.
     table = pd.read_csv(benchmark_csv)
     if table.empty:
         raise ValueError("Benchmark results are empty.")
@@ -586,8 +585,8 @@ def _validate_timefold_status(benchmark_csv: Path, *, timefold_configured: bool)
 
 
 def _validate_labeled_selection_dataset(selection_dataset_csv: Path) -> None:
-    """Ensure the selector has enough labeled rows to run validation."""
 
+    # Ensure the selector has enough labeled rows to run validation.
     dataset = pd.read_csv(selection_dataset_csv)
     if dataset.empty:
         raise ValueError("Selection dataset is empty.")
@@ -607,8 +606,8 @@ def _write_pipeline_summary(
     training_result: SelectorTrainingResult,
     evaluation_result: SelectorEvaluationResult,
 ) -> SummaryStageResult:
-    """Write Markdown and JSON summaries for the complete real-data rerun."""
 
+    # Write Markdown and JSON summaries for the complete real-data rerun.
     inventory = pd.read_csv(artifacts.inventory_csv)
     features = pd.read_csv(artifacts.features_csv)
     benchmarks = pd.read_csv(artifacts.benchmark_csv)
@@ -723,8 +722,8 @@ def _render_summary_markdown(
     status_counts: dict[str, int],
     solver_rows: dict[str, int],
 ) -> str:
-    """Render a concise thesis-oriented Markdown run summary."""
 
+    # Render a concise thesis-oriented Markdown run summary.
     timefold_path = (
         settings.timefold_executable_path.as_posix()
         if settings.timefold_executable_path is not None
@@ -803,8 +802,8 @@ def _render_summary_markdown(
 
 
 def _training_success_message(result: SelectorTrainingResult) -> str:
-    """Format one concise training-stage success message."""
 
+    # Format one concise training-stage success message.
     return (
         f"Model saved to {result.model_path.as_posix()}\n"
         f"Feature importance: {_path_or_not_written(result.feature_importance_path)}\n"
@@ -814,8 +813,8 @@ def _training_success_message(result: SelectorTrainingResult) -> str:
 
 
 def _evaluation_success_message(result: SelectorEvaluationResult) -> str:
-    """Format one concise evaluation-stage success message."""
 
+    # Format one concise evaluation-stage success message.
     return (
         f"Evaluation report: {result.report_path.as_posix()}\n"
         f"Evaluation summary CSV: {result.summary_csv_path.as_posix()}\n"
@@ -827,8 +826,8 @@ def _evaluation_success_message(result: SelectorEvaluationResult) -> str:
 
 
 def _print_final_summary(result: RealPipelineResult) -> None:
-    """Print a short completion summary after a successful run."""
 
+    # Print a short completion summary after a successful run.
     print("Current real-data pipeline completed successfully.", flush=True)
     print(f"Inventory: {result.inventory_csv.as_posix()}", flush=True)
     print(f"Features: {result.features_csv.as_posix()}", flush=True)
@@ -839,8 +838,8 @@ def _print_final_summary(result: RealPipelineResult) -> None:
 
 
 def _inventory_counts(inventory_csv: Path) -> dict[str, int]:
-    """Return inventory parseability counts."""
 
+    # Return inventory parseability counts.
     inventory = pd.read_csv(inventory_csv)
     total_files = int(len(inventory.index))
     parseable_files = (
@@ -854,8 +853,8 @@ def _inventory_counts(inventory_csv: Path) -> dict[str, int]:
 
 
 def _value_counts(frame: pd.DataFrame, column: str) -> dict[str, int]:
-    """Return stable value counts for an optional dataframe column."""
 
+    # Return stable value counts for an optional dataframe column.
     if column not in frame.columns:
         return {}
     counts = frame[column].fillna("missing").astype(str).value_counts().sort_index()
@@ -863,8 +862,8 @@ def _value_counts(frame: pd.DataFrame, column: str) -> dict[str, int]:
 
 
 def _read_optional_csv(path: Path | None) -> pd.DataFrame | None:
-    """Read an optional CSV file for reporting."""
 
+    # Read an optional CSV file for reporting.
     if path is None or not path.exists():
         return None
     try:
@@ -874,8 +873,8 @@ def _read_optional_csv(path: Path | None) -> pd.DataFrame | None:
 
 
 def _render_count_table(counts: dict[str, int], label: str) -> list[str]:
-    """Render one simple Markdown table from value counts."""
 
+    # Render one simple Markdown table from value counts.
     lines = [f"| {label} | count |", "| --- | ---: |"]
     if not counts:
         lines.append("| none | 0 |")
@@ -886,8 +885,8 @@ def _render_count_table(counts: dict[str, int], label: str) -> list[str]:
 
 
 def _render_feature_importance_table(feature_importance: pd.DataFrame | None) -> list[str]:
-    """Render the top feature-importance rows for the summary report."""
 
+    # Render the top feature-importance rows for the summary report.
     if feature_importance is None or feature_importance.empty:
         return ["Feature importance was not available for this model."]
 
@@ -911,8 +910,8 @@ def _render_feature_importance_table(feature_importance: pd.DataFrame | None) ->
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style boolean values into booleans."""
 
+    # Convert CSV-style boolean values into booleans.
     if isinstance(value, bool):
         return value
     if pd.isna(value):
@@ -921,24 +920,24 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _format_optional_float(value: float | None) -> str:
-    """Format optional float metrics consistently."""
 
+    # Format optional float metrics consistently.
     if value is None or pd.isna(value):
         return "n/a"
     return f"{value:.4f}"
 
 
 def _path_or_not_written(path: Path | None) -> str:
-    """Return a readable path value for optional artifacts."""
 
+    # Return a readable path value for optional artifacts.
     if path is None:
         return "not written"
     return path.as_posix()
 
 
 def _optional_path(value: object) -> Path | None:
-    """Convert a nullable path-like config value."""
 
+    # Convert a nullable path-like config value.
     if value is None:
         return None
     text = str(value).strip()
@@ -948,8 +947,8 @@ def _optional_path(value: object) -> Path | None:
 
 
 def _optional_int(value: object) -> int | None:
-    """Convert a nullable integer config value."""
 
+    # Convert a nullable integer config value.
     if value is None:
         return None
     if isinstance(value, bool):
@@ -958,8 +957,8 @@ def _optional_int(value: object) -> int | None:
 
 
 def _optional_string_tuple(value: object) -> tuple[str, ...]:
-    """Convert nullable command arguments into a tuple of strings."""
 
+    # Convert nullable command arguments into a tuple of strings.
     if value is None:
         return ()
     if not isinstance(value, list):

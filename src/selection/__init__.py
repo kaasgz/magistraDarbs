@@ -1,4 +1,4 @@
-"""Algorithm selection components with lazy exports."""
+# Algorithm selection components with lazy exports.
 
 from __future__ import annotations
 
@@ -61,8 +61,8 @@ _LAZY_EXPORTS = {
 
 
 def __getattr__(name: str) -> Any:
-    """Load selection exports lazily to keep lightweight imports cheap."""
 
+    # Load selection exports lazily to keep lightweight imports cheap.
     if name not in _LAZY_EXPORTS:
         raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 

@@ -1,4 +1,4 @@
-"""Tests for benchmark execution across instances and solvers."""
+# Tests for benchmark execution across instances and solvers.
 
 from __future__ import annotations
 
@@ -21,8 +21,8 @@ FIXED_TIMESTAMP = "2026-04-04T12:00:00+00:00"
 
 
 def test_run_benchmarks_writes_traceable_results_and_summary(tmp_path: Path) -> None:
-    """The benchmark runner should write one traceable row per instance-solver pair."""
 
+    # The benchmark runner should write one traceable row per instance-solver pair.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "first.xml").write_text(
@@ -106,8 +106,8 @@ def test_run_benchmarks_writes_traceable_results_and_summary(tmp_path: Path) -> 
 
 
 def test_run_benchmarks_continues_when_one_solver_fails(tmp_path: Path, monkeypatch, caplog) -> None:
-    """A failing solver run should be recorded and should not stop other runs."""
 
+    # A failing solver run should be recorded and should not stop other runs.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "sample.xml").write_text(
@@ -163,8 +163,8 @@ def test_run_benchmarks_continues_when_one_solver_fails(tmp_path: Path, monkeypa
 
 
 def test_run_benchmarks_rejects_empty_solver_list(tmp_path: Path) -> None:
-    """At least one solver must be selected for a benchmark run."""
 
+    # At least one solver must be selected for a benchmark run.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
 
@@ -176,8 +176,8 @@ def test_run_benchmarks_rejects_empty_solver_list(tmp_path: Path) -> None:
 
 
 def test_run_benchmarks_smoke_test_on_tiny_synthetic_batch(tmp_path: Path) -> None:
-    """A tiny synthetic batch should run end-to-end and produce a readable report."""
 
+    # A tiny synthetic batch should run end-to-end and produce a readable report.
     input_dir = tmp_path / "demo_instances"
     manifest_path = tmp_path / "demo_manifest.json"
     output_csv = tmp_path / "benchmark_results.csv"
@@ -212,8 +212,8 @@ def test_run_benchmarks_smoke_test_on_tiny_synthetic_batch(tmp_path: Path) -> No
 
 
 def test_run_benchmarks_rejects_mixed_real_and_synthetic_subtrees(tmp_path: Path) -> None:
-    """A mixed raw folder should be rejected instead of benchmarked silently."""
 
+    # A mixed raw folder should be rejected instead of benchmarked silently.
     raw_dir = tmp_path / "data" / "raw"
     real_dir = raw_dir / "real"
     synthetic_dir = raw_dir / "synthetic"

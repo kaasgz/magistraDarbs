@@ -1,4 +1,4 @@
-"""Print a concise readable summary from one benchmark CSV artifact."""
+# Print a concise readable summary from one benchmark CSV artifact.
 
 from __future__ import annotations
 
@@ -13,8 +13,8 @@ from src.experiments.metrics import average_objective_by_solver, average_runtime
 
 
 def benchmark_report(benchmark_csv: str | Path) -> str:
-    """Build a short human-readable report for one benchmark CSV."""
 
+    # Build a short human-readable report for one benchmark CSV.
     path = Path(benchmark_csv)
     frame = pd.read_csv(path)
     validation_issues = validate_benchmark_results(frame)
@@ -85,16 +85,16 @@ def benchmark_report(benchmark_csv: str | Path) -> str:
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for the benchmark report helper."""
 
+    # Create the command-line parser for the benchmark report helper.
     parser = argparse.ArgumentParser(description="Print a short report for one benchmark CSV.")
     parser.add_argument("benchmark_csv", help="Path to the benchmark results CSV.")
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the benchmark report helper from the command line."""
 
+    # Run the benchmark report helper from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
     print(benchmark_report(args.benchmark_csv))
@@ -102,8 +102,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style feasibility values into booleans."""
 
+    # Convert CSV-style feasibility values into booleans.
     if isinstance(value, bool):
         return value
     if pd.isna(value):
@@ -112,8 +112,8 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _format_float(value: object) -> str:
-    """Format one possibly missing float value for display."""
 
+    # Format one possibly missing float value for display.
     try:
         numeric = float(value)
     except (TypeError, ValueError):

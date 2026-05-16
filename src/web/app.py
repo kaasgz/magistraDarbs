@@ -1,4 +1,4 @@
-"""Run a small local web dashboard for the thesis project."""
+# Run a small local web dashboard for the thesis project.
 
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ STATIC_DIR = Path(__file__).with_name("static")
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for the local web app."""
 
+    # Create the command-line parser for the local web app.
     parser = argparse.ArgumentParser(
         description="Palaist lokālo maģistra darba rezultātu pārskata interfeisu.",
     )
@@ -62,8 +62,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Start the local dashboard server."""
 
+    # Start the local dashboard server.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -103,15 +103,15 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 class DashboardRequestHandler(BaseHTTPRequestHandler):
-    """HTTP request handler serving the dashboard and JSON API."""
 
+    # HTTP request handler serving the dashboard and JSON API.
     def __init__(self, *args: object, service: DashboardService, **kwargs: object) -> None:
         self.service = service
         super().__init__(*args, **kwargs)
 
     def do_GET(self) -> None:  # noqa: N802
-        """Serve static files and dashboard state."""
 
+        # Serve static files and dashboard state.
         parsed = urlparse(self.path)
         if parsed.path == "/":
             self._serve_static("index.html")
@@ -155,8 +155,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         )
 
     def do_POST(self) -> None:  # noqa: N802
-        """Handle dashboard actions."""
 
+        # Handle dashboard actions.
         parsed = urlparse(self.path)
         payload = self._read_json_body()
         try:
@@ -199,13 +199,13 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._send_json(HTTPStatus.OK, state)
 
     def log_message(self, format: str, *args: object) -> None:
-        """Route HTTP logs through the project logger."""
 
+        # Route HTTP logs through the project logger.
         LOGGER.info("%s - %s", self.address_string(), format % args)
 
     def _serve_static(self, file_name: str) -> None:
-        """Serve one static dashboard asset."""
 
+        # Serve one static dashboard asset.
         file_path = STATIC_DIR / file_name
         if not file_path.exists():
             self._send_json(HTTPStatus.NOT_FOUND, {"error": f"Missing static asset: {file_name}"})
@@ -213,8 +213,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self._serve_file(file_path)
 
     def _serve_file(self, file_path: Path) -> None:
-        """Serve one already-resolved local file."""
 
+        # Serve one already-resolved local file.
         content_type = mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
         payload = file_path.read_bytes()
         self.send_response(HTTPStatus.OK)
@@ -227,8 +227,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(payload)
 
     def _read_json_body(self) -> dict[str, object]:
-        """Read a JSON request body, returning an empty object when missing."""
 
+        # Read a JSON request body, returning an empty object when missing.
         content_length = self.headers.get("Content-Length")
         if not content_length:
             return {}
@@ -243,8 +243,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
         return decoded if isinstance(decoded, dict) else {}
 
     def _send_json(self, status: HTTPStatus, payload: dict[str, object]) -> None:
-        """Send one JSON response."""
 
+        # Send one JSON response.
         encoded = json.dumps(payload).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -254,8 +254,8 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
 
 
 def _safe_int(value: object, default: int) -> int:
-    """Convert a scalar value to int, falling back to a default."""
 
+    # Convert a scalar value to int, falling back to a default.
     try:
         parsed = int(value)
     except (TypeError, ValueError):
@@ -264,8 +264,8 @@ def _safe_int(value: object, default: int) -> int:
 
 
 def _safe_string(value: object, default: str) -> str:
-    """Convert a scalar value to a non-empty string, falling back to a default."""
 
+    # Convert a scalar value to a non-empty string, falling back to a default.
     text = str(value or "").strip()
     return text or default
 

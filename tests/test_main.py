@@ -1,4 +1,4 @@
-"""Tests for the command-line entry point."""
+# Tests for the command-line entry point.
 
 from pathlib import Path
 
@@ -10,8 +10,8 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 def test_format_summary_contains_requested_fields() -> None:
-    """The formatted summary should include the key thesis-facing fields."""
 
+    # The formatted summary should include the key thesis-facing fields.
     summary = load_instance(str(FIXTURES_DIR / "sample_robinx.xml"))
 
     output = format_summary(summary)
@@ -24,8 +24,8 @@ def test_format_summary_contains_requested_fields() -> None:
 
 
 def test_main_prints_summary_for_valid_instance(capsys) -> None:
-    """The CLI should print a readable summary for a valid instance."""
 
+    # The CLI should print a readable summary for a valid instance.
     exit_code = main([str(FIXTURES_DIR / "sample_robinx.xml")])
     captured = capsys.readouterr()
 

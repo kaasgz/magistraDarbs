@@ -1,4 +1,4 @@
-"""Generate reproducible RobinX-like synthetic instances for local experiments."""
+# Generate reproducible RobinX-like synthetic instances for local experiments.
 
 from __future__ import annotations
 
@@ -54,8 +54,8 @@ _REGIONS: tuple[str, ...] = ("North", "South", "East", "West", "Central")
 
 @dataclass(frozen=True, slots=True)
 class DifficultyPreset:
-    """Parameter ranges used to create one family of synthetic instances."""
 
+    # Parameter ranges used to create one family of synthetic instances.
     difficulty_level: DifficultyLevel
     team_range: tuple[int, int]
     extra_slot_range: tuple[int, int]
@@ -102,8 +102,8 @@ DIFFICULTY_PRESETS: dict[DifficultyLevel, DifficultyPreset] = {
 
 @dataclass(frozen=True, slots=True)
 class SyntheticTeam:
-    """One synthetic team participating in the generated instance."""
 
+    # One synthetic team participating in the generated instance.
     identifier: str
     name: str
     region: str
@@ -114,8 +114,8 @@ class SyntheticTeam:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticSlot:
-    """One generated calendar slot."""
 
+    # One generated calendar slot.
     identifier: str
     name: str
     sequence: int
@@ -125,8 +125,8 @@ class SyntheticSlot:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticMeeting:
-    """One scheduled round-robin meeting description."""
 
+    # One scheduled round-robin meeting description.
     identifier: str
     home_team: str
     away_team: str
@@ -137,8 +137,8 @@ class SyntheticMeeting:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticConstraint:
-    """One structured synthetic constraint."""
 
+    # One structured synthetic constraint.
     identifier: str
     category: str
     tag: str
@@ -152,8 +152,8 @@ class SyntheticConstraint:
 
 @dataclass(frozen=True, slots=True)
 class GenerationContext:
-    """All structural ingredients used to build one XML instance."""
 
+    # All structural ingredients used to build one XML instance.
     spec: "DemoInstanceSpec"
     teams: tuple[SyntheticTeam, ...]
     slots: tuple[SyntheticSlot, ...]
@@ -163,8 +163,8 @@ class GenerationContext:
 
 @dataclass(slots=True)
 class DemoInstanceSpec:
-    """Specification and metadata for one generated synthetic instance."""
 
+    # Specification and metadata for one generated synthetic instance.
     instance_name: str
     file_name: str
     profile_name: str
@@ -185,8 +185,8 @@ class DemoInstanceSpec:
 
 @dataclass(slots=True)
 class DemoGenerationResult:
-    """Summary of one synthetic generation run."""
 
+    # Summary of one synthetic generation run.
     output_folder: Path
     manifest_path: Path
     instance_count: int
@@ -211,8 +211,8 @@ def generate_demo_instances(
     penalty_weight_range: tuple[int, int] | None = None,
     generation_timestamp: str | None = None,
 ) -> DemoGenerationResult:
-    """Generate reproducible, structurally plausible RobinX-like XML instances."""
 
+    # Generate reproducible, structurally plausible RobinX-like XML instances.
     if instance_count <= 0:
         raise ValueError("instance_count must be positive.")
 
@@ -304,8 +304,8 @@ def _build_instance_spec(
     constraint_density: float | None,
     penalty_weight_range: tuple[int, int] | None,
 ) -> DemoInstanceSpec:
-    """Build one deterministic instance specification."""
 
+    # Build one deterministic instance specification.
     resolved_team_count = team_count or rng.randint(*preset.team_range)
     resolved_mode = round_robin_mode or rng.choice(preset.round_robin_modes)
     minimum_slot_count = _minimum_required_slots(resolved_team_count, resolved_mode)
@@ -359,8 +359,8 @@ def _build_instance_spec(
 
 
 def _build_generation_context(spec: DemoInstanceSpec, rng: random.Random) -> GenerationContext:
-    """Build the structural data used to serialize one synthetic instance."""
 
+    # Build the structural data used to serialize one synthetic instance.
     teams = _build_teams(spec.team_count, spec.difficulty_level, spec.constraint_density, rng)
     rounds = _generate_round_robin_rounds([team.identifier for team in teams], spec.round_robin_mode)
     round_slot_indices = _distribute_round_slots(len(rounds), spec.slot_count)
@@ -377,8 +377,8 @@ def _build_generation_context(spec: DemoInstanceSpec, rng: random.Random) -> Gen
 
 
 def _build_instance_tree(context: GenerationContext) -> ET.ElementTree:
-    """Serialize one synthetic generation context into RobinX-like XML."""
 
+    # Serialize one synthetic generation context into RobinX-like XML.
     spec = context.spec
     root = ET.Element(
         "Instance",
@@ -522,8 +522,8 @@ def _build_teams(
     constraint_density: float,
     rng: random.Random,
 ) -> tuple[SyntheticTeam, ...]:
-    """Build teams with regions and venue assignments."""
 
+    # Build teams with regions and venue assignments.
     markets = list(_TEAM_MARKETS)
     suffixes = list(_TEAM_SUFFIXES)
     rng.shuffle(markets)
@@ -569,8 +569,8 @@ def _build_slots(
     slot_count: int,
     round_slot_indices: list[int],
 ) -> tuple[SyntheticSlot, ...]:
-    """Build calendar slots and mark which ones host round-robin rounds."""
 
+    # Build calendar slots and mark which ones host round-robin rounds.
     match_slot_indices = set(round_slot_indices)
     match_counter = 0
     buffer_counter = 0
@@ -602,8 +602,8 @@ def _build_meetings(
     round_slot_indices: list[int],
     round_robin_mode: RoundRobinMode,
 ) -> tuple[SyntheticMeeting, ...]:
-    """Build meeting records from generated round-robin rounds."""
 
+    # Build meeting records from generated round-robin rounds.
     meetings: list[SyntheticMeeting] = []
     slot_lookup = {index: slots[index].identifier for index in round_slot_indices}
     base_round_count = len(rounds) if round_robin_mode == "single" else len(rounds) // 2
@@ -635,8 +635,8 @@ def _build_constraints(
     meetings: tuple[SyntheticMeeting, ...],
     rng: random.Random,
 ) -> tuple[SyntheticConstraint, ...]:
-    """Build plausible hard and soft constraint sets."""
 
+    # Build plausible hard and soft constraint sets.
     constraints: list[SyntheticConstraint] = []
     next_identifier = 1
     for index in range(spec.hard_constraint_count):
@@ -661,8 +661,8 @@ def _build_capacity_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Limit home hosting load over a slot window."""
 
+    # Limit home hosting load over a slot window.
     selected_teams = _pick_team_subset(
         [team.identifier for team in teams],
         spec.constraint_density,
@@ -706,8 +706,8 @@ def _build_availability_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Represent team or venue unavailability across a small slot set."""
 
+    # Represent team or venue unavailability across a small slot set.
     selected_teams = _pick_team_subset(
         [team.identifier for team in teams],
         spec.constraint_density,
@@ -747,8 +747,8 @@ def _build_shared_venue_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Avoid simultaneous home matches for teams sharing a venue."""
 
+    # Avoid simultaneous home matches for teams sharing a venue.
     selected_teams = _shared_venue_teams(teams) or _pick_team_subset(
         [team.identifier for team in teams],
         spec.constraint_density,
@@ -788,8 +788,8 @@ def _build_separation_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Require a minimum separation between repeated meetings."""
 
+    # Require a minimum separation between repeated meetings.
     selected_pair = _pick_meeting_pair(meetings, rng)
     min_gap = max(1, min(4, round(spec.constraint_density * 4)))
     return SyntheticConstraint(
@@ -816,8 +816,8 @@ def _build_break_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Cap home/away streak lengths."""
 
+    # Cap home/away streak lengths.
     selected_teams = _pick_team_subset(
         [team.identifier for team in teams],
         spec.constraint_density,
@@ -850,8 +850,8 @@ def _build_fairness_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Promote balanced home-away exposure in the early season."""
 
+    # Promote balanced home-away exposure in the early season.
     match_slot_ids = [slot.identifier for slot in slots if slot.slot_kind == "match"]
     early_window = tuple(match_slot_ids[: max(2, len(match_slot_ids) // 2)]) if match_slot_ids else ()
     return SyntheticConstraint(
@@ -879,8 +879,8 @@ def _build_travel_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Penalize concentrated away travel for the same clubs."""
 
+    # Penalize concentrated away travel for the same clubs.
     region = rng.choice(_REGIONS)
     region_team_ids = tuple(team.identifier for team in teams if team.region == region)
     if len(region_team_ids) < 2:
@@ -915,8 +915,8 @@ def _build_derby_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Shape derby placement toward later showcase slots."""
 
+    # Shape derby placement toward later showcase slots.
     derby_pair = _pick_regional_pair(teams, rng)
     late_slots = _pick_late_slot_window(
         [slot.identifier for slot in slots if slot.slot_kind == "match"],
@@ -947,8 +947,8 @@ def _build_rest_spacing_constraint(
     rng: random.Random,
     is_hard: bool,
 ) -> SyntheticConstraint:
-    """Prefer extra rest between demanding fixtures."""
 
+    # Prefer extra rest between demanding fixtures.
     selected_teams = _pick_team_subset(
         [team.identifier for team in teams],
         spec.constraint_density,
@@ -1002,8 +1002,8 @@ def _generate_round_robin_rounds(
     team_ids: list[str],
     round_robin_mode: RoundRobinMode,
 ) -> list[list[tuple[str, str]]]:
-    """Generate round-robin pairings using a simple circle-method variant."""
 
+    # Generate round-robin pairings using a simple circle-method variant.
     rotation: list[str | None] = list(team_ids)
     if len(rotation) % 2 == 1:
         rotation.append(None)
@@ -1039,8 +1039,8 @@ def _generate_round_robin_rounds(
 
 
 def _distribute_round_slots(required_rounds: int, slot_count: int) -> list[int]:
-    """Spread required rounds across the available slot horizon."""
 
+    # Spread required rounds across the available slot horizon.
     extra_slots = slot_count - required_rounds
     gaps_after_round = [0] * required_rounds
     for extra_index in range(extra_slots):
@@ -1056,8 +1056,8 @@ def _distribute_round_slots(required_rounds: int, slot_count: int) -> list[int]:
 
 
 def _minimum_required_slots(team_count: int, round_robin_mode: RoundRobinMode = "single") -> int:
-    """Return the minimum slot count for the requested round-robin structure."""
 
+    # Return the minimum slot count for the requested round-robin structure.
     if team_count <= 1:
         return 0
 
@@ -1068,8 +1068,8 @@ def _minimum_required_slots(team_count: int, round_robin_mode: RoundRobinMode = 
 
 
 def _meeting_count(team_count: int, round_robin_mode: RoundRobinMode) -> int:
-    """Return the number of meetings implied by the round-robin mode."""
 
+    # Return the number of meetings implied by the round-robin mode.
     pair_count = team_count * (team_count - 1) // 2
     return pair_count if round_robin_mode == "single" else pair_count * 2
 
@@ -1078,16 +1078,16 @@ def _resolve_difficulty_for_index(
     index: int,
     requested_difficulty: DifficultyLevel | None,
 ) -> DifficultyLevel:
-    """Resolve the preset used for a given generated instance."""
 
+    # Resolve the preset used for a given generated instance.
     if requested_difficulty is not None:
         return requested_difficulty
     return _DEFAULT_DIFFICULTY_SEQUENCE[index % len(_DEFAULT_DIFFICULTY_SEQUENCE)]
 
 
 def _normalize_difficulty_level(value: str) -> DifficultyLevel:
-    """Normalize a difficulty label."""
 
+    # Normalize a difficulty label.
     normalized = value.strip().casefold()
     if normalized not in DIFFICULTY_PRESETS:
         raise ValueError("difficulty_level must be one of: easy, medium, hard.")
@@ -1095,8 +1095,8 @@ def _normalize_difficulty_level(value: str) -> DifficultyLevel:
 
 
 def _normalize_round_robin_mode(value: str) -> RoundRobinMode:
-    """Normalize the requested round-robin mode."""
 
+    # Normalize the requested round-robin mode.
     normalized = value.strip().casefold()
     if normalized not in {"single", "double"}:
         raise ValueError("round_robin_mode must be either 'single' or 'double'.")
@@ -1104,8 +1104,8 @@ def _normalize_round_robin_mode(value: str) -> RoundRobinMode:
 
 
 def _validate_constraint_density(value: float | None) -> float | None:
-    """Validate a constraint density parameter."""
 
+    # Validate a constraint density parameter.
     if value is None:
         return None
     if not 0.0 < value <= 1.0:
@@ -1116,8 +1116,8 @@ def _validate_constraint_density(value: float | None) -> float | None:
 def _validate_penalty_weight_range(
     value: tuple[int, int] | None,
 ) -> tuple[int, int] | None:
-    """Validate a penalty weight range override."""
 
+    # Validate a penalty weight range override.
     if value is None:
         return None
     lower, upper = value
@@ -1127,8 +1127,8 @@ def _validate_penalty_weight_range(
 
 
 def _resolve_generation_timestamp(generation_timestamp: str | None) -> str:
-    """Resolve one stable ISO timestamp for the generation run."""
 
+    # Resolve one stable ISO timestamp for the generation run.
     if generation_timestamp is None:
         return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -1146,8 +1146,8 @@ def _pick_team_subset(
     min_size: int,
     max_size: int,
 ) -> tuple[str, ...]:
-    """Pick a reproducible team subset with density-driven scope size."""
 
+    # Pick a reproducible team subset with density-driven scope size.
     target_size = max(min_size, round(len(team_ids) * density))
     target_size = min(max_size, max(min_size, target_size))
     shuffled = list(team_ids)
@@ -1164,8 +1164,8 @@ def _pick_slot_window(
     min_size: int,
     max_size: int,
 ) -> tuple[str, ...]:
-    """Pick a contiguous slot window with density-driven width."""
 
+    # Pick a contiguous slot window with density-driven width.
     if not slot_ids:
         return ()
 
@@ -1180,8 +1180,8 @@ def _pick_slot_window(
 
 
 def _pick_late_slot_window(slot_ids: list[str], density: float) -> tuple[str, ...]:
-    """Pick a late-season slot window for showcase constraints."""
 
+    # Pick a late-season slot window for showcase constraints.
     if not slot_ids:
         return ()
 
@@ -1194,8 +1194,8 @@ def _pick_meeting_pair(
     meetings: tuple[SyntheticMeeting, ...],
     rng: random.Random,
 ) -> tuple[str, str]:
-    """Pick one unordered team pair that appears in the meeting list."""
 
+    # Pick one unordered team pair that appears in the meeting list.
     unique_pairs = sorted(
         {
             tuple(sorted((meeting.home_team, meeting.away_team), key=_numeric_identifier_key))
@@ -1210,8 +1210,8 @@ def _pick_regional_pair(
     teams: tuple[SyntheticTeam, ...],
     rng: random.Random,
 ) -> tuple[str, str]:
-    """Pick a derby-style pair, preferring teams from the same region."""
 
+    # Pick a derby-style pair, preferring teams from the same region.
     regional_pairs: list[tuple[str, str]] = []
     for index, first_team in enumerate(teams):
         for second_team in teams[index + 1 :]:
@@ -1229,8 +1229,8 @@ def _shared_venue_pair_count(
     difficulty_level: DifficultyLevel,
     density: float,
 ) -> int:
-    """Estimate how many shared venue pairs should exist."""
 
+    # Estimate how many shared venue pairs should exist.
     if team_count < 6:
         return 0
     baseline = 0 if difficulty_level == "easy" else 1
@@ -1238,8 +1238,8 @@ def _shared_venue_pair_count(
 
 
 def _shared_venue_teams(teams: tuple[SyntheticTeam, ...]) -> tuple[str, ...]:
-    """Return one pair of teams that share a venue, when available."""
 
+    # Return one pair of teams that share a venue, when available.
     by_venue: dict[str, list[str]] = {}
     for team in teams:
         by_venue.setdefault(team.venue_id, []).append(team.identifier)
@@ -1253,8 +1253,8 @@ def _shared_venue_teams(teams: tuple[SyntheticTeam, ...]) -> tuple[str, ...]:
 
 
 def _unique_venues(teams: tuple[SyntheticTeam, ...]) -> tuple[tuple[str, str, str], ...]:
-    """Return unique venue rows for XML serialization."""
 
+    # Return unique venue rows for XML serialization.
     seen: set[str] = set()
     venues: list[tuple[str, str, str]] = []
     for team in teams:
@@ -1270,8 +1270,8 @@ def _constraint_weight(
     rng: random.Random,
     is_hard: bool,
 ) -> int:
-    """Return a deterministic constraint weight."""
 
+    # Return a deterministic constraint weight.
     if is_hard:
         return 0
     lower, upper = penalty_weight_range
@@ -1279,8 +1279,8 @@ def _constraint_weight(
 
 
 def _slot_phase(index: int, slot_count: int) -> str:
-    """Assign a coarse calendar phase to each slot."""
 
+    # Assign a coarse calendar phase to each slot.
     ratio = (index + 1) / max(1, slot_count)
     if ratio <= 0.34:
         return "opening"
@@ -1290,14 +1290,14 @@ def _slot_phase(index: int, slot_count: int) -> str:
 
 
 def _numeric_identifier_key(value: str) -> int:
-    """Sort identifiers such as ``T10`` and ``S2`` numerically."""
 
+    # Sort identifiers such as ``T10`` and ``S2`` numerically.
     digits = "".join(character for character in value if character.isdigit())
     return int(digits) if digits else 0
 
 
 def _clear_existing_demo_instances(output_folder: Path) -> None:
-    """Remove previously generated XML files from the target folder."""
 
+    # Remove previously generated XML files from the target folder.
     for xml_file in output_folder.glob("*.xml"):
         xml_file.unlink()

@@ -1,11 +1,10 @@
-"""Build the refreshed mixed synthetic/real algorithm-selection dataset.
-
-This module is intentionally separate from the older ``--full`` mode in
-``build_selection_dataset.py`` because the refreshed thesis workflow uses the
-current real-data rerun artifacts and the larger synthetic-study artifacts.
-The builder keeps the same selection-dataset style: one feature row becomes one
-selection row, lower objectives are better, and ties are deterministic.
-"""
+# Build the refreshed mixed synthetic/real algorithm-selection dataset.
+#
+# This module is intentionally separate from the older ``--full`` mode in
+# ``build_selection_dataset.py`` because the refreshed thesis workflow uses the
+# current real-data rerun artifacts and the larger synthetic-study artifacts.
+# The builder keeps the same selection-dataset style: one feature row becomes one
+# selection row, lower objectives are better, and ties are deterministic.
 
 from __future__ import annotations
 
@@ -58,8 +57,8 @@ PARTIAL_SUPPORT_STATUSES = {"partially_supported", "simplified_baseline"}
 
 @dataclass(frozen=True, slots=True)
 class FullSelectionDatasetSources:
-    """Input artifacts for one refreshed mixed selection-dataset build."""
 
+    # Input artifacts for one refreshed mixed selection-dataset build.
     synthetic_features_csv: Path
     synthetic_benchmark_csv: Path
     real_features_csv: Path
@@ -68,8 +67,8 @@ class FullSelectionDatasetSources:
 
 @dataclass(frozen=True, slots=True)
 class SourceBuildResult:
-    """Intermediate dataset pieces for one source."""
 
+    # Intermediate dataset pieces for one source.
     dataset_type: str
     dataset: pd.DataFrame
     objective_columns: tuple[str, ...]
@@ -86,8 +85,8 @@ def build_selection_dataset_full(
     include_solver_objectives: bool = True,
     run_summary_path: str | Path | None = None,
 ) -> Path:
-    """Build ``selection_dataset_full.csv`` from refreshed real and synthetic outputs."""
 
+    # Build ``selection_dataset_full.csv`` from refreshed real and synthetic outputs.
     sources = FullSelectionDatasetSources(
         synthetic_features_csv=Path(synthetic_features_csv),
         synthetic_benchmark_csv=Path(synthetic_benchmark_csv),
@@ -192,8 +191,8 @@ def build_selection_dataset_full(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for refreshed full selection-dataset construction."""
 
+    # Create the CLI parser for refreshed full selection-dataset construction.
     parser = argparse.ArgumentParser(
         description="Build data/processed/selection_dataset_full.csv from refreshed synthetic and real artifacts.",
     )
@@ -236,8 +235,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run refreshed full selection-dataset construction from the command line."""
 
+    # Run refreshed full selection-dataset construction from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -268,8 +267,8 @@ def _build_source_dataset(
     feature_columns: list[str],
     include_solver_objectives: bool,
 ) -> SourceBuildResult:
-    """Build one source-specific dataset with target and benchmark metadata."""
 
+    # Build one source-specific dataset with target and benchmark metadata.
     frame = _prepare_benchmark_frame(benchmarks)
     target_frame, target_summary = _build_target_frame(frame)
     coverage_frame = _build_coverage_frame(frame)
@@ -304,8 +303,8 @@ def _build_source_dataset(
 
 
 def _build_target_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, int]]:
-    """Return deterministic best-solver labels from target-eligible rows."""
 
+    # Return deterministic best-solver labels from target-eligible rows.
     eligible = frame[frame["target_eligible"]].copy()
     columns = [
         "instance_name",
@@ -344,8 +343,8 @@ def _build_target_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, in
 
 
 def _aggregate_solver_runs(eligible: pd.DataFrame) -> pd.DataFrame:
-    """Aggregate repeated seed rows to one candidate per instance and solver."""
 
+    # Aggregate repeated seed rows to one candidate per instance and solver.
     return (
         eligible.groupby(["instance_name", "solver_name"], as_index=False, sort=True)
         .agg(
@@ -360,8 +359,8 @@ def _aggregate_solver_runs(eligible: pd.DataFrame) -> pd.DataFrame:
 
 
 def _build_solver_objective_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    """Create objective_<solver> columns from target-eligible solver means."""
 
+    # Create objective_<solver> columns from target-eligible solver means.
     eligible = frame[frame["target_eligible"]].copy()
     if eligible.empty:
         return pd.DataFrame(columns=["instance_name"])
@@ -377,8 +376,8 @@ def _build_solver_objective_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _build_coverage_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    """Build one benchmark-coverage row per instance."""
 
+    # Build one benchmark-coverage row per instance.
     if frame.empty:
         return pd.DataFrame(columns=_coverage_columns())
 
@@ -418,8 +417,8 @@ def _build_coverage_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _prepare_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
-    """Validate and normalize benchmark rows for full-dataset construction."""
 
+    # Validate and normalize benchmark rows for full-dataset construction.
     missing_columns = sorted(REQUIRED_BENCHMARK_COLUMNS.difference(benchmarks.columns))
     if missing_columns:
         raise ValueError(f"Benchmark results are missing required columns: {', '.join(missing_columns)}")
@@ -457,8 +456,8 @@ def _prepare_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
 
 
 def _canonical_solver_names(frame: pd.DataFrame) -> pd.Series:
-    """Use registry names when available so labels are consistent across sources."""
 
+    # Use registry names when available so labels are consistent across sources.
     solver_names = frame["solver_name"].astype("string").str.strip()
     if "solver_registry_name" not in frame.columns:
         return solver_names
@@ -469,8 +468,8 @@ def _canonical_solver_names(frame: pd.DataFrame) -> pd.Series:
 
 
 def _derive_scoring_status(row: pd.Series) -> str:
-    """Derive a conservative scoring status for older benchmark files."""
 
+    # Derive a conservative scoring status for older benchmark files.
     support_status = _normalize_status(row.get("solver_support_status"))
     status = _normalize_status(row.get("status"))
     if support_status == "not_configured" or "not_configured" in status:
@@ -485,8 +484,8 @@ def _derive_scoring_status(row: pd.Series) -> str:
 
 
 def _is_excluded_solver_outcome(row: pd.Series) -> bool:
-    """Return whether a solver row is ineligible for target determination."""
 
+    # Return whether a solver row is ineligible for target determination.
     support_status = str(row.get("solver_support_status_norm") or "")
     scoring_status = str(row.get("scoring_status_norm") or "")
     status = str(row.get("status_norm") or "")
@@ -498,8 +497,8 @@ def _is_excluded_solver_outcome(row: pd.Series) -> bool:
 
 
 def _common_feature_columns(feature_frames: dict[str, pd.DataFrame]) -> list[str]:
-    """Return feature columns shared by all source feature tables."""
 
+    # Return feature columns shared by all source feature tables.
     source_columns = {
         dataset_type: {
             column
@@ -518,8 +517,8 @@ def _common_feature_columns(feature_frames: dict[str, pd.DataFrame]) -> list[str
 
 
 def _target_summary(frame: pd.DataFrame, aggregated: pd.DataFrame) -> dict[str, int]:
-    """Return target-eligibility and tie-resolution counts."""
 
+    # Return target-eligibility and tie-resolution counts.
     total_instances = int(frame["instance_name"].nunique()) if "instance_name" in frame else 0
     eligible_instances = int(aggregated["instance_name"].nunique()) if not aggregated.empty else 0
     objective_ties = 0
@@ -560,8 +559,8 @@ def _write_summary(
     selection_dataset: pd.DataFrame,
     source_results: list[SourceBuildResult],
 ) -> None:
-    """Write a run-summary JSON sidecar for the mixed dataset."""
 
+    # Write a run-summary JSON sidecar for the mixed dataset.
     write_run_summary(
         summary_path,
         stage_name="selection_dataset_full_current_build",
@@ -603,8 +602,8 @@ def _feature_schema_summary(
     feature_frames: dict[str, pd.DataFrame],
     common_feature_columns: list[str],
 ) -> dict[str, object]:
-    """Summarize how source feature schemas were aligned."""
 
+    # Summarize how source feature schemas were aligned.
     common = set(common_feature_columns)
     source_columns = {
         dataset_type: {
@@ -631,8 +630,8 @@ def _feature_schema_summary(
 
 
 def _validate_input_paths(sources: FullSelectionDatasetSources) -> None:
-    """Fail fast when required refreshed artifacts are missing."""
 
+    # Fail fast when required refreshed artifacts are missing.
     for path in (
         sources.synthetic_features_csv,
         sources.synthetic_benchmark_csv,
@@ -646,8 +645,8 @@ def _validate_input_paths(sources: FullSelectionDatasetSources) -> None:
 
 
 def _validate_features_frame(features: pd.DataFrame, *, dataset_type: str) -> None:
-    """Validate one feature table."""
 
+    # Validate one feature table.
     if "instance_name" not in features.columns:
         raise ValueError(f"{dataset_type} features are missing the instance_name column.")
     if features["instance_name"].duplicated().any():
@@ -657,8 +656,8 @@ def _validate_features_frame(features: pd.DataFrame, *, dataset_type: str) -> No
 
 
 def _fill_benchmark_metadata_defaults(dataset: pd.DataFrame) -> None:
-    """Fill metadata columns for feature rows with no benchmark rows."""
 
+    # Fill metadata columns for feature rows with no benchmark rows.
     count_columns = [
         "benchmark_total_solver_count",
         "benchmark_eligible_solver_count",
@@ -680,8 +679,8 @@ def _fill_benchmark_metadata_defaults(dataset: pd.DataFrame) -> None:
 
 
 def _coverage_columns() -> list[str]:
-    """Return stable coverage metadata columns."""
 
+    # Return stable coverage metadata columns.
     return [
         "instance_name",
         "benchmark_solver_support_coverage",
@@ -705,8 +704,8 @@ def _format_coverage(
     not_configured_solver_count: int,
     failed_solver_count: int,
 ) -> str:
-    """Format benchmark coverage into one compact auditable string."""
 
+    # Format benchmark coverage into one compact auditable string.
     return (
         f"eligible={eligible_solver_count}/{total_solver_count}; "
         f"supported={supported_solver_count}; "
@@ -718,14 +717,14 @@ def _format_coverage(
 
 
 def _solver_has_support(group: pd.DataFrame, support_status: str) -> bool:
-    """Return whether one solver group has a normalized support status."""
 
+    # Return whether one solver group has a normalized support status.
     return bool((group["solver_support_status_norm"] == support_status).any())
 
 
 def _solver_has_partial_support(group: pd.DataFrame) -> bool:
-    """Return whether one solver group has partial or simplified support."""
 
+    # Return whether one solver group has partial or simplified support.
     statuses = set(group["solver_support_status_norm"].dropna().astype(str))
     return bool(statuses.intersection(PARTIAL_SUPPORT_STATUSES)) or any(
         "partial" in status or "simplified" in status for status in statuses
@@ -733,16 +732,16 @@ def _solver_has_partial_support(group: pd.DataFrame) -> bool:
 
 
 def _solver_has_failure(group: pd.DataFrame) -> bool:
-    """Return whether one solver group contains a failed run."""
 
+    # Return whether one solver group contains a failed run.
     scoring_statuses = set(group["scoring_status_norm"].dropna().astype(str))
     statuses = set(group["status_norm"].dropna().astype(str))
     return "failed_run" in scoring_statuses or any("failed" in status for status in statuses)
 
 
 def _stable_status_summary(values: pd.Series) -> str:
-    """Return one status or a deterministic mixed-status marker."""
 
+    # Return one status or a deterministic mixed-status marker.
     statuses = sorted(
         {
             str(value).strip()
@@ -758,16 +757,16 @@ def _stable_status_summary(values: pd.Series) -> str:
 
 
 def _normalize_status(value: object) -> str:
-    """Normalize status-like values for comparisons."""
 
+    # Normalize status-like values for comparisons.
     if value is None or pd.isna(value):
         return ""
     return str(value).strip().casefold().replace("-", "_").replace(" ", "_")
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style boolean values into booleans."""
 
+    # Convert CSV-style boolean values into booleans.
     if isinstance(value, bool):
         return value
     if value is None or pd.isna(value):
@@ -776,8 +775,8 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _value_counts(frame: pd.DataFrame, column: str) -> dict[str, int]:
-    """Return stable value counts for a dataframe column."""
 
+    # Return stable value counts for a dataframe column.
     if column not in frame.columns:
         return {}
     counts = frame[column].fillna("missing").astype(str).value_counts().sort_index()

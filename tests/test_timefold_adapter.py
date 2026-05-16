@@ -1,4 +1,4 @@
-"""Tests for the Timefold adapter layer."""
+# Tests for the Timefold adapter layer.
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ from src.solvers.timefold_adapter import (
 
 
 def test_convert_instance_to_timefold_input_exports_simple_round_robin_structure() -> None:
-    """A parsed instance should convert into the documented Timefold payload shape."""
 
+    # A parsed instance should convert into the documented Timefold payload shape.
     payload = convert_instance_to_timefold_input(
         _build_four_team_instance(),
         time_limit_seconds=30,
@@ -38,8 +38,8 @@ def test_convert_instance_to_timefold_input_exports_simple_round_robin_structure
 
 
 def test_convert_timefold_solution_builds_internal_schedule_for_simple_instance() -> None:
-    """A valid Timefold solution should map back to the internal schedule format."""
 
+    # A valid Timefold solution should map back to the internal schedule format.
     problem = build_timefold_problem(_build_four_team_instance())
     solution = convert_timefold_solution(
         problem,
@@ -83,8 +83,8 @@ def test_convert_timefold_solution_builds_internal_schedule_for_simple_instance(
 
 
 def test_convert_timefold_solution_rejects_conflicting_slot_assignment() -> None:
-    """Conflicting schedules should fail validation in the adapter layer."""
 
+    # Conflicting schedules should fail validation in the adapter layer.
     problem = build_timefold_problem(_build_four_team_instance())
 
     try:
@@ -110,8 +110,8 @@ def test_convert_timefold_solution_rejects_conflicting_slot_assignment() -> None
 
 
 def _build_four_team_instance() -> InstanceSummary:
-    """Build a simple single round-robin parsed instance for adapter tests."""
 
+    # Build a simple single round-robin parsed instance for adapter tests.
     return InstanceSummary(
         metadata=TournamentMetadata(
             name="ExampleLeague",

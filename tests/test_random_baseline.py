@@ -1,12 +1,12 @@
-"""Tests for the placeholder random baseline solver."""
+# Tests for the placeholder random baseline solver.
 
 from src.parsers import InstanceSummary, TournamentMetadata
 from src.solvers import RandomBaselineSolver
 
 
 def test_random_baseline_returns_structured_placeholder_result() -> None:
-    """The baseline solver should return the shared result structure."""
 
+    # The baseline solver should return the shared result structure.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="SampleInstance", source_path="data/raw/sample.xml"),
         team_count=4,
@@ -29,8 +29,8 @@ def test_random_baseline_returns_structured_placeholder_result() -> None:
 
 
 def test_random_baseline_is_reproducible_for_same_seed() -> None:
-    """The synthetic objective should be stable for a fixed seed and instance."""
 
+    # The synthetic objective should be stable for a fixed seed and instance.
     instance = InstanceSummary(
         metadata=TournamentMetadata(name="ReproducibleInstance"),
         team_count=3,

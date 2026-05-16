@@ -1,0 +1,8 @@
+summary_scope,benchmark_seed,num_seed_rows,split_strategy,single_best_solver_name,classification_accuracy,balanced_accuracy,average_selected_objective,average_virtual_best_objective,average_single_best_objective,regret_vs_virtual_best,delta_vs_single_best,improvement_vs_single_best
+per_seed,42,1,repeated_stratified_kfold,cpsat_round_robin,1.0,,16.15,16.15,16.15,0.0,0.0,0.0
+per_seed,43,1,repeated_stratified_kfold,cpsat_round_robin,1.0,,16.15,16.15,16.15,0.0,0.0,0.0
+per_seed,44,1,repeated_stratified_kfold,cpsat_round_robin,1.0,,16.155555555555555,16.155555555555555,16.155555555555555,0.0,0.0,0.0
+all_seeds_mean,all,3,repeated_stratified_kfold,cpsat_round_robin,1.0,,16.15185185185185,16.15185185185185,16.15185185185185,0.0,0.0,0.0
+all_seeds_std,all,3,repeated_stratified_kfold,cpsat_round_robin,0.0,,0.0032075014954984224,0.0032075014954984224,0.0032075014954984224,0.0,0.0,0.0
+all_seeds_min,all,3,repeated_stratified_kfold,cpsat_round_robin,1.0,,16.15,16.15,16.15,0.0,0.0,0.0
+all_seeds_max,all,3,repeated_stratified_kfold,cpsat_round_robin,1.0,,16.155555555555555,16.155555555555555,16.155555555555555,0.0,0.0,0.0

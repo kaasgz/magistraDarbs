@@ -1,0 +1,9 @@
+Datu kopa,Algoritms,Loma,Interpretācija,Uzvaras,Vidējā kvalitāte,Vidējais laiks (s),Feasible pārklājums,Salīdzināmais pārklājums
+Reālie dati,Simulētā rūdīšana,Vienkāršota heuristika,"Vienkāršota heuristika, nevis pilns ITC2021 risinātājs.",54,30.75925925925926,1.810334900007109,1.0,1.0
+Reālie dati,CP-SAT,Kompakta optimizācijas bāzlīnija,Daļējs CP-SAT modelis ar ierobežotu round-robin mērķi.,0,32.44444444444444,54.861112622221874,1.0,1.0
+Reālie dati,Nejaušā bāzlīnija,Diagnostiska bāzlīnija,Nav pilns grafika risinātājs; izmanto cauruļvada pārbaudei.,0,1209.8246121851853,9.64777772659651e-05,1.0,1.0
+Reālie dati,Timefold,Ārēja integrācija,Ārēja integrācija; rezultāts atkarīgs no konfigurētā Timefold modeļa.,0,,0.0020811925944009,0.0,0.0
+Sintētiskie dati,CP-SAT,Kompakta optimizācijas bāzlīnija,Daļējs CP-SAT modelis ar ierobežotu round-robin mērķi.,0,,109.85284443870466,1.0,0.0
+Sintētiskie dati,Nejaušā bāzlīnija,Diagnostiska bāzlīnija,Nav pilns grafika risinātājs; izmanto cauruļvada pārbaudei.,0,,0.0001113812973791,1.0,0.0
+Sintētiskie dati,Simulētā rūdīšana,Vienkāršota heuristika,"Vienkāršota heuristika, nevis pilns ITC2021 risinātājs.",0,,0.4250671146311409,0.5166666666666667,0.0
+Sintētiskie dati,Timefold,Ārēja integrācija,Ārēja integrācija; rezultāts atkarīgs no konfigurētā Timefold modeļa.,0,,0.0006841911114018,0.0,0.0

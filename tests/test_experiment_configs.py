@@ -1,4 +1,4 @@
-"""Tests for YAML-configured experiment and selection workflows."""
+# Tests for YAML-configured experiment and selection workflows.
 
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 def test_build_feature_table_from_config_uses_yaml_values(tmp_path: Path) -> None:
-    """Feature-table generation should load its inputs and outputs from YAML config."""
 
+    # Feature-table generation should load its inputs and outputs from YAML config.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "sample.xml").write_text(
@@ -58,8 +58,8 @@ def test_build_feature_table_from_config_uses_yaml_values(tmp_path: Path) -> Non
 
 
 def test_run_benchmarks_from_config_uses_yaml_values(tmp_path: Path) -> None:
-    """Benchmark execution should load its inputs and outputs from YAML config."""
 
+    # Benchmark execution should load its inputs and outputs from YAML config.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "sample.xml").write_text(
@@ -102,8 +102,8 @@ def test_run_benchmarks_from_config_uses_yaml_values(tmp_path: Path) -> None:
 
 
 def test_run_benchmarks_from_config_supports_timefold_solver_settings(tmp_path: Path) -> None:
-    """Benchmark YAML should forward per-solver settings to the Timefold wrapper."""
 
+    # Benchmark YAML should forward per-solver settings to the Timefold wrapper.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "tiny.xml").write_text(
@@ -209,8 +209,8 @@ def test_run_benchmarks_from_config_supports_timefold_solver_settings(tmp_path: 
 
 
 def test_selector_pipeline_can_run_from_selector_config(tmp_path: Path) -> None:
-    """Selection dataset building, training, evaluation, and error analysis should honor YAML config."""
 
+    # Selection dataset building, training, evaluation, and error analysis should honor YAML config.
     features_csv = tmp_path / "features.csv"
     benchmarks_csv = tmp_path / "benchmark_results.csv"
     selection_dataset_csv = tmp_path / "selection_dataset.csv"

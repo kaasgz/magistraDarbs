@@ -1,4 +1,4 @@
-"""Feature definitions used by the structural feature extraction pipeline."""
+# Feature definitions used by the structural feature extraction pipeline.
 
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ FeatureDataType = Literal["int", "float", "bool", "str"]
 
 @dataclass(frozen=True, slots=True)
 class FeatureDefinition:
-    """Documentation record for one extracted feature."""
 
+    # Documentation record for one extracted feature.
     name: str
     group: str
     data_type: FeatureDataType
@@ -297,14 +297,14 @@ FEATURE_DEFINITIONS: tuple[FeatureDefinition, ...] = (
 
 
 def feature_names() -> tuple[str, ...]:
-    """Return the expected feature names in stable order."""
 
+    # Return the expected feature names in stable order.
     return tuple(definition.name for definition in FEATURE_DEFINITIONS)
 
 
 def feature_group_lookup() -> dict[str, str]:
-    """Return one stable feature-to-group mapping."""
 
+    # Return one stable feature-to-group mapping.
     return {
         definition.name: definition.group
         for definition in FEATURE_DEFINITIONS
@@ -312,8 +312,8 @@ def feature_group_lookup() -> dict[str, str]:
 
 
 def grouped_feature_names() -> dict[str, tuple[str, ...]]:
-    """Return feature names grouped by their documented feature group."""
 
+    # Return feature names grouped by their documented feature group.
     grouped: dict[str, list[str]] = {}
     for definition in FEATURE_DEFINITIONS:
         grouped.setdefault(definition.group, []).append(definition.name)

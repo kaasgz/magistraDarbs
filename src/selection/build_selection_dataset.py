@@ -1,18 +1,17 @@
-"""Build an algorithm selection dataset from features and benchmark results.
-
-This module merges one-row-per-instance structural features with solver
-benchmark outcomes to produce a training-ready selection dataset.
-
-Tie-breaking rule for ``best_solver`` in version 1:
-
-1. Lower ``objective_value`` is better.
-2. If objective values tie, lower ``runtime_seconds`` is better.
-3. If both still tie, lexicographically smaller ``solver_name`` wins.
-
-Only feasible runs with numeric objective values are eligible for the
-``best_solver`` target. Instances without an eligible solver keep a missing
-target value.
-"""
+# Build an algorithm selection dataset from features and benchmark results.
+#
+# This module merges one-row-per-instance structural features with solver
+# benchmark outcomes to produce a training-ready selection dataset.
+#
+# Tie-breaking rule for ``best_solver`` in version 1:
+#
+# 1. Lower ``objective_value`` is better.
+# 2. If objective values tie, lower ``runtime_seconds`` is better.
+# 3. If both still tie, lexicographically smaller ``solver_name`` wins.
+#
+# Only feasible runs with numeric objective values are eligible for the
+# ``best_solver`` target. Instances without an eligible solver keep a missing
+# target value.
 
 from __future__ import annotations
 
@@ -70,22 +69,22 @@ def build_selection_dataset(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> Path:
-    """Merge features and benchmark results into one selection dataset.
 
-    Args:
-        features_csv: Path to ``data/processed/features.csv`` style data.
-        benchmark_csv: Path to ``data/results/benchmark_results.csv`` style data.
-        output_csv: Output CSV path.
-        include_solver_objectives: Whether to append one objective column per
-            solver using names like ``objective_<solver_name>``.
-        config_path: Optional YAML config path used for the run.
-        config: Optional loaded config snapshot to include in metadata.
-        run_summary_path: Optional JSON sidecar path for run metadata.
-
-    Returns:
-        Path to the written selection dataset CSV.
-    """
-
+    # Merge features and benchmark results into one selection dataset.
+    #
+    # Args:
+    # features_csv: Path to ``data/processed/features.csv`` style data.
+    # benchmark_csv: Path to ``data/results/benchmark_results.csv`` style data.
+    # output_csv: Output CSV path.
+    # include_solver_objectives: Whether to append one objective column per
+    # solver using names like ``objective_<solver_name>``.
+    # config_path: Optional YAML config path used for the run.
+    # config: Optional loaded config snapshot to include in metadata.
+    # run_summary_path: Optional JSON sidecar path for run metadata.
+    #
+    # Returns:
+    # Path to the written selection dataset CSV.
+    #
     features_path = Path(features_csv)
     benchmarks_path = Path(benchmark_csv)
     output_path = Path(output_csv)
@@ -170,14 +169,14 @@ def build_full_selection_dataset(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> Path:
-    """Build one full algorithm-selection dataset from synthetic and real results.
 
-    The returned dataset keeps one row per source instance and adds
-    ``dataset_type`` with values ``synthetic`` or ``real``. Feature columns are
-    restricted to the schema shared by both sources so selector training sees a
-    consistent feature space.
-    """
-
+    # Build one full algorithm-selection dataset from synthetic and real results.
+    #
+    # The returned dataset keeps one row per source instance and adds
+    # ``dataset_type`` with values ``synthetic`` or ``real``. Feature columns are
+    # restricted to the schema shared by both sources so selector training sees a
+    # consistent feature space.
+    #
     output_path = Path(output_csv)
     source_inputs = {
         "synthetic": {
@@ -315,8 +314,8 @@ def build_full_selection_dataset(
 
 
 def build_selection_dataset_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> Path:
-    """Build the selection dataset using values from a YAML configuration file."""
 
+    # Build the selection dataset using values from a YAML configuration file.
     config = load_yaml_config(config_path)
     output_path = get_compat_path(config, ["paths.selection_dataset_csv"], DEFAULT_OUTPUT_PATH)
     summary_path = get_compat_path(
@@ -336,8 +335,8 @@ def build_selection_dataset_from_config(config_path: str | Path = DEFAULT_CONFIG
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for selection dataset generation."""
 
+    # Create the command-line parser for selection dataset generation.
     parser = argparse.ArgumentParser(
         description="Merge features and benchmark results into a selection dataset.",
     )
@@ -395,8 +394,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run selection dataset generation from the command line."""
 
+    # Run selection dataset generation from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -464,23 +463,23 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _build_target_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
-    """Extract the per-instance best solver target from benchmark results."""
 
+    # Extract the per-instance best solver target from benchmark results.
     best_rows = best_solver_per_instance(benchmarks).rename(columns={"solver_name": "best_solver"})
     return best_rows.loc[:, ["instance_name", "best_solver"]]
 
 
 def _build_solver_objective_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
-    """Create one objective column per solver.
 
-    If duplicate rows appear for the same instance and solver, the row chosen is
-    deterministic after sorting by:
-
-    1. ``objective_value`` ascending with missing values last.
-    2. ``runtime_seconds`` ascending with missing values last.
-    3. ``status`` ascending.
-    """
-
+    # Create one objective column per solver.
+    #
+    # If duplicate rows appear for the same instance and solver, the row chosen is
+    # deterministic after sorting by:
+    #
+    # 1. ``objective_value`` ascending with missing values last.
+    # 2. ``runtime_seconds`` ascending with missing values last.
+    # 3. ``status`` ascending.
+    #
     frame = _prepare_benchmark_frame(benchmarks)
     if frame.empty:
         return pd.DataFrame(columns=["instance_name"])
@@ -506,8 +505,8 @@ def _build_solver_objective_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
 
 
 def _prepare_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
-    """Validate and normalize a benchmark table for dataset construction."""
 
+    # Validate and normalize a benchmark table for dataset construction.
     missing_columns = sorted(REQUIRED_BENCHMARK_COLUMNS.difference(benchmarks.columns))
     if missing_columns:
         missing = ", ".join(missing_columns)
@@ -524,8 +523,8 @@ def _prepare_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
 
 
 def _prepare_full_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
-    """Normalize a benchmark table and use stable registry-level solver names."""
 
+    # Normalize a benchmark table and use stable registry-level solver names.
     frame = _prepare_benchmark_frame(benchmarks)
     if "solver_registry_name" not in frame.columns:
         return frame
@@ -537,8 +536,8 @@ def _prepare_full_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
 
 
 def _validate_features_frame(features: pd.DataFrame) -> None:
-    """Validate that the feature table has the expected one-row-per-instance structure."""
 
+    # Validate that the feature table has the expected one-row-per-instance structure.
     if "instance_name" not in features.columns:
         raise ValueError("Feature table must contain an 'instance_name' column.")
     if features["instance_name"].duplicated().any():
@@ -546,8 +545,8 @@ def _validate_features_frame(features: pd.DataFrame) -> None:
 
 
 def _common_feature_columns(feature_frames: dict[str, pd.DataFrame]) -> list[str]:
-    """Return feature columns shared by every dataset source."""
 
+    # Return feature columns shared by every dataset source.
     source_columns = {
         dataset_type: {
             column
@@ -569,8 +568,8 @@ def _summarize_feature_schema(
     feature_frames: dict[str, pd.DataFrame],
     common_feature_columns: list[str],
 ) -> dict[str, Any]:
-    """Summarize how synthetic and real feature schemas were aligned."""
 
+    # Summarize how synthetic and real feature schemas were aligned.
     common = set(common_feature_columns)
     source_columns = {
         dataset_type: {
@@ -597,8 +596,8 @@ def _summarize_feature_schema(
 
 
 def _count_unsupported_or_not_configured_rows(benchmarks: pd.DataFrame) -> int:
-    """Count benchmark rows that should not be eligible because the solver did not run."""
 
+    # Count benchmark rows that should not be eligible because the solver did not run.
     if benchmarks.empty:
         return 0
 
@@ -617,8 +616,8 @@ def _count_unsupported_or_not_configured_rows(benchmarks: pd.DataFrame) -> int:
 
 
 def _coerce_feasible(value: object) -> bool:
-    """Normalize CSV-style feasibility values."""
 
+    # Normalize CSV-style feasibility values.
     if isinstance(value, bool):
         return value
     if value is None or pd.isna(value):
@@ -627,8 +626,8 @@ def _coerce_feasible(value: object) -> bool:
 
 
 def _summarize_target_assignment(benchmarks: pd.DataFrame) -> dict[str, int]:
-    """Summarize target coverage and tie-breaking for auditability."""
 
+    # Summarize target coverage and tie-breaking for auditability.
     frame = _prepare_benchmark_frame(benchmarks)
     eligible = frame[frame["feasible"] & frame["objective_value"].notna()].copy()
     if frame.empty:

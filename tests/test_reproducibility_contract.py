@@ -1,4 +1,4 @@
-"""Regression checks for the documented final thesis reproduction contract."""
+# Regression checks for the documented final thesis reproduction contract.
 
 from __future__ import annotations
 
@@ -29,8 +29,8 @@ CANONICAL_COMMANDS = [
 
 
 def test_final_configs_match_reproducibility_contract() -> None:
-    """Final YAML configs should keep the documented thesis paths, seeds, and split."""
 
+    # Final YAML configs should keep the documented thesis paths, seeds, and split.
     real = _load_config("real_pipeline_current.yaml")
     synthetic = _load_config("synthetic_study.yaml")
     selector = _load_config("selector_config.yaml")
@@ -77,8 +77,8 @@ def test_final_configs_match_reproducibility_contract() -> None:
 
 
 def test_reproduction_docs_publish_the_same_canonical_sequence() -> None:
-    """README, guide, and audit should expose one identical final command order."""
 
+    # README, guide, and audit should expose one identical final command order.
     docs = [
         PROJECT_ROOT / "README.md",
         PROJECT_ROOT / "docs" / "reproduction_guide.md",
@@ -92,8 +92,8 @@ def test_reproduction_docs_publish_the_same_canonical_sequence() -> None:
 
 
 def test_reproducibility_audit_records_known_limits() -> None:
-    """The audit should state the practical limits instead of overstating exact repeatability."""
 
+    # The audit should state the practical limits instead of overstating exact repeatability.
     text = (PROJECT_ROOT / "docs" / "reproducibility_audit.md").read_text(encoding="utf-8")
 
     assert "requirements.txt" in text
@@ -105,14 +105,14 @@ def test_reproducibility_audit_records_known_limits() -> None:
 
 
 def _load_config(name: str) -> dict[str, Any]:
-    """Load one repository config by filename."""
 
+    # Load one repository config by filename.
     return load_yaml_config(PROJECT_ROOT / "configs" / name)
 
 
 def _split_settings(config: dict[str, Any]) -> tuple[str, float, int, int]:
-    """Return the split contract as a compact tuple."""
 
+    # Return the split contract as a compact tuple.
     split = config["split"]
     return (
         split["strategy"],

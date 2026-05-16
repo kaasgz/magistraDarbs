@@ -1,4 +1,4 @@
-"""Tests for the external Timefold solver wrapper."""
+# Tests for the external Timefold solver wrapper.
 
 from __future__ import annotations
 
@@ -10,21 +10,23 @@ from src.solvers.timefold_solver import TimefoldSolver
 
 
 def test_timefold_solver_reads_json_output_from_adapter(tmp_path: Path) -> None:
-    """A valid JSON payload should be normalized into the shared solver result."""
 
+    # A valid JSON payload should be normalized into the shared solver result.
     adapter_path = _write_fake_adapter(
         tmp_path,
-        """
-result = {
-    "status": "SOLVED",
-    "feasible": True,
-    "objectiveValue": 1.0,
-    "runtimeSeconds": 0.25,
-    "schedule": [{"meetingId": meetings[0]["id"], "slotId": slots[0]["id"]}],
-    "metadata": {"adapter": "fake-json"},
-}
-output_path.write_text(json.dumps(result), encoding="utf-8")
-""".strip(),
+        "\n".join(
+            [
+                "result = {",
+                '    "status": "SOLVED",',
+                '    "feasible": True,',
+                '    "objectiveValue": 1.0,',
+                '    "runtimeSeconds": 0.25,',
+                '    "schedule": [{"meetingId": meetings[0]["id"], "slotId": slots[0]["id"]}],',
+                '    "metadata": {"adapter": "fake-json"},',
+                "}",
+                'output_path.write_text(json.dumps(result), encoding="utf-8")',
+            ]
+        ),
     )
     solver = TimefoldSolver(
         executable_path=sys.executable,
@@ -57,23 +59,25 @@ output_path.write_text(json.dumps(result), encoding="utf-8")
 
 
 def test_timefold_solver_reads_text_output_and_derives_objective(tmp_path: Path) -> None:
-    """A line-based adapter output should also be accepted."""
 
+    # A line-based adapter output should also be accepted.
     adapter_path = _write_fake_adapter(
         tmp_path,
-        """
-output_path.write_text(
-    "\\n".join(
-        [
-            "status=SOLVED",
-            "feasible=true",
-            "runtime_seconds=0.2",
-            f"assignment meeting_id={meetings[0]['id']} slot_id={slots[0]['id']}",
-        ]
-    ),
-    encoding="utf-8",
-)
-""".strip(),
+        "\n".join(
+            [
+                "output_path.write_text(",
+                '    "\\n".join(',
+                "        [",
+                '            "status=SOLVED",',
+                '            "feasible=true",',
+                '            "runtime_seconds=0.2",',
+                '            f"assignment meeting_id={meetings[0][\'id\']} slot_id={slots[0][\'id\']}",',
+                "        ]",
+                "    ),",
+                '    encoding="utf-8",',
+                ")",
+            ]
+        ),
     )
     solver = TimefoldSolver(
         executable_path=sys.executable,
@@ -90,13 +94,11 @@ output_path.write_text(
 
 
 def test_timefold_solver_handles_timeout_cleanly(tmp_path: Path) -> None:
-    """A hanging adapter should be reported as a timeout instead of crashing."""
 
+    # A hanging adapter should be reported as a timeout instead of crashing.
     adapter_path = _write_fake_adapter(
         tmp_path,
-        """
-time.sleep(int(args.time_limit_seconds) + 2)
-""".strip(),
+        "time.sleep(int(args.time_limit_seconds) + 2)",
     )
     solver = TimefoldSolver(
         executable_path=sys.executable,
@@ -113,18 +115,20 @@ time.sleep(int(args.time_limit_seconds) + 2)
 
 
 def test_timefold_solver_marks_invalid_schedule_output(tmp_path: Path) -> None:
-    """A feasible-looking but invalid schedule should be rejected cleanly."""
 
+    # A feasible-looking but invalid schedule should be rejected cleanly.
     adapter_path = _write_fake_adapter(
         tmp_path,
-        """
-result = {
-    "status": "SOLVED",
-    "feasible": True,
-    "schedule": [],
-}
-output_path.write_text(json.dumps(result), encoding="utf-8")
-""".strip(),
+        "\n".join(
+            [
+                "result = {",
+                '    "status": "SOLVED",',
+                '    "feasible": True,',
+                '    "schedule": [],',
+                "}",
+                'output_path.write_text(json.dumps(result), encoding="utf-8")',
+            ]
+        ),
     )
     solver = TimefoldSolver(
         executable_path=sys.executable,
@@ -140,18 +144,20 @@ output_path.write_text(json.dumps(result), encoding="utf-8")
 
 
 def test_timefold_solver_reports_unsupported_instance(tmp_path: Path) -> None:
-    """An adapter-level unsupported-instance response should map cleanly."""
 
+    # An adapter-level unsupported-instance response should map cleanly.
     adapter_path = _write_fake_adapter(
         tmp_path,
-        """
-result = {
-    "status": "UNSUPPORTED_INSTANCE",
-    "feasible": False,
-    "error": "adapter does not support this instance",
-}
-output_path.write_text(json.dumps(result), encoding="utf-8")
-""".strip(),
+        "\n".join(
+            [
+                "result = {",
+                '    "status": "UNSUPPORTED_INSTANCE",',
+                '    "feasible": False,',
+                '    "error": "adapter does not support this instance",',
+                "}",
+                'output_path.write_text(json.dumps(result), encoding="utf-8")',
+            ]
+        ),
     )
     solver = TimefoldSolver(
         executable_path=sys.executable,
@@ -167,8 +173,8 @@ output_path.write_text(json.dumps(result), encoding="utf-8")
 
 
 def _build_single_match_instance() -> InstanceSummary:
-    """Build a tiny parsed instance with exactly one required meeting."""
 
+    # Build a tiny parsed instance with exactly one required meeting.
     return InstanceSummary(
         metadata=TournamentMetadata(
             name="TinyInstance",
@@ -189,8 +195,8 @@ def _build_single_match_instance() -> InstanceSummary:
 
 
 def _write_fake_adapter(tmp_path: Path, body: str) -> Path:
-    """Write one tiny Python adapter script and return its path."""
 
+    # Write one tiny Python adapter script and return its path.
     adapter_path = tmp_path / "fake_timefold_adapter.py"
     adapter_path.write_text(
         "\n".join(

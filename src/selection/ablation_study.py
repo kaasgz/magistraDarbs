@@ -1,4 +1,4 @@
-"""Ablation study support for selector interpretability."""
+# Ablation study support for selector interpretability.
 
 from __future__ import annotations
 
@@ -46,8 +46,8 @@ DEFAULT_ABLATION_REPORT = Path("data/results/selector_ablation_summary.md")
 
 @dataclass(slots=True)
 class AblationStudyResult:
-    """Summary of one selector ablation study run."""
 
+    # Summary of one selector ablation study run.
     summary_csv_path: Path
     plot_path: Path
     report_markdown_path: Path
@@ -72,8 +72,8 @@ def run_ablation_study(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> AblationStudyResult:
-    """Run a small thesis-facing ablation study over selector feature groups."""
 
+    # Run a small thesis-facing ablation study over selector feature groups.
     dataset_path = Path(dataset_csv)
     benchmark_path = Path(benchmark_csv)
     dataset = pd.read_csv(dataset_path)
@@ -202,8 +202,8 @@ def run_ablation_study(
 
 
 def run_ablation_study_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> AblationStudyResult:
-    """Run the selector ablation study using values loaded from a YAML configuration file."""
 
+    # Run the selector ablation study using values loaded from a YAML configuration file.
     config = load_yaml_config(config_path)
     split_settings = get_split_settings(config)
     summary_csv = get_compat_path(config, ["paths.ablation_summary_csv"], DEFAULT_ABLATION_SUMMARY_CSV)
@@ -231,8 +231,8 @@ def run_ablation_study_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for selector ablation studies."""
 
+    # Create the command-line parser for selector ablation studies.
     parser = argparse.ArgumentParser(
         description="Run a lightweight selector ablation study.",
     )
@@ -252,8 +252,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run selector ablation study from the command line."""
 
+    # Run selector ablation study from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -294,8 +294,8 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _plot_ablation_summary(summary: pd.DataFrame, output_path: Path) -> None:
-    """Plot regret vs virtual best for the evaluated feature sets."""
 
+    # Plot regret vs virtual best for the evaluated feature sets.
     figure, axis = plt.subplots(figsize=(9, 4.5))
     axis.barh(
         summary["feature_set_title"],
@@ -320,8 +320,8 @@ def _plot_ablation_summary(summary: pd.DataFrame, output_path: Path) -> None:
 
 
 def _build_ablation_markdown_report(summary: pd.DataFrame, split_settings: SplitSettings) -> str:
-    """Render a concise Markdown ablation report for thesis reuse."""
 
+    # Render a concise Markdown ablation report for thesis reuse.
     best_row = summary.iloc[0]
     lines = [
         "# Selector Ablation Summary",
@@ -358,8 +358,8 @@ def _build_ablation_markdown_report(summary: pd.DataFrame, split_settings: Split
 
 
 def _format_metric(value: object) -> str:
-    """Format one numeric metric for ablation reporting."""
 
+    # Format one numeric metric for ablation reporting.
     numeric = _coerce_float(value)
     if pd.isna(numeric):
         return "NA"
@@ -367,8 +367,8 @@ def _format_metric(value: object) -> str:
 
 
 def _coerce_float(value: object) -> float:
-    """Convert a scalar to float, returning ``nan`` on failure."""
 
+    # Convert a scalar to float, returning ``nan`` on failure.
     if value is None or pd.isna(value):
         return float("nan")
     try:

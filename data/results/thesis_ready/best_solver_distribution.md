@@ -1,0 +1,6 @@
+# Best Solver Distribution
+
+| Datu kopa | Algoritms | Skaits |
+| --- | --- | --- |
+| Reālie dati | Simulētā rūdīšana | 54 |
+| Sintētiskie dati | CP-SAT | 180 |

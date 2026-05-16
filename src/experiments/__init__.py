@@ -1,4 +1,4 @@
-"""Experiment orchestration code."""
+# Experiment orchestration code.
 
 from src.experiments.benchmark_report import benchmark_report
 from src.experiments.reporting import DEFAULT_OUTPUT_DIR, ThesisArtifactResult, generate_thesis_artifacts

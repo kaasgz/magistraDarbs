@@ -1,4 +1,4 @@
-"""Run a multi-seed synthetic benchmark study using the current thesis pipeline."""
+# Run a multi-seed synthetic benchmark study using the current thesis pipeline.
 
 from __future__ import annotations
 
@@ -56,8 +56,8 @@ _SELECTOR_METRIC_COLUMNS = (
 
 @dataclass(frozen=True, slots=True)
 class SyntheticStudySettings:
-    """Resolved configuration for one synthetic benchmark study."""
 
+    # Resolved configuration for one synthetic benchmark study.
     dataset_root: Path
     processed_dir: Path
     results_dir: Path
@@ -77,8 +77,8 @@ class SyntheticStudySettings:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticStudyArtifacts:
-    """Top-level aggregate artifact paths for the synthetic study."""
 
+    # Top-level aggregate artifact paths for the synthetic study.
     features_csv: Path
     features_run_summary: Path
     aggregate_benchmark_csv: Path
@@ -92,8 +92,8 @@ class SyntheticStudyArtifacts:
 
 @dataclass(frozen=True, slots=True)
 class SeedStudyArtifacts:
-    """Seed-specific artifact paths kept separate from aggregate outputs."""
 
+    # Seed-specific artifact paths kept separate from aggregate outputs.
     processed_dir: Path
     results_dir: Path
     benchmark_csv: Path
@@ -111,8 +111,8 @@ class SeedStudyArtifacts:
 
 @dataclass(frozen=True, slots=True)
 class SeedStudyResult:
-    """Outputs and selector metrics for one benchmark seed."""
 
+    # Outputs and selector metrics for one benchmark seed.
     seed: int
     benchmark_csv: Path
     selection_dataset_csv: Path
@@ -127,16 +127,16 @@ class SeedStudyResult:
 
 @dataclass(frozen=True, slots=True)
 class SummaryStageResult:
-    """Summary artifacts written after aggregation."""
 
+    # Summary artifacts written after aggregation.
     summary_markdown: Path
     run_summary_json: Path
 
 
 @dataclass(frozen=True, slots=True)
 class SyntheticStudyResult:
-    """Main artifacts from a completed synthetic benchmark study."""
 
+    # Main artifacts from a completed synthetic benchmark study.
     features_csv: Path
     benchmark_csv: Path
     selection_dataset_csv: Path
@@ -151,8 +151,8 @@ class SyntheticStudyResult:
 
 
 class SyntheticStudyError(RuntimeError):
-    """A critical synthetic study stage failed."""
 
+    # A critical synthetic study stage failed.
     def __init__(self, step_name: str, cause: Exception) -> None:
         self.step_name = step_name
         self.cause = cause
@@ -160,8 +160,8 @@ class SyntheticStudyError(RuntimeError):
 
 
 def run_synthetic_study(config_path: str | Path = DEFAULT_CONFIG_PATH) -> SyntheticStudyResult:
-    """Run the synthetic benchmark study described by one YAML configuration."""
 
+    # Run the synthetic benchmark study described by one YAML configuration.
     settings = _resolve_settings(config_path)
     artifacts = _build_artifact_paths(settings.processed_dir, settings.results_dir)
     _validate_settings(settings)
@@ -349,8 +349,8 @@ def run_synthetic_study(config_path: str | Path = DEFAULT_CONFIG_PATH) -> Synthe
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for synthetic study orchestration."""
 
+    # Create the command-line parser for synthetic study orchestration.
     parser = argparse.ArgumentParser(
         description="Run the larger synthetic benchmark study into isolated artifacts.",
     )
@@ -363,8 +363,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the synthetic study from the command line."""
 
+    # Run the synthetic study from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -385,8 +385,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _resolve_settings(config_path: str | Path) -> SyntheticStudySettings:
-    """Load and normalize one synthetic study config."""
 
+    # Load and normalize one synthetic study config.
     resolved_config_path = Path(config_path)
     config = load_yaml_config(resolved_config_path)
     split_settings = get_split_settings(config)
@@ -422,8 +422,8 @@ def _resolve_settings(config_path: str | Path) -> SyntheticStudySettings:
 
 
 def _build_artifact_paths(processed_dir: Path, results_dir: Path) -> SyntheticStudyArtifacts:
-    """Return stable aggregate artifact paths for the study."""
 
+    # Return stable aggregate artifact paths for the study.
     return SyntheticStudyArtifacts(
         features_csv=processed_dir / "features.csv",
         features_run_summary=processed_dir / "features_run_summary.json",
@@ -443,8 +443,8 @@ def _build_seed_artifact_paths(
     results_dir: Path,
     seed: int,
 ) -> SeedStudyArtifacts:
-    """Return all seed-specific artifact paths."""
 
+    # Return all seed-specific artifact paths.
     seed_name = _seed_folder_name(seed)
     seed_processed_dir = processed_dir / "seeds" / seed_name
     seed_results_dir = results_dir / "seeds" / seed_name
@@ -466,8 +466,8 @@ def _build_seed_artifact_paths(
 
 
 def _validate_settings(settings: SyntheticStudySettings) -> None:
-    """Validate critical settings before writing study artifacts."""
 
+    # Validate critical settings before writing study artifacts.
     if not settings.dataset_root.exists():
         raise FileNotFoundError(
             f"Synthetic dataset root does not exist: {settings.dataset_root}. "
@@ -502,8 +502,8 @@ def _validate_settings(settings: SyntheticStudySettings) -> None:
 
 
 def _reject_legacy_root(path: Path, legacy_root: Path, setting_name: str) -> None:
-    """Reject top-level legacy artifact roots for this isolated study."""
 
+    # Reject top-level legacy artifact roots for this isolated study.
     if path.resolve() == legacy_root.resolve():
         raise ValueError(
             f"paths.{setting_name} must be an isolated subfolder, not {legacy_root.as_posix()}."
@@ -514,8 +514,8 @@ def _log_output_refresh(
     settings: SyntheticStudySettings,
     artifacts: SyntheticStudyArtifacts,
 ) -> None:
-    """Log existing current-study artifacts before refreshing them."""
 
+    # Log existing current-study artifacts before refreshing them.
     existing = [
         artifacts.features_csv,
         artifacts.aggregate_benchmark_csv,
@@ -559,8 +559,8 @@ def _execute_step(
     *,
     success_message: Callable[[_StepResult], str],
 ) -> _StepResult:
-    """Run one study step with concise progress logging."""
 
+    # Run one study step with concise progress logging.
     print(f"[{step_index}/{total_steps}] {step_name}...", flush=True)
     started_at = time.perf_counter()
     try:
@@ -583,8 +583,8 @@ def _write_aggregate_outputs(
     seed_results: tuple[SeedStudyResult, ...],
     artifacts: SyntheticStudyArtifacts,
 ) -> tuple[Path, Path, Path, Path, Path]:
-    """Concatenate per-seed outputs and write cross-seed aggregate summaries."""
 
+    # Concatenate per-seed outputs and write cross-seed aggregate summaries.
     benchmark_table = _combine_seed_csvs(
         seed_results=seed_results,
         output_csv=artifacts.aggregate_benchmark_csv,
@@ -627,8 +627,8 @@ def _combine_seed_csvs(
     output_csv: Path,
     path_getter: Callable[[SeedStudyResult], Path],
 ) -> pd.DataFrame:
-    """Combine seed-specific CSVs after adding a benchmark_seed column."""
 
+    # Combine seed-specific CSVs after adding a benchmark_seed column.
     frames: list[pd.DataFrame] = []
     for result in seed_results:
         frame = pd.read_csv(path_getter(result))
@@ -642,8 +642,8 @@ def _combine_seed_csvs(
 
 
 def _build_aggregate_benchmark_summary(benchmark_table: pd.DataFrame) -> pd.DataFrame:
-    """Summarize benchmark outcomes by seed, solver, and scoring status."""
 
+    # Summarize benchmark outcomes by seed, solver, and scoring status.
     if benchmark_table.empty:
         return pd.DataFrame(columns=_benchmark_summary_columns())
 
@@ -683,8 +683,8 @@ def _benchmark_summary_rows(
     group_columns: list[str],
     summary_scope: str,
 ) -> list[dict[str, object]]:
-    """Build benchmark summary rows for one grouping level."""
 
+    # Build benchmark summary rows for one grouping level.
     rows: list[dict[str, object]] = []
     for group_values, group in frame.groupby(group_columns, dropna=False, sort=True):
         values = _group_values(group_columns, group_values)
@@ -721,8 +721,8 @@ def _benchmark_summary_rows(
 
 
 def _benchmark_summary_columns() -> list[str]:
-    """Return the stable aggregate benchmark summary schema."""
 
+    # Return the stable aggregate benchmark summary schema.
     return [
         "summary_scope",
         "benchmark_seed",
@@ -744,8 +744,8 @@ def _benchmark_summary_columns() -> list[str]:
 
 
 def _build_aggregate_selector_summary(evaluation_summary: pd.DataFrame) -> pd.DataFrame:
-    """Summarize selector aggregate metrics across benchmark seeds."""
 
+    # Summarize selector aggregate metrics across benchmark seeds.
     columns = [
         "summary_scope",
         "benchmark_seed",
@@ -807,8 +807,8 @@ def _write_study_summary(
     artifacts: SyntheticStudyArtifacts,
     seed_results: tuple[SeedStudyResult, ...],
 ) -> SummaryStageResult:
-    """Write Markdown and JSON summaries for the completed synthetic study."""
 
+    # Write Markdown and JSON summaries for the completed synthetic study.
     features = pd.read_csv(artifacts.features_csv)
     benchmarks = pd.read_csv(artifacts.aggregate_benchmark_csv)
     selection_dataset = pd.read_csv(artifacts.aggregate_selection_dataset_csv)
@@ -911,8 +911,8 @@ def _render_summary_markdown(
     benchmark_summary: pd.DataFrame,
     selector_summary: pd.DataFrame,
 ) -> str:
-    """Render a concise thesis-oriented synthetic study summary."""
 
+    # Render a concise thesis-oriented synthetic study summary.
     timefold_path = _timefold_executable_text(settings.solver_settings_by_name)
     lines = [
         "# Synthetic Study Summary",
@@ -992,8 +992,8 @@ def _render_summary_markdown(
 
 
 def _validate_non_empty_csv(csv_path: Path, label: str) -> None:
-    """Fail early when a required stage writes an empty CSV."""
 
+    # Fail early when a required stage writes an empty CSV.
     table = pd.read_csv(csv_path)
     if table.empty:
         raise ValueError(f"The {label} is empty: {csv_path.as_posix()}")
@@ -1005,8 +1005,8 @@ def _validate_benchmark_output(
     solver_names: tuple[str, ...],
     timefold_configured: bool,
 ) -> None:
-    """Validate benchmark output and scoring-contract metadata."""
 
+    # Validate benchmark output and scoring-contract metadata.
     table = pd.read_csv(benchmark_csv)
     if table.empty:
         raise ValueError("Benchmark results are empty.")
@@ -1046,8 +1046,8 @@ def _validate_benchmark_output(
 
 
 def _validate_labeled_selection_dataset(selection_dataset_csv: Path) -> None:
-    """Ensure selector training has at least two labeled rows."""
 
+    # Ensure selector training has at least two labeled rows.
     dataset = pd.read_csv(selection_dataset_csv)
     if dataset.empty:
         raise ValueError("Selection dataset is empty.")
@@ -1058,8 +1058,8 @@ def _validate_labeled_selection_dataset(selection_dataset_csv: Path) -> None:
 
 
 def _training_success_message(result: SelectorTrainingResult) -> str:
-    """Format one concise training success message."""
 
+    # Format one concise training success message.
     return (
         f"Model saved to {result.model_path.as_posix()}\n"
         f"Feature importance: {_path_or_not_written(result.feature_importance_path)}\n"
@@ -1069,8 +1069,8 @@ def _training_success_message(result: SelectorTrainingResult) -> str:
 
 
 def _evaluation_success_message(result: SelectorEvaluationResult) -> str:
-    """Format one concise evaluation success message."""
 
+    # Format one concise evaluation success message.
     return (
         f"Evaluation report: {result.report_path.as_posix()}\n"
         f"Evaluation summary CSV: {result.summary_csv_path.as_posix()}\n"
@@ -1081,8 +1081,8 @@ def _evaluation_success_message(result: SelectorEvaluationResult) -> str:
 
 
 def _print_final_summary(result: SyntheticStudyResult) -> None:
-    """Print a short completion summary after a successful study run."""
 
+    # Print a short completion summary after a successful study run.
     print("Synthetic study completed successfully.", flush=True)
     print(f"Features: {result.features_csv.as_posix()}", flush=True)
     print(f"Benchmarks: {result.benchmark_csv.as_posix()}", flush=True)
@@ -1094,8 +1094,8 @@ def _print_final_summary(result: SyntheticStudyResult) -> None:
 
 
 def _parse_seed_config(value: object) -> tuple[int, ...]:
-    """Parse benchmark seeds from YAML scalar, list, or comma-separated string."""
 
+    # Parse benchmark seeds from YAML scalar, list, or comma-separated string.
     if isinstance(value, bool):
         raise ValueError("Benchmark seeds must be integers, not booleans.")
     if isinstance(value, int):
@@ -1122,8 +1122,8 @@ def _parse_seed_config(value: object) -> tuple[int, ...]:
 
 
 def _timefold_configured(solver_settings_by_name: dict[str, dict[str, object]]) -> bool:
-    """Return whether Timefold has a non-empty executable path configured."""
 
+    # Return whether Timefold has a non-empty executable path configured.
     value = solver_settings_by_name.get("timefold", {}).get("executable_path")
     if value is None:
         return False
@@ -1131,8 +1131,8 @@ def _timefold_configured(solver_settings_by_name: dict[str, dict[str, object]]) 
 
 
 def _timefold_executable_text(solver_settings_by_name: dict[str, dict[str, object]]) -> str:
-    """Return a readable Timefold executable setting."""
 
+    # Return a readable Timefold executable setting.
     value = solver_settings_by_name.get("timefold", {}).get("executable_path")
     if value is None or not str(value).strip():
         return "not configured"
@@ -1140,15 +1140,15 @@ def _timefold_executable_text(solver_settings_by_name: dict[str, dict[str, objec
 
 
 def _seed_folder_name(seed: int) -> str:
-    """Build a stable seed folder name."""
 
+    # Build a stable seed folder name.
     prefix = "neg" if seed < 0 else ""
     return f"seed_{prefix}{abs(seed):04d}"
 
 
 def _value_counts(frame: pd.DataFrame, column: str) -> dict[str, int]:
-    """Return stable value counts for an optional column."""
 
+    # Return stable value counts for an optional column.
     if column not in frame.columns:
         return {}
     counts = frame[column].fillna("missing").astype(str).value_counts().sort_index()
@@ -1156,8 +1156,8 @@ def _value_counts(frame: pd.DataFrame, column: str) -> dict[str, int]:
 
 
 def _render_count_table(counts: dict[str, int], label: str) -> list[str]:
-    """Render a simple Markdown count table."""
 
+    # Render a simple Markdown count table.
     lines = [f"| {label} | count |", "| --- | ---: |"]
     if not counts:
         lines.append("| none | 0 |")
@@ -1168,8 +1168,8 @@ def _render_count_table(counts: dict[str, int], label: str) -> list[str]:
 
 
 def _render_selector_summary_table(selector_summary: pd.DataFrame) -> list[str]:
-    """Render aggregate selector metrics for the Markdown summary."""
 
+    # Render aggregate selector metrics for the Markdown summary.
     if selector_summary.empty:
         return ["Selector aggregate summary is empty."]
 
@@ -1195,8 +1195,8 @@ def _render_selector_summary_table(selector_summary: pd.DataFrame) -> list[str]:
 
 
 def _render_benchmark_note_table(benchmark_summary: pd.DataFrame) -> list[str]:
-    """Render compact all-seed benchmark counts by solver."""
 
+    # Render compact all-seed benchmark counts by solver.
     if benchmark_summary.empty:
         return ["Benchmark aggregate summary is empty."]
 
@@ -1226,8 +1226,8 @@ def _render_benchmark_note_table(benchmark_summary: pd.DataFrame) -> list[str]:
 
 
 def _group_values(group_columns: list[str], group_values: object) -> dict[str, object]:
-    """Normalize pandas group keys into a column-value mapping."""
 
+    # Normalize pandas group keys into a column-value mapping.
     if len(group_columns) == 1:
         values = (group_values,)
     else:
@@ -1239,8 +1239,8 @@ def _group_values(group_columns: list[str], group_values: object) -> dict[str, o
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style boolean values into booleans."""
 
+    # Convert CSV-style boolean values into booleans.
     if isinstance(value, bool):
         return value
     if value is None or pd.isna(value):
@@ -1249,8 +1249,8 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _mean_or_none(values: pd.Series) -> float | None:
-    """Return a numeric mean when available."""
 
+    # Return a numeric mean when available.
     numeric = pd.to_numeric(values, errors="coerce").dropna()
     if numeric.empty:
         return None
@@ -1258,8 +1258,8 @@ def _mean_or_none(values: pd.Series) -> float | None:
 
 
 def _median_or_none(values: pd.Series) -> float | None:
-    """Return a numeric median when available."""
 
+    # Return a numeric median when available.
     numeric = pd.to_numeric(values, errors="coerce").dropna()
     if numeric.empty:
         return None
@@ -1267,8 +1267,8 @@ def _median_or_none(values: pd.Series) -> float | None:
 
 
 def _reduce_metric(values: pd.Series, reducer: str) -> float | None:
-    """Reduce a selector metric column across seeds."""
 
+    # Reduce a selector metric column across seeds.
     numeric = pd.to_numeric(values, errors="coerce").dropna()
     if numeric.empty:
         return None
@@ -1286,8 +1286,8 @@ def _reduce_metric(values: pd.Series, reducer: str) -> float | None:
 
 
 def _stable_unique_or_none(values: pd.Series) -> str | None:
-    """Return a single stable value only when all non-empty values agree."""
 
+    # Return a single stable value only when all non-empty values agree.
     normalized = sorted(
         {
             str(value).strip()
@@ -1301,8 +1301,8 @@ def _stable_unique_or_none(values: pd.Series) -> str | None:
 
 
 def _optional_float(value: object) -> float | None:
-    """Convert a scalar to a JSON/CSV-friendly float when possible."""
 
+    # Convert a scalar to a JSON/CSV-friendly float when possible.
     if value is None or pd.isna(value):
         return None
     try:
@@ -1312,16 +1312,16 @@ def _optional_float(value: object) -> float | None:
 
 
 def _format_optional_float(value: float | None) -> str:
-    """Format optional float metrics consistently."""
 
+    # Format optional float metrics consistently.
     if value is None or pd.isna(value):
         return "n/a"
     return f"{value:.4f}"
 
 
 def _format_markdown_float(value: object) -> str:
-    """Format numeric values in Markdown tables."""
 
+    # Format numeric values in Markdown tables.
     number = _optional_float(value)
     if number is None:
         return "NA"
@@ -1329,8 +1329,8 @@ def _format_markdown_float(value: object) -> str:
 
 
 def _path_or_not_written(path: Path | None) -> str:
-    """Return a readable path value for optional artifacts."""
 
+    # Return a readable path value for optional artifacts.
     if path is None:
         return "not written"
     return path.as_posix()

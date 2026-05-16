@@ -1,4 +1,4 @@
-"""Tests for synthetic demo instance generation."""
+# Tests for synthetic demo instance generation.
 
 from __future__ import annotations
 
@@ -17,8 +17,8 @@ FIXED_TIMESTAMP = "2026-04-04T12:00:00+00:00"
 
 
 def test_generate_demo_instances_writes_manifest_and_structured_metadata(tmp_path: Path) -> None:
-    """Generated instances should carry synthetic metadata and parser-friendly structure."""
 
+    # Generated instances should carry synthetic metadata and parser-friendly structure.
     output_folder = tmp_path / "raw"
     manifest_path = tmp_path / "processed" / "manifest.json"
 
@@ -58,8 +58,8 @@ def test_generate_demo_instances_writes_manifest_and_structured_metadata(tmp_pat
 
 
 def test_generate_demo_instances_is_reproducible_for_same_seed(tmp_path: Path) -> None:
-    """The same seed and fixed timestamp should produce identical outputs."""
 
+    # The same seed and fixed timestamp should produce identical outputs.
     first_output = tmp_path / "first"
     second_output = tmp_path / "second"
     first_manifest = tmp_path / "first_manifest.json"
@@ -97,8 +97,8 @@ def test_generate_demo_instances_is_reproducible_for_same_seed(tmp_path: Path) -
 
 
 def test_generate_demo_instances_respect_explicit_team_slot_and_constraint_counts(tmp_path: Path) -> None:
-    """Explicit generation parameters should be reflected in the parsed instance."""
 
+    # Explicit generation parameters should be reflected in the parsed instance.
     output_folder = tmp_path / "raw"
     manifest_path = tmp_path / "manifest.json"
 
@@ -137,8 +137,8 @@ def test_generate_demo_instances_respect_explicit_team_slot_and_constraint_count
 
 
 def test_generated_instances_work_with_feature_pipeline(tmp_path: Path) -> None:
-    """Generated XML files should be consumable by the current feature pipeline."""
 
+    # Generated XML files should be consumable by the current feature pipeline.
     output_folder = tmp_path / "raw"
     manifest_path = tmp_path / "manifest.json"
     features_csv = tmp_path / "features.csv"

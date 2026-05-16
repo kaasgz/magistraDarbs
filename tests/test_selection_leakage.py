@@ -1,4 +1,4 @@
-"""Tests for leakage-safe selector feature preparation."""
+# Tests for leakage-safe selector feature preparation.
 
 from __future__ import annotations
 
@@ -8,8 +8,8 @@ from src.selection.modeling import is_leakage_column, prepare_selection_data
 
 
 def test_prepare_selection_data_excludes_benchmark_target_source_and_solver_columns() -> None:
-    """Only pre-solving structural columns should reach the selector model."""
 
+    # Only pre-solving structural columns should reach the selector model.
     dataset = pd.DataFrame(
         [
             _row("inst_1", "solver_a", 4, 0.75, False),
@@ -47,8 +47,8 @@ def test_prepare_selection_data_excludes_benchmark_target_source_and_solver_colu
 
 
 def test_is_leakage_column_recognizes_common_result_and_provenance_names() -> None:
-    """The denylist should cover plausible future audit/result columns."""
 
+    # The denylist should cover plausible future audit/result columns.
     unsafe_columns = [
         "dataset_type",
         "is_synthetic",
@@ -91,8 +91,8 @@ def _row(
     slot_pressure: float,
     synthetic: bool,
 ) -> dict[str, object]:
-    """Build one mixed selection dataset row with deliberate leak columns."""
 
+    # Build one mixed selection dataset row with deliberate leak columns.
     return {
         "instance_name": instance_name,
         "best_solver": best_solver,

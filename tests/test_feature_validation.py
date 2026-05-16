@@ -1,4 +1,4 @@
-"""Tests for feature validation helpers."""
+# Tests for feature validation helpers.
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ from src.features.validation import (
 
 
 def test_validate_feature_names_detects_duplicates() -> None:
-    """Duplicate feature names should be reported explicitly."""
 
+    # Duplicate feature names should be reported explicitly.
     issues = validate_feature_names(["num_teams", "num_slots", "num_teams"])
 
     assert len(issues) == 1
@@ -24,8 +24,8 @@ def test_validate_feature_names_detects_duplicates() -> None:
 
 
 def test_validate_feature_values_detects_non_finite_and_invalid_ratio_values() -> None:
-    """Non-finite values and invalid ratios should be flagged."""
 
+    # Non-finite values and invalid ratios should be flagged.
     issues = validate_feature_values(
         {
             "ratio_hard_to_all": 1.25,
@@ -41,8 +41,8 @@ def test_validate_feature_values_detects_non_finite_and_invalid_ratio_values() -
 
 
 def test_ensure_valid_features_accepts_the_documented_feature_schema() -> None:
-    """A fully documented feature mapping should pass validation."""
 
+    # A fully documented feature mapping should pass validation.
     features = {name: 0 for name in feature_names()}
     features["teams_is_even"] = False
     features["objective_present"] = False
@@ -55,8 +55,8 @@ def test_ensure_valid_features_accepts_the_documented_feature_schema() -> None:
 
 
 def test_ensure_valid_features_rejects_missing_documented_features() -> None:
-    """Feature validation should fail when the extracted schema is incomplete."""
 
+    # Feature validation should fail when the extracted schema is incomplete.
     features = {name: 0 for name in feature_names()[1:]}
     features["teams_is_even"] = False
     features["objective_present"] = False
@@ -70,8 +70,8 @@ def test_ensure_valid_features_rejects_missing_documented_features() -> None:
 
 
 def test_feature_manifest_names_are_unique() -> None:
-    """The feature manifest itself should not contain duplicate names."""
 
+    # The feature manifest itself should not contain duplicate names.
     names = [definition.name for definition in FEATURE_DEFINITIONS]
 
     assert names == list(feature_names())

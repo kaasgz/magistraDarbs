@@ -1,4 +1,4 @@
-"""Shared interfaces for scheduling solvers."""
+# Shared interfaces for scheduling solvers.
 
 from __future__ import annotations
 
@@ -27,13 +27,13 @@ ObjectiveSense = Literal["lower_is_better"]
 
 @dataclass(slots=True)
 class SolverResult:
-    """Standardized result returned by all solver implementations.
 
-    ``objective_value`` is minimized throughout this repository. The scoring
-    fields make clear whether that value is a fully comparable result,
-    a simplified-model score, or not a valid score for selector/evaluation use.
-    """
-
+    # Standardized result returned by all solver implementations.
+    #
+    # ``objective_value`` is minimized throughout this repository. The scoring
+    # fields make clear whether that value is a fully comparable result,
+    # a simplified-model score, or not a valid score for selector/evaluation use.
+    #
     solver_name: str
     instance_name: str
     objective_value: float | None
@@ -48,8 +48,8 @@ class SolverResult:
     objective_sense: ObjectiveSense = "lower_is_better"
 
     def __post_init__(self) -> None:
-        """Normalize optional scoring fields for older constructor call sites."""
 
+        # Normalize optional scoring fields for older constructor call sites.
         if self.scoring_status is None:
             self.scoring_status = (
                 "supported_feasible_run" if self.feasible else "supported_infeasible_run"
@@ -61,24 +61,24 @@ class SolverResult:
 
 
 class Solver(ABC):
-    """Abstract base class for all thesis solver implementations."""
 
     @abstractmethod
+    # Abstract base class for all thesis solver implementations.
     def solve(
         self,
         instance: object,
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Solve one instance and return a standardized solver result.
 
-        Args:
-            instance: Parsed instance representation consumed by the solver.
-            time_limit_seconds: Solver time limit in seconds.
-            random_seed: Random seed used for reproducibility.
-
-        Returns:
-            A standardized solver result describing the outcome.
-        """
-
+        # Solve one instance and return a standardized solver result.
+        #
+        # Args:
+        # instance: Parsed instance representation consumed by the solver.
+        # time_limit_seconds: Solver time limit in seconds.
+        # random_seed: Random seed used for reproducibility.
+        #
+        # Returns:
+        # A standardized solver result describing the outcome.
+        #
         raise NotImplementedError

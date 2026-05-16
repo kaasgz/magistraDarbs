@@ -1,4 +1,4 @@
-"""Tests for benchmark validation helpers."""
+# Tests for benchmark validation helpers.
 
 from __future__ import annotations
 
@@ -13,8 +13,8 @@ from src.experiments.benchmark_validation import (
 
 
 def test_validate_benchmark_results_accepts_traceable_rows() -> None:
-    """A well-formed benchmark table should pass validation."""
 
+    # A well-formed benchmark table should pass validation.
     frame = pd.DataFrame(
         [
             {
@@ -52,8 +52,8 @@ def test_validate_benchmark_results_accepts_traceable_rows() -> None:
 
 
 def test_validate_benchmark_results_flags_duplicates_and_invalid_values() -> None:
-    """Duplicate rows and impossible numeric values should be reported."""
 
+    # Duplicate rows and impossible numeric values should be reported.
     frame = pd.DataFrame(
         [
             {
@@ -115,8 +115,8 @@ def test_validate_benchmark_results_flags_duplicates_and_invalid_values() -> Non
 
 
 def test_ensure_valid_benchmark_results_rejects_unexpected_solver_registry_names() -> None:
-    """Rows outside the configured solver portfolio should fail validation."""
 
+    # Rows outside the configured solver portfolio should fail validation.
     frame = pd.DataFrame(
         [
             {

@@ -1,4 +1,4 @@
-"""Coverage-aware tests for thesis benchmark reports."""
+# Coverage-aware tests for thesis benchmark reports.
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ from src.experiments.thesis_report import generate_thesis_benchmark_report
 
 
 def test_thesis_report_separates_coverage_support_and_valid_objectives(tmp_path: Path) -> None:
-    """Reports should not treat feasible coverage as objective-comparable quality."""
 
+    # Reports should not treat feasible coverage as objective-comparable quality.
     synthetic_benchmark_csv = tmp_path / "synthetic_benchmark_results.csv"
     real_benchmark_csv = tmp_path / "real_benchmark_results.csv"
     synthetic_summary_csv = tmp_path / "synthetic_selector_summary.csv"
@@ -142,8 +142,8 @@ def _benchmark_row(
     status: str = "FEASIBLE",
     synthetic: bool = True,
 ) -> dict[str, object]:
-    """Build one benchmark row with scoring-contract metadata."""
 
+    # Build one benchmark row with scoring-contract metadata.
     return {
         "instance_name": instance_name,
         "solver_name": solver_name,
@@ -161,8 +161,8 @@ def _benchmark_row(
 
 
 def _write_evaluation_summary(path: Path, *, selected: float, virtual_best: float) -> None:
-    """Write a minimal selector summary fixture."""
 
+    # Write a minimal selector summary fixture.
     pd.DataFrame(
         [
             {

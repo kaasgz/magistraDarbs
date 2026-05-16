@@ -1,4 +1,4 @@
-"""Validation helpers for aligning the practical thesis text with repository data."""
+# Validation helpers for aligning the practical thesis text with repository data.
 
 from __future__ import annotations
 
@@ -34,8 +34,8 @@ TOKEN_PATTERN = re.compile(
 
 @dataclass(frozen=True, slots=True)
 class ValidationPaths:
-    """Canonical artifact paths used for thesis validation."""
 
+    # Canonical artifact paths used for thesis validation.
     workspace_root: Path
     thesis_docx: Path
     selection_dataset_full_csv: Path
@@ -55,8 +55,8 @@ class ValidationPaths:
 
     @classmethod
     def from_workspace(cls, workspace_root: str | Path) -> "ValidationPaths":
-        """Build the canonical path layout anchored at one workspace root."""
 
+        # Build the canonical path layout anchored at one workspace root.
         root = Path(workspace_root)
         return cls(
             workspace_root=root,
@@ -94,13 +94,13 @@ class ValidationPaths:
 
 
 def resolve_thesis_docx(workspace_root: str | Path) -> Path:
-    """Return the current thesis DOCX from the workspace.
 
-    The thesis file name changes when Word creates numbered copies, so the
-    validation pipeline uses the newest matching file instead of a stale fixed
-    name.
-    """
-
+    # Return the current thesis DOCX from the workspace.
+    #
+    # The thesis file name changes when Word creates numbered copies, so the
+    # validation pipeline uses the newest matching file instead of a stale fixed
+    # name.
+    #
     root = Path(workspace_root)
     candidates = [
         path
@@ -114,8 +114,8 @@ def resolve_thesis_docx(workspace_root: str | Path) -> Path:
 
 @dataclass(frozen=True, slots=True)
 class ValidationRecord:
-    """One row in the thesis validation output."""
 
+    # One row in the thesis validation output.
     thesis_section: str
     statement_text: str
     value_in_text: str
@@ -127,8 +127,8 @@ class ValidationRecord:
     data_reference: str
 
     def to_csv_row(self) -> dict[str, str]:
-        """Return the CSV-compatible mapping row."""
 
+        # Return the CSV-compatible mapping row.
         return {
             "thesis_section": self.thesis_section,
             "statement_text": self.statement_text,
@@ -144,8 +144,8 @@ class ValidationRecord:
 
 @dataclass(slots=True)
 class ValidationContext:
-    """Loaded data used by sentence validators."""
 
+    # Loaded data used by sentence validators.
     paths: ValidationPaths
     selection_dataset: pd.DataFrame
     selection_dataset_full_run_summary: dict[str, Any]
@@ -164,8 +164,8 @@ class ValidationContext:
 
     @classmethod
     def load(cls, workspace_root: str | Path) -> "ValidationContext":
-        """Load the canonical validation data once."""
 
+        # Load the canonical validation data once.
         paths = ValidationPaths.from_workspace(workspace_root)
         return cls(
             paths=paths,
@@ -189,8 +189,8 @@ class ValidationContext:
 
 
 def build_validation_records(workspace_root: str | Path) -> list[ValidationRecord]:
-    """Validate the practical thesis section sentence by sentence."""
 
+    # Validate the practical thesis section sentence by sentence.
     context = ValidationContext.load(workspace_root)
     sentences = practical_section_sentences(context.paths.thesis_docx)
     records: list[ValidationRecord] = []
@@ -204,8 +204,8 @@ def build_validation_records(workspace_root: str | Path) -> list[ValidationRecor
 
 
 def build_data_reference_mapping(records: list[ValidationRecord]) -> dict[str, dict[str, Any]]:
-    """Build the `[DATA-x]` reference mapping JSON payload."""
 
+    # Build the `[DATA-x]` reference mapping JSON payload.
     mapping: dict[str, dict[str, Any]] = {}
     workspace_root = _infer_workspace_root(records)
     for record in records:
@@ -224,8 +224,8 @@ def build_data_reference_mapping(records: list[ValidationRecord]) -> dict[str, d
 
 
 def build_validation_markdown(records: list[ValidationRecord]) -> str:
-    """Render a readable Markdown validation report."""
 
+    # Render a readable Markdown validation report.
     total = len(records)
     ok_count = sum(record.status == STATUS_OK for record in records)
     mismatch_count = sum(record.status == STATUS_MISMATCH for record in records)
@@ -301,15 +301,15 @@ def build_validation_markdown(records: list[ValidationRecord]) -> str:
 
 
 def _infer_workspace_root(records: list[ValidationRecord]) -> Path:
-    """Infer the workspace root from the current module location."""
 
+    # Infer the workspace root from the current module location.
     _ = records
     return Path(__file__).resolve().parents[2]
 
 
 def build_source_link_entries(source_file: str, workspace_root: str | Path) -> list[dict[str, str]]:
-    """Return structured GitHub links for one validation source string."""
 
+    # Return structured GitHub links for one validation source string.
     paths = _split_source_paths(source_file)
     repo_url = _repository_github_url(workspace_root)
     branch = _repository_branch_name(workspace_root)
@@ -321,8 +321,8 @@ def build_source_link_entries(source_file: str, workspace_root: str | Path) -> l
 
 
 def _format_source_reference_markdown(source_file: str, workspace_root: str | Path) -> str:
-    """Render one source-file field as clickable Markdown links when possible."""
 
+    # Render one source-file field as clickable Markdown links when possible.
     entries = build_source_link_entries(source_file, workspace_root)
     if not entries:
         return "`No direct file mapping available.`"
@@ -340,8 +340,8 @@ def _format_source_reference_markdown(source_file: str, workspace_root: str | Pa
 
 
 def _split_source_paths(source_file: str) -> list[str]:
-    """Split one `source_file` field into normalized repository-relative paths."""
 
+    # Split one `source_file` field into normalized repository-relative paths.
     if not source_file:
         return []
     parts = [part.strip() for part in source_file.split("|")]
@@ -350,8 +350,8 @@ def _split_source_paths(source_file: str) -> list[str]:
 
 @lru_cache(maxsize=8)
 def _repository_github_url(workspace_root: str | Path) -> str | None:
-    """Resolve the GitHub repository HTTPS URL from the local git remote."""
 
+    # Resolve the GitHub repository HTTPS URL from the local git remote.
     try:
         result = subprocess.run(
             ["git", "remote", "get-url", "origin"],
@@ -375,8 +375,8 @@ def _repository_github_url(workspace_root: str | Path) -> str | None:
 
 @lru_cache(maxsize=8)
 def _repository_branch_name(workspace_root: str | Path) -> str:
-    """Resolve the current branch name, falling back to `main`."""
 
+    # Resolve the current branch name, falling back to `main`.
     try:
         result = subprocess.run(
             ["git", "branch", "--show-current"],
@@ -398,8 +398,8 @@ def _build_source_url(
     repo_url: str | None,
     branch: str,
 ) -> str | None:
-    """Build one GitHub URL for a repository-relative file or directory path."""
 
+    # Build one GitHub URL for a repository-relative file or directory path.
     if not repo_url:
         return None
 
@@ -419,8 +419,8 @@ def _validate_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord:
-    """Validate one sentence against the loaded canonical artifacts."""
 
+    # Validate one sentence against the loaded canonical artifacts.
     text = sentence.text
 
     for validator in (
@@ -454,8 +454,8 @@ def _validate_dataset_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord | None:
-    """Validate sentences about datasets, labels, and data preparation."""
 
+    # Validate sentences about datasets, labels, and data preparation.
     text = sentence.text
     dataset = context.selection_dataset
     dataset_counts = dataset["dataset_type"].value_counts(dropna=False).to_dict()
@@ -962,8 +962,8 @@ def _validate_feature_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord | None:
-    """Validate sentences about structural features."""
 
+    # Validate sentences about structural features.
     text = sentence.text
     dataset_columns = set(context.selection_dataset.columns)
     feature_columns = sorted(
@@ -1292,8 +1292,8 @@ def _validate_solver_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord | None:
-    """Validate sentences about the solver portfolio and scoring semantics."""
 
+    # Validate sentences about the solver portfolio and scoring semantics.
     text = sentence.text
 
     if _contains_all(text, "portfelī iekļauti četri", "cp-sat", "timefold"):
@@ -1553,8 +1553,8 @@ def _validate_modeling_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord | None:
-    """Validate sentences about model configuration and evaluation methodology."""
 
+    # Validate sentences about model configuration and evaluation methodology.
     text = sentence.text
     run_results = context.full_evaluation_run_summary.get("results", {})
     settings = context.full_evaluation_run_summary.get("settings", {})
@@ -1771,8 +1771,8 @@ def _validate_results_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord | None:
-    """Validate sentences that quote experiment outcomes."""
 
+    # Validate sentences that quote experiment outcomes.
     text = sentence.text
     full_results = context.full_evaluation_run_summary.get("results", {})
     metrics_by_type = full_results.get("metrics_by_dataset_type", {})
@@ -2131,8 +2131,8 @@ def _validate_pipeline_sentence(
     *,
     data_reference: str,
 ) -> ValidationRecord | None:
-    """Validate high-level pipeline structure sentences."""
 
+    # Validate high-level pipeline structure sentences.
     text = sentence.text
 
     if _contains_all(text, "python vidē", "galvenajiem eksperimenta posmiem"):
@@ -2305,8 +2305,8 @@ def _feature_group_record(
     required_features: set[str],
     available_columns: set[str],
 ) -> ValidationRecord:
-    """Create one group-based validation record."""
 
+    # Create one group-based validation record.
     present = sorted(required_features & available_columns)
     missing = sorted(required_features - available_columns)
     status = STATUS_OK if not missing else STATUS_MISMATCH
@@ -2336,8 +2336,8 @@ def _path_record(
     actual_value: str,
     notes: str,
 ) -> ValidationRecord:
-    """Create one file-existence-based record."""
 
+    # Create one file-existence-based record.
     missing = [
         file_path
         for file_path in files
@@ -2366,8 +2366,8 @@ def _ok_record(
     actual_value: str,
     notes: str,
 ) -> ValidationRecord:
-    """Create one simple `OK` validation row."""
 
+    # Create one simple `OK` validation row.
     return ValidationRecord(
         thesis_section=sentence.thesis_section,
         statement_text=sentence.text,
@@ -2391,8 +2391,8 @@ def _numeric_record(
     actual_values: tuple[float, ...],
     notes: str,
 ) -> ValidationRecord:
-    """Create one numeric comparison record."""
 
+    # Create one numeric comparison record.
     rounded_text = tuple(round(value, 4) for value in text_values)
     rounded_actual = tuple(round(value, 4) for value in actual_values)
     status = STATUS_OK if rounded_text == rounded_actual else STATUS_MISMATCH
@@ -2415,8 +2415,8 @@ def _solver_comparison_row(
     result_scope: str,
     solver_registry_name: str,
 ) -> pd.Series:
-    """Return one solver-comparison row or raise an informative error."""
 
+    # Return one solver-comparison row or raise an informative error.
     rows = solver_comparison[
         (solver_comparison["result_scope"] == result_scope)
         & (solver_comparison["solver_registry_name"] == solver_registry_name)
@@ -2433,8 +2433,8 @@ def _solver_support_summary_row(
     solver_registry_name: str,
     solver_support_status: str,
 ) -> pd.Series:
-    """Return one solver-support-summary row."""
 
+    # Return one solver-support-summary row.
     rows = solver_support_summary[
         (solver_support_summary["result_scope"] == result_scope)
         & (solver_support_summary["solver_registry_name"] == solver_registry_name)
@@ -2448,15 +2448,15 @@ def _solver_support_summary_row(
 
 
 def _contains_all(text: str, *needles: str) -> bool:
-    """Return whether all phrases appear in a normalized sentence."""
 
+    # Return whether all phrases appear in a normalized sentence.
     normalized_text = _normalize_for_matching(text)
     return all(_normalize_for_matching(needle) in normalized_text for needle in needles)
 
 
 def _normalize_for_matching(text: str) -> str:
-    """Normalize punctuation variants that often differ between Word exports."""
 
+    # Normalize punctuation variants that often differ between Word exports.
     normalized = (
         text.lower()
         .replace("\xa0", " ")
@@ -2467,8 +2467,8 @@ def _normalize_for_matching(text: str) -> str:
 
 
 def _extract_text_value(text: str) -> str:
-    """Extract compact values from one thesis sentence for the CSV."""
 
+    # Extract compact values from one thesis sentence for the CSV.
     matches = TOKEN_PATTERN.findall(text)
     cleaned = []
     for match in matches:
@@ -2482,6 +2482,6 @@ def _extract_text_value(text: str) -> str:
 
 
 def _format_float(value: float) -> str:
-    """Format one float with thesis-style four-decimal precision."""
 
+    # Format one float with thesis-style four-decimal precision.
     return f"{value:.4f}"

@@ -1,4 +1,4 @@
-"""Tests for selector error analysis."""
+# Tests for selector error analysis.
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ from src.selection.error_analysis import analyze_selector_errors
 
 
 def test_analyze_selector_errors_saves_csv_and_plots(tmp_path: Path) -> None:
-    """Error analysis should create the expected thesis-facing artefacts."""
 
+    # Error analysis should create the expected thesis-facing artefacts.
     evaluation_csv = tmp_path / "selector_evaluation.csv"
     selection_dataset_csv = tmp_path / "selection_dataset.csv"
     output_dir = tmp_path / "error_analysis"
@@ -137,8 +137,8 @@ def test_analyze_selector_errors_saves_csv_and_plots(tmp_path: Path) -> None:
 
 
 def test_analyze_selector_errors_handles_perfect_selector_case(tmp_path: Path) -> None:
-    """Analysis should still produce artefacts when there are no hard mistakes."""
 
+    # Analysis should still produce artefacts when there are no hard mistakes.
     evaluation_csv = tmp_path / "selector_evaluation.csv"
     selection_dataset_csv = tmp_path / "selection_dataset.csv"
     output_dir = tmp_path / "error_analysis"

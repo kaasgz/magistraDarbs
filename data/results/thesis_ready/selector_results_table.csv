@@ -1,0 +1,2 @@
+Modeļa tips,Labākais fiksētais algoritms,Precizitāte,Sabalansētā precizitāte,Vidējā izvēlētā kvalitāte,Vidējā virtual best kvalitāte,Vidējā single best kvalitāte,Regret pret virtual best,Uzlabojums pret single best,Testa instanču skaits,Validācijas sadalījumu skaits
+Random Forest klasifikators,CP-SAT,0.9957264957264957,0.9907407407407407,19.525641025641026,19.51282051282051,19.9017094017094,0.012820512820512973,0.3760683760683759,702,9

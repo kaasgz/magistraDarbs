@@ -1,4 +1,4 @@
-"""Run the main thesis pipeline in one explicit, reproducible order."""
+# Run the main thesis pipeline in one explicit, reproducible order.
 
 from __future__ import annotations
 
@@ -38,8 +38,8 @@ _StepResult = TypeVar("_StepResult")
 
 @dataclass(frozen=True, slots=True)
 class PipelineSettings:
-    """Resolved settings used by the run-all pipeline helper."""
 
+    # Resolved settings used by the run-all pipeline helper.
     feature_config_path: Path
     benchmark_config_path: Path
     selector_config_path: Path
@@ -50,8 +50,8 @@ class PipelineSettings:
 
 @dataclass(slots=True)
 class PipelineRunResult:
-    """Summary of the written artifacts from one full pipeline run."""
 
+    # Summary of the written artifacts from one full pipeline run.
     inventory_csv: Path | None
     features_csv: Path
     benchmark_csv: Path
@@ -64,8 +64,8 @@ class PipelineRunResult:
 
 
 class PipelineRunError(RuntimeError):
-    """A critical pipeline step failed and the run was stopped."""
 
+    # A critical pipeline step failed and the run was stopped.
     def __init__(self, step_name: str, cause: Exception) -> None:
         self.step_name = step_name
         self.cause = cause
@@ -77,8 +77,8 @@ def run_all_pipeline(
     *,
     include_inventory: bool | None = None,
 ) -> PipelineRunResult:
-    """Run the core thesis pipeline in the documented order."""
 
+    # Run the core thesis pipeline in the documented order.
     settings = _resolve_pipeline_settings(config_path, include_inventory=include_inventory)
     total_steps = 6 if settings.include_inventory else 5
     step_index = 0
@@ -158,8 +158,8 @@ def run_all_pipeline(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for the run-all pipeline helper."""
 
+    # Create the command-line parser for the run-all pipeline helper.
     parser = argparse.ArgumentParser(
         description="Run the main thesis pipeline in one explicit, reproducible order.",
     )
@@ -189,8 +189,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the full pipeline from the command line."""
 
+    # Run the full pipeline from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
 
@@ -213,8 +213,8 @@ def _resolve_pipeline_settings(
     *,
     include_inventory: bool | None,
 ) -> PipelineSettings:
-    """Resolve pipeline-level settings and stage-config paths."""
 
+    # Resolve pipeline-level settings and stage-config paths.
     pipeline_config = load_yaml_config(config_path) if config_path is not None else {}
 
     feature_config_path = get_compat_path(
@@ -277,8 +277,8 @@ def _execute_step(
     *,
     success_message: Callable[[_StepResult], str],
 ) -> _StepResult:
-    """Run one pipeline step with a readable progress log."""
 
+    # Run one pipeline step with a readable progress log.
     print(f"[{step_index}/{total_steps}] {step_name}...", flush=True)
     started_at = time.perf_counter()
     try:
@@ -303,8 +303,8 @@ def _execute_step(
 
 
 def _training_success_message(result: SelectorTrainingResult) -> str:
-    """Format one concise success message for selector training."""
 
+    # Format one concise success message for selector training.
     importance_path = (
         result.feature_importance_path.as_posix()
         if result.feature_importance_path is not None
@@ -319,8 +319,8 @@ def _training_success_message(result: SelectorTrainingResult) -> str:
 
 
 def _evaluation_success_message(result: SelectorEvaluationResult) -> str:
-    """Format one concise success message for selector evaluation."""
 
+    # Format one concise success message for selector evaluation.
     balanced = "n/a" if result.balanced_accuracy is None else f"{result.balanced_accuracy:.4f}"
     return (
         f"Evaluation report: {result.report_path.as_posix()}\n"
@@ -331,8 +331,8 @@ def _evaluation_success_message(result: SelectorEvaluationResult) -> str:
 
 
 def _print_final_summary(result: PipelineRunResult) -> None:
-    """Print one short final summary after a successful pipeline run."""
 
+    # Print one short final summary after a successful pipeline run.
     print("Pipeline completed successfully.", flush=True)
     if result.inventory_csv is not None:
         print(f"Inventory: {result.inventory_csv.as_posix()}", flush=True)

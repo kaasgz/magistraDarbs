@@ -1,0 +1,122 @@
+{
+  "stage_name": "selector_training",
+  "generated_at": "2026-04-20T14:34:40+03:00",
+  "config_path": "configs/synthetic_study.yaml",
+  "settings": {
+    "random_seed": 44,
+    "model_name": "random_forest",
+    "split_strategy": "repeated_stratified_kfold",
+    "test_size": 0.25,
+    "cross_validation_folds": 3,
+    "repeats": 3,
+    "split_notes": [
+      "Cross-validation fell back to non-stratified folds because only one class is present."
+    ]
+  },
+  "inputs": {
+    "selection_dataset_csv": "data/processed/synthetic_study/seeds/seed_0044/selection_dataset.csv"
+  },
+  "outputs": {
+    "model_output": "data/results/synthetic_study/seeds/seed_0044/random_forest_selector.joblib",
+    "feature_importance_csv": "data/results/synthetic_study/seeds/seed_0044/feature_importance.csv",
+    "run_summary": "data/results/synthetic_study/seeds/seed_0044/selector_training_run_summary.json"
+  },
+  "results": {
+    "accuracy": 1.0,
+    "balanced_accuracy": null,
+    "num_train_rows": 120,
+    "num_test_rows": 60,
+    "num_labeled_rows": 180,
+    "num_validation_splits": 9,
+    "dataset_type_counts": {},
+    "feature_columns": [
+      "num_teams",
+      "num_slots",
+      "num_constraints",
+      "teams_is_even",
+      "estimated_minimum_slots",
+      "slot_pressure",
+      "slot_surplus",
+      "num_hard_constraints",
+      "num_soft_constraints",
+      "num_unclassified_constraints",
+      "num_constraints_missing_category",
+      "num_constraints_missing_tag",
+      "num_constraints_missing_type",
+      "ratio_hard_to_all",
+      "ratio_soft_to_all",
+      "ratio_unclassified_to_all",
+      "constraints_per_team",
+      "constraints_per_slot",
+      "constraints_per_team_slot",
+      "number_of_constraint_categories",
+      "number_of_constraint_tags",
+      "number_of_constraint_types",
+      "ratio_constraint_categories_to_constraints",
+      "ratio_constraint_tags_to_constraints",
+      "ratio_constraint_types_to_constraints"
+    ],
+    "excluded_columns": [
+      "objective_present",
+      "objective_name",
+      "objective_sense",
+      "objective_is_minimization",
+      "objective_is_maximization",
+      "objective_cpsat_round_robin",
+      "objective_random_baseline",
+      "objective_simulated_annealing_baseline",
+      "objective_timefold"
+    ],
+    "confusion_matrix": {
+      "cpsat_round_robin": {
+        "cpsat_round_robin": 540
+      }
+    }
+  },
+  "config_snapshot": {
+    "paths": {
+      "dataset_root": "data/raw/synthetic/study",
+      "processed_dir": "data/processed/synthetic_study",
+      "results_dir": "data/results/synthetic_study"
+    },
+    "run": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "time_limit_seconds": 60
+    },
+    "solvers": {
+      "selected": [
+        "random_baseline",
+        "cpsat_solver",
+        "simulated_annealing_solver",
+        "timefold"
+      ],
+      "settings": {
+        "timefold": {
+          "executable_path": null,
+          "time_limit_seconds": 60,
+          "command_arguments": []
+        }
+      }
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

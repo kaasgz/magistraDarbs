@@ -1,4 +1,4 @@
-"""Generate the configured synthetic study dataset with explicit seeds."""
+# Generate the configured synthetic study dataset with explicit seeds.
 
 from __future__ import annotations
 
@@ -28,8 +28,8 @@ STUDY_XML_PREFIX = "synthetic_study_"
 
 @dataclass(frozen=True, slots=True)
 class SyntheticStudyRow:
-    """Metadata for one generated study instance."""
 
+    # Metadata for one generated study instance.
     instance_name: str
     file_name: str
     file_path: str
@@ -63,8 +63,8 @@ class SyntheticStudyRow:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticStudyGenerationResult:
-    """Summary of one synthetic study generation run."""
 
+    # Summary of one synthetic study generation run.
     output_root: Path
     metadata_csv: Path
     manifest_json: Path
@@ -83,8 +83,8 @@ def generate_synthetic_study_dataset(
     difficulty_profile: DifficultySelection = "mixed",
     generation_timestamp: str = DEFAULT_GENERATION_TIMESTAMP,
 ) -> SyntheticStudyGenerationResult:
-    """Generate a multi-seed synthetic dataset for thesis experiments."""
 
+    # Generate a multi-seed synthetic dataset for thesis experiments.
     if n <= 0:
         raise ValueError("n must be positive.")
     if not seeds:
@@ -154,8 +154,8 @@ def generate_synthetic_study_dataset(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for synthetic study generation."""
 
+    # Create the CLI parser for synthetic study generation.
     parser = argparse.ArgumentParser(
         description="Generate a larger synthetic study dataset for algorithm-selection experiments.",
     )
@@ -190,8 +190,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run synthetic study generation from the command line."""
 
+    # Run synthetic study generation from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
 
@@ -221,8 +221,8 @@ def _materialize_study_instance(
     seed_batch_index: int,
     instance_index: int,
 ) -> SyntheticStudyRow:
-    """Move one generated XML into the study namespace and build metadata."""
 
+    # Move one generated XML into the study namespace and build metadata.
     instance_name = _study_instance_name(source_row, dataset_seed=dataset_seed, instance_index=instance_index)
     destination_xml = output_root / f"{instance_name}.xml"
     source_xml = Path(source_row.file_path)
@@ -263,8 +263,8 @@ def _materialize_study_instance(
 
 
 def _write_metadata_csv(metadata_csv: Path, rows: list[SyntheticStudyRow]) -> None:
-    """Write study metadata with a stable schema."""
 
+    # Write study metadata with a stable schema.
     ensure_parent_directory(metadata_csv)
     fieldnames = list(asdict(rows[0]).keys()) if rows else _metadata_columns()
     with metadata_csv.open("w", encoding="utf-8", newline="") as handle:
@@ -285,8 +285,8 @@ def _write_manifest(
     generation_timestamp: str,
     rows: list[SyntheticStudyRow],
 ) -> None:
-    """Write a JSON manifest for reproducible study generation."""
 
+    # Write a JSON manifest for reproducible study generation.
     ensure_parent_directory(manifest_json)
     payload: dict[str, Any] = {
         "schema": "synthetic_study_dataset_v1",
@@ -308,8 +308,8 @@ def _write_manifest(
 
 
 def _prepare_output_root(output_root: Path) -> None:
-    """Create the output root and refresh only study-generator artifacts."""
 
+    # Create the output root and refresh only study-generator artifacts.
     output_root.mkdir(parents=True, exist_ok=True)
     foreign_xml = [
         path
@@ -332,8 +332,8 @@ def _prepare_output_root(output_root: Path) -> None:
 
 
 def _allocate_instances(*, n: int, seed_count: int) -> tuple[int, ...]:
-    """Allocate total instances across seed batches deterministically."""
 
+    # Allocate total instances across seed batches deterministically.
     base_count = n // seed_count
     remainder = n % seed_count
     return tuple(base_count + (1 if index < remainder else 0) for index in range(seed_count))
@@ -345,8 +345,8 @@ def _study_instance_name(
     dataset_seed: int,
     instance_index: int,
 ) -> str:
-    """Build one globally unique study instance name."""
 
+    # Build one globally unique study instance name.
     return (
         f"{STUDY_XML_PREFIX}{source_row.difficulty}_{source_row.team_count:02d}t_"
         f"{source_row.round_robin_mode}_seed{dataset_seed}_{instance_index:04d}"
@@ -354,8 +354,8 @@ def _study_instance_name(
 
 
 def _rewrite_instance_identity(xml_path: Path, instance_name: str) -> None:
-    """Rewrite XML root and metadata name to the final study instance name."""
 
+    # Rewrite XML root and metadata name to the final study instance name.
     tree = ET.parse(xml_path)
     root = tree.getroot()
     root.attrib["name"] = instance_name
@@ -366,8 +366,8 @@ def _rewrite_instance_identity(xml_path: Path, instance_name: str) -> None:
 
 
 def _parse_seeds(value: str) -> tuple[int, ...]:
-    """Parse a comma-separated seed list."""
 
+    # Parse a comma-separated seed list.
     parts = [part.strip() for part in value.split(",") if part.strip()]
     if not parts:
         raise ValueError("seeds must contain at least one integer.")
@@ -378,8 +378,8 @@ def _parse_seeds(value: str) -> tuple[int, ...]:
 
 
 def _normalize_difficulty_profile(value: str) -> DifficultySelection:
-    """Normalize the requested difficulty profile."""
 
+    # Normalize the requested difficulty profile.
     normalized = value.strip().casefold()
     if normalized not in {"mixed", "easy", "medium", "hard"}:
         raise ValueError("difficulty_profile must be one of: mixed, easy, medium, hard.")
@@ -387,8 +387,8 @@ def _normalize_difficulty_profile(value: str) -> DifficultySelection:
 
 
 def _metadata_columns() -> list[str]:
-    """Return the stable metadata CSV column order."""
 
+    # Return the stable metadata CSV column order.
     return [
         "instance_name",
         "file_name",

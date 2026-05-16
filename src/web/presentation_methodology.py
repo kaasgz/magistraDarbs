@@ -1,4 +1,4 @@
-"""Build the methodology section for the thesis-defense dashboard."""
+# Build the methodology section for the thesis-defense dashboard.
 
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ def build_methodology_section(
     figure_payloads: list[dict[str, Any]],
     intro: str,
 ) -> dict[str, Any]:
-    """Build the dashboard section that explains how to read the results."""
 
+    # Build the dashboard section that explains how to read the results.
     real_instance_count = _summary_count(dataset_summary, "Reālo instanču skaits")
     synthetic_instance_count = _summary_count(dataset_summary, "Sintētisko instanču skaits")
     observed_target_count = _observed_target_count(selection_dataset)

@@ -1,4 +1,4 @@
-"""Tests for benchmark evaluation metrics."""
+# Tests for benchmark evaluation metrics.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from src.experiments.metrics import (
 
 
 def _sample_results() -> pd.DataFrame:
-    """Create a compact benchmark table with CSV-like values."""
 
+    # Create a compact benchmark table with CSV-like values.
     return pd.DataFrame(
         [
             {
@@ -136,8 +136,8 @@ def _sample_results() -> pd.DataFrame:
 
 
 def test_best_solver_per_instance_returns_best_feasible_rows_and_placeholders() -> None:
-    """The per-instance best table should keep one row for every instance."""
 
+    # The per-instance best table should keep one row for every instance.
     results = best_solver_per_instance(_sample_results())
 
     assert list(results["instance_name"]) == ["inst_1", "inst_2", "inst_3", "inst_4", "inst_5"]
@@ -147,8 +147,8 @@ def test_best_solver_per_instance_returns_best_feasible_rows_and_placeholders() 
 
 
 def test_single_best_solver_prefers_coverage_then_average_objective() -> None:
-    """The single best solver should follow the documented selection rule."""
 
+    # The single best solver should follow the documented selection rule.
     summary = single_best_solver(_sample_results())
 
     assert summary["solver_name"] == "solver_b"
@@ -158,8 +158,8 @@ def test_single_best_solver_prefers_coverage_then_average_objective() -> None:
 
 
 def test_virtual_best_solver_aggregates_oracle_per_instance_choice() -> None:
-    """The virtual best summary should aggregate the best feasible row per instance."""
 
+    # The virtual best summary should aggregate the best feasible row per instance.
     summary = virtual_best_solver(_sample_results())
 
     assert summary["solver_name"] == "virtual_best_solver"
@@ -170,8 +170,8 @@ def test_virtual_best_solver_aggregates_oracle_per_instance_choice() -> None:
 
 
 def test_average_objective_and_runtime_by_solver_use_documented_filters() -> None:
-    """Objective and runtime summaries should match the documented assumptions."""
 
+    # Objective and runtime summaries should match the documented assumptions.
     objective_summary = average_objective_by_solver(_sample_results())
     runtime_summary = average_runtime_by_solver(_sample_results())
 
@@ -185,8 +185,8 @@ def test_average_objective_and_runtime_by_solver_use_documented_filters() -> Non
 
 
 def test_metrics_raise_helpful_error_when_columns_are_missing() -> None:
-    """Metric helpers should validate the expected benchmark schema."""
 
+    # Metric helpers should validate the expected benchmark schema.
     broken = pd.DataFrame([{"instance_name": "inst_1", "solver_name": "solver_a"}])
 
     with pytest.raises(ValueError, match="missing required columns"):

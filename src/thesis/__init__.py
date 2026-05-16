@@ -1,1 +1,1 @@
-"""Thesis-facing validation, export, and visualization helpers."""
+# Thesis-facing validation, export, and visualization helpers.

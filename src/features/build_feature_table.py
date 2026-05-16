@@ -1,4 +1,4 @@
-"""Build a CSV table of structural features for multiple XML instances."""
+# Build a CSV table of structural features for multiple XML instances.
 
 from __future__ import annotations
 
@@ -43,20 +43,20 @@ def build_feature_table(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> Path:
-    """Parse XML instances in a folder and save one feature table as CSV.
 
-    Args:
-        input_folder: Folder containing RobinX / ITC2021 XML instances.
-        output_csv: Output CSV path. Defaults to ``data/processed/features.csv``.
-        random_seed: Recorded in run metadata for reproducibility.
-        config_path: Optional YAML config path used for the run.
-        config: Optional loaded config snapshot to include in metadata.
-        run_summary_path: Optional JSON sidecar path for run metadata.
-
-    Returns:
-        The path of the written CSV file.
-    """
-
+    # Parse XML instances in a folder and save one feature table as CSV.
+    #
+    # Args:
+    # input_folder: Folder containing RobinX / ITC2021 XML instances.
+    # output_csv: Output CSV path. Defaults to ``data/processed/features.csv``.
+    # random_seed: Recorded in run metadata for reproducibility.
+    # config_path: Optional YAML config path used for the run.
+    # config: Optional loaded config snapshot to include in metadata.
+    # run_summary_path: Optional JSON sidecar path for run metadata.
+    #
+    # Returns:
+    # The path of the written CSV file.
+    #
     input_path = Path(input_folder)
     if not input_path.exists():
         raise FileNotFoundError(f"Input folder does not exist: {input_path}")
@@ -158,8 +158,8 @@ def build_feature_table(
 
 
 def build_feature_table_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> Path:
-    """Build the feature table using values loaded from a YAML configuration file."""
 
+    # Build the feature table using values loaded from a YAML configuration file.
     config = load_yaml_config(config_path)
     output_path = get_compat_path(config, ["paths.output_csv", "paths.features_csv"], DEFAULT_OUTPUT_PATH)
     summary_path = get_compat_path(
@@ -178,8 +178,8 @@ def build_feature_table_from_config(config_path: str | Path = DEFAULT_CONFIG_PAT
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for feature table generation."""
 
+    # Create the command-line parser for feature table generation.
     parser = argparse.ArgumentParser(
         description="Parse XML instances and build one structural feature CSV table.",
     )
@@ -208,8 +208,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the feature table builder from the command line."""
 
+    # Run the feature table builder from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -241,8 +241,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     print(f"Feature table saved to {output_path}")
     return 0
 def _ordered_columns(rows: list[dict[str, FeatureValue]]) -> list[str]:
-    """Build a stable CSV column order with ``instance_name`` first."""
 
+    # Build a stable CSV column order with ``instance_name`` first.
     columns = ["instance_name"]
     seen = {"instance_name"}
 
@@ -256,16 +256,16 @@ def _ordered_columns(rows: list[dict[str, FeatureValue]]) -> list[str]:
 
 
 def _ensure_minimal_instance_structure(instance: object, xml_file: Path) -> None:
-    """Reject instances that do not expose the minimum required structure."""
 
+    # Reject instances that do not expose the minimum required structure.
     team_count = getattr(instance, "team_count", 0)
     if not isinstance(team_count, int) or team_count <= 0:
         raise ValueError(f"Instance {xml_file} does not expose any teams after parsing.")
 
 
 def _log_parser_notes(instance: object, xml_file: Path) -> None:
-    """Log parser notes so recoveries and ambiguities stay visible in the pipeline."""
 
+    # Log parser notes so recoveries and ambiguities stay visible in the pipeline.
     parser_notes = list(getattr(instance, "parser_notes", []) or [])
     for note in parser_notes:
         severity = str(getattr(note, "severity", "info")).casefold()

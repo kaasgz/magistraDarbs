@@ -1,4 +1,4 @@
-"""Backend helpers for the local sports scheduling dashboard."""
+# Backend helpers for the local sports scheduling dashboard.
 
 from __future__ import annotations
 
@@ -32,8 +32,8 @@ SYNTHETIC_DIFFICULTIES: tuple[str, ...] = ("easy", "medium", "hard")
 
 @dataclass(frozen=True, slots=True)
 class DashboardPaths:
-    """Filesystem layout used by the local dashboard."""
 
+    # Filesystem layout used by the local dashboard.
     workspace_root: Path
     real_instance_folder: Path
     real_inventory_csv: Path
@@ -91,8 +91,8 @@ class DashboardPaths:
 
     @classmethod
     def from_workspace(cls, workspace_root: str | Path) -> "DashboardPaths":
-        """Build default dashboard paths anchored at one workspace root."""
 
+        # Build default dashboard paths anchored at one workspace root.
         root = Path(workspace_root)
         return cls(
             workspace_root=root,
@@ -209,8 +209,8 @@ class DashboardPaths:
 
 
 class DashboardService:
-    """Serve dashboard-ready state for the local thesis project."""
 
+    # Serve dashboard-ready state for the local thesis project.
     def __init__(
         self,
         workspace_root: str | Path,
@@ -220,8 +220,8 @@ class DashboardService:
         default_time_limit_seconds: int = 1,
         default_synthetic_difficulty: str = DEFAULT_SYNTHETIC_DIFFICULTY,
     ) -> None:
-        """Initialize the service with stable default settings."""
 
+        # Initialize the service with stable default settings.
         self.paths = DashboardPaths.from_workspace(workspace_root)
         self.selected_solvers = selected_solvers or [
             "random_baseline",
@@ -248,8 +248,8 @@ class DashboardService:
         self._instance_inspector: dict[str, Any] = _empty_instance_inspector()
 
     def build_dashboard_state(self) -> dict[str, Any]:
-        """Collect the current dashboard state from the generated artifacts."""
 
+        # Collect the current dashboard state from the generated artifacts.
         manifest = _load_json_file(self.paths.demo_manifest_path)
         summary = _load_json_file(self.paths.demo_summary_json)
 
@@ -393,8 +393,8 @@ class DashboardService:
         }
 
     def preview_artifact(self, artifact_id: str) -> dict[str, Any]:
-        """Return a small read-only preview for one whitelisted artifact."""
 
+        # Return a small read-only preview for one whitelisted artifact.
         artifact = _artifact_browser_lookup(self.paths).get(str(artifact_id or "").strip())
         if artifact is None:
             raise ValueError("Unknown dashboard artifact.")
@@ -430,8 +430,8 @@ class DashboardService:
         raise ValueError("Only CSV and Markdown artifacts can be previewed in the dashboard.")
 
     def resolve_generated_file(self, relative_path: str) -> Path:
-        """Resolve one generated thesis artifact file for read-only HTTP serving."""
 
+        # Resolve one generated thesis artifact file for read-only HTTP serving.
         clean_relative = str(relative_path or "").strip().replace("\\", "/")
         if not clean_relative:
             raise ValueError("Generated file path is required.")
@@ -447,8 +447,8 @@ class DashboardService:
         return candidate
 
     def load_real_instance(self, relative_path: str) -> dict[str, Any]:
-        """Load one real XML instance and update the dashboard inspector."""
 
+        # Load one real XML instance and update the dashboard inspector.
         if not self._run_lock.acquire(blocking=False):
             raise RuntimeError("A dashboard action is already in progress.")
 
@@ -492,8 +492,8 @@ class DashboardService:
         difficulty_level: str | None = None,
         random_seed: int | None = None,
     ) -> dict[str, Any]:
-        """Generate one synthetic preview instance and update the dashboard inspector."""
 
+        # Generate one synthetic preview instance and update the dashboard inspector.
         if not self._run_lock.acquire(blocking=False):
             raise RuntimeError("A dashboard action is already in progress.")
 
@@ -556,8 +556,8 @@ class DashboardService:
         random_seed: int | None = None,
         time_limit_seconds: int | None = None,
     ) -> dict[str, Any]:
-        """Generate synthetic demo data and run the full demo pipeline."""
 
+        # Generate synthetic demo data and run the full demo pipeline.
         if not self._run_lock.acquire(blocking=False):
             raise RuntimeError("A dashboard pipeline run is already in progress.")
 
@@ -711,14 +711,14 @@ class DashboardService:
             self._run_lock.release()
 
     def get_run_state(self) -> dict[str, Any]:
-        """Return the latest in-memory run state snapshot."""
 
+        # Return the latest in-memory run state snapshot.
         with self._state_lock:
             return dict(self._run_state)
 
     def get_instance_inspector(self) -> dict[str, Any]:
-        """Return the latest inspected real or synthetic instance summary."""
 
+        # Return the latest inspected real or synthetic instance summary.
         with self._state_lock:
             return json.loads(json.dumps(self._instance_inspector))
 
@@ -730,8 +730,8 @@ class DashboardService:
         is_running: bool,
         last_error: str | None,
     ) -> None:
-        """Update the current run state in a thread-safe way."""
 
+        # Update the current run state in a thread-safe way.
         with self._state_lock:
             self._run_state = {
                 "is_running": is_running,
@@ -742,14 +742,14 @@ class DashboardService:
             }
 
     def _set_instance_inspector(self, payload: dict[str, Any]) -> None:
-        """Update the current instance inspection snapshot."""
 
+        # Update the current instance inspection snapshot.
         with self._state_lock:
             self._instance_inspector = payload
 
     def _refresh_inspector_from_demo_batch(self) -> None:
-        """Point the inspector at the first synthetic demo instance when available."""
 
+        # Point the inspector at the first synthetic demo instance when available.
         demo_files = collect_xml_files(self.paths.demo_instance_folder)
         if not demo_files:
             return
@@ -773,8 +773,8 @@ class DashboardService:
         training_result: object,
         evaluation_result: object,
     ) -> None:
-        """Persist a compact JSON summary for fast dashboard reloads."""
 
+        # Persist a compact JSON summary for fast dashboard reloads.
         self.paths.demo_summary_json.parent.mkdir(parents=True, exist_ok=True)
         payload = {
             "generation": {
@@ -839,8 +839,8 @@ def _list_available_instances(
     base_folder: Path,
     workspace_root: Path,
 ) -> list[dict[str, Any]]:
-    """List XML files available under one dashboard folder."""
 
+    # List XML files available under one dashboard folder.
     if not folder.exists() or not folder.is_dir():
         return []
 
@@ -862,8 +862,8 @@ def _inspect_instance_file(
     mode: str,
     mode_label: str,
 ) -> dict[str, Any]:
-    """Build a concise dashboard inspection payload for one XML file."""
 
+    # Build a concise dashboard inspection payload for one XML file.
     instance = load_instance(str(xml_path))
     validate_loaded_instance_source(instance, xml_path, expected_source=source_kind)
     features = extract_features(instance)
@@ -911,8 +911,8 @@ def _instance_summary_items(
     workspace_root: Path,
     source_kind: str,
 ) -> list[dict[str, Any]]:
-    """Create a concise summary block for one inspected instance."""
 
+    # Create a concise summary block for one inspected instance.
     metadata = getattr(instance, "metadata", None)
     objective_name = getattr(metadata, "objective_name", None) or ""
     objective_sense = getattr(metadata, "objective_sense", None) or ""
@@ -951,8 +951,8 @@ def _instance_summary_items(
 
 
 def _group_feature_rows(features: dict[str, Any]) -> list[dict[str, Any]]:
-    """Group extracted features according to the documented feature manifest."""
 
+    # Group extracted features according to the documented feature manifest.
     grouped = grouped_feature_names()
     rows: list[dict[str, Any]] = []
     for group_name, feature_names in grouped.items():
@@ -977,8 +977,8 @@ def _group_feature_rows(features: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _resolve_xml_path(base_folder: Path, relative_path: str) -> Path:
-    """Resolve one user-selected XML path safely within the requested folder."""
 
+    # Resolve one user-selected XML path safely within the requested folder.
     candidate_text = str(relative_path or "").strip()
     if not candidate_text:
         raise ValueError("Please select an XML instance first.")
@@ -998,8 +998,8 @@ def _resolve_xml_path(base_folder: Path, relative_path: str) -> Path:
 
 
 def _normalize_synthetic_difficulty(value: object, *, fallback: str) -> str:
-    """Normalize a dashboard synthetic difficulty value."""
 
+    # Normalize a dashboard synthetic difficulty value.
     text = str(value or fallback).strip().casefold()
     if text not in SYNTHETIC_DIFFICULTIES:
         return fallback
@@ -1007,8 +1007,8 @@ def _normalize_synthetic_difficulty(value: object, *, fallback: str) -> str:
 
 
 def _empty_instance_inspector() -> dict[str, Any]:
-    """Return the initial empty state for the instance inspector."""
 
+    # Return the initial empty state for the instance inspector.
     return {
         "mode": None,
         "mode_label": "Instance Inspector",
@@ -1028,8 +1028,8 @@ def _empty_instance_inspector() -> dict[str, Any]:
 
 
 def _build_instance_catalog(manifest: dict[str, Any] | None) -> list[dict[str, Any]]:
-    """Create a compact instance catalog from the demo manifest."""
 
+    # Create a compact instance catalog from the demo manifest.
     if not isinstance(manifest, dict):
         return []
 
@@ -1058,8 +1058,8 @@ def _build_instance_catalog(manifest: dict[str, Any] | None) -> list[dict[str, A
 
 
 def _build_solver_leaderboard(benchmarks: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Create solver aggregate metrics for the dashboard."""
 
+    # Create solver aggregate metrics for the dashboard.
     if benchmarks is None or benchmarks.empty:
         return []
 
@@ -1101,8 +1101,8 @@ def _build_solver_leaderboard(benchmarks: pd.DataFrame | None) -> list[dict[str,
 
 
 def _build_best_solver_distribution(selection_dataset: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Summarize best-solver target frequencies for the dashboard."""
 
+    # Summarize best-solver target frequencies for the dashboard.
     if selection_dataset is None or selection_dataset.empty or "best_solver" not in selection_dataset.columns:
         return []
 
@@ -1118,8 +1118,8 @@ def _build_best_solver_distribution(selection_dataset: pd.DataFrame | None) -> l
 
 
 def _build_feature_importance_preview(feature_importance: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Return the top feature importance rows for charting."""
 
+    # Return the top feature importance rows for charting.
     if feature_importance is None or feature_importance.empty:
         return []
 
@@ -1130,8 +1130,8 @@ def _build_feature_importance_preview(feature_importance: pd.DataFrame | None) -
 
 
 def _build_main_pipeline_state(paths: DashboardPaths) -> dict[str, Any]:
-    """Build one dashboard section describing the latest core real-data pipeline run."""
 
+    # Build one dashboard section describing the latest core real-data pipeline run.
     inventory = _safe_read_csv(paths.real_inventory_csv)
     features = _safe_read_csv(paths.main_features_csv)
     benchmarks = _safe_read_csv(paths.main_benchmark_csv)
@@ -1218,8 +1218,8 @@ def _build_main_pipeline_state(paths: DashboardPaths) -> dict[str, Any]:
 
 
 def _build_thesis_pipeline_state(paths: DashboardPaths) -> dict[str, Any]:
-    """Build a dashboard section for the synthetic thesis-mode pipeline outputs."""
 
+    # Build a dashboard section for the synthetic thesis-mode pipeline outputs.
     metadata = _safe_read_csv(paths.thesis_dataset_metadata_csv)
     features = _safe_read_csv(paths.thesis_features_csv)
     benchmarks = _safe_read_csv(paths.thesis_benchmark_csv)
@@ -1314,8 +1314,8 @@ def _build_thesis_pipeline_state(paths: DashboardPaths) -> dict[str, Any]:
 
 
 def _build_thesis_artifact_map(paths: DashboardPaths) -> dict[str, dict[str, Any]]:
-    """Return generated thesis artifact paths for the dashboard file list."""
 
+    # Return generated thesis artifact paths for the dashboard file list.
     return {
         "thesis_dataset_metadata": _describe_path(paths.workspace_root, paths.thesis_dataset_metadata_csv),
         "thesis_features": _describe_path(paths.workspace_root, paths.thesis_features_csv),
@@ -1342,8 +1342,8 @@ def _build_thesis_chart_data(
     selector_comparison: list[dict[str, Any]],
     feature_importance: list[dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]]:
-    """Build normalized chart rows for the thesis dashboard section."""
 
+    # Build normalized chart rows for the thesis dashboard section.
     return {
         "average_objective_per_solver": _metric_chart_rows(
             solver_leaderboard,
@@ -1379,8 +1379,8 @@ def _metric_chart_rows(
     label_key: str,
     value_key: str,
 ) -> list[dict[str, Any]]:
-    """Convert generic records into simple label/value chart rows."""
 
+    # Convert generic records into simple label/value chart rows.
     chart_rows: list[dict[str, Any]] = []
     for row in rows:
         label = row.get(label_key) or row.get("feature") or row.get("solver_name")
@@ -1397,8 +1397,8 @@ def _metric_chart_rows(
 
 
 def _build_selector_comparison(evaluation_summary: dict[str, Any]) -> list[dict[str, Any]]:
-    """Build selector, single-best, and virtual-best comparison rows."""
 
+    # Build selector, single-best, and virtual-best comparison rows.
     selector_objective = _safe_float(evaluation_summary.get("average_selected_objective"))
     single_best_objective = _safe_float(evaluation_summary.get("average_single_best_objective"))
     virtual_best_objective = _safe_float(evaluation_summary.get("average_virtual_best_objective"))
@@ -1433,8 +1433,8 @@ def _build_selector_comparison(evaluation_summary: dict[str, Any]) -> list[dict[
 
 
 def _build_artifact_browser_state(paths: DashboardPaths) -> dict[str, Any]:
-    """Build a read-only artifact browser state with explicit scope groups."""
 
+    # Build a read-only artifact browser state with explicit scope groups.
     group_definitions = [
         {
             "scope": "thesis",
@@ -1522,14 +1522,14 @@ def _build_artifact_browser_state(paths: DashboardPaths) -> dict[str, Any]:
 
 
 def _artifact_browser_lookup(paths: DashboardPaths) -> dict[str, dict[str, Any]]:
-    """Return browsable artifact specs keyed by stable artifact id."""
 
+    # Return browsable artifact specs keyed by stable artifact id.
     return {str(spec["artifact_id"]): spec for spec in _artifact_browser_specs(paths)}
 
 
 def _artifact_browser_specs(paths: DashboardPaths) -> list[dict[str, Any]]:
-    """Return the fixed local artifact whitelist for browser previews."""
 
+    # Return the fixed local artifact whitelist for browser previews.
     specs = [
         _artifact_spec("thesis_benchmark_results", "thesis", "Benchmark Results", paths.thesis_benchmark_csv, "csv"),
         _artifact_spec("thesis_features", "thesis", "Feature Table", paths.thesis_features_csv, "csv"),
@@ -1715,8 +1715,8 @@ def _artifact_spec(
     path: Path,
     preview_kind: str,
 ) -> dict[str, Any]:
-    """Build one artifact-browser whitelist entry."""
 
+    # Build one artifact-browser whitelist entry.
     return {
         "artifact_id": artifact_id,
         "scope": scope,
@@ -1735,8 +1735,8 @@ def _browser_artifact_payload(
     scope: str,
     preview_kind: str,
 ) -> dict[str, Any]:
-    """Return dashboard metadata for one available artifact file."""
 
+    # Return dashboard metadata for one available artifact file.
     stat = path.stat()
     return {
         "artifact_id": artifact_id,
@@ -1752,8 +1752,8 @@ def _browser_artifact_payload(
 
 
 def _preview_csv_artifact(path: Path) -> dict[str, Any]:
-    """Return a compact CSV preview for the artifact browser."""
 
+    # Return a compact CSV preview for the artifact browser.
     try:
         frame = pd.read_csv(path)
     except pd.errors.EmptyDataError as exc:
@@ -1769,8 +1769,8 @@ def _preview_csv_artifact(path: Path) -> dict[str, Any]:
 
 
 def _preview_markdown_artifact(path: Path) -> dict[str, Any]:
-    """Return a compact Markdown text preview for the artifact browser."""
 
+    # Return a compact Markdown text preview for the artifact browser.
     text = path.read_text(encoding="utf-8")
     max_chars = 12_000
     return {
@@ -1782,8 +1782,8 @@ def _preview_markdown_artifact(path: Path) -> dict[str, Any]:
 
 
 def _format_file_size(size_bytes: int) -> str:
-    """Format a byte count for dashboard display."""
 
+    # Format a byte count for dashboard display.
     size = float(max(0, size_bytes))
     for unit in ("B", "KB", "MB", "GB"):
         if size < 1024.0 or unit == "GB":
@@ -1793,8 +1793,8 @@ def _format_file_size(size_bytes: int) -> str:
 
 
 def _extract_evaluation_summary_from_table(summary: pd.DataFrame | None) -> dict[str, Any]:
-    """Extract aggregate selector metrics from the evaluation summary CSV."""
 
+    # Extract aggregate selector metrics from the evaluation summary CSV.
     if summary is None or summary.empty:
         return {}
 
@@ -1822,8 +1822,8 @@ def _extract_evaluation_summary_from_table(summary: pd.DataFrame | None) -> dict
 
 
 def _solver_names_from_benchmarks(benchmarks: pd.DataFrame | None) -> list[str]:
-    """Return stable solver labels from a benchmark table."""
 
+    # Return stable solver labels from a benchmark table.
     if benchmarks is None or benchmarks.empty:
         return []
 
@@ -1834,32 +1834,32 @@ def _solver_names_from_benchmarks(benchmarks: pd.DataFrame | None) -> list[str]:
 
 
 def _count_labeled_instances(selection_dataset: pd.DataFrame | None) -> int:
-    """Count labeled selector rows."""
 
+    # Count labeled selector rows.
     if selection_dataset is None or selection_dataset.empty or "best_solver" not in selection_dataset.columns:
         return 0
     return int(selection_dataset["best_solver"].dropna().count())
 
 
 def _count_distinct_best_solvers(selection_dataset: pd.DataFrame | None) -> int:
-    """Count distinct non-missing best-solver labels."""
 
+    # Count distinct non-missing best-solver labels.
     if selection_dataset is None or selection_dataset.empty or "best_solver" not in selection_dataset.columns:
         return 0
     return int(selection_dataset["best_solver"].dropna().astype(str).nunique())
 
 
 def _count_feasible_runs(benchmarks: pd.DataFrame | None) -> int:
-    """Count feasible benchmark rows."""
 
+    # Count feasible benchmark rows.
     if benchmarks is None or benchmarks.empty or "feasible" not in benchmarks.columns:
         return 0
     return int(benchmarks["feasible"].map(_coerce_bool).sum())
 
 
 def _column_value_counts(frame: pd.DataFrame | None, column: str) -> dict[str, int]:
-    """Return stable counts for one optional dataframe column."""
 
+    # Return stable counts for one optional dataframe column.
     if frame is None or frame.empty or column not in frame.columns:
         return {}
     counts = frame[column].fillna("missing").astype(str).value_counts().to_dict()
@@ -1867,8 +1867,8 @@ def _column_value_counts(frame: pd.DataFrame | None, column: str) -> dict[str, i
 
 
 def _summarize_inventory(inventory: pd.DataFrame | None) -> dict[str, int]:
-    """Summarize parseable and failed counts from one inventory table."""
 
+    # Summarize parseable and failed counts from one inventory table.
     if inventory is None or inventory.empty or "parseable" not in inventory.columns:
         return {
             "inventory_rows": 0,
@@ -1887,8 +1887,8 @@ def _summarize_inventory(inventory: pd.DataFrame | None) -> dict[str, int]:
 
 
 def _extract_training_summary(run_summary: dict[str, Any] | None) -> dict[str, Any]:
-    """Extract a compact dashboard summary from a selector-training run summary."""
 
+    # Extract a compact dashboard summary from a selector-training run summary.
     if not isinstance(run_summary, dict):
         return {}
 
@@ -1912,8 +1912,8 @@ def _extract_training_summary(run_summary: dict[str, Any] | None) -> dict[str, A
 
 
 def _extract_evaluation_summary(run_summary: dict[str, Any] | None) -> dict[str, Any]:
-    """Extract a compact dashboard summary from a selector-evaluation run summary."""
 
+    # Extract a compact dashboard summary from a selector-evaluation run summary.
     if not isinstance(run_summary, dict):
         return {}
 
@@ -1942,8 +1942,8 @@ def _extract_evaluation_summary(run_summary: dict[str, Any] | None) -> dict[str,
 
 
 def _count_best_solver_labels(selection_dataset_csv: Path) -> int:
-    """Return the number of distinct non-missing solver labels in a dataset."""
 
+    # Return the number of distinct non-missing solver labels in a dataset.
     dataset = pd.read_csv(selection_dataset_csv)
     if "best_solver" not in dataset.columns:
         return 0
@@ -1951,8 +1951,8 @@ def _count_best_solver_labels(selection_dataset_csv: Path) -> int:
 
 
 def _safe_read_csv(path: Path) -> pd.DataFrame | None:
-    """Read one CSV file when it exists and is non-empty."""
 
+    # Read one CSV file when it exists and is non-empty.
     if not path.exists() or path.stat().st_size == 0:
         return None
     try:
@@ -1962,8 +1962,8 @@ def _safe_read_csv(path: Path) -> pd.DataFrame | None:
 
 
 def _load_json_file(path: Path) -> dict[str, Any] | None:
-    """Load one JSON file into a dictionary when available."""
 
+    # Load one JSON file into a dictionary when available.
     if not path.exists():
         return None
     try:
@@ -1974,8 +1974,8 @@ def _load_json_file(path: Path) -> dict[str, Any] | None:
 
 
 def _describe_path(workspace_root: Path, path: Path) -> dict[str, Any]:
-    """Return metadata for one artifact path."""
 
+    # Return metadata for one artifact path.
     exists = path.exists()
     path_type = "directory" if exists and path.is_dir() else "file"
     entry_count = 0
@@ -1993,16 +1993,16 @@ def _describe_path(workspace_root: Path, path: Path) -> dict[str, Any]:
 
 
 def _frame_preview(frame: pd.DataFrame | None, limit: int) -> list[dict[str, Any]]:
-    """Return a small JSON-safe preview of a dataframe."""
 
+    # Return a small JSON-safe preview of a dataframe.
     if frame is None or frame.empty:
         return []
     return _records(frame.head(limit))
 
 
 def _records(frame: pd.DataFrame) -> list[dict[str, Any]]:
-    """Convert a dataframe to JSON-safe records."""
 
+    # Convert a dataframe to JSON-safe records.
     return [
         {column: _json_safe_value(value) for column, value in row.items()}
         for row in frame.to_dict(orient="records")
@@ -2010,16 +2010,16 @@ def _records(frame: pd.DataFrame) -> list[dict[str, Any]]:
 
 
 def _serialize_confusion_matrix(confusion_matrix: pd.DataFrame) -> list[dict[str, Any]]:
-    """Convert a confusion matrix dataframe into dashboard rows."""
 
+    # Convert a confusion matrix dataframe into dashboard rows.
     frame = confusion_matrix.copy()
     frame.index.name = "actual_label"
     return _records(frame.reset_index())
 
 
 def _json_safe_value(value: object) -> object:
-    """Convert pandas and numpy scalar values into JSON-safe values."""
 
+    # Convert pandas and numpy scalar values into JSON-safe values.
     if value is None:
         return None
     if isinstance(value, Path):
@@ -2049,8 +2049,8 @@ def _json_safe_value(value: object) -> object:
 
 
 def _coerce_bool(value: object) -> bool:
-    """Normalize bool-like CSV values."""
 
+    # Normalize bool-like CSV values.
     if isinstance(value, bool):
         return value
     if value is None or pd.isna(value):
@@ -2059,8 +2059,8 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _safe_float(value: object) -> float | None:
-    """Convert a scalar value to a JSON-safe float."""
 
+    # Convert a scalar value to a JSON-safe float.
     if value is None or pd.isna(value):
         return None
     try:
@@ -2073,8 +2073,8 @@ def _safe_float(value: object) -> float | None:
 
 
 def _relative_path(workspace_root: Path, path: Path | None) -> str | None:
-    """Convert an absolute path to a workspace-relative string when possible."""
 
+    # Convert an absolute path to a workspace-relative string when possible.
     if path is None:
         return None
 
@@ -2085,18 +2085,18 @@ def _relative_path(workspace_root: Path, path: Path | None) -> str | None:
 
 
 def _labelize(value: str) -> str:
-    """Convert one identifier-like string into a readable label."""
 
+    # Convert one identifier-like string into a readable label.
     return value.replace("_", " ").strip().title()
 
 
 def _format_timestamp(timestamp: float) -> str:
-    """Format a POSIX timestamp as an ISO string."""
 
+    # Format a POSIX timestamp as an ISO string.
     return datetime.fromtimestamp(timestamp, tz=timezone.utc).astimezone().isoformat(timespec="seconds")
 
 
 def _timestamp_now() -> str:
-    """Return the current timestamp as an ISO string."""
 
+    # Return the current timestamp as an ISO string.
     return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")

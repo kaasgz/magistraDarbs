@@ -1,0 +1,9 @@
+Datu kopa,Algoritms,Vidējais laiks (s),Feasible pārklājums,Salīdzināmais pārklājums
+Reālie dati,Simulētā rūdīšana,1.810334900007109,1.0,1.0
+Reālie dati,CP-SAT,54.861112622221874,1.0,1.0
+Reālie dati,Nejaušā bāzlīnija,9.64777772659651e-05,1.0,1.0
+Reālie dati,Timefold,0.0020811925944009,0.0,0.0
+Sintētiskie dati,CP-SAT,109.85284443870466,1.0,0.0
+Sintētiskie dati,Nejaušā bāzlīnija,0.0001113812973791,1.0,0.0
+Sintētiskie dati,Simulētā rūdīšana,0.4250671146311409,0.5166666666666667,0.0
+Sintētiskie dati,Timefold,0.0006841911114018,0.0,0.0

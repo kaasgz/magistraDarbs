@@ -1,0 +1,123 @@
+{
+  "stage_name": "benchmark_run",
+  "generated_at": "2026-04-20T14:34:37+03:00",
+  "config_path": "configs/synthetic_study.yaml",
+  "settings": {
+    "random_seed": 44,
+    "time_limit_seconds": 60,
+    "selected_solvers": [
+      "random_baseline",
+      "cpsat_solver",
+      "simulated_annealing_solver",
+      "timefold"
+    ],
+    "solver_settings_by_name": {
+      "timefold": {
+        "executable_path": null,
+        "time_limit_seconds": 60,
+        "command_arguments": []
+      }
+    },
+    "batch_started_at": "2026-04-20T09:28:28+00:00",
+    "input_source_kind": "synthetic"
+  },
+  "inputs": {
+    "instance_folder": "data/raw/synthetic/study"
+  },
+  "outputs": {
+    "benchmark_results_csv": "data/results/synthetic_study/seeds/seed_0044/benchmark_results.csv",
+    "run_summary": "data/results/synthetic_study/seeds/seed_0044/benchmark_results_run_summary.json"
+  },
+  "results": {
+    "num_input_xml_files": 180,
+    "num_instances_loaded": 180,
+    "num_instances_skipped": 0,
+    "num_solvers": 4,
+    "selected_solvers": [
+      "random_baseline",
+      "cpsat_solver",
+      "simulated_annealing_solver",
+      "timefold"
+    ],
+    "num_requested_runs": 720,
+    "num_benchmark_rows": 720,
+    "num_completed_solver_runs": 720,
+    "num_failed_solver_runs": 0,
+    "num_feasible_runs": 453,
+    "num_non_feasible_runs": 267,
+    "num_valid_objective_rows": 0,
+    "aggregate_runtime_seconds": 7561.558465,
+    "rows_per_solver": {
+      "cpsat_solver": 180,
+      "random_baseline": 180,
+      "simulated_annealing_solver": 180,
+      "timefold": 180
+    },
+    "status_counts": {
+      "FEASIBLE": 217,
+      "placeholder_feasible": 180,
+      "NOT_CONFIGURED": 180,
+      "UNSUPPORTED_INSTANCE": 87,
+      "OPTIMAL": 56
+    },
+    "solver_support_status_counts": {
+      "partially_supported": 453,
+      "not_configured": 180,
+      "unsupported": 87
+    },
+    "scoring_status_counts": {
+      "partially_modeled_run": 453,
+      "not_configured": 180,
+      "unsupported_instance": 87
+    },
+    "instance_load_failures": [],
+    "validation_issue_count": 0,
+    "validation_issues": []
+  },
+  "config_snapshot": {
+    "paths": {
+      "dataset_root": "data/raw/synthetic/study",
+      "processed_dir": "data/processed/synthetic_study",
+      "results_dir": "data/results/synthetic_study"
+    },
+    "run": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "time_limit_seconds": 60
+    },
+    "solvers": {
+      "selected": [
+        "random_baseline",
+        "cpsat_solver",
+        "simulated_annealing_solver",
+        "timefold"
+      ],
+      "settings": {
+        "timefold": {
+          "executable_path": null,
+          "time_limit_seconds": 60,
+          "command_arguments": []
+        }
+      }
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

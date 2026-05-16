@@ -1,4 +1,4 @@
-"""Helpers for reproducible experiment configuration and artifact metadata."""
+# Helpers for reproducible experiment configuration and artifact metadata.
 
 from __future__ import annotations
 
@@ -21,8 +21,8 @@ from src.utils.config import (
 
 @dataclass(frozen=True, slots=True)
 class SplitSettings:
-    """Selector split configuration loaded from YAML."""
 
+    # Selector split configuration loaded from YAML.
     strategy: str
     test_size: float
     cross_validation_folds: int | None
@@ -34,8 +34,8 @@ def get_compat_value(
     dotted_keys: list[str],
     default: object = _MISSING,
 ) -> Any:
-    """Read the first available value from a list of compatible config keys."""
 
+    # Read the first available value from a list of compatible config keys.
     for dotted_key in dotted_keys:
         try:
             return get_config_value(config, dotted_key)
@@ -53,8 +53,8 @@ def get_compat_path(
     dotted_keys: list[str],
     default: object = _MISSING,
 ) -> Path:
-    """Read the first available path from a list of compatible config keys."""
 
+    # Read the first available path from a list of compatible config keys.
     for dotted_key in dotted_keys:
         try:
             return get_config_path(config, dotted_key)
@@ -76,8 +76,8 @@ def get_compat_string_list(
     dotted_keys: list[str],
     default: object = _MISSING,
 ) -> list[str]:
-    """Read the first available non-empty string list from compatible keys."""
 
+    # Read the first available non-empty string list from compatible keys.
     for dotted_key in dotted_keys:
         try:
             return get_config_string_list(config, dotted_key)
@@ -93,26 +93,26 @@ def get_compat_string_list(
 
 
 def get_random_seed(config: dict[str, Any], default: int = 42) -> int:
-    """Read the experiment random seed from a config mapping."""
 
+    # Read the experiment random seed from a config mapping.
     return int(get_compat_value(config, ["run.random_seed", "random_seed"], default))
 
 
 def get_time_limit_seconds(config: dict[str, Any], default: int = 60) -> int:
-    """Read the configured solver time limit from a config mapping."""
 
+    # Read the configured solver time limit from a config mapping.
     return int(get_compat_value(config, ["run.time_limit_seconds", "time_limit_seconds"], default))
 
 
 def get_selected_solvers(config: dict[str, Any], default: list[str]) -> list[str]:
-    """Read the configured solver portfolio from a config mapping."""
 
+    # Read the configured solver portfolio from a config mapping.
     return get_compat_string_list(config, ["solvers.selected", "selected_solvers"], default)
 
 
 def get_solver_settings_by_name(config: dict[str, Any]) -> dict[str, dict[str, object]]:
-    """Read optional per-solver constructor settings from a config mapping."""
 
+    # Read optional per-solver constructor settings from a config mapping.
     raw_value = get_compat_value(config, ["solvers.settings", "solver_settings"], {})
     if raw_value in ({}, None):
         return {}
@@ -136,8 +136,8 @@ def get_solver_settings_by_name(config: dict[str, Any]) -> dict[str, dict[str, o
 
 
 def get_include_solver_objectives(config: dict[str, Any], default: bool = True) -> bool:
-    """Read the selection-dataset objective-column toggle."""
 
+    # Read the selection-dataset objective-column toggle.
     return bool(
         get_compat_value(
             config,
@@ -148,14 +148,14 @@ def get_include_solver_objectives(config: dict[str, Any], default: bool = True) 
 
 
 def get_model_choice(config: dict[str, Any], default: str = "random_forest") -> str:
-    """Read the selector model family from config."""
 
+    # Read the selector model family from config.
     return str(get_compat_value(config, ["selector.model_choice", "model_choice"], default)).strip()
 
 
 def get_split_settings(config: dict[str, Any]) -> SplitSettings:
-    """Read selector split settings from config."""
 
+    # Read selector split settings from config.
     strategy = str(get_compat_value(config, ["split.strategy"], "holdout")).strip().casefold() or "holdout"
     test_size = float(get_compat_value(config, ["split.test_size", "test_size"], 0.25))
     raw_folds = get_compat_value(config, ["split.cross_validation_folds"], None)
@@ -170,24 +170,24 @@ def get_split_settings(config: dict[str, Any]) -> SplitSettings:
 
 
 def ensure_directory(path: str | Path) -> Path:
-    """Create one directory path safely and return it."""
 
+    # Create one directory path safely and return it.
     directory = Path(path)
     directory.mkdir(parents=True, exist_ok=True)
     return directory
 
 
 def ensure_parent_directory(path: str | Path) -> Path:
-    """Create the parent directory for a file path safely and return the file path."""
 
+    # Create the parent directory for a file path safely and return the file path.
     file_path = Path(path)
     file_path.parent.mkdir(parents=True, exist_ok=True)
     return file_path
 
 
 def default_run_summary_path(output_path: str | Path) -> Path:
-    """Derive a deterministic run-summary JSON path from an output artifact path."""
 
+    # Derive a deterministic run-summary JSON path from an output artifact path.
     path = Path(output_path)
     if path.suffix:
         return path.with_name(f"{path.stem}_run_summary.json")
@@ -205,8 +205,8 @@ def write_run_summary(
     outputs: dict[str, Any],
     results: dict[str, Any],
 ) -> Path:
-    """Write one JSON run summary with lightweight reproducibility metadata."""
 
+    # Write one JSON run summary with lightweight reproducibility metadata.
     output_path = ensure_parent_directory(summary_path)
     payload = {
         "stage_name": stage_name,
@@ -230,8 +230,8 @@ def write_run_summary(
 
 
 def _json_safe_value(value: Any) -> Any:
-    """Convert nested values into JSON-safe primitives."""
 
+    # Convert nested values into JSON-safe primitives.
     if isinstance(value, dict):
         return {str(key): _json_safe_value(item) for key, item in value.items()}
     if isinstance(value, list):
@@ -260,6 +260,6 @@ def _json_safe_value(value: Any) -> Any:
 
 
 def _timestamp_now() -> str:
-    """Return the current timestamp as an ISO string."""
 
+    # Return the current timestamp as an ISO string.
     return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")

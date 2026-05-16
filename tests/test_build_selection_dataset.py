@@ -1,4 +1,4 @@
-"""Tests for selection dataset construction."""
+# Tests for selection dataset construction.
 
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ from src.selection.modeling import prepare_selection_data
 
 
 def test_build_selection_dataset_merges_features_targets_and_objectives(tmp_path: Path) -> None:
-    """The selection dataset should combine features, target, and solver objectives."""
 
+    # The selection dataset should combine features, target, and solver objectives.
     features_csv = tmp_path / "features.csv"
     benchmarks_csv = tmp_path / "benchmark_results.csv"
     output_csv = tmp_path / "selection_dataset.csv"
@@ -78,8 +78,8 @@ def test_build_selection_dataset_merges_features_targets_and_objectives(tmp_path
 
 
 def test_build_selection_dataset_breaks_ties_deterministically(tmp_path: Path) -> None:
-    """Ties should follow objective, runtime, then solver-name ordering."""
 
+    # Ties should follow objective, runtime, then solver-name ordering.
     features_csv = tmp_path / "features.csv"
     benchmarks_csv = tmp_path / "benchmark_results.csv"
     output_csv = tmp_path / "selection_dataset.csv"
@@ -136,8 +136,8 @@ def test_build_selection_dataset_breaks_ties_deterministically(tmp_path: Path) -
 
 
 def test_build_selection_dataset_can_skip_objective_columns_and_keep_missing_targets(tmp_path: Path) -> None:
-    """Instances without an eligible solver should keep a missing best_solver value."""
 
+    # Instances without an eligible solver should keep a missing best_solver value.
     features_csv = tmp_path / "features.csv"
     benchmarks_csv = tmp_path / "benchmark_results.csv"
     output_csv = tmp_path / "selection_dataset.csv"
@@ -184,8 +184,8 @@ def test_build_selection_dataset_can_skip_objective_columns_and_keep_missing_tar
 
 
 def test_build_full_selection_dataset_combines_synthetic_and_real_sources(tmp_path: Path) -> None:
-    """Full dataset construction should label sources and use canonical solver names."""
 
+    # Full dataset construction should label sources and use canonical solver names.
     synthetic_features_csv = tmp_path / "synthetic_features.csv"
     synthetic_benchmarks_csv = tmp_path / "synthetic_benchmarks.csv"
     real_features_csv = tmp_path / "real_features.csv"
@@ -319,8 +319,8 @@ def test_build_full_selection_dataset_combines_synthetic_and_real_sources(tmp_pa
 
 
 def test_full_selection_dataset_cli_writes_expected_output(tmp_path: Path) -> None:
-    """The existing builder CLI should support the combined full-dataset mode."""
 
+    # The existing builder CLI should support the combined full-dataset mode.
     synthetic_features_csv = tmp_path / "synthetic_features.csv"
     synthetic_benchmarks_csv = tmp_path / "synthetic_benchmarks.csv"
     real_features_csv = tmp_path / "real_features.csv"

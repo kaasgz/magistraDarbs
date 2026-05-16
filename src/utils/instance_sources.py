@@ -1,4 +1,4 @@
-"""Helpers for XML instance folder hygiene and source separation."""
+# Helpers for XML instance folder hygiene and source separation.
 
 from __future__ import annotations
 
@@ -10,8 +10,8 @@ InstanceSourceKind = Literal["real", "synthetic", "unknown"]
 
 
 def collect_xml_files(input_path: Path) -> list[Path]:
-    """Collect XML files recursively in a stable order."""
 
+    # Collect XML files recursively in a stable order.
     files = [
         path
         for path in input_path.rglob("*")
@@ -21,8 +21,8 @@ def collect_xml_files(input_path: Path) -> list[Path]:
 
 
 def infer_expected_source_from_path(input_path: Path) -> InstanceSourceKind | None:
-    """Infer the intended source kind from the folder path when possible."""
 
+    # Infer the intended source kind from the folder path when possible.
     for part in reversed(input_path.parts):
         normalized = part.strip().casefold()
         if normalized == "real":
@@ -33,8 +33,8 @@ def infer_expected_source_from_path(input_path: Path) -> InstanceSourceKind | No
 
 
 def validate_folder_source_hygiene(input_path: Path, xml_files: list[Path]) -> InstanceSourceKind | None:
-    """Reject folder layouts that mix real and synthetic subtrees."""
 
+    # Reject folder layouts that mix real and synthetic subtrees.
     nested_sources = nested_source_kinds(input_path, xml_files)
     if len(nested_sources) > 1:
         raise ValueError(
@@ -57,8 +57,8 @@ def validate_loaded_instance_source(
     *,
     expected_source: InstanceSourceKind | None,
 ) -> None:
-    """Validate one loaded instance against the expected source folder."""
 
+    # Validate one loaded instance against the expected source folder.
     metadata = getattr(instance, "metadata", None)
     synthetic = getattr(metadata, "synthetic", None)
 
@@ -80,8 +80,8 @@ def resolve_instance_source_kind(
     input_folder: Path,
     expected_source: InstanceSourceKind | None,
 ) -> tuple[InstanceSourceKind, str]:
-    """Resolve whether one file should be treated as real or synthetic."""
 
+    # Resolve whether one file should be treated as real or synthetic.
     metadata = getattr(instance, "metadata", None) if instance is not None else None
     synthetic = getattr(metadata, "synthetic", None)
     if synthetic is True:
@@ -103,8 +103,8 @@ def register_observed_source_kind(
     *,
     input_path: Path,
 ) -> set[InstanceSourceKind]:
-    """Track resolved instance sources and reject mixed real/synthetic batches."""
 
+    # Track resolved instance sources and reject mixed real/synthetic batches.
     if source_kind not in {"real", "synthetic"}:
         return set(observed_source_kinds)
 
@@ -124,8 +124,8 @@ def register_observed_source_kind(
 
 
 def nested_source_kinds(input_path: Path, xml_files: list[Path]) -> set[InstanceSourceKind]:
-    """Detect real/synthetic subfolder markers under one input folder."""
 
+    # Detect real/synthetic subfolder markers under one input folder.
     detected: set[InstanceSourceKind] = set()
     for path in xml_files:
         relative_parts = [part.casefold() for part in path.relative_to(input_path).parts[:-1]]

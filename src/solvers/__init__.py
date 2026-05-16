@@ -1,4 +1,4 @@
-"""Scheduling solver implementations."""
+# Scheduling solver implementations.
 
 from src.solvers.base import Solver, SolverResult
 from src.solvers.random_baseline import RandomBaselineSolver

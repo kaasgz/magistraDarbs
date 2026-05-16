@@ -1,4 +1,4 @@
-"""Build a conservative solver compatibility matrix for real XML instances."""
+# Build a conservative solver compatibility matrix for real XML instances.
 
 from __future__ import annotations
 
@@ -29,8 +29,8 @@ SupportStatus = Literal["supported", "partially_supported", "unsupported", "not_
 
 @dataclass(frozen=True, slots=True)
 class CompatibilitySettings:
-    """Resolved settings for compatibility matrix construction."""
 
+    # Resolved settings for compatibility matrix construction.
     input_folder: Path
     output_csv: Path
     summary_markdown: Path
@@ -40,8 +40,8 @@ class CompatibilitySettings:
 
 @dataclass(frozen=True, slots=True)
 class InstanceProfile:
-    """Parsed instance facts needed for compatibility decisions."""
 
+    # Parsed instance facts needed for compatibility decisions.
     instance_name: str
     round_robin_mode: str | None
     constraint_families: tuple[str, ...]
@@ -53,8 +53,8 @@ class InstanceProfile:
 
 @dataclass(frozen=True, slots=True)
 class CompatibilityDecision:
-    """One solver compatibility classification."""
 
+    # One solver compatibility classification.
     support_status: SupportStatus
     unsupported_constraint_families: tuple[str, ...]
     notes: tuple[str, ...]
@@ -62,8 +62,8 @@ class CompatibilityDecision:
 
 @dataclass(frozen=True, slots=True)
 class CompatibilityMatrixResult:
-    """Paths and row count produced by a matrix build."""
 
+    # Paths and row count produced by a matrix build.
     matrix_csv: Path
     summary_markdown: Path
     num_rows: int
@@ -78,8 +78,8 @@ def build_solver_compatibility_matrix(
     solver_names: Sequence[str] = DEFAULT_FULL_SOLVER_PORTFOLIO,
     timefold_executable_path: str | Path | None = None,
 ) -> CompatibilityMatrixResult:
-    """Build and save a per-instance, per-solver compatibility matrix."""
 
+    # Build and save a per-instance, per-solver compatibility matrix.
     settings = CompatibilitySettings(
         input_folder=Path(input_folder),
         output_csv=Path(output_csv),
@@ -116,8 +116,8 @@ def build_solver_compatibility_matrix(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for the compatibility matrix builder."""
 
+    # Create the CLI parser for the compatibility matrix builder.
     parser = argparse.ArgumentParser(
         description="Build a conservative solver compatibility matrix for real XML instances.",
     )
@@ -145,8 +145,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run compatibility matrix construction from the command line."""
 
+    # Run compatibility matrix construction from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -168,8 +168,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _build_matrix_rows(settings: CompatibilitySettings) -> list[dict[str, str]]:
-    """Build all matrix rows using the current parser and static solver scope."""
 
+    # Build all matrix rows using the current parser and static solver scope.
     xml_files = collect_xml_files(settings.input_folder)
     rows: list[dict[str, str]] = []
     for xml_file in xml_files:
@@ -214,8 +214,8 @@ def _build_matrix_rows(settings: CompatibilitySettings) -> list[dict[str, str]]:
 
 
 def _profile_instance(instance: object, xml_file: Path) -> InstanceProfile:
-    """Extract the compatibility-relevant profile from one parsed instance."""
 
+    # Extract the compatibility-relevant profile from one parsed instance.
     metadata = getattr(instance, "metadata", None)
     instance_name = _first_non_empty(
         [
@@ -255,8 +255,8 @@ def _assess_solver(
     solver_name: str,
     settings: CompatibilitySettings,
 ) -> CompatibilityDecision:
-    """Return the conservative compatibility decision for one solver."""
 
+    # Return the conservative compatibility decision for one solver.
     normalized_solver = solver_name.strip().casefold()
     if normalized_solver == "random_baseline":
         return _assess_random_baseline(profile)
@@ -274,8 +274,8 @@ def _assess_solver(
 
 
 def _assess_random_baseline(profile: InstanceProfile) -> CompatibilityDecision:
-    """Classify the diagnostic random baseline."""
 
+    # Classify the diagnostic random baseline.
     notes = [
         "diagnostic control baseline only; returns deterministic synthetic scores",
         "does not construct a real schedule",
@@ -290,8 +290,8 @@ def _assess_random_baseline(profile: InstanceProfile) -> CompatibilityDecision:
 
 
 def _assess_cpsat_solver(profile: InstanceProfile) -> CompatibilityDecision:
-    """Classify the CP-SAT round-robin baseline."""
 
+    # Classify the CP-SAT round-robin baseline.
     notes: list[str] = []
     if profile.round_robin_mode not in {"single", "double"}:
         notes.append("round-robin mode missing or ambiguous; solver falls back to single round robin")
@@ -319,8 +319,8 @@ def _assess_cpsat_solver(profile: InstanceProfile) -> CompatibilityDecision:
 
 
 def _assess_simulated_annealing_solver(profile: InstanceProfile) -> CompatibilityDecision:
-    """Classify the simplified simulated annealing baseline."""
 
+    # Classify the simplified simulated annealing baseline.
     notes = [
         "simplified single round-robin search",
         "does not model explicit home/away decisions",
@@ -352,8 +352,8 @@ def _assess_timefold(
     profile: InstanceProfile,
     settings: CompatibilitySettings,
 ) -> CompatibilityDecision:
-    """Classify the external Timefold integration."""
 
+    # Classify the external Timefold integration.
     if settings.timefold_executable_path is None:
         return CompatibilityDecision(
             support_status="not_configured",
@@ -395,8 +395,8 @@ def _parser_failure_rows(
     settings: CompatibilitySettings,
     error: Exception,
 ) -> list[dict[str, str]]:
-    """Return unsupported rows for an XML file the current parser cannot load."""
 
+    # Return unsupported rows for an XML file the current parser cannot load.
     note = f"parser limitation: {type(error).__name__}: {error}"
     return [
         {
@@ -416,8 +416,8 @@ def _global_unsupported_rows(
     settings: CompatibilitySettings,
     reason: str,
 ) -> list[dict[str, str]]:
-    """Return unsupported rows when the parsed instance is unusable by all solvers."""
 
+    # Return unsupported rows when the parsed instance is unusable by all solvers.
     notes = _join_values((reason, *_parser_note_text(profile)))
     return [
         {
@@ -436,8 +436,8 @@ def _render_summary_markdown(
     settings: CompatibilitySettings,
     matrix: pd.DataFrame,
 ) -> str:
-    """Render a thesis-friendly Markdown summary for the matrix."""
 
+    # Render a thesis-friendly Markdown summary for the matrix.
     lines = [
         "# Solver Compatibility Summary",
         "",
@@ -469,8 +469,8 @@ def _render_summary_markdown(
 
 
 def _render_counts_table(matrix: pd.DataFrame) -> list[str]:
-    """Render counts grouped by solver and support status."""
 
+    # Render counts grouped by solver and support status.
     lines = ["| solver_name | support_status | count |", "| --- | --- | ---: |"]
     if matrix.empty:
         lines.append("| none | none | 0 |")
@@ -486,8 +486,8 @@ def _render_counts_table(matrix: pd.DataFrame) -> list[str]:
 
 
 def _validate_settings(settings: CompatibilitySettings) -> None:
-    """Validate user-facing paths and solver list before writing outputs."""
 
+    # Validate user-facing paths and solver list before writing outputs.
     if not settings.input_folder.exists():
         raise FileNotFoundError(f"Input folder does not exist: {settings.input_folder}")
     if not settings.input_folder.is_dir():
@@ -499,8 +499,8 @@ def _validate_settings(settings: CompatibilitySettings) -> None:
 
 
 def _matrix_columns() -> list[str]:
-    """Return the stable required CSV column order."""
 
+    # Return the stable required CSV column order.
     return [
         "instance_name",
         "solver_name",
@@ -511,8 +511,8 @@ def _matrix_columns() -> list[str]:
 
 
 def _extract_constraint_families(instance: object) -> tuple[str, ...]:
-    """Extract stable constraint-family labels from the parsed instance."""
 
+    # Extract stable constraint-family labels from the parsed instance.
     constraints = list(getattr(instance, "constraints", []) or [])
     families: set[str] = set()
     for constraint in constraints:
@@ -524,8 +524,8 @@ def _extract_constraint_families(instance: object) -> tuple[str, ...]:
 
 
 def _normalize_round_robin_mode(value: object) -> str | None:
-    """Normalize the parsed round-robin mode for compatibility checks."""
 
+    # Normalize the parsed round-robin mode for compatibility checks.
     if not isinstance(value, str) or not value.strip():
         return None
     normalized = value.strip().casefold()
@@ -537,30 +537,30 @@ def _normalize_round_robin_mode(value: object) -> str | None:
 
 
 def _slot_note(profile: InstanceProfile) -> tuple[str, ...]:
-    """Return a note when no explicit slots were parsed."""
 
+    # Return a note when no explicit slots were parsed.
     if profile.slot_count > 0:
         return ()
     return ("no slots parsed; solver would use an internally inferred slot count",)
 
 
 def _parser_note_text(profile: InstanceProfile) -> tuple[str, ...]:
-    """Return compact parser-note text for compatibility notes."""
 
+    # Return compact parser-note text for compatibility notes.
     if not profile.parser_warning_codes:
         return ()
     return (f"parser warnings: {_join_values(profile.parser_warning_codes)}",)
 
 
 def _join_values(values: Sequence[str]) -> str:
-    """Join strings for CSV fields using a stable separator."""
 
+    # Join strings for CSV fields using a stable separator.
     return "; ".join(str(value).strip() for value in values if str(value).strip())
 
 
 def _first_non_empty(values: Sequence[object]) -> str | None:
-    """Return the first non-empty string from a sequence."""
 
+    # Return the first non-empty string from a sequence.
     for value in values:
         if isinstance(value, str) and value.strip():
             return value.strip()
@@ -568,8 +568,8 @@ def _first_non_empty(values: Sequence[object]) -> str | None:
 
 
 def _safe_nonnegative_int(value: object) -> int:
-    """Convert a count-like value to a non-negative integer."""
 
+    # Convert a count-like value to a non-negative integer.
     if isinstance(value, bool):
         return int(value)
     if isinstance(value, int):
@@ -581,8 +581,8 @@ def _safe_nonnegative_int(value: object) -> int:
 
 
 def _optional_path(value: str | Path | None) -> Path | None:
-    """Convert nullable path input into a Path."""
 
+    # Convert nullable path input into a Path.
     if value is None:
         return None
     text = str(value).strip()
@@ -592,16 +592,16 @@ def _optional_path(value: str | Path | None) -> Path | None:
 
 
 def _executable_exists(path: Path) -> bool:
-    """Return whether a configured external executable can be launched."""
 
+    # Return whether a configured external executable can be launched.
     if path.exists():
         return True
     return shutil.which(str(path)) is not None
 
 
 def _path_or_not_configured(path: Path | None) -> str:
-    """Return a path string or the standard not-configured marker."""
 
+    # Return a path string or the standard not-configured marker.
     if path is None:
         return "not configured"
     return path.as_posix()

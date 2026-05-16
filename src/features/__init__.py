@@ -1,4 +1,4 @@
-"""Feature extraction package."""
+# Feature extraction package.
 
 from src.features.build_feature_table import build_feature_table, build_feature_table_from_config
 from src.features.feature_extractor import extract_features

@@ -41,8 +41,32 @@ handoff/
 kas_izdarits.md
 magistra_darbs_with_data_refs*.md
 thesis_figures_index.md
+!data/results/thesis_figures_index.md
+*.doc
+*.docx
+~$*
 kg21071_magistra_darbs_ar_praktisko*.docx
 uzskates_lidzekli/
+
+# Local dashboard and development-run outputs
+data/processed/demo_*
+data/results/demo_*
+data/raw/synthetic/generated/
+data/processed/thesis_pipeline/
+data/results/thesis_pipeline/
+data/processed/features.csv
+data/processed/features_run_summary.json
+data/processed/real_dataset_inventory.csv
+data/processed/selection_dataset.csv
+data/processed/selection_dataset_run_summary.json
+data/results/benchmark_results.csv
+data/results/benchmark_results_run_summary.json
+data/results/random_forest_feature_importance.csv
+data/results/random_forest_selector.joblib
+data/results/random_forest_selector_run_summary.json
+data/results/selector_evaluation.csv
+data/results/selector_evaluation_run_summary.json
+data/results/selector_evaluation_summary.csv
 
 # Keep thesis data and result artifacts available for GitHub submission.
 # Do not ignore data/processed/, data/results/, docs/, src/, tests/, or atteli_latviski/.

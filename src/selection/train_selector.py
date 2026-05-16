@@ -1,15 +1,14 @@
-"""Train a first algorithm selection model from the selection dataset.
-
-This module keeps the selector model simple but makes its validation workflow
-more explicit and reproducible:
-
-- benchmark-derived columns such as ``objective_*`` are excluded from training
-  features to reduce leakage risk
-- validation splits are created by a shared split helper used by both training
-  and evaluation
-- the saved model is fitted on the full labeled dataset after validation so the
-  artifact can be reused later without silently depending on one holdout split
-"""
+# Train a first algorithm selection model from the selection dataset.
+#
+# This module keeps the selector model simple but makes its validation workflow
+# more explicit and reproducible:
+#
+# - benchmark-derived columns such as ``objective_*`` are excluded from training
+# features to reduce leakage risk
+# - validation splits are created by a shared split helper used by both training
+# and evaluation
+# - the saved model is fitted on the full labeled dataset after validation so the
+# artifact can be reused later without silently depending on one holdout split
 
 from __future__ import annotations
 
@@ -57,8 +56,8 @@ DEFAULT_FULL_TRAINING_SUMMARY_PATH = Path("data/results/full_selection/selector_
 
 @dataclass(slots=True)
 class SelectorTrainingResult:
-    """Summary of one selector training run."""
 
+    # Summary of one selector training run.
     model_name: str
     model_path: Path
     feature_importance_path: Path | None
@@ -87,8 +86,8 @@ def train_selector(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> SelectorTrainingResult:
-    """Train a baseline algorithm selector from a selection dataset."""
 
+    # Train a baseline algorithm selector from a selection dataset.
     dataset_path = Path(dataset_csv)
     model_output_path = Path(model_path)
     importance_output_path = Path(feature_importance_csv)
@@ -203,8 +202,8 @@ def train_selector(
 
 
 def train_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> SelectorTrainingResult:
-    """Train the selector using values loaded from a YAML configuration file."""
 
+    # Train the selector using values loaded from a YAML configuration file.
     config = load_yaml_config(config_path)
     split_settings = get_split_settings(config)
     model_path = get_compat_path(config, ["paths.model_output"], DEFAULT_MODEL_PATH)
@@ -230,8 +229,8 @@ def train_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) ->
 
 
 def train_full_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> SelectorTrainingResult:
-    """Train the selector on the combined synthetic/real selection dataset."""
 
+    # Train the selector on the combined synthetic/real selection dataset.
     config = load_yaml_config(config_path)
     split_settings = get_split_settings(config)
     model_path = get_compat_path(config, ["paths.full_model_output"], DEFAULT_FULL_MODEL_PATH)
@@ -261,8 +260,8 @@ def train_full_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PAT
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for selector training."""
 
+    # Create the command-line parser for selector training.
     parser = argparse.ArgumentParser(
         description="Train a baseline algorithm selection model.",
     )
@@ -329,8 +328,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run selector training from the command line."""
 
+    # Run selector training from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -409,8 +408,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _build_confusion_matrix(predictions: pd.DataFrame) -> pd.DataFrame:
-    """Build one confusion matrix from pooled out-of-sample predictions."""
 
+    # Build one confusion matrix from pooled out-of-sample predictions.
     labels = sorted(
         {
             *predictions["true_best_solver"].astype(str),
@@ -434,8 +433,8 @@ def _build_confusion_matrix(predictions: pd.DataFrame) -> pd.DataFrame:
 
 
 def _dataset_type_counts(dataset: pd.DataFrame) -> dict[str, int]:
-    """Return source counts when the dataset carries synthetic/real labels."""
 
+    # Return source counts when the dataset carries synthetic/real labels.
     if "dataset_type" not in dataset.columns:
         return {}
     counts = dataset["dataset_type"].dropna().astype(str).value_counts().sort_index()

@@ -1,4 +1,4 @@
-"""Focused tests for the common solver scoring contract."""
+# Focused tests for the common solver scoring contract.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from src.experiments.run_benchmarks import run_benchmarks
 def test_scoring_contract_exports_supported_unsupported_and_not_configured_rows(
     tmp_path: Path,
 ) -> None:
-    """Benchmark rows should expose explicit scoring semantics."""
 
+    # Benchmark rows should expose explicit scoring semantics.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "single.xml").write_text(_single_clean_xml(), encoding="utf-8")
@@ -56,15 +56,15 @@ def test_scoring_contract_exports_supported_unsupported_and_not_configured_rows(
 
 
 def _read_rows(path: Path) -> list[dict[str, str]]:
-    """Read a CSV file into dictionaries."""
 
+    # Read a CSV file into dictionaries.
     with path.open("r", encoding="utf-8", newline="") as handle:
         return list(csv.DictReader(handle))
 
 
 def _row(rows: list[dict[str, str]], instance_name: str, solver_name: str) -> dict[str, str]:
-    """Return one benchmark row by instance and solver registry name."""
 
+    # Return one benchmark row by instance and solver registry name.
     return next(
         row
         for row in rows
@@ -73,8 +73,8 @@ def _row(rows: list[dict[str, str]], instance_name: str, solver_name: str) -> di
 
 
 def _single_clean_xml() -> str:
-    """Return a clean single round-robin instance."""
 
+    # Return a clean single round-robin instance.
     return "\n".join(
         [
             '<Instance name="SingleClean">',
@@ -98,8 +98,8 @@ def _single_clean_xml() -> str:
 
 
 def _double_clean_xml() -> str:
-    """Return a clean double round-robin instance."""
 
+    # Return a clean double round-robin instance.
     return "\n".join(
         [
             '<Instance name="DoubleClean">',

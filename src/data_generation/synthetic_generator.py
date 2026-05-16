@@ -1,4 +1,4 @@
-"""Generate larger synthetic instance datasets for algorithm selection experiments."""
+# Generate larger synthetic instance datasets for algorithm selection experiments.
 
 from __future__ import annotations
 
@@ -27,8 +27,8 @@ _DIFFICULTY_SEQUENCE: tuple[DifficultyLevel, ...] = ("easy", "medium", "hard")
 
 @dataclass(frozen=True, slots=True)
 class SyntheticDatasetPreset:
-    """Difficulty-specific parameter ranges for the dataset generator."""
 
+    # Difficulty-specific parameter ranges for the dataset generator.
     difficulty: DifficultyLevel
     team_range: tuple[int, int]
     extra_slot_range: tuple[int, int]
@@ -75,8 +75,8 @@ DATASET_PRESETS: dict[DifficultyLevel, SyntheticDatasetPreset] = {
 
 @dataclass(frozen=True, slots=True)
 class SyntheticDatasetRequest:
-    """One concrete generation request for a single synthetic instance."""
 
+    # One concrete generation request for a single synthetic instance.
     difficulty: DifficultyLevel
     team_count: int
     slot_count: int
@@ -89,8 +89,8 @@ class SyntheticDatasetRequest:
 
 @dataclass(frozen=True, slots=True)
 class GeneratedSyntheticDatasetRow:
-    """Metadata row describing one generated synthetic instance."""
 
+    # Metadata row describing one generated synthetic instance.
     instance_name: str
     file_name: str
     file_path: str
@@ -121,8 +121,8 @@ class GeneratedSyntheticDatasetRow:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticDatasetGenerationResult:
-    """Summary of one larger synthetic dataset generation run."""
 
+    # Summary of one larger synthetic dataset generation run.
     output_folder: Path
     metadata_csv: Path
     instance_count: int
@@ -143,8 +143,8 @@ def generate_synthetic_dataset(
     difficulty: DifficultySelection = "mixed",
     generation_timestamp: str | None = None,
 ) -> SyntheticDatasetGenerationResult:
-    """Generate a larger, diverse synthetic dataset for selector experiments."""
 
+    # Generate a larger, diverse synthetic dataset for selector experiments.
     if instance_count <= 0:
         raise ValueError("instance_count must be positive.")
 
@@ -233,8 +233,8 @@ def generate_synthetic_dataset(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for the larger synthetic dataset generator."""
 
+    # Create the CLI parser for the larger synthetic dataset generator.
     parser = argparse.ArgumentParser(
         description="Generate a larger synthetic dataset for selector experiments.",
     )
@@ -275,8 +275,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run the synthetic dataset generator from the command line."""
 
+    # Run the synthetic dataset generator from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
 
@@ -306,8 +306,8 @@ def _build_generation_request(
     difficulty_index: int,
     instance_seed: int,
 ) -> SyntheticDatasetRequest:
-    """Build one concrete generation request with deterministic diversity."""
 
+    # Build one concrete generation request with deterministic diversity.
     preset = DATASET_PRESETS[difficulty_level]
     span_seed = instance_seed + (difficulty_index * 313)
 
@@ -381,8 +381,8 @@ def _generate_one_instance(
     instance_seed: int,
     generation_timestamp: str,
 ) -> dict[str, Path | DemoInstanceSpec]:
-    """Generate one synthetic instance through the existing XML builder."""
 
+    # Generate one synthetic instance through the existing XML builder.
     instance_output = temp_dir / f"instance_{global_index:04d}"
     manifest_path = temp_dir / f"manifest_{global_index:04d}.json"
     instance_output.mkdir(parents=True, exist_ok=True)
@@ -435,8 +435,8 @@ def _generate_one_instance(
 
 
 def _count_constraint_families(xml_path: Path) -> dict[str, object]:
-    """Count constraint categories present in one generated XML instance."""
 
+    # Count constraint categories present in one generated XML instance.
     summary = load_instance(str(xml_path))
     counts: dict[str, int] = {}
     families: set[str] = set()
@@ -451,8 +451,8 @@ def _count_constraint_families(xml_path: Path) -> dict[str, object]:
 
 
 def _write_metadata_csv(metadata_path: Path, rows: list[GeneratedSyntheticDatasetRow]) -> None:
-    """Write the metadata CSV with a stable column order."""
 
+    # Write the metadata CSV with a stable column order.
     with metadata_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(asdict(rows[0]).keys()) if rows else _metadata_columns())
         writer.writeheader()
@@ -461,8 +461,8 @@ def _write_metadata_csv(metadata_path: Path, rows: list[GeneratedSyntheticDatase
 
 
 def _metadata_columns() -> list[str]:
-    """Return the stable metadata CSV column order."""
 
+    # Return the stable metadata CSV column order.
     return [
         "instance_name",
         "file_name",
@@ -494,8 +494,8 @@ def _metadata_columns() -> list[str]:
 
 
 def _build_unique_instance_name(spec: DemoInstanceSpec, global_index: int) -> str:
-    """Build a unique dataset instance name derived from the underlying spec."""
 
+    # Build a unique dataset instance name derived from the underlying spec.
     return (
         f"synthetic_dataset_{spec.difficulty_level}_{spec.team_count:02d}t_"
         f"{spec.round_robin_mode}_{global_index + 1:03d}"
@@ -503,8 +503,8 @@ def _build_unique_instance_name(spec: DemoInstanceSpec, global_index: int) -> st
 
 
 def _rewrite_instance_identity(xml_path: Path, instance_name: str) -> None:
-    """Rewrite the XML root and metadata name to the final unique instance name."""
 
+    # Rewrite the XML root and metadata name to the final unique instance name.
     tree = ET.parse(xml_path)
     root = tree.getroot()
     root.attrib["name"] = instance_name
@@ -515,8 +515,8 @@ def _rewrite_instance_identity(xml_path: Path, instance_name: str) -> None:
 
 
 def _ensure_home_away_category(xml_path: Path) -> None:
-    """Normalize home-away semantics into an explicit HomeAway constraint category."""
 
+    # Normalize home-away semantics into an explicit HomeAway constraint category.
     tree = ET.parse(xml_path)
     root = tree.getroot()
     changed = False
@@ -533,8 +533,8 @@ def _ensure_home_away_category(xml_path: Path) -> None:
 
 
 def _clear_existing_generated_dataset(output_folder: Path, metadata_path: Path) -> None:
-    """Remove previously generated XML files and the previous metadata CSV."""
 
+    # Remove previously generated XML files and the previous metadata CSV.
     for xml_file in output_folder.glob("*.xml"):
         xml_file.unlink()
 
@@ -543,16 +543,16 @@ def _clear_existing_generated_dataset(output_folder: Path, metadata_path: Path) 
 
 
 def _resolve_difficulty_for_index(index: int, selection: DifficultySelection) -> DifficultyLevel:
-    """Resolve the difficulty level for one generated instance."""
 
+    # Resolve the difficulty level for one generated instance.
     if selection == "mixed":
         return _DIFFICULTY_SEQUENCE[index % len(_DIFFICULTY_SEQUENCE)]
     return selection
 
 
 def _normalize_difficulty_selection(value: str) -> DifficultySelection:
-    """Normalize the requested dataset difficulty setting."""
 
+    # Normalize the requested dataset difficulty setting.
     normalized = value.strip().casefold()
     if normalized not in {"mixed", "easy", "medium", "hard"}:
         raise ValueError("difficulty must be one of: mixed, easy, medium, hard.")
@@ -560,8 +560,8 @@ def _normalize_difficulty_selection(value: str) -> DifficultySelection:
 
 
 def _resolve_generation_timestamp(generation_timestamp: str | None) -> str:
-    """Resolve one stable ISO timestamp for the generation run."""
 
+    # Resolve one stable ISO timestamp for the generation run.
     if generation_timestamp is None:
         return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -572,8 +572,8 @@ def _resolve_generation_timestamp(generation_timestamp: str | None) -> str:
 
 
 def _cycled_int(value_range: tuple[int, int], *, index: int, seed: int) -> int:
-    """Cycle across an integer range with a small deterministic perturbation."""
 
+    # Cycle across an integer range with a small deterministic perturbation.
     lower, upper = value_range
     span = upper - lower + 1
     if span <= 0:
@@ -584,8 +584,8 @@ def _cycled_int(value_range: tuple[int, int], *, index: int, seed: int) -> int:
 
 
 def _cycled_float(value_range: tuple[float, float], *, index: int, seed: int) -> float:
-    """Cycle across a float range with deterministic coverage."""
 
+    # Cycle across a float range with deterministic coverage.
     lower, upper = value_range
     if upper <= lower:
         return lower
@@ -597,14 +597,14 @@ def _cycled_float(value_range: tuple[float, float], *, index: int, seed: int) ->
 
 
 def _cycled_mode(modes: tuple[RoundRobinMode, ...], *, index: int) -> RoundRobinMode:
-    """Cycle through allowed round-robin modes to encourage diversity."""
 
+    # Cycle through allowed round-robin modes to encourage diversity.
     return modes[index % len(modes)]
 
 
 def _minimum_required_slots(team_count: int, round_robin_mode: RoundRobinMode) -> int:
-    """Return the minimum slot count implied by the chosen round-robin mode."""
 
+    # Return the minimum slot count implied by the chosen round-robin mode.
     if team_count <= 1:
         return 0
     single_round_slots = team_count if team_count % 2 == 1 else team_count - 1

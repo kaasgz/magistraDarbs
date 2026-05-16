@@ -1,4 +1,4 @@
-"""Validation helpers for extracted structural features."""
+# Validation helpers for extracted structural features.
 
 from __future__ import annotations
 
@@ -12,20 +12,21 @@ from src.features.manifest import feature_names
 
 @dataclass(frozen=True, slots=True)
 class FeatureValidationIssue:
-    """One validation issue found in a feature mapping."""
 
+    # One validation issue found in a feature mapping.
     code: str
     feature_name: str
     message: str
 
 
 class FeatureValidationError(ValueError):
-    """Raised when extracted features fail basic validation checks."""
+    # Raised when extracted features fail basic validation checks.
+    pass
 
 
 def validate_feature_names(names: Sequence[str]) -> list[FeatureValidationIssue]:
-    """Return duplicate feature-name issues for the provided sequence."""
 
+    # Return duplicate feature-name issues for the provided sequence.
     counts = Counter(names)
     return [
         FeatureValidationIssue(
@@ -39,8 +40,8 @@ def validate_feature_names(names: Sequence[str]) -> list[FeatureValidationIssue]
 
 
 def validate_feature_values(features: Mapping[str, object]) -> list[FeatureValidationIssue]:
-    """Return issues related to numeric validity and ratio bounds."""
 
+    # Return issues related to numeric validity and ratio bounds.
     issues: list[FeatureValidationIssue] = []
     for name, value in features.items():
         if isinstance(value, bool):
@@ -81,8 +82,8 @@ def validate_feature_values(features: Mapping[str, object]) -> list[FeatureValid
 
 
 def ensure_valid_features(features: Mapping[str, object]) -> None:
-    """Raise when a feature mapping fails basic consistency checks."""
 
+    # Raise when a feature mapping fails basic consistency checks.
     issues = [
         *validate_feature_names(list(features.keys())),
         *validate_feature_values(features),

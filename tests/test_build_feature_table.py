@@ -1,4 +1,4 @@
-"""Tests for batch feature table generation."""
+# Tests for batch feature table generation.
 
 from __future__ import annotations
 
@@ -16,8 +16,8 @@ FIXED_TIMESTAMP = "2026-04-04T12:00:00+00:00"
 
 
 def test_build_feature_table_writes_one_row_per_valid_instance(tmp_path: Path) -> None:
-    """The builder should write one CSV row for each valid XML file."""
 
+    # The builder should write one CSV row for each valid XML file.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "valid.xml").write_text(
@@ -46,8 +46,8 @@ def test_build_feature_table_skips_broken_files_and_logs_it(
     tmp_path: Path,
     caplog,
 ) -> None:
-    """Broken XML files should be skipped with a clear warning message."""
 
+    # Broken XML files should be skipped with a clear warning message.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "valid.xml").write_text(
@@ -73,8 +73,8 @@ def test_build_feature_table_accepts_recoverable_xml_and_logs_parser_notes(
     tmp_path: Path,
     caplog,
 ) -> None:
-    """Recoverable XML should stay in the pipeline and emit parser-note logs."""
 
+    # Recoverable XML should stay in the pipeline and emit parser-note logs.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     (input_dir / "recoverable.xml").write_text(
@@ -108,8 +108,8 @@ def test_build_feature_table_accepts_recoverable_xml_and_logs_parser_notes(
 
 
 def test_build_feature_table_writes_empty_csv_for_empty_folder(tmp_path: Path) -> None:
-    """An empty input folder should still produce a valid empty CSV file."""
 
+    # An empty input folder should still produce a valid empty CSV file.
     input_dir = tmp_path / "instances"
     input_dir.mkdir()
     output_csv = tmp_path / "features.csv"
@@ -124,8 +124,8 @@ def test_build_feature_table_writes_empty_csv_for_empty_folder(tmp_path: Path) -
 
 
 def test_build_feature_table_rejects_synthetic_instances_in_real_folder(tmp_path: Path) -> None:
-    """Synthetic XML should not be accepted silently in a real-data folder."""
 
+    # Synthetic XML should not be accepted silently in a real-data folder.
     input_dir = tmp_path / "data" / "raw" / "real"
     input_dir.mkdir(parents=True)
     manifest_path = tmp_path / "data" / "processed" / "demo_manifest.json"

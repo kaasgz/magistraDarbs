@@ -1,4 +1,4 @@
-"""Reusable matplotlib plots for thesis-facing presentation exports."""
+# Reusable matplotlib plots for thesis-facing presentation exports.
 
 from __future__ import annotations
 
@@ -70,8 +70,8 @@ def generate_figures(
     combined_benchmark: pd.DataFrame,
     selector_evaluation: pd.DataFrame | None = None,
 ) -> dict[str, Path]:
-    """Generate all thesis-facing figures and return their output paths."""
 
+    # Generate all thesis-facing figures and return their output paths.
     figures_dir = Path(output_dir)
     figures_dir.mkdir(parents=True, exist_ok=True)
 
@@ -104,8 +104,8 @@ def generate_figures(
 
 
 def plot_selector_performance(selector_results: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot the four main mixed-model performance metrics."""
 
+    # Plot the four main mixed-model performance metrics.
     selector_results = _normalize_selector_results_frame(selector_results)
     row = selector_results.iloc[0]
     labels = [
@@ -138,8 +138,8 @@ def plot_selector_performance(selector_results: pd.DataFrame, output_path: str |
 
 
 def plot_selector_vs_baselines(selector_evaluation_summary: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot the selector mean objective against SBS and VBS with split-level standard deviations."""
 
+    # Plot the selector mean objective against SBS and VBS with split-level standard deviations.
     summary = selector_evaluation_summary.copy()
     mean_row = summary[
         (summary["summary_row_type"].astype(str) == "aggregate_mean")
@@ -202,8 +202,8 @@ def plot_selector_vs_baselines(selector_evaluation_summary: pd.DataFrame, output
 
 
 def plot_real_vs_synthetic(real_vs_synthetic: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot the main comparison between real and synthetic subsets."""
 
+    # Plot the main comparison between real and synthetic subsets.
     frame = _normalize_real_vs_synthetic_frame(real_vs_synthetic)
     frame["dataset_type"] = frame["dataset_type"].astype(str)
     frame = frame.set_index("dataset_type")
@@ -235,8 +235,8 @@ def plot_real_vs_synthetic(real_vs_synthetic: pd.DataFrame, output_path: str | P
 
 
 def plot_solver_comparison(solver_comparison: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot solver quality on the real and synthetic subsets."""
 
+    # Plot solver quality on the real and synthetic subsets.
     frame = _normalize_solver_comparison_frame(solver_comparison)
     real_rows = frame[frame["result_scope"] == "real"].copy()
     real_rows["average_objective_valid_feasible"] = pd.to_numeric(
@@ -304,8 +304,8 @@ def plot_solver_comparison(solver_comparison: pd.DataFrame, output_path: str | P
 
 
 def plot_solver_runtime(solver_comparison: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot mean runtime by solver and dataset scope."""
 
+    # Plot mean runtime by solver and dataset scope.
     frame = _normalize_solver_comparison_frame(solver_comparison)
     solvers = list(dict.fromkeys(frame["solver_registry_name"].astype(str).tolist()))
     scopes = [scope for scope in ("real", "synthetic") if scope in frame["result_scope"].astype(str).unique()]
@@ -336,8 +336,8 @@ def plot_solver_runtime(solver_comparison: pd.DataFrame, output_path: str | Path
 
 
 def plot_feature_importance(feature_importance: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot the top 10 structural feature importances."""
 
+    # Plot the top 10 structural feature importances.
     normalized = _normalize_feature_importance_frame(feature_importance)
     top_features = normalized.head(10).iloc[::-1].copy()
 
@@ -367,8 +367,8 @@ def plot_feature_importance(feature_importance: pd.DataFrame, output_path: str |
 
 
 def plot_solver_win_distribution(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot how often each solver is best by dataset type."""
 
+    # Plot how often each solver is best by dataset type.
     pivot = (
         selection_dataset.groupby(["dataset_type", "best_solver"])
         .size()
@@ -401,8 +401,8 @@ def plot_solver_win_distribution(selection_dataset: pd.DataFrame, output_path: s
 
 
 def plot_dataset_distribution(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot only the dataset-type composition."""
 
+    # Plot only the dataset-type composition.
     dataset_counts = (
         selection_dataset["dataset_type"]
         .value_counts()
@@ -429,8 +429,8 @@ def plot_dataset_distribution(selection_dataset: pd.DataFrame, output_path: str 
 
 
 def plot_best_solver_class_distribution(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot the overall best-solver class distribution as a separate figure."""
 
+    # Plot the overall best-solver class distribution as a separate figure.
     solver_counts = selection_dataset["best_solver"].value_counts()
 
     fig, ax = plt.subplots(figsize=(8.8, 5.1))
@@ -452,8 +452,8 @@ def plot_best_solver_class_distribution(selection_dataset: pd.DataFrame, output_
 
 
 def plot_objective_distribution(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot the distribution of per-instance best objective values."""
 
+    # Plot the distribution of per-instance best objective values.
     frame = selection_dataset.copy()
     objective_column = "benchmark_best_solver_mean_objective"
     frame = frame.dropna(subset=[objective_column])
@@ -475,8 +475,8 @@ def plot_objective_distribution(selection_dataset: pd.DataFrame, output_path: st
 
 
 def plot_runtime_distribution(combined_benchmark: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot runtime distributions across solvers."""
 
+    # Plot runtime distributions across solvers.
     frame = combined_benchmark.copy()
     frame["runtime_seconds"] = pd.to_numeric(frame["runtime_seconds"], errors="coerce")
     frame = frame.dropna(subset=["runtime_seconds", "solver_registry_name", "dataset_type"])
@@ -513,8 +513,8 @@ def plot_accuracy_by_dataset_type(
     real_vs_synthetic: pd.DataFrame,
     output_path: str | Path,
 ) -> None:
-    """Plot accuracy for the mixed, real, and synthetic sets."""
 
+    # Plot accuracy for the mixed, real, and synthetic sets.
     selector_results = _normalize_selector_results_frame(selector_results)
     overall_row = selector_results.iloc[0]
     values = {
@@ -547,8 +547,8 @@ def plot_accuracy_by_dataset_type(
 
 
 def plot_regret_distribution(selector_evaluation_summary: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot split-level regret distributions."""
 
+    # Plot split-level regret distributions.
     overall_rows = selector_evaluation_summary[selector_evaluation_summary["summary_row_type"] == "split"].copy()
     dataset_rows = selector_evaluation_summary[
         selector_evaluation_summary["summary_row_type"] == "split_dataset_type"
@@ -585,8 +585,8 @@ def plot_regret_distribution(selector_evaluation_summary: pd.DataFrame, output_p
 
 
 def plot_confusion_matrix(selector_evaluation: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot aggregated selector predictions across all validation splits."""
 
+    # Plot aggregated selector predictions across all validation splits.
     required_columns = {"true_best_solver", "selected_solver"}
     missing_columns = required_columns.difference(selector_evaluation.columns)
     if missing_columns:
@@ -636,8 +636,8 @@ def plot_feature_correlation_matrix(
     feature_importance: pd.DataFrame,
     output_path: str | Path,
 ) -> None:
-    """Plot the correlation matrix for the most important numeric features."""
 
+    # Plot the correlation matrix for the most important numeric features.
     normalized = _normalize_feature_importance_frame(feature_importance)
     top_features = [
         _normalize_feature_name(item)
@@ -668,8 +668,8 @@ def plot_feature_correlation_matrix(
 
 
 def plot_constraint_distribution(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot distributions of total, hard, and soft constraints."""
 
+    # Plot distributions of total, hard, and soft constraints.
     metrics = [
         ("num_constraints", "Kopējais ierobežojumu skaits"),
         ("num_hard_constraints", "Stingrie ierobežojumi"),
@@ -691,8 +691,8 @@ def plot_constraint_distribution(selection_dataset: pd.DataFrame, output_path: s
 
 
 def plot_teams_vs_slots(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot team count against slot count for all instances."""
 
+    # Plot team count against slot count for all instances.
     fig, ax = plt.subplots(figsize=(8.8, 5.4))
     for dataset_type, color in (("real", PALETTE["real"]), ("synthetic", PALETTE["synthetic"])):
         rows = selection_dataset[selection_dataset["dataset_type"] == dataset_type]
@@ -716,8 +716,8 @@ def plot_teams_vs_slots(selection_dataset: pd.DataFrame, output_path: str | Path
 
 
 def plot_constraints_vs_objective(selection_dataset: pd.DataFrame, output_path: str | Path) -> None:
-    """Plot total constraints against the best benchmark objective."""
 
+    # Plot total constraints against the best benchmark objective.
     frame = selection_dataset.dropna(subset=["benchmark_best_solver_mean_objective"]).copy()
     frame["benchmark_best_solver_mean_objective"] = pd.to_numeric(
         frame["benchmark_best_solver_mean_objective"],
@@ -754,8 +754,8 @@ def plot_constraints_vs_objective(selection_dataset: pd.DataFrame, output_path: 
 
 
 def _style_axes(ax: plt.Axes, axis: str = "y") -> None:
-    """Apply one consistent light visual style to the axes."""
 
+    # Apply one consistent light visual style to the axes.
     ax.set_facecolor(PALETTE["surface"])
     ax.grid(axis=axis, color=PALETTE["grid"], linestyle="--", linewidth=0.8)
     ax.set_axisbelow(True)
@@ -770,8 +770,8 @@ def _style_axes(ax: plt.Axes, axis: str = "y") -> None:
 
 
 def _save_figure(fig: plt.Figure, output_path: str | Path) -> None:
-    """Save one figure deterministically."""
 
+    # Save one figure deterministically.
     fig.patch.set_facecolor(PALETTE["surface"])
     fig.tight_layout()
     fig.savefig(output_path, dpi=190, bbox_inches="tight", facecolor=PALETTE["surface"])
@@ -779,8 +779,8 @@ def _save_figure(fig: plt.Figure, output_path: str | Path) -> None:
 
 
 def _float(value: object) -> float:
-    """Convert one value to float, falling back to zero when missing."""
 
+    # Convert one value to float, falling back to zero when missing.
     try:
         if pd.isna(value):
             return 0.0
@@ -790,39 +790,39 @@ def _float(value: object) -> float:
 
 
 def _dataset_label(value: str) -> str:
-    """Return the Latvian label for one dataset type."""
 
+    # Return the Latvian label for one dataset type.
     return DATASET_LABELS.get(str(value), str(value))
 
 
 def _solver_label(value: str) -> str:
-    """Return the display label for one solver."""
 
+    # Return the display label for one solver.
     return SOLVER_LABELS.get(str(value), str(value).replace("_", " ").title())
 
 
 def _feature_group_label(value: str) -> str:
-    """Return the Latvian label for one feature group."""
 
+    # Return the Latvian label for one feature group.
     return FEATURE_GROUP_LABELS.get(str(value), str(value).replace("_", " ").title())
 
 
 def _feature_group_color(value: str) -> str:
-    """Return the consistent color for one feature group."""
 
+    # Return the consistent color for one feature group.
     return FEATURE_GROUP_COLORS.get(str(value), PALETTE["ink"])
 
 
 def _series_color(index: int) -> str:
-    """Return one stable series color by index."""
 
+    # Return one stable series color by index.
     palette = [PALETTE["accent"], PALETTE["accent_warm"], PALETTE["accent_soft"], PALETTE["accent_gold"]]
     return palette[index % len(palette)]
 
 
 def _solver_color(solver_name: str) -> str:
-    """Return one stable color for one solver."""
 
+    # Return one stable color for one solver.
     ordered = list(SOLVER_LABELS)
     if solver_name in ordered:
         return _series_color(ordered.index(solver_name))
@@ -830,22 +830,22 @@ def _solver_color(solver_name: str) -> str:
 
 
 def _ordered_solver_labels(labels: set[str]) -> list[str]:
-    """Return solver labels in portfolio order, followed by unknown labels."""
 
+    # Return solver labels in portfolio order, followed by unknown labels.
     ordered = [solver_name for solver_name in SOLVER_LABELS if solver_name in labels]
     ordered.extend(sorted(label for label in labels if label not in SOLVER_LABELS))
     return ordered
 
 
 def _labelize_feature(value: str) -> str:
-    """Turn one raw feature name into a short chart label."""
 
+    # Turn one raw feature name into a short chart label.
     return str(value)
 
 
 def _normalize_solver_comparison_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    """Accept either localized or raw solver-comparison columns."""
 
+    # Accept either localized or raw solver-comparison columns.
     if "result_scope" in frame.columns:
         return frame.copy()
 
@@ -868,8 +868,8 @@ def _normalize_solver_comparison_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _normalize_selector_results_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    """Accept either localized or raw selector-summary columns."""
 
+    # Accept either localized or raw selector-summary columns.
     if "classification_accuracy" in frame.columns:
         return frame.copy()
 
@@ -887,8 +887,8 @@ def _normalize_selector_results_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _normalize_real_vs_synthetic_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    """Accept either localized or raw real-vs-synthetic columns."""
 
+    # Accept either localized or raw real-vs-synthetic columns.
     if "dataset_type" in frame.columns:
         return frame.copy()
 
@@ -910,8 +910,8 @@ def _normalize_real_vs_synthetic_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _normalize_feature_importance_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    """Accept either localized or raw feature-importance columns."""
 
+    # Accept either localized or raw feature-importance columns.
     if "source_feature" in frame.columns:
         return frame.copy()
 
@@ -931,8 +931,8 @@ def _normalize_feature_importance_frame(frame: pd.DataFrame) -> pd.DataFrame:
 
 
 def _normalize_dataset_type(value: object) -> str:
-    """Convert localized dataset labels back to raw identifiers when needed."""
 
+    # Convert localized dataset labels back to raw identifiers when needed.
     mapping = {
         "Jauktā kopa": "all",
         "Reālie dati": "real",
@@ -942,8 +942,8 @@ def _normalize_dataset_type(value: object) -> str:
 
 
 def _normalize_solver_name(value: object) -> str:
-    """Convert localized solver labels back to registry identifiers when needed."""
 
+    # Convert localized solver labels back to registry identifiers when needed.
     mapping = {
         "Nejaušā bāzlīnija": "random_baseline",
         "CP-SAT": "cpsat_solver",
@@ -954,8 +954,8 @@ def _normalize_solver_name(value: object) -> str:
 
 
 def _normalize_feature_group(value: object) -> str:
-    """Convert localized feature-group labels back to raw identifiers when needed."""
 
+    # Convert localized feature-group labels back to raw identifiers when needed.
     mapping = {
         "Izmērs": "size",
         "Blīvums": "density",
@@ -967,6 +967,6 @@ def _normalize_feature_group(value: object) -> str:
 
 
 def _normalize_feature_name(value: object) -> str:
-    """Convert display feature names back to dataframe column names when needed."""
 
+    # Convert display feature names back to dataframe column names when needed.
     return str(value).replace(" ", "_")

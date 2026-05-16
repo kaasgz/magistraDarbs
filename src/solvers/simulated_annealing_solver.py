@@ -1,4 +1,4 @@
-"""First simulated annealing baseline for sports tournament scheduling."""
+# First simulated annealing baseline for sports tournament scheduling.
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ from src.solvers.base import Solver, SolverResult
 
 @dataclass(frozen=True, slots=True)
 class _ProblemData:
-    """Prepared round-robin data used by the simulated annealing solver."""
 
+    # Prepared round-robin data used by the simulated annealing solver.
     instance_name: str
     round_robin_mode: str | None
     team_labels: tuple[str, ...]
@@ -29,20 +29,20 @@ class _ProblemData:
 
 @dataclass(frozen=True, slots=True)
 class _ScheduleState:
-    """Schedule representation mapping each inferred match to one slot index.
 
-    Version 1 simplification:
-    Every unordered team pair is always assigned to exactly one slot. The state
-    does not model home/away orientation, venues, or rich ITC2021 constraints.
-    """
-
+    # Schedule representation mapping each inferred match to one slot index.
+    #
+    # Version 1 simplification:
+    # Every unordered team pair is always assigned to exactly one slot. The state
+    # does not model home/away orientation, venues, or rich ITC2021 constraints.
+    #
     assignments: tuple[int, ...]
 
 
 @dataclass(frozen=True, slots=True)
 class _StateEvaluation:
-    """Objective breakdown for one schedule state."""
 
+    # Objective breakdown for one schedule state.
     objective: float
     team_conflict_penalty: int
     duplicate_match_penalty: int
@@ -50,20 +50,20 @@ class _StateEvaluation:
 
 
 class SimulatedAnnealingSolver(Solver):
-    """Simulated annealing baseline for simplified round-robin scheduling.
 
-    Version 1 intentionally uses a simplified schedule model and penalty
-    function:
-
-    - matches are inferred from the team set as one single round-robin
-    - each match is always scheduled exactly once by representation
-    - hard structure is approximated through penalties instead of exact repair
-    - only team-per-slot conflicts and slot usage are scored
-
-    This keeps the baseline small and auditable while leaving clear extension
-    points for richer constraint handling.
-    """
-
+    # Simulated annealing baseline for simplified round-robin scheduling.
+    #
+    # Version 1 intentionally uses a simplified schedule model and penalty
+    # function:
+    #
+    # - matches are inferred from the team set as one single round-robin
+    # - each match is always scheduled exactly once by representation
+    # - hard structure is approximated through penalties instead of exact repair
+    # - only team-per-slot conflicts and slot usage are scored
+    #
+    # This keeps the baseline small and auditable while leaving clear extension
+    # points for richer constraint handling.
+    #
     def __init__(
         self,
         solver_name: str = "simulated_annealing_baseline",
@@ -71,8 +71,8 @@ class SimulatedAnnealingSolver(Solver):
         initial_temperature: float = 10.0,
         cooling_rate: float = 0.995,
     ) -> None:
-        """Initialize annealing hyperparameters for the baseline solver."""
 
+        # Initialize annealing hyperparameters for the baseline solver.
         self.solver_name = solver_name
         self.max_iterations = max_iterations
         self.initial_temperature = initial_temperature
@@ -84,8 +84,8 @@ class SimulatedAnnealingSolver(Solver):
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Search for a low-penalty schedule with simulated annealing."""
 
+        # Search for a low-penalty schedule with simulated annealing.
         start_time = time.perf_counter()
         rng = random.Random(random_seed)
         problem = _prepare_problem_data(instance)
@@ -228,8 +228,8 @@ class SimulatedAnnealingSolver(Solver):
 
 
 def _prepare_problem_data(instance: object) -> _ProblemData:
-    """Prepare team, slot, and inferred match data from an instance-like object."""
 
+    # Prepare team, slot, and inferred match data from an instance-like object.
     instance_name = _extract_instance_name(instance)
     round_robin_mode = _extract_round_robin_mode(instance)
     explicit_team_count = _safe_nonnegative_int(getattr(instance, "team_count", 0))
@@ -256,13 +256,13 @@ def _prepare_problem_data(instance: object) -> _ProblemData:
 
 
 def _initialize_state(problem: _ProblemData, rng: random.Random) -> _ScheduleState:
-    """Create an initial randomized state.
 
-    Version 1 simplification:
-    The initial state is purely randomized over slots. Feasibility is improved
-    by optimization rather than by a dedicated constructive heuristic.
-    """
-
+    # Create an initial randomized state.
+    #
+    # Version 1 simplification:
+    # The initial state is purely randomized over slots. Feasibility is improved
+    # by optimization rather than by a dedicated constructive heuristic.
+    #
     if problem.num_slots <= 0:
         return _ScheduleState(assignments=tuple())
 
@@ -271,8 +271,8 @@ def _initialize_state(problem: _ProblemData, rng: random.Random) -> _ScheduleSta
 
 
 def _evaluate_state(problem: _ProblemData, state: _ScheduleState) -> _StateEvaluation:
-    """Compute the simplified annealing objective for one schedule state."""
 
+    # Compute the simplified annealing objective for one schedule state.
     if not problem.matches:
         return _StateEvaluation(
             objective=0.0,
@@ -314,8 +314,8 @@ def _propose_neighbor(
     state: _ScheduleState,
     rng: random.Random,
 ) -> _ScheduleState:
-    """Generate a neighboring state using a small schedule perturbation."""
 
+    # Generate a neighboring state using a small schedule perturbation.
     if problem.num_slots <= 1 or not state.assignments:
         return state
 
@@ -342,8 +342,8 @@ def _temperature_at_iteration(
     cooling_rate: float,
     iteration: int,
 ) -> float:
-    """Compute the geometric cooling schedule temperature."""
 
+    # Compute the geometric cooling schedule temperature.
     if iteration <= 0:
         return max(1e-6, initial_temperature)
     return max(1e-6, initial_temperature * (cooling_rate ** iteration))
@@ -355,8 +355,8 @@ def _should_accept(
     temperature: float,
     rng: random.Random,
 ) -> bool:
-    """Apply the standard simulated annealing acceptance rule."""
 
+    # Apply the standard simulated annealing acceptance rule.
     if candidate_objective <= current_objective:
         return True
 
@@ -366,8 +366,8 @@ def _should_accept(
 
 
 def _build_schedule(problem: _ProblemData, state: _ScheduleState) -> list[dict[str, object]]:
-    """Convert a schedule state to a readable list of scheduled matches."""
 
+    # Convert a schedule state to a readable list of scheduled matches.
     schedule: list[dict[str, object]] = []
     for match_index, slot_index in enumerate(state.assignments):
         if slot_index < 0 or slot_index >= problem.num_slots:
@@ -387,8 +387,8 @@ def _build_schedule(problem: _ProblemData, state: _ScheduleState) -> list[dict[s
 
 
 def _build_team_labels(instance: object, explicit_team_count: int) -> list[str]:
-    """Build stable team labels from parsed teams or fallback names."""
 
+    # Build stable team labels from parsed teams or fallback names.
     teams = list(getattr(instance, "teams", []) or [])
     inferred_count = len(teams)
     num_teams = explicit_team_count if explicit_team_count > 0 else inferred_count
@@ -408,8 +408,8 @@ def _build_team_labels(instance: object, explicit_team_count: int) -> list[str]:
 
 
 def _build_slot_labels(instance: object, num_slots: int) -> list[str]:
-    """Build stable slot labels from parsed slots or fallback names."""
 
+    # Build stable slot labels from parsed slots or fallback names.
     slots = list(getattr(instance, "slots", []) or [])
     labels: list[str] = []
     for index in range(num_slots):
@@ -425,16 +425,16 @@ def _build_slot_labels(instance: object, num_slots: int) -> list[str]:
 
 
 def _minimum_required_slots(num_teams: int) -> int:
-    """Return the minimum slot count for single round-robin play."""
 
+    # Return the minimum slot count for single round-robin play.
     if num_teams <= 1:
         return 0
     return num_teams if num_teams % 2 == 1 else num_teams - 1
 
 
 def _support_status(problem: _ProblemData) -> str:
-    """Return the modeling support level for the annealing baseline."""
 
+    # Return the modeling support level for the annealing baseline.
     if problem.round_robin_mode not in {"single", None}:
         return "unsupported"
     if problem.round_robin_mode is None or problem.constraint_families:
@@ -443,8 +443,8 @@ def _support_status(problem: _ProblemData) -> str:
 
 
 def _scoring_status(problem: _ProblemData, *, feasible: bool) -> str:
-    """Return the common scoring-contract status for annealing results."""
 
+    # Return the common scoring-contract status for annealing results.
     support_status = _support_status(problem)
     if support_status == "unsupported":
         return "unsupported_instance"
@@ -454,8 +454,8 @@ def _scoring_status(problem: _ProblemData, *, feasible: bool) -> str:
 
 
 def _modeling_scope(problem: _ProblemData) -> str:
-    """Describe the implemented annealing model scope."""
 
+    # Describe the implemented annealing model scope.
     return (
         "simplified single round-robin simulated annealing model; one unordered "
         "match per team pair; no home/away, venue, travel, or direct RobinX "
@@ -464,8 +464,8 @@ def _modeling_scope(problem: _ProblemData) -> str:
 
 
 def _scoring_notes(problem: _ProblemData) -> tuple[str, ...]:
-    """Return concise scoring notes for benchmark exports."""
 
+    # Return concise scoring notes for benchmark exports.
     notes = [
         "Objective is a penalty score: lower is better.",
         "Team-per-slot conflicts dominate the objective; used slots are secondary.",
@@ -478,8 +478,8 @@ def _scoring_notes(problem: _ProblemData) -> tuple[str, ...]:
 
 
 def _simplifications() -> list[str]:
-    """Return the stable list of annealing baseline simplifications."""
 
+    # Return the stable list of annealing baseline simplifications.
     return [
         "single_round_robin_inferred_from_team_set",
         "no_home_away_decisions",
@@ -489,8 +489,8 @@ def _simplifications() -> list[str]:
 
 
 def _extract_round_robin_mode(instance: object) -> str | None:
-    """Extract a normalized round-robin mode when available."""
 
+    # Extract a normalized round-robin mode when available.
     metadata = getattr(instance, "metadata", None)
     raw_value = _first_non_empty(
         [
@@ -509,8 +509,8 @@ def _extract_round_robin_mode(instance: object) -> str | None:
 
 
 def _extract_constraint_families(instance: object) -> tuple[str, ...]:
-    """Extract stable constraint-family labels from the parsed instance."""
 
+    # Extract stable constraint-family labels from the parsed instance.
     constraints = list(getattr(instance, "constraints", []) or [])
     families: set[str] = set()
     for constraint in constraints:
@@ -525,8 +525,8 @@ def _extract_constraint_families(instance: object) -> tuple[str, ...]:
 
 
 def _extract_instance_name(instance: object) -> str:
-    """Extract a readable instance name from common instance fields."""
 
+    # Extract a readable instance name from common instance fields.
     metadata = getattr(instance, "metadata", None)
     candidates = [
         getattr(metadata, "name", None),
@@ -545,8 +545,8 @@ def _extract_instance_name(instance: object) -> str:
 
 
 def _safe_nonnegative_int(value: object) -> int:
-    """Convert a count-like value to a non-negative integer."""
 
+    # Convert a count-like value to a non-negative integer.
     if isinstance(value, bool):
         return int(value)
     if isinstance(value, int):
@@ -558,8 +558,8 @@ def _safe_nonnegative_int(value: object) -> int:
 
 
 def _first_non_empty(values: list[str | None]) -> str | None:
-    """Return the first non-empty string from a list of candidates."""
 
+    # Return the first non-empty string from a list of candidates.
     for value in values:
         if isinstance(value, str) and value.strip():
             return value.strip()
@@ -567,8 +567,8 @@ def _first_non_empty(values: list[str | None]) -> str | None:
 
 
 def _read_text_field(value: object, field_name: str) -> str | None:
-    """Read and normalize one text-like field from an object."""
 
+    # Read and normalize one text-like field from an object.
     field_value = getattr(value, field_name, None)
     if isinstance(field_value, str) and field_value.strip():
         return field_value.strip()

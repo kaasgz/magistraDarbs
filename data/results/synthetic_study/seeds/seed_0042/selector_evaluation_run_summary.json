@@ -1,0 +1,89 @@
+{
+  "stage_name": "selector_evaluation",
+  "generated_at": "2026-04-20T00:21:22+03:00",
+  "config_path": "configs/synthetic_study.yaml",
+  "settings": {
+    "random_seed": 42,
+    "model_name": "random_forest",
+    "split_strategy": "repeated_stratified_kfold",
+    "test_size": 0.25,
+    "cross_validation_folds": 3,
+    "repeats": 3,
+    "split_notes": [
+      "Cross-validation fell back to non-stratified folds because only one class is present."
+    ],
+    "evaluation_uses_out_of_sample_validation": true,
+    "model_path_recorded_for_traceability_only": true
+  },
+  "inputs": {
+    "selection_dataset_csv": "data/processed/synthetic_study/seeds/seed_0042/selection_dataset.csv",
+    "benchmark_results_csv": "data/results/synthetic_study/seeds/seed_0042/benchmark_results.csv",
+    "model_output": "data/results/synthetic_study/seeds/seed_0042/random_forest_selector.joblib"
+  },
+  "outputs": {
+    "evaluation_report_csv": "data/results/synthetic_study/seeds/seed_0042/selector_evaluation.csv",
+    "evaluation_summary_csv": "data/results/synthetic_study/seeds/seed_0042/selector_evaluation_summary.csv",
+    "evaluation_summary_markdown": "data/results/synthetic_study/seeds/seed_0042/selector_evaluation_summary.md",
+    "run_summary": "data/results/synthetic_study/seeds/seed_0042/selector_evaluation_run_summary.json"
+  },
+  "results": {
+    "single_best_solver_name": "cpsat_round_robin",
+    "classification_accuracy": 1.0,
+    "balanced_accuracy": null,
+    "average_selected_objective": 16.15,
+    "average_virtual_best_objective": 16.15,
+    "average_single_best_objective": 16.15,
+    "regret_vs_virtual_best": 0.0,
+    "delta_vs_single_best": 0.0,
+    "improvement_vs_single_best": -0.0,
+    "num_test_instances": 540,
+    "num_validation_splits": 9,
+    "metrics_by_dataset_type": {}
+  },
+  "config_snapshot": {
+    "paths": {
+      "dataset_root": "data/raw/synthetic/study",
+      "processed_dir": "data/processed/synthetic_study",
+      "results_dir": "data/results/synthetic_study"
+    },
+    "run": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "time_limit_seconds": 60
+    },
+    "solvers": {
+      "selected": [
+        "random_baseline",
+        "cpsat_solver",
+        "simulated_annealing_solver",
+        "timefold"
+      ],
+      "settings": {
+        "timefold": {
+          "executable_path": null,
+          "time_limit_seconds": 60,
+          "command_arguments": []
+        }
+      }
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

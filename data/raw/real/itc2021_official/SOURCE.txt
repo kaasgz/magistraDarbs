@@ -1,0 +1,3 @@
+﻿Official source page: https://robinxval.ugent.be/ITC2021/instances.php
+Downloaded official XML instance links from:
+  - https://robinxval.ugent.be/validator/Repository/ITC2021/Instances/

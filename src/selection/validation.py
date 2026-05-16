@@ -1,4 +1,4 @@
-"""Shared validation workflow for selector training and evaluation."""
+# Shared validation workflow for selector training and evaluation.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from src.utils import SplitSettings
 
 @dataclass(frozen=True, slots=True)
 class SelectorValidationResult:
-    """Out-of-sample selector predictions with split-level metrics."""
 
+    # Out-of-sample selector predictions with split-level metrics.
     split_plan: SelectorSplitPlan
     predictions: pd.DataFrame
     split_summary: pd.DataFrame
@@ -29,8 +29,8 @@ def run_selector_validation(
     random_seed: int,
     split_settings: SplitSettings,
 ) -> SelectorValidationResult:
-    """Train and evaluate the selector across reproducible validation splits."""
 
+    # Train and evaluate the selector across reproducible validation splits.
     split_plan = build_selector_split_plan(
         prepared_data.target,
         split_settings=split_settings,
@@ -104,8 +104,8 @@ def run_selector_validation(
 
 
 def aggregate_metric(values: pd.Series) -> float | None:
-    """Return the mean of one metric column, ignoring missing values."""
 
+    # Return the mean of one metric column, ignoring missing values.
     numeric = pd.to_numeric(values, errors="coerce").dropna()
     if numeric.empty:
         return None
@@ -113,8 +113,8 @@ def aggregate_metric(values: pd.Series) -> float | None:
 
 
 def metric_standard_deviation(values: pd.Series) -> float | None:
-    """Return the sample standard deviation of one metric column when available."""
 
+    # Return the sample standard deviation of one metric column when available.
     numeric = pd.to_numeric(values, errors="coerce").dropna()
     if len(numeric.index) < 2:
         return None
@@ -122,8 +122,8 @@ def metric_standard_deviation(values: pd.Series) -> float | None:
 
 
 def summarize_label_distribution(values: Sequence[object]) -> str | None:
-    """Return a stable label summary when all values agree."""
 
+    # Return a stable label summary when all values agree.
     normalized = [str(value).strip() for value in values if value is not None and str(value).strip()]
     if not normalized:
         return None
@@ -134,8 +134,8 @@ def summarize_label_distribution(values: Sequence[object]) -> str | None:
 
 
 def _compute_balanced_accuracy(y_true: pd.Series, y_pred: Sequence[str]) -> float | None:
-    """Compute balanced accuracy when the test labels span multiple classes."""
 
+    # Compute balanced accuracy when the test labels span multiple classes.
     if y_true.nunique() < 2:
         return None
     return float(balanced_accuracy_score(y_true, y_pred))
@@ -151,8 +151,8 @@ def _split_summary_row(
     accuracy: float,
     balanced_accuracy: float | None,
 ) -> dict[str, object]:
-    """Build one auditable validation-split summary row."""
 
+    # Build one auditable validation-split summary row.
     return {
         "split_id": split.split_id,
         "split_strategy": split.strategy,

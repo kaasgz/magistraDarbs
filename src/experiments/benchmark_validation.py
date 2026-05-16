@@ -1,4 +1,4 @@
-"""Validation helpers for benchmark result artifacts."""
+# Validation helpers for benchmark result artifacts.
 
 from __future__ import annotations
 
@@ -32,14 +32,15 @@ REQUIRED_BENCHMARK_COLUMNS = {
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkValidationIssue:
-    """One validation issue found in benchmark results."""
 
+    # One validation issue found in benchmark results.
     code: str
     message: str
 
 
 class BenchmarkValidationError(ValueError):
-    """Raised when benchmark results fail validation."""
+    # Raised when benchmark results fail validation.
+    pass
 
 
 def validate_benchmark_results(
@@ -47,8 +48,8 @@ def validate_benchmark_results(
     *,
     expected_solver_registry_names: Collection[str] | None = None,
 ) -> list[BenchmarkValidationIssue]:
-    """Return validation issues for one benchmark result table."""
 
+    # Return validation issues for one benchmark result table.
     missing_columns = sorted(REQUIRED_BENCHMARK_COLUMNS.difference(results.columns))
     if missing_columns:
         return [
@@ -204,8 +205,8 @@ def ensure_valid_benchmark_results(
     *,
     expected_solver_registry_names: Collection[str] | None = None,
 ) -> None:
-    """Raise when benchmark results fail validation."""
 
+    # Raise when benchmark results fail validation.
     issues = validate_benchmark_results(
         results,
         expected_solver_registry_names=expected_solver_registry_names,
@@ -218,8 +219,8 @@ def ensure_valid_benchmark_results(
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style values into booleans."""
 
+    # Convert CSV-style values into booleans.
     if isinstance(value, bool):
         return value
     if pd.isna(value):
@@ -230,8 +231,8 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _allowed_support_statuses() -> set[str]:
-    """Return the benchmark support-status vocabulary."""
 
+    # Return the benchmark support-status vocabulary.
     return {
         "supported",
         "partially_supported",
@@ -242,8 +243,8 @@ def _allowed_support_statuses() -> set[str]:
 
 
 def _allowed_scoring_statuses() -> set[str]:
-    """Return the benchmark scoring-status vocabulary."""
 
+    # Return the benchmark scoring-status vocabulary.
     return {
         "supported_feasible_run",
         "supported_infeasible_run",
@@ -255,8 +256,8 @@ def _allowed_scoring_statuses() -> set[str]:
 
 
 def _is_invalid_runtime(value: object) -> bool:
-    """Return whether the runtime value is missing, non-finite, or negative."""
 
+    # Return whether the runtime value is missing, non-finite, or negative.
     if value is None or pd.isna(value):
         return True
     try:

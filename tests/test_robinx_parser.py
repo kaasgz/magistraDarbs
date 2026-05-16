@@ -1,4 +1,4 @@
-"""Tests for the RobinX parser."""
+# Tests for the RobinX parser.
 
 from pathlib import Path
 
@@ -9,8 +9,8 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 def test_load_instance_succeeds_for_valid_xml() -> None:
-    """A valid fixture should load into a typed summary with transparent notes."""
 
+    # A valid fixture should load into a typed summary with transparent notes.
     fixture_path = FIXTURES_DIR / "sample_robinx.xml"
 
     summary = load_instance(str(fixture_path))
@@ -26,8 +26,8 @@ def test_load_instance_succeeds_for_valid_xml() -> None:
 
 
 def test_load_instance_extracts_team_and_slot_counts() -> None:
-    """Parsed aggregate counts should match the underlying fixture contents."""
 
+    # Parsed aggregate counts should match the underlying fixture contents.
     fixture_path = FIXTURES_DIR / "sample_robinx.xml"
 
     summary = load_instance(str(fixture_path))
@@ -40,8 +40,8 @@ def test_load_instance_extracts_team_and_slot_counts() -> None:
 
 
 def test_load_instance_handles_missing_optional_sections_with_parser_notes() -> None:
-    """Missing slots and constraints should not cause parsing failures."""
 
+    # Missing slots and constraints should not cause parsing failures.
     fixture_path = FIXTURES_DIR / "sample_robinx_missing_sections.xml"
 
     summary = load_instance(str(fixture_path))
@@ -62,8 +62,8 @@ def test_load_instance_handles_missing_optional_sections_with_parser_notes() -> 
 
 
 def test_load_instance_recovers_from_partially_malformed_xml(tmp_path: Path) -> None:
-    """Recoverable XML should still produce a summary and a recovery note."""
 
+    # Recoverable XML should still produce a summary and a recovery note.
     xml_path = tmp_path / "recoverable.xml"
     xml_path.write_text(
         "\n".join(
@@ -92,8 +92,8 @@ def test_load_instance_recovers_from_partially_malformed_xml(tmp_path: Path) -> 
 
 
 def test_load_instance_preserves_unknown_constraint_category_and_tag(tmp_path: Path) -> None:
-    """Unknown constraint descriptors should be preserved rather than rejected."""
 
+    # Unknown constraint descriptors should be preserved rather than rejected.
     xml_path = tmp_path / "unknown_constraint.xml"
     xml_path.write_text(
         "\n".join(
@@ -123,8 +123,8 @@ def test_load_instance_preserves_unknown_constraint_category_and_tag(tmp_path: P
 def test_load_instance_supports_itc2021_style_grouped_constraints_and_lowercase_resources(
     tmp_path: Path,
 ) -> None:
-    """Official-style ITC2021 XML should yield teams, slots, grouped constraints, and double RR metadata."""
 
+    # Official-style ITC2021 XML should yield teams, slots, grouped constraints, and double RR metadata.
     xml_path = tmp_path / "itc2021_style.xml"
     xml_path.write_text(
         "\n".join(

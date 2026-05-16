@@ -1,4 +1,4 @@
-"""Tests for the refreshed mixed synthetic/real selection dataset builder."""
+# Tests for the refreshed mixed synthetic/real selection dataset builder.
 
 from __future__ import annotations
 
@@ -13,8 +13,8 @@ from src.selection.modeling import prepare_selection_data
 def test_full_dataset_excludes_unsupported_and_not_configured_solvers_from_targets(
     tmp_path: Path,
 ) -> None:
-    """Unsupported and not-configured rows must not win, even with low objectives."""
 
+    # Unsupported and not-configured rows must not win, even with low objectives.
     paths = _FullDatasetPaths(tmp_path)
     _write_features(
         paths.synthetic_features,
@@ -114,8 +114,8 @@ def test_full_dataset_excludes_unsupported_and_not_configured_solvers_from_targe
 def test_full_dataset_tie_resolution_is_deterministic_after_seed_aggregation(
     tmp_path: Path,
 ) -> None:
-    """Best-solver ties should use mean objective, mean runtime, then solver name."""
 
+    # Best-solver ties should use mean objective, mean runtime, then solver name.
     paths = _FullDatasetPaths(tmp_path)
     _write_features(
         paths.synthetic_features,
@@ -165,8 +165,8 @@ def test_full_dataset_tie_resolution_is_deterministic_after_seed_aggregation(
 
 
 class _FullDatasetPaths:
-    """Convenience paths for one full-dataset test."""
 
+    # Convenience paths for one full-dataset test.
     def __init__(self, root: Path) -> None:
         self.synthetic_features = root / "synthetic_features.csv"
         self.synthetic_benchmarks = root / "synthetic_benchmarks.csv"
@@ -176,14 +176,14 @@ class _FullDatasetPaths:
 
 
 def _write_features(path: Path, rows: list[dict[str, object]]) -> None:
-    """Write feature rows to CSV."""
 
+    # Write feature rows to CSV.
     pd.DataFrame(rows).to_csv(path, index=False)
 
 
 def _write_benchmarks(path: Path, rows: list[dict[str, object]]) -> None:
-    """Write benchmark rows to CSV."""
 
+    # Write benchmark rows to CSV.
     pd.DataFrame(rows).to_csv(path, index=False)
 
 
@@ -199,8 +199,8 @@ def _benchmark_row(
     status: str = "FEASIBLE",
     seed: int = 42,
 ) -> dict[str, object]:
-    """Build one benchmark row with scoring-contract columns."""
 
+    # Build one benchmark row with scoring-contract columns.
     return {
         "instance_name": instance_name,
         "solver_name": f"{solver_name}_display",

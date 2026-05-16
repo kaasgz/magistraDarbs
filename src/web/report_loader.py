@@ -1,4 +1,4 @@
-"""Read-only loaders for thesis report dashboard sections."""
+# Read-only loaders for thesis report dashboard sections.
 
 from __future__ import annotations
 
@@ -93,8 +93,8 @@ IMPLEMENTATION_STEP_ROWS: tuple[tuple[str, str, str], ...] = (
 
 @dataclass(frozen=True, slots=True)
 class ReportLoaderPaths:
-    """Generated artifact paths read by the dashboard report views."""
 
+    # Generated artifact paths read by the dashboard report views.
     workspace_root: Path
     reports_dir: Path
     solver_comparison_csv: Path
@@ -164,8 +164,8 @@ class ReportLoaderPaths:
 
     @classmethod
     def from_workspace(cls, workspace_root: str | Path) -> "ReportLoaderPaths":
-        """Create the report-loader path layout anchored at the workspace root."""
 
+        # Create the report-loader path layout anchored at the workspace root.
         root = Path(workspace_root)
         reports_dir = root / "data" / "results" / "reports"
         mixed_results_dir = root / "data" / "results" / "full_selection"
@@ -246,8 +246,8 @@ class ReportLoaderPaths:
 
 
 def build_thesis_reports_state(workspace_root: str | Path) -> dict[str, Any]:
-    """Build the read-only thesis report dashboard state."""
 
+    # Build the read-only thesis report dashboard state.
     paths = ReportLoaderPaths.from_workspace(workspace_root)
     solver_comparison = _safe_read_csv(paths.solver_comparison_csv)
     solver_support_summary = _safe_read_csv(paths.solver_support_summary_csv)
@@ -387,8 +387,8 @@ def build_thesis_reports_state(workspace_root: str | Path) -> dict[str, Any]:
 
 
 def build_thesis_visualization_state(workspace_root: str | Path) -> dict[str, Any]:
-    """Build the presentation-ready thesis visualization state."""
 
+    # Build the presentation-ready thesis visualization state.
     paths = ReportLoaderPaths.from_workspace(workspace_root)
     selector_results = _load_preferred_csv(paths.thesis_selector_results_table_csv, paths.thesis_selector_overview_csv)
     solver_comparison = _load_preferred_csv(paths.thesis_solver_comparison_table_csv, paths.thesis_solver_leaderboard_csv)
@@ -485,8 +485,8 @@ def build_thesis_visualization_state(workspace_root: str | Path) -> dict[str, An
 
 
 def _load_preferred_csv(*paths: Path) -> pd.DataFrame | None:
-    """Return the first existing non-empty CSV from a list of preferred paths."""
 
+    # Return the first existing non-empty CSV from a list of preferred paths.
     for path in paths:
         frame = _safe_read_csv(path)
         if frame is not None:
@@ -495,8 +495,8 @@ def _load_preferred_csv(*paths: Path) -> pd.DataFrame | None:
 
 
 def _build_presentation_figure_payloads(paths: ReportLoaderPaths) -> list[dict[str, Any]]:
-    """Build the figure list used by the presentation-ready UI."""
 
+    # Build the figure list used by the presentation-ready UI.
     figures_dir = paths.workspace_root / "data" / "results" / "figures"
     payloads: list[dict[str, Any]] = []
     for spec in FIGURE_SPECS:
@@ -517,8 +517,8 @@ def _build_presentation_figure_payloads(paths: ReportLoaderPaths) -> list[dict[s
 
 
 def _presentation_portfolio(solver_comparison: pd.DataFrame | None) -> list[str]:
-    """Return the localized portfolio labels shown in the overview section."""
 
+    # Return the localized portfolio labels shown in the overview section.
     solver_comparison = _presentation_solver_frame(solver_comparison)
     if solver_comparison is None or solver_comparison.empty or "Algoritms" not in solver_comparison.columns:
         return []
@@ -529,8 +529,8 @@ def _build_presentation_selector_results(
     selector_results: pd.DataFrame | None,
     evaluation_summary: pd.DataFrame | None,
 ) -> pd.DataFrame | None:
-    """Ensure presentation metrics come from the saved aggregate evaluation summary."""
 
+    # Ensure presentation metrics come from the saved aggregate evaluation summary.
     normalized = _presentation_selector_frame(selector_results)
     aggregate = _aggregate_selector_summary_row(evaluation_summary)
     if aggregate is None:
@@ -566,8 +566,8 @@ def _build_presentation_selector_results(
 
 
 def _aggregate_selector_summary_row(evaluation_summary: pd.DataFrame | None) -> pd.Series | None:
-    """Return the aggregate evaluation row for the mixed dataset when available."""
 
+    # Return the aggregate evaluation row for the mixed dataset when available.
     if evaluation_summary is None or evaluation_summary.empty:
         return None
 
@@ -588,8 +588,8 @@ def _aggregate_selector_summary_row(evaluation_summary: pd.DataFrame | None) -> 
 
 
 def _solver_display_name(value: object) -> str | None:
-    """Map one solver registry identifier to a presentation label."""
 
+    # Map one solver registry identifier to a presentation label.
     if value is None or pd.isna(value):
         return None
     text = str(value).strip()
@@ -599,8 +599,8 @@ def _solver_display_name(value: object) -> str | None:
 
 
 def _presentation_selector_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize selector-results columns for the presentation UI."""
 
+    # Normalize selector-results columns for the presentation UI.
     if frame is None or frame.empty or "Modeļa tips" in frame.columns:
         return frame
     renamed = frame.rename(
@@ -627,8 +627,8 @@ def _presentation_selector_frame(frame: pd.DataFrame | None) -> pd.DataFrame | N
 
 
 def _presentation_summary_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize the overview summary table for the presentation UI."""
 
+    # Normalize the overview summary table for the presentation UI.
     if frame is None or frame.empty or "Rādītājs" in frame.columns:
         return frame
 
@@ -654,8 +654,8 @@ def _presentation_summary_frame(frame: pd.DataFrame | None) -> pd.DataFrame | No
 
 
 def _presentation_solver_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize solver-comparison columns for the presentation UI."""
 
+    # Normalize solver-comparison columns for the presentation UI.
     if frame is None or frame.empty:
         return frame
     solver_ids = _solver_ids_from_frame(frame)
@@ -699,8 +699,8 @@ def _presentation_solver_frame(frame: pd.DataFrame | None) -> pd.DataFrame | Non
 
 
 def _presentation_solver_win_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize solver-win rows for the presentation UI."""
 
+    # Normalize solver-win rows for the presentation UI.
     if frame is None or frame.empty:
         return frame
     solver_ids = _solver_ids_from_frame(frame)
@@ -731,8 +731,8 @@ def _presentation_solver_win_frame(frame: pd.DataFrame | None) -> pd.DataFrame |
 
 
 def _solver_ids_from_frame(frame: pd.DataFrame) -> list[str]:
-    """Resolve registry-level solver identifiers from a presentation table."""
 
+    # Resolve registry-level solver identifiers from a presentation table.
     if "solver_registry_name" in frame.columns:
         return frame["solver_registry_name"].fillna("").astype(str).tolist()
     if "best_solver" in frame.columns:
@@ -748,8 +748,8 @@ def _solver_ids_from_frame(frame: pd.DataFrame) -> list[str]:
 
 
 def _solver_display_label(solver_id: str, fallback: object) -> str:
-    """Return a compact display label without hiding the registry identity."""
 
+    # Return a compact display label without hiding the registry identity.
     normalized = str(solver_id).strip()
     if normalized:
         try:
@@ -763,8 +763,8 @@ def _solver_display_label(solver_id: str, fallback: object) -> str:
 
 
 def _solver_role_label(solver_id: str) -> str:
-    """Return the dashboard role label for one solver."""
 
+    # Return the dashboard role label for one solver.
     try:
         metadata = get_solver_metadata(str(solver_id).strip())
     except KeyError:
@@ -773,8 +773,8 @@ def _solver_role_label(solver_id: str) -> str:
 
 
 def _solver_interpretation(solver_id: str) -> str:
-    """Return a short thesis-safe interpretation note for one solver."""
 
+    # Return a short thesis-safe interpretation note for one solver.
     try:
         metadata = get_solver_metadata(str(solver_id).strip())
     except KeyError:
@@ -783,8 +783,8 @@ def _solver_interpretation(solver_id: str) -> str:
 
 
 def _presentation_feature_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize feature-importance columns for the presentation UI."""
 
+    # Normalize feature-importance columns for the presentation UI.
     if frame is None or frame.empty:
         return frame
     if "Pazīme" in frame.columns:
@@ -805,8 +805,8 @@ def _presentation_feature_frame(frame: pd.DataFrame | None) -> pd.DataFrame | No
 
 
 def _presentation_feature_group_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize feature-group rows for the presentation UI."""
 
+    # Normalize feature-group rows for the presentation UI.
     if frame is None or frame.empty or "Grupa" in frame.columns:
         return frame
     renamed = frame.rename(
@@ -822,8 +822,8 @@ def _presentation_feature_group_frame(frame: pd.DataFrame | None) -> pd.DataFram
 
 
 def _presentation_real_vs_synthetic_frame(frame: pd.DataFrame | None) -> pd.DataFrame | None:
-    """Normalize real-vs-synthetic table columns for the presentation UI."""
 
+    # Normalize real-vs-synthetic table columns for the presentation UI.
     if frame is None or frame.empty or "Datu kopa" in frame.columns:
         return frame
     renamed = frame.rename(
@@ -851,8 +851,8 @@ def _build_presentation_overview_section(
     portfolio: list[str],
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build the overview section for the presentation UI."""
 
+    # Build the overview section for the presentation UI.
     selector_results = _presentation_selector_frame(selector_results)
     dataset_summary = _presentation_summary_frame(dataset_summary)
     total_instances = _summary_value(dataset_summary, "Kopējais instanču skaits")
@@ -938,8 +938,8 @@ def _build_presentation_results_section(
     selector_results: pd.DataFrame | None,
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build the main-results section for the presentation UI."""
 
+    # Build the main-results section for the presentation UI.
     selector_results = _presentation_selector_frame(selector_results)
     cards = [
         {
@@ -977,8 +977,8 @@ def _build_presentation_solver_section(
     solver_comparison: pd.DataFrame | None,
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build the solver-comparison section for the presentation UI."""
 
+    # Build the solver-comparison section for the presentation UI.
     solver_comparison = _presentation_solver_frame(solver_comparison)
     table_rows = _portfolio_role_rows(solver_comparison)
 
@@ -1002,8 +1002,8 @@ def _build_presentation_best_solver_section(
     selection_dataset: pd.DataFrame | None,
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build the separate best_solver target-class section."""
 
+    # Build the separate best_solver target-class section.
     solver_wins = _presentation_solver_win_frame(solver_wins)
     table_rows = _records(solver_wins) if solver_wins is not None and not solver_wins.empty else []
     class_count = _count_distinct_best_solvers(selection_dataset)
@@ -1061,8 +1061,8 @@ def _build_presentation_best_solver_section(
 
 
 def _portfolio_role_rows(solver_comparison: pd.DataFrame | None) -> list[dict[str, str]]:
-    """Return one interpretation row per registered solver variant."""
 
+    # Return one interpretation row per registered solver variant.
     if solver_comparison is None or solver_comparison.empty or "Algoritms" not in solver_comparison.columns:
         return []
 
@@ -1086,8 +1086,8 @@ def _portfolio_role_rows(solver_comparison: pd.DataFrame | None) -> list[dict[st
 
 
 def _solver_status_note(solver_id: str) -> str:
-    """Return a short thesis-safe status for one solver variant."""
 
+    # Return a short thesis-safe status for one solver variant.
     normalized = str(solver_id).strip()
     if normalized == "timefold":
         return "Reģistrēta integrācijas saskarne; ārējais izpildāmais fails nav konfigurēts."
@@ -1101,8 +1101,8 @@ def _solver_status_note(solver_id: str) -> str:
 
 
 def _best_solver_row_for_dataset(frame: pd.DataFrame | None, dataset_label: str) -> dict[str, Any] | None:
-    """Return the first best_solver distribution row for one displayed dataset label."""
 
+    # Return the first best_solver distribution row for one displayed dataset label.
     if frame is None or frame.empty or "Datu kopa" not in frame.columns:
         return None
     rows = frame[frame["Datu kopa"] == dataset_label]
@@ -1112,8 +1112,8 @@ def _best_solver_row_for_dataset(frame: pd.DataFrame | None, dataset_label: str)
 
 
 def _count_distinct_best_solvers(selection_dataset: pd.DataFrame | None) -> int | None:
-    """Count active best_solver labels in the mixed selection dataset."""
 
+    # Count active best_solver labels in the mixed selection dataset.
     if selection_dataset is None or selection_dataset.empty or "best_solver" not in selection_dataset.columns:
         return None
     return int(selection_dataset["best_solver"].dropna().astype(str).nunique())
@@ -1124,8 +1124,8 @@ def _build_presentation_feature_section(
     feature_groups: pd.DataFrame | None,
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build the feature-analysis section for the presentation UI."""
 
+    # Build the feature-analysis section for the presentation UI.
     feature_importance = _presentation_feature_frame(feature_importance)
     feature_groups = _presentation_feature_group_frame(feature_groups)
     feature_rows = _records(feature_importance.head(10)) if feature_importance is not None and not feature_importance.empty else []
@@ -1157,8 +1157,8 @@ def _build_presentation_dataset_section(
     dataset_summary: pd.DataFrame | None,
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build the real-vs-synthetic comparison section for the presentation UI."""
 
+    # Build the real-vs-synthetic comparison section for the presentation UI.
     real_vs_synthetic = _presentation_real_vs_synthetic_frame(real_vs_synthetic)
     dataset_summary = _presentation_summary_frame(dataset_summary)
     comparison_rows = _records(real_vs_synthetic) if real_vs_synthetic is not None and not real_vs_synthetic.empty else []
@@ -1190,8 +1190,8 @@ def _build_presentation_implementation_section(
     dataset_summary: pd.DataFrame | None,
     evaluation_run_summary: dict[str, Any] | None,
 ) -> dict[str, Any]:
-    """Build the implemented-practical-work section."""
 
+    # Build the implemented-practical-work section.
     dataset_summary = _presentation_summary_frame(dataset_summary)
     total_instances = _summary_value(dataset_summary, "Kopējais instanču skaits")
     real_instances = _summary_value(dataset_summary, "Reālo instanču skaits")
@@ -1246,8 +1246,8 @@ def _build_presentation_implementation_section(
 
 
 def _structural_column_count(selection_dataset: pd.DataFrame | None) -> int | None:
-    """Return the number of structural input columns available in the mixed dataset."""
 
+    # Return the number of structural input columns available in the mixed dataset.
     if selection_dataset is None or selection_dataset.empty:
         return None
     excluded_columns = {
@@ -1281,8 +1281,8 @@ def _structural_column_count(selection_dataset: pd.DataFrame | None) -> int | No
 
 
 def _implementation_validation_label(evaluation_run_summary: dict[str, Any] | None) -> str:
-    """Return the validation scheme label used in the implemented workflow."""
 
+    # Return the validation scheme label used in the implemented workflow.
     settings = evaluation_run_summary.get("settings", {}) if isinstance(evaluation_run_summary, dict) else {}
     folds = settings.get("cross_validation_folds")
     repeats = settings.get("repeats")
@@ -1290,8 +1290,8 @@ def _implementation_validation_label(evaluation_run_summary: dict[str, Any] | No
 
 
 def _implementation_step_rows(workspace_root: Path) -> list[dict[str, str]]:
-    """Return the implemented thesis-practical workflow rows."""
 
+    # Return the implemented thesis-practical workflow rows.
     rows: list[dict[str, str]] = []
     for stage, implemented, paths in IMPLEMENTATION_STEP_ROWS:
         rows.append(
@@ -1306,8 +1306,8 @@ def _implementation_step_rows(workspace_root: Path) -> list[dict[str, str]]:
 
 
 def _implementation_artifact_rows(paths: ReportLoaderPaths) -> list[dict[str, str]]:
-    """List the main thesis-practical output artifacts."""
 
+    # List the main thesis-practical output artifacts.
     specs = [
         (
             "Jauktā algoritmu izvēles datu kopa",
@@ -1365,8 +1365,8 @@ def _implementation_artifact_rows(paths: ReportLoaderPaths) -> list[dict[str, st
 
 
 def _artifact_size_label(path: Path) -> str:
-    """Return a compact size label for one practical output artifact."""
 
+    # Return a compact size label for one practical output artifact.
     if not path.exists():
         return "Nav datu"
     if path.is_dir():
@@ -1375,8 +1375,8 @@ def _artifact_size_label(path: Path) -> str:
 
 
 def _implementation_paths_status(workspace_root: Path, paths: str) -> str:
-    """Return whether the implementation row points to existing files or folders."""
 
+    # Return whether the implementation row points to existing files or folders.
     relative_paths = [Path(item.strip()) for item in paths.split(";")]
     return "Ir" if all((workspace_root / path).exists() for path in relative_paths) else "Nav atrasts"
 
@@ -1385,8 +1385,8 @@ def _build_presentation_ready_files(
     paths: ReportLoaderPaths,
     figure_payloads: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """List the main files that are ready for thesis insertion."""
 
+    # List the main files that are ready for thesis insertion.
     table_paths = [
         paths.thesis_selector_results_table_csv,
         paths.thesis_solver_comparison_table_csv,
@@ -1416,8 +1416,8 @@ def _build_presentation_ready_files(
 
 
 def _presentation_intro(section_id: str) -> str:
-    """Return the configured introduction for one presentation section."""
 
+    # Return the configured introduction for one presentation section.
     for section in PRESENTATION_SECTIONS:
         if section.identifier == section_id:
             return section.intro
@@ -1428,8 +1428,8 @@ def _select_section_figures(
     figure_payloads: list[dict[str, Any]],
     section_id: str,
 ) -> list[dict[str, Any]]:
-    """Return the curated figure subset assigned to one presentation section."""
 
+    # Return the curated figure subset assigned to one presentation section.
     selected_ids = PRESENTATION_FIGURES_BY_SECTION.get(section_id)
     if selected_ids is None:
         return [item for item in figure_payloads if item["section_id"] == section_id]
@@ -1441,8 +1441,8 @@ def _select_section_figures(
 
 
 def _build_overview_takeaway(real_instances: object | None, synthetic_instances: object | None) -> str:
-    """Build the short bold takeaway for the overview section."""
 
+    # Build the short bold takeaway for the overview section.
     if real_instances is not None and synthetic_instances is not None:
         return (
             f"Datu kopa apvieno {int(real_instances)} reālās un {int(synthetic_instances)} sintētiskās instances, "
@@ -1452,8 +1452,8 @@ def _build_overview_takeaway(real_instances: object | None, synthetic_instances:
 
 
 def _build_results_takeaway(selector_results: pd.DataFrame | None) -> str:
-    """Build the short bold takeaway for the main-results section."""
 
+    # Build the short bold takeaway for the main-results section.
     accuracy = _row_value(selector_results, 0, "Precizitāte")
     balanced_accuracy = _row_value(selector_results, 0, "Sabalansētā precizitāte")
     regret = _row_value(selector_results, 0, "Regret pret virtual best")
@@ -1469,8 +1469,8 @@ def _build_results_takeaway(selector_results: pd.DataFrame | None) -> str:
 
 
 def _build_solver_takeaway(role_rows: list[dict[str, str]]) -> str:
-    """Build the short bold takeaway for the solver-comparison section."""
 
+    # Build the short bold takeaway for the solver-comparison section.
     if role_rows:
         return (
             f"Portfelī ir {len(role_rows)} reģistrēti risināšanas varianti ar atšķirīgu statusu un tvērumu; "
@@ -1484,8 +1484,8 @@ def _build_best_solver_takeaway(
     synthetic_solver: object,
     class_count: int | None,
 ) -> str:
-    """Build the short bold takeaway for the best_solver section."""
 
+    # Build the short bold takeaway for the best_solver section.
     class_label = f"{class_count} aktīvas best_solver klases" if class_count is not None else "aktīvās best_solver klases"
     return (
         f"Gala mērķī ir {class_label}: reālajām instancēm {real_solver}, bet sintētiskajām instancēm "
@@ -1494,8 +1494,8 @@ def _build_best_solver_takeaway(
 
 
 def _build_feature_takeaway(feature_groups: pd.DataFrame | None) -> str:
-    """Build the short bold takeaway for the feature-analysis section."""
 
+    # Build the short bold takeaway for the feature-analysis section.
     if feature_groups is None or feature_groups.empty or "Grupa" not in feature_groups.columns:
         return "Modeļa lēmumus visvairāk nosaka problēmas strukturālās pazīmes."
 
@@ -1506,8 +1506,8 @@ def _build_feature_takeaway(feature_groups: pd.DataFrame | None) -> str:
 
 
 def _build_dataset_takeaway(real_vs_synthetic: pd.DataFrame | None) -> str:
-    """Build the short bold takeaway for the dataset-comparison section."""
 
+    # Build the short bold takeaway for the dataset-comparison section.
     real_row = _dataset_row(real_vs_synthetic, "Reālie dati")
     synthetic_row = _dataset_row(real_vs_synthetic, "Sintētiskie dati")
     if real_row is not None and synthetic_row is not None:
@@ -1522,8 +1522,8 @@ def _build_dataset_takeaway(real_vs_synthetic: pd.DataFrame | None) -> str:
 
 
 def _dataset_row(frame: pd.DataFrame | None, dataset_label: str) -> pd.Series | None:
-    """Return one dataset-specific row from the real-vs-synthetic summary."""
 
+    # Return one dataset-specific row from the real-vs-synthetic summary.
     if frame is None or frame.empty or "Datu kopa" not in frame.columns:
         return None
     rows = frame[frame["Datu kopa"] == dataset_label]
@@ -1533,8 +1533,8 @@ def _dataset_row(frame: pd.DataFrame | None, dataset_label: str) -> pd.Series | 
 
 
 def _summary_value(summary_frame: pd.DataFrame | None, label: str) -> object | None:
-    """Look up one scalar value from the summary table."""
 
+    # Look up one scalar value from the summary table.
     if summary_frame is None or summary_frame.empty:
         return None
     if "Rādītājs" not in summary_frame.columns or "Vērtība" not in summary_frame.columns:
@@ -1546,16 +1546,16 @@ def _summary_value(summary_frame: pd.DataFrame | None, label: str) -> object | N
 
 
 def _row_value(frame: pd.DataFrame | None, row_index: int, column: str) -> object | None:
-    """Read one scalar value from a dataframe row when available."""
 
+    # Read one scalar value from a dataframe row when available.
     if frame is None or frame.empty or column not in frame.columns or row_index >= len(frame.index):
         return None
     return _json_safe_value(frame.iloc[row_index][column])
 
 
 def _format_numeric(value: object | None, *, digits: int) -> str:
-    """Format one numeric value for dashboard cards."""
 
+    # Format one numeric value for dashboard cards.
     if value is None:
         return "Nav datu"
     try:
@@ -1565,8 +1565,8 @@ def _format_numeric(value: object | None, *, digits: int) -> str:
 
 
 def build_mixed_dataset_state(workspace_root: str | Path) -> dict[str, Any]:
-    """Build the read-only mixed synthetic/real dataset dashboard state."""
 
+    # Build the read-only mixed synthetic/real dataset dashboard state.
     paths = ReportLoaderPaths.from_workspace(workspace_root)
     selection_dataset = _safe_read_csv(paths.mixed_selection_dataset_csv)
     run_summary = _load_json_file(paths.mixed_selection_run_summary_json)
@@ -1606,8 +1606,8 @@ def build_mixed_dataset_state(workspace_root: str | Path) -> dict[str, Any]:
 
 
 def build_report_artifact_specs(workspace_root: str | Path) -> list[dict[str, Any]]:
-    """Return additional report artifact specs for the dashboard browser."""
 
+    # Return additional report artifact specs for the dashboard browser.
     paths = ReportLoaderPaths.from_workspace(workspace_root)
     return [
         _artifact_spec("report_solver_support_summary", "reports", "Solver Support Summary", paths.solver_support_summary_csv, "csv"),
@@ -1753,8 +1753,8 @@ def _build_report_overview(
     average_objective: pd.DataFrame | None,
     markdown_reports: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Build concise thesis-report summary metrics."""
 
+    # Build concise thesis-report summary metrics.
     scope_counts = _instance_counts_by_scope(solver_comparison)
     selector_row = _report_row_by_method(selector_vs_baselines, "selector")
     best_winner = _best_solver_from_win_counts(win_counts, solver_comparison)
@@ -1804,8 +1804,8 @@ def _build_mixed_overview(
     run_summary: dict[str, Any] | None,
     selector_metrics: dict[str, Any],
 ) -> dict[str, Any]:
-    """Build compact mixed-dataset overview cards."""
 
+    # Build compact mixed-dataset overview cards.
     rows_by_type = _value_counts(selection_dataset, "dataset_type")
     best_solver_count = (
         int(selection_dataset["best_solver"].dropna().astype(str).nunique())
@@ -1851,8 +1851,8 @@ def _build_mixed_overview(
 
 
 def _build_dataset_type_counts(selection_dataset: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Summarize mixed selection rows by dataset type."""
 
+    # Summarize mixed selection rows by dataset type.
     if selection_dataset is None or selection_dataset.empty or "dataset_type" not in selection_dataset.columns:
         return []
 
@@ -1881,8 +1881,8 @@ def _build_dataset_type_counts(selection_dataset: pd.DataFrame | None) -> list[d
 
 
 def _build_best_solver_distribution(selection_dataset: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Return deterministic best-solver counts by dataset type."""
 
+    # Return deterministic best-solver counts by dataset type.
     if (
         selection_dataset is None
         or selection_dataset.empty
@@ -1906,8 +1906,8 @@ def _build_mixed_selector_metrics(
     evaluation_run_summary: dict[str, Any] | None,
     evaluation_summary: pd.DataFrame | None,
 ) -> dict[str, Any]:
-    """Extract overall and by-dataset selector metrics from full-selection artifacts."""
 
+    # Extract overall and by-dataset selector metrics from full-selection artifacts.
     overall = _selector_overall_from_run_summary(evaluation_run_summary)
     by_dataset_type = _selector_by_dataset_type_from_run_summary(evaluation_run_summary)
 
@@ -1935,8 +1935,8 @@ def _build_mixed_selector_metrics(
 
 
 def _selector_overall_from_run_summary(run_summary: dict[str, Any] | None) -> dict[str, Any]:
-    """Extract full-selection aggregate metrics from the run summary."""
 
+    # Extract full-selection aggregate metrics from the run summary.
     results = run_summary.get("results", {}) if isinstance(run_summary, dict) else {}
     if not isinstance(results, dict):
         return {}
@@ -1957,8 +1957,8 @@ def _selector_overall_from_run_summary(run_summary: dict[str, Any] | None) -> di
 
 
 def _selector_by_dataset_type_from_run_summary(run_summary: dict[str, Any] | None) -> list[dict[str, Any]]:
-    """Extract full-selection dataset-type metrics from the run summary."""
 
+    # Extract full-selection dataset-type metrics from the run summary.
     results = run_summary.get("results", {}) if isinstance(run_summary, dict) else {}
     metrics = results.get("metrics_by_dataset_type") if isinstance(results, dict) else None
     if not isinstance(metrics, dict):
@@ -1988,8 +1988,8 @@ def _selector_by_dataset_type_from_run_summary(run_summary: dict[str, Any] | Non
 
 
 def _selector_overall_from_summary_table(frame: pd.DataFrame | None) -> dict[str, Any]:
-    """Extract aggregate selector metrics from a summary CSV."""
 
+    # Extract aggregate selector metrics from a summary CSV.
     if frame is None or frame.empty:
         return {}
     source = frame
@@ -2016,8 +2016,8 @@ def _selector_overall_from_summary_table(frame: pd.DataFrame | None) -> dict[str
 
 
 def _selector_by_dataset_type_from_summary_table(frame: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Extract by-dataset selector metrics from a summary CSV."""
 
+    # Extract by-dataset selector metrics from a summary CSV.
     if frame is None or frame.empty or "dataset_type" not in frame.columns:
         return []
 
@@ -2053,14 +2053,14 @@ def _selector_by_dataset_type_from_summary_table(frame: pd.DataFrame | None) -> 
 
 
 def _clean_metric_row(row: dict[str, object]) -> dict[str, Any]:
-    """Remove fully empty metric entries while preserving explicit zero values."""
 
+    # Remove fully empty metric entries while preserving explicit zero values.
     return {key: _json_safe_value(value) for key, value in row.items() if _json_safe_value(value) is not None}
 
 
 def _mixed_preview_rows(selection_dataset: pd.DataFrame | None) -> list[dict[str, Any]]:
-    """Return compact mixed-dataset preview rows."""
 
+    # Return compact mixed-dataset preview rows.
     return _report_table_records(
         selection_dataset,
         [
@@ -2080,8 +2080,8 @@ def _mixed_preview_rows(selection_dataset: pd.DataFrame | None) -> list[dict[str
 
 
 def _build_thesis_report_artifacts(paths: ReportLoaderPaths) -> dict[str, dict[str, Any]]:
-    """Return report artifact descriptions for the dashboard."""
 
+    # Return report artifact descriptions for the dashboard.
     return {
         "report_folder": _describe_path(paths.workspace_root, paths.reports_dir),
         "solver_comparison_csv": _describe_path(paths.workspace_root, paths.solver_comparison_csv),
@@ -2110,8 +2110,8 @@ def _build_thesis_report_artifacts(paths: ReportLoaderPaths) -> dict[str, dict[s
 
 
 def _build_mixed_artifacts(paths: ReportLoaderPaths) -> dict[str, dict[str, Any]]:
-    """Return mixed-dataset artifact descriptions for the dashboard."""
 
+    # Return mixed-dataset artifact descriptions for the dashboard.
     return {
         "selection_dataset_full": _describe_path(paths.workspace_root, paths.mixed_selection_dataset_csv),
         "selection_dataset_full_run_summary": _describe_path(
@@ -2140,8 +2140,8 @@ def _build_mixed_artifacts(paths: ReportLoaderPaths) -> dict[str, dict[str, Any]
 
 
 def _build_mixed_source_artifacts(paths: ReportLoaderPaths) -> dict[str, dict[str, Any]]:
-    """Return source artifact descriptions separated by real and synthetic scope."""
 
+    # Return source artifact descriptions separated by real and synthetic scope.
     return {
         "synthetic_study_processed_folder": _describe_path(paths.workspace_root, paths.synthetic_study_processed_dir),
         "synthetic_study_results_folder": _describe_path(paths.workspace_root, paths.synthetic_study_results_dir),
@@ -2155,8 +2155,8 @@ def _build_mixed_source_artifacts(paths: ReportLoaderPaths) -> dict[str, dict[st
 
 
 def _load_markdown_reports(workspace_root: Path, markdown_paths: list[Path]) -> list[dict[str, Any]]:
-    """Load compact previews for generated Markdown reports."""
 
+    # Load compact previews for generated Markdown reports.
     reports: list[dict[str, Any]] = []
     for path in markdown_paths:
         if not path.exists() or not path.is_file():
@@ -2181,8 +2181,8 @@ def _resolve_report_scope(
     solver_comparison: pd.DataFrame | None,
     selector_vs_baselines: pd.DataFrame | None,
 ) -> str:
-    """Resolve the report scope from metadata or table columns."""
 
+    # Resolve the report scope from metadata or table columns.
     if isinstance(run_summary, dict):
         settings = run_summary.get("settings", {})
         if isinstance(settings, dict) and settings.get("resolved_report_scope"):
@@ -2198,8 +2198,8 @@ def _resolve_report_scope(
 
 
 def _report_table_records(frame: pd.DataFrame | None, columns: list[str], *, limit: int) -> list[dict[str, Any]]:
-    """Return JSON-safe records for selected columns."""
 
+    # Return JSON-safe records for selected columns.
     if frame is None or frame.empty:
         return []
     available_columns = [column for column in columns if column in frame.columns]
@@ -2209,8 +2209,8 @@ def _report_table_records(frame: pd.DataFrame | None, columns: list[str], *, lim
 
 
 def _instance_counts_by_scope(solver_comparison: pd.DataFrame | None) -> dict[str, int]:
-    """Return max recorded instance count per report scope."""
 
+    # Return max recorded instance count per report scope.
     if solver_comparison is None or solver_comparison.empty or "result_scope" not in solver_comparison.columns:
         return {}
     count_column = "num_instances_total" if "num_instances_total" in solver_comparison.columns else "num_instances_solved"
@@ -2223,8 +2223,8 @@ def _instance_counts_by_scope(solver_comparison: pd.DataFrame | None) -> dict[st
 
 
 def _support_status_counts(solver_support_summary: pd.DataFrame | None) -> dict[str, int]:
-    """Count support-status rows across report summaries."""
 
+    # Count support-status rows across report summaries.
     if (
         solver_support_summary is None
         or solver_support_summary.empty
@@ -2245,8 +2245,8 @@ def _best_solver_from_win_counts(
     win_counts: pd.DataFrame | None,
     solver_comparison: pd.DataFrame | None,
 ) -> dict[str, Any]:
-    """Return the solver with the highest report win count."""
 
+    # Return the solver with the highest report win count.
     source = win_counts if win_counts is not None and not win_counts.empty else solver_comparison
     if source is None or source.empty or "win_count" not in source.columns:
         return {}
@@ -2272,8 +2272,8 @@ def _best_solver_from_average_objective(
     average_objective: pd.DataFrame | None,
     solver_comparison: pd.DataFrame | None,
 ) -> dict[str, Any]:
-    """Return the solver with the lowest valid average objective."""
 
+    # Return the solver with the lowest valid average objective.
     source = average_objective if average_objective is not None and not average_objective.empty else solver_comparison
     if source is None or source.empty:
         return {}
@@ -2304,8 +2304,8 @@ def _best_solver_from_average_objective(
 
 
 def _report_row_by_method(frame: pd.DataFrame | None, method: str) -> dict[str, Any]:
-    """Return one row matching a selector comparison method."""
 
+    # Return one row matching a selector comparison method.
     if frame is None or frame.empty or "method" not in frame.columns:
         return {}
     matches = frame[frame["method"].astype(str).str.casefold() == method.casefold()]
@@ -2315,8 +2315,8 @@ def _report_row_by_method(frame: pd.DataFrame | None, method: str) -> dict[str, 
 
 
 def _top_feature_from_report(frame: pd.DataFrame | None) -> dict[str, Any]:
-    """Return the highest-ranked feature from the report table."""
 
+    # Return the highest-ranked feature from the report table.
     if frame is None or frame.empty:
         return {}
     table = frame.copy()
@@ -2334,8 +2334,8 @@ def _top_feature_from_report(frame: pd.DataFrame | None) -> dict[str, Any]:
 
 
 def _count_unique_solvers(frame: pd.DataFrame | None) -> int:
-    """Count unique solver labels in a report table."""
 
+    # Count unique solver labels in a report table.
     if frame is None or frame.empty:
         return 0
     column = "solver_registry_name" if "solver_registry_name" in frame.columns else "solver_name"
@@ -2345,16 +2345,16 @@ def _count_unique_solvers(frame: pd.DataFrame | None) -> int:
 
 
 def _count_existing_files(folder: Path, suffix: str) -> int:
-    """Count generated files in a folder by suffix."""
 
+    # Count generated files in a folder by suffix.
     if not folder.exists() or not folder.is_dir():
         return 0
     return len([path for path in folder.iterdir() if path.is_file() and path.suffix == suffix])
 
 
 def _value_counts(frame: pd.DataFrame | None, column: str) -> dict[str, int]:
-    """Return sorted value counts for one column."""
 
+    # Return sorted value counts for one column.
     if frame is None or frame.empty or column not in frame.columns:
         return {}
     counts = frame[column].fillna("missing").astype(str).value_counts().to_dict()
@@ -2367,8 +2367,8 @@ def _numeric_mean(
     *,
     fallback_column: str | None = None,
 ) -> float | None:
-    """Return a numeric column mean when available."""
 
+    # Return a numeric column mean when available.
     if frame is None or frame.empty:
         return None
     target_column = column if column in frame.columns else fallback_column
@@ -2378,16 +2378,16 @@ def _numeric_mean(
 
 
 def _numeric_series_mean(series: pd.Series | None) -> float | None:
-    """Return a numeric series mean when available."""
 
+    # Return a numeric series mean when available.
     if series is None:
         return None
     return _json_safe_value(pd.to_numeric(series, errors="coerce").mean())  # type: ignore[return-value]
 
 
 def _count_numeric_matches(frame: pd.DataFrame | None, column: str, target: int) -> int:
-    """Count rows where a numeric column equals a target value."""
 
+    # Count rows where a numeric column equals a target value.
     if frame is None or frame.empty or column not in frame.columns:
         return 0
     values = pd.to_numeric(frame[column], errors="coerce")
@@ -2395,8 +2395,8 @@ def _count_numeric_matches(frame: pd.DataFrame | None, column: str, target: int)
 
 
 def _nested_value(mapping: dict[str, Any], *keys: str) -> Any:
-    """Return a nested dictionary value if all keys exist."""
 
+    # Return a nested dictionary value if all keys exist.
     value: Any = mapping
     for key in keys:
         if not isinstance(value, dict):
@@ -2406,8 +2406,8 @@ def _nested_value(mapping: dict[str, Any], *keys: str) -> Any:
 
 
 def _first_non_empty(*values: object) -> object | None:
-    """Return the first non-empty scalar value."""
 
+    # Return the first non-empty scalar value.
     for value in values:
         clean = _json_safe_value(value)
         if clean is None:
@@ -2418,8 +2418,8 @@ def _first_non_empty(*values: object) -> object | None:
 
 
 def _safe_read_csv(path: Path) -> pd.DataFrame | None:
-    """Read a CSV file when it exists and is non-empty."""
 
+    # Read a CSV file when it exists and is non-empty.
     if not path.exists() or path.stat().st_size == 0:
         return None
     try:
@@ -2429,8 +2429,8 @@ def _safe_read_csv(path: Path) -> pd.DataFrame | None:
 
 
 def _load_json_file(path: Path) -> dict[str, Any] | None:
-    """Load one JSON file when available."""
 
+    # Load one JSON file when available.
     if not path.exists() or path.stat().st_size == 0:
         return None
     try:
@@ -2441,8 +2441,8 @@ def _load_json_file(path: Path) -> dict[str, Any] | None:
 
 
 def _describe_path(workspace_root: Path, path: Path) -> dict[str, Any]:
-    """Describe a generated artifact path without opening large files."""
 
+    # Describe a generated artifact path without opening large files.
     exists = path.exists()
     payload: dict[str, Any] = {
         "path": _relative_path(workspace_root, path),
@@ -2464,8 +2464,8 @@ def _describe_path(workspace_root: Path, path: Path) -> dict[str, Any]:
 
 
 def _records(frame: pd.DataFrame) -> list[dict[str, Any]]:
-    """Convert a dataframe to JSON-safe records."""
 
+    # Convert a dataframe to JSON-safe records.
     records: list[dict[str, Any]] = []
     for row in frame.to_dict(orient="records"):
         records.append({str(key): _json_safe_value(value) for key, value in row.items()})
@@ -2473,8 +2473,8 @@ def _records(frame: pd.DataFrame) -> list[dict[str, Any]]:
 
 
 def _json_safe_value(value: object) -> object:
-    """Convert pandas/numpy scalar values into JSON-safe Python values."""
 
+    # Convert pandas/numpy scalar values into JSON-safe Python values.
     if value is None:
         return None
     try:
@@ -2496,8 +2496,8 @@ def _json_safe_value(value: object) -> object:
 
 
 def _relative_path(workspace_root: Path, path: Path | None) -> str | None:
-    """Return a display path relative to the workspace when possible."""
 
+    # Return a display path relative to the workspace when possible.
     if path is None:
         return None
     try:
@@ -2507,8 +2507,8 @@ def _relative_path(workspace_root: Path, path: Path | None) -> str | None:
 
 
 def _format_file_size(size_bytes: int) -> str:
-    """Format a byte count for dashboard display."""
 
+    # Format a byte count for dashboard display.
     size = float(max(0, size_bytes))
     for unit in ("B", "KB", "MB", "GB"):
         if size < 1024.0 or unit == "GB":
@@ -2518,14 +2518,14 @@ def _format_file_size(size_bytes: int) -> str:
 
 
 def _labelize(value: str) -> str:
-    """Format a file stem as a display label."""
 
+    # Format a file stem as a display label.
     return str(value).replace("_", " ").title()
 
 
 def _generated_file_url(workspace_root: Path, path: Path) -> str:
-    """Return one dashboard URL for a generated file inside the workspace."""
 
+    # Return one dashboard URL for a generated file inside the workspace.
     relative = _relative_path(workspace_root, path)
     return f"/generated/{relative}" if relative is not None else ""
 
@@ -2537,8 +2537,8 @@ def _artifact_spec(
     path: Path,
     preview_kind: str,
 ) -> dict[str, Any]:
-    """Build one artifact-browser whitelist entry."""
 
+    # Build one artifact-browser whitelist entry.
     return {
         "artifact_id": artifact_id,
         "scope": scope,

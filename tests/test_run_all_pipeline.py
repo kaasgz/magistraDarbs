@@ -1,4 +1,4 @@
-"""Tests for the full run-all pipeline orchestrator."""
+# Tests for the full run-all pipeline orchestrator.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ def test_run_all_pipeline_executes_core_steps_and_prints_progress(
     tmp_path: Path,
     capsys,
 ) -> None:
-    """The orchestration helper should run the core pipeline in the documented order."""
 
+    # The orchestration helper should run the core pipeline in the documented order.
     input_dir = tmp_path / "instances"
     manifest_path = tmp_path / "data" / "processed" / "pipeline_manifest.json"
     feature_config_path = tmp_path / "feature_config.yaml"
@@ -154,8 +154,8 @@ def test_run_all_pipeline_main_fails_gracefully_for_missing_config(
     tmp_path: Path,
     capsys,
 ) -> None:
-    """The CLI entrypoint should stop cleanly on a critical configuration error."""
 
+    # The CLI entrypoint should stop cleanly on a critical configuration error.
     missing_config_path = tmp_path / "missing_pipeline_config.yaml"
 
     exit_code = main(["--config", str(missing_config_path)])

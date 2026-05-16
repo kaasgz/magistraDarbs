@@ -1,13 +1,12 @@
-"""Evaluate a selector in algorithm-selection terms.
-
-The evaluation workflow is intentionally more rigorous than the training step:
-
-- selector predictions are generated out-of-sample on reproducible validation
-  splits instead of reusing an in-sample fitted model
-- the single best solver baseline is computed from each training split only
-- the virtual best solver baseline is computed independently on each test split
-- both split-level and aggregate summaries are saved for thesis reporting
-"""
+# Evaluate a selector in algorithm-selection terms.
+#
+# The evaluation workflow is intentionally more rigorous than the training step:
+#
+# - selector predictions are generated out-of-sample on reproducible validation
+# splits instead of reusing an in-sample fitted model
+# - the single best solver baseline is computed from each training split only
+# - the virtual best solver baseline is computed independently on each test split
+# - both split-level and aggregate summaries are saved for thesis reporting
 
 from __future__ import annotations
 
@@ -69,8 +68,8 @@ REQUIRED_BENCHMARK_COLUMNS = {
 
 @dataclass(slots=True)
 class SelectorEvaluationResult:
-    """Summary of selector evaluation across reproducible validation splits."""
 
+    # Summary of selector evaluation across reproducible validation splits.
     report_path: Path
     summary_csv_path: Path
     summary_markdown_path: Path
@@ -106,13 +105,13 @@ def evaluate_selector(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> SelectorEvaluationResult:
-    """Evaluate the selector against single-best and virtual-best baselines.
 
-    The ``model_path`` argument is retained for artifact traceability, but the
-    evaluation itself retrains the selector inside each validation split so the
-    reported metrics stay fully out-of-sample.
-    """
-
+    # Evaluate the selector against single-best and virtual-best baselines.
+    #
+    # The ``model_path`` argument is retained for artifact traceability, but the
+    # evaluation itself retrains the selector inside each validation split so the
+    # reported metrics stay fully out-of-sample.
+    #
     dataset = pd.read_csv(Path(dataset_csv))
     benchmarks = pd.read_csv(Path(benchmark_csv))
     dataset_type_by_instance = _dataset_type_lookup(dataset)
@@ -352,8 +351,8 @@ def evaluate_full_selector(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> SelectorEvaluationResult:
-    """Evaluate the selector on the combined synthetic/real selection dataset."""
 
+    # Evaluate the selector on the combined synthetic/real selection dataset.
     combined_path = _write_combined_full_benchmarks(
         synthetic_benchmark_csv=Path(synthetic_benchmark_csv),
         real_benchmark_csv=Path(real_benchmark_csv),
@@ -379,8 +378,8 @@ def evaluate_full_selector(
 
 
 def evaluate_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> SelectorEvaluationResult:
-    """Evaluate the selector using values loaded from a YAML configuration file."""
 
+    # Evaluate the selector using values loaded from a YAML configuration file.
     config = load_yaml_config(config_path)
     split_settings = get_split_settings(config)
     report_path = get_compat_path(config, ["paths.evaluation_report_csv"], DEFAULT_REPORT_PATH)
@@ -419,8 +418,8 @@ def evaluate_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH)
 
 
 def evaluate_full_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> SelectorEvaluationResult:
-    """Evaluate the selector using the combined synthetic/real dataset paths from config."""
 
+    # Evaluate the selector using the combined synthetic/real dataset paths from config.
     config = load_yaml_config(config_path)
     split_settings = get_split_settings(config)
     report_path = get_compat_path(config, ["paths.full_evaluation_report_csv"], DEFAULT_FULL_REPORT_PATH)
@@ -467,8 +466,8 @@ def evaluate_full_selector_from_config(config_path: str | Path = DEFAULT_CONFIG_
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for selector evaluation."""
 
+    # Create the command-line parser for selector evaluation.
     parser = argparse.ArgumentParser(
         description="Evaluate a selector using benchmark objectives and validation splits.",
     )
@@ -565,8 +564,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run selector evaluation from the command line."""
 
+    # Run selector evaluation from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -712,8 +711,8 @@ def _write_combined_full_benchmarks(
     real_benchmark_csv: Path,
     output_csv: Path,
 ) -> Path:
-    """Write a canonical benchmark table for mixed synthetic/real evaluation."""
 
+    # Write a canonical benchmark table for mixed synthetic/real evaluation.
     synthetic = _load_full_benchmark_source(synthetic_benchmark_csv, dataset_type="synthetic")
     real = _load_full_benchmark_source(real_benchmark_csv, dataset_type="real")
     combined = pd.concat([synthetic, real], ignore_index=True, sort=False)
@@ -728,8 +727,8 @@ def _write_combined_full_benchmarks(
 
 
 def _load_full_benchmark_source(path: Path, *, dataset_type: str) -> pd.DataFrame:
-    """Load one benchmark source and normalize solver names for full evaluation."""
 
+    # Load one benchmark source and normalize solver names for full evaluation.
     frame = pd.read_csv(path)
     missing_columns = sorted(REQUIRED_BENCHMARK_COLUMNS.difference(frame.columns))
     if missing_columns:
@@ -746,8 +745,8 @@ def _load_full_benchmark_source(path: Path, *, dataset_type: str) -> pd.DataFram
 
 
 def _dataset_type_lookup(dataset: pd.DataFrame) -> dict[str, str]:
-    """Return source labels keyed by instance name when a mixed dataset is used."""
 
+    # Return source labels keyed by instance name when a mixed dataset is used.
     if "dataset_type" not in dataset.columns:
         return {}
     if dataset["instance_name"].duplicated().any():
@@ -762,8 +761,8 @@ def _dataset_type_lookup(dataset: pd.DataFrame) -> dict[str, str]:
 
 
 def _prepare_benchmark_frame(benchmarks: pd.DataFrame) -> pd.DataFrame:
-    """Validate and normalize benchmark results for evaluation lookup."""
 
+    # Validate and normalize benchmark results for evaluation lookup.
     missing_columns = sorted(REQUIRED_BENCHMARK_COLUMNS.difference(benchmarks.columns))
     if missing_columns:
         missing = ", ".join(missing_columns)
@@ -797,8 +796,8 @@ def _build_detailed_report(
     single_best_solver_name: str | None,
     dataset_type_by_instance: dict[str, str] | None = None,
 ) -> pd.DataFrame:
-    """Build one detailed evaluation row per test instance in one split."""
 
+    # Build one detailed evaluation row per test instance in one split.
     true_best_frame = best_solver_per_instance(test_benchmarks).rename(columns={"solver_name": "true_best_solver"})
     true_best_lookup = true_best_frame.set_index("instance_name")
     benchmark_lookup = test_benchmarks.set_index(["instance_name", "solver_name"])
@@ -869,8 +868,8 @@ def _lookup_solver_entry(
     instance_name: str,
     solver_name: str | None,
 ) -> dict[str, Any]:
-    """Return one benchmark row for an instance-solver pair, if present."""
 
+    # Return one benchmark row for an instance-solver pair, if present.
     if not solver_name:
         return {}
 
@@ -885,8 +884,8 @@ def _lookup_solver_entry(
 
 
 def _worst_feasible_objective_for_instance(test_benchmarks: pd.DataFrame, instance_name: str) -> float:
-    """Return the worst feasible objective observed for an instance."""
 
+    # Return the worst feasible objective observed for an instance.
     instance_rows = test_benchmarks[
         (test_benchmarks["instance_name"] == instance_name)
         & test_benchmarks["feasible"]
@@ -898,8 +897,8 @@ def _worst_feasible_objective_for_instance(test_benchmarks: pd.DataFrame, instan
 
 
 def _score_objective(objective_value: object, fallback_value: float) -> float:
-    """Convert an actual objective into a scoring value with deterministic fallback."""
 
+    # Convert an actual objective into a scoring value with deterministic fallback.
     actual = _coerce_float(objective_value)
     if pd.notna(actual):
         return actual
@@ -915,8 +914,8 @@ def _build_dataset_type_split_rows(
     single_best_solver_name: str | None,
     dataset_type_by_instance: dict[str, str],
 ) -> list[dict[str, object]]:
-    """Build per-source split metrics for mixed synthetic/real evaluation."""
 
+    # Build per-source split metrics for mixed synthetic/real evaluation.
     if not dataset_type_by_instance or "dataset_type" not in split_report.columns:
         return []
 
@@ -967,8 +966,8 @@ def _build_dataset_type_split_rows(
 
 
 def _balanced_accuracy_for_rows(rows: pd.DataFrame) -> float | None:
-    """Compute balanced accuracy for a detailed report group when meaningful."""
 
+    # Compute balanced accuracy for a detailed report group when meaningful.
     if rows["true_best_solver"].astype(str).nunique() < 2:
         return None
     return float(
@@ -980,8 +979,8 @@ def _balanced_accuracy_for_rows(rows: pd.DataFrame) -> float | None:
 
 
 def _overall_split_rows(split_summary: pd.DataFrame) -> pd.DataFrame:
-    """Return only whole-split rows from a mixed summary table."""
 
+    # Return only whole-split rows from a mixed summary table.
     if split_summary.empty or "summary_row_type" not in split_summary.columns:
         return split_summary
     return split_summary[split_summary["summary_row_type"] == "split"].copy()
@@ -992,8 +991,8 @@ def _build_evaluation_summary(
     split_summary: pd.DataFrame,
     split_strategy: str,
 ) -> pd.DataFrame:
-    """Create one concise summary table with split rows and aggregate rows."""
 
+    # Create one concise summary table with split rows and aggregate rows.
     metric_columns = [
         "classification_accuracy",
         "balanced_accuracy",
@@ -1114,8 +1113,8 @@ def _build_summary_markdown(
     split_notes: tuple[str, ...],
     split_strategy: str,
 ) -> str:
-    """Render a concise Markdown summary for thesis reporting."""
 
+    # Render a concise Markdown summary for thesis reporting.
     mean_row = summary[summary["summary_row_type"] == "aggregate_mean"].iloc[0]
     std_row = summary[summary["summary_row_type"] == "aggregate_std"].iloc[0]
     lines = [
@@ -1181,8 +1180,8 @@ def _build_summary_markdown(
 
 
 def _format_markdown_value(value: object) -> str:
-    """Format numeric summary values for Markdown output."""
 
+    # Format numeric summary values for Markdown output.
     numeric = _coerce_float(value)
     if pd.isna(numeric):
         return "NA"
@@ -1190,8 +1189,8 @@ def _format_markdown_value(value: object) -> str:
 
 
 def _aggregate_metrics_by_dataset_type(summary: pd.DataFrame) -> dict[str, dict[str, float | None]]:
-    """Return source-specific aggregate metrics for run summaries."""
 
+    # Return source-specific aggregate metrics for run summaries.
     if summary.empty or "dataset_type" not in summary.columns:
         return {}
     rows = summary[summary["summary_row_type"] == "aggregate_dataset_type_mean"]
@@ -1211,8 +1210,8 @@ def _aggregate_metrics_by_dataset_type(summary: pd.DataFrame) -> dict[str, dict[
 
 
 def _json_float(value: object) -> float | None:
-    """Return a JSON-safe float value."""
 
+    # Return a JSON-safe float value.
     numeric = _coerce_float(value)
     if pd.isna(numeric):
         return None
@@ -1220,8 +1219,8 @@ def _json_float(value: object) -> float | None:
 
 
 def _coerce_feasible(value: object) -> bool:
-    """Normalize a CSV-style feasibility value to a Python boolean."""
 
+    # Normalize a CSV-style feasibility value to a Python boolean.
     if isinstance(value, bool):
         return value
     if pd.isna(value):
@@ -1236,8 +1235,8 @@ def _coerce_feasible(value: object) -> bool:
 
 
 def _coerce_string(value: object) -> str | None:
-    """Convert a scalar to a normalized string, if possible."""
 
+    # Convert a scalar to a normalized string, if possible.
     if value is None or pd.isna(value):
         return None
     normalized = str(value).strip()
@@ -1245,8 +1244,8 @@ def _coerce_string(value: object) -> str | None:
 
 
 def _coerce_float(value: object) -> float:
-    """Convert a scalar to float, returning ``nan`` on failure."""
 
+    # Convert a scalar to float, returning ``nan`` on failure.
     if value is None or pd.isna(value):
         return float("nan")
     try:

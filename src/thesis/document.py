@@ -1,4 +1,4 @@
-"""Helpers for extracting thesis text from the repository DOCX file."""
+# Helpers for extracting thesis text from the repository DOCX file.
 
 from __future__ import annotations
 
@@ -32,8 +32,8 @@ SENTENCE_SPLIT_PATTERN: Final[re.Pattern[str]] = re.compile(r"(?<=[.!?])\s+")
 
 @dataclass(frozen=True, slots=True)
 class ThesisParagraph:
-    """One extracted paragraph with lightweight structural metadata."""
 
+    # One extracted paragraph with lightweight structural metadata.
     paragraph_index: int
     text: str
     style_name: str | None
@@ -45,8 +45,8 @@ class ThesisParagraph:
 
 @dataclass(frozen=True, slots=True)
 class ThesisSentence:
-    """One extracted sentence from the thesis practical section."""
 
+    # One extracted sentence from the thesis practical section.
     paragraph_index: int
     sentence_index: int
     text: str
@@ -55,8 +55,8 @@ class ThesisSentence:
 
     @property
     def thesis_section(self) -> str:
-        """Return one human-readable section label for reports."""
 
+        # Return one human-readable section label for reports.
         if self.subsection_heading:
             return f"4. {self.subsection_heading}"
         if self.main_heading:
@@ -65,8 +65,8 @@ class ThesisSentence:
 
 
 def load_docx_paragraphs(docx_path: str | Path) -> list[ThesisParagraph]:
-    """Extract paragraphs from one DOCX thesis file."""
 
+    # Extract paragraphs from one DOCX thesis file.
     path = Path(docx_path)
     if not path.exists():
         raise FileNotFoundError(f"Thesis DOCX file not found: {path}")
@@ -115,8 +115,8 @@ def load_docx_paragraphs(docx_path: str | Path) -> list[ThesisParagraph]:
 
 
 def practical_section_sentences(docx_path: str | Path) -> list[ThesisSentence]:
-    """Return sentence records from the practical section only."""
 
+    # Return sentence records from the practical section only.
     paragraphs = load_docx_paragraphs(docx_path)
     in_practical_section = False
     sentences: list[ThesisSentence] = []
@@ -155,8 +155,8 @@ def practical_section_sentences(docx_path: str | Path) -> list[ThesisSentence]:
 
 
 def thesis_markdown(docx_path: str | Path, sentence_references: dict[str, list[str]] | None = None) -> str:
-    """Render the DOCX thesis into lightweight Markdown."""
 
+    # Render the DOCX thesis into lightweight Markdown.
     paragraphs = load_docx_paragraphs(docx_path)
     sentence_references = sentence_references or {}
     lines: list[str] = []
@@ -179,8 +179,8 @@ def thesis_markdown(docx_path: str | Path, sentence_references: dict[str, list[s
 
 
 def _append_references_to_paragraph(text: str, sentence_references: dict[str, list[str]]) -> str:
-    """Append `[DATA-x]` references after matching sentences inside one paragraph."""
 
+    # Append `[DATA-x]` references after matching sentences inside one paragraph.
     sentences = [candidate.strip() for candidate in SENTENCE_SPLIT_PATTERN.split(text) if candidate.strip()]
     rendered_sentences: list[str] = []
     for sentence in sentences:
@@ -193,15 +193,15 @@ def _append_references_to_paragraph(text: str, sentence_references: dict[str, li
 
 
 def _is_practical_section_title(text: str) -> bool:
-    """Return whether one main heading names the thesis practical section."""
 
+    # Return whether one main heading names the thesis practical section.
     normalized = text.casefold()
     return normalized in {title.casefold() for title in PRACTICAL_SECTION_TITLES}
 
 
 def _build_style_map(styles_xml: ET.Element) -> dict[str, str]:
-    """Return a Word style-id to style-name lookup."""
 
+    # Return a Word style-id to style-name lookup.
     style_map: dict[str, str] = {}
     for style in styles_xml.findall("w:style", NAMESPACES):
         style_id = style.get(f"{{{WORD_NAMESPACE}}}styleId")
@@ -214,15 +214,15 @@ def _build_style_map(styles_xml: ET.Element) -> dict[str, str]:
 
 
 def _paragraph_text(paragraph_node: ET.Element) -> str:
-    """Concatenate text nodes inside one Word paragraph."""
 
+    # Concatenate text nodes inside one Word paragraph.
     chunks = [node.text for node in paragraph_node.findall(".//w:t", NAMESPACES) if node.text]
     return "".join(chunks).strip()
 
 
 def _paragraph_style_id(paragraph_node: ET.Element) -> str | None:
-    """Return the style id for one Word paragraph when available."""
 
+    # Return the style id for one Word paragraph when available.
     properties = paragraph_node.find("w:pPr", NAMESPACES)
     if properties is None:
         return None
@@ -233,8 +233,8 @@ def _paragraph_style_id(paragraph_node: ET.Element) -> str | None:
 
 
 def _is_subsection_heading(text: str, style_name: str | None) -> bool:
-    """Heuristically identify thesis subsection headings from plain paragraphs."""
 
+    # Heuristically identify thesis subsection headings from plain paragraphs.
     if style_name not in SUBSECTION_HEADING_STYLES:
         return False
 

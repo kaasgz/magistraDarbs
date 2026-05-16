@@ -1,11 +1,11 @@
-"""Tests for the shared solver interface."""
+# Tests for the shared solver interface.
 
 from src.solvers import Solver, SolverResult
 
 
 class DummySolver(Solver):
-    """Minimal solver used to test the abstract interface."""
 
+    # Minimal solver used to test the abstract interface.
     def solve(
         self,
         instance: object,
@@ -27,8 +27,8 @@ class DummySolver(Solver):
 
 
 def test_solver_result_uses_independent_metadata_dicts() -> None:
-    """Solver results should not share mutable metadata by default."""
 
+    # Solver results should not share mutable metadata by default.
     first = SolverResult(
         solver_name="solver-a",
         instance_name="instance-a",
@@ -53,8 +53,8 @@ def test_solver_result_uses_independent_metadata_dicts() -> None:
 
 
 def test_solver_interface_returns_standardized_result() -> None:
-    """Concrete solvers should return the shared result format."""
 
+    # Concrete solvers should return the shared result format.
     solver = DummySolver()
 
     result = solver.solve("sample-instance", time_limit_seconds=30, random_seed=7)

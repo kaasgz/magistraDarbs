@@ -1,4 +1,4 @@
-"""Registry of available solver implementations."""
+# Registry of available solver implementations.
 
 from __future__ import annotations
 
@@ -16,8 +16,8 @@ SolverFactory = Callable[..., Solver]
 
 @dataclass(frozen=True, slots=True)
 class SolverPortfolioMetadata:
-    """Thesis-facing interpretation metadata for one registered solver."""
 
+    # Thesis-facing interpretation metadata for one registered solver.
     registry_name: str
     display_name: str
     role: str
@@ -28,19 +28,19 @@ class SolverPortfolioMetadata:
 
 
 def get_solver(name: str, **kwargs: object) -> Solver:
-    """Create a solver instance by registry name.
 
-    Args:
-        name: Registered solver name.
-        **kwargs: Keyword arguments forwarded to the solver constructor.
-
-    Returns:
-        A configured solver instance.
-
-    Raises:
-        KeyError: If the solver name is not registered.
-    """
-
+    # Create a solver instance by registry name.
+    #
+    # Args:
+    # name: Registered solver name.
+    # **kwargs: Keyword arguments forwarded to the solver constructor.
+    #
+    # Returns:
+    # A configured solver instance.
+    #
+    # Raises:
+    # KeyError: If the solver name is not registered.
+    #
     try:
         factory = SOLVER_REGISTRY[name]
     except KeyError as exc:
@@ -50,14 +50,14 @@ def get_solver(name: str, **kwargs: object) -> Solver:
 
 
 def available_solvers() -> list[str]:
-    """Return the registered solver names in a stable order."""
 
+    # Return the registered solver names in a stable order.
     return sorted(SOLVER_REGISTRY)
 
 
 def get_solver_metadata(name: str) -> SolverPortfolioMetadata:
-    """Return conservative thesis-facing metadata for a registered solver."""
 
+    # Return conservative thesis-facing metadata for a registered solver.
     try:
         return SOLVER_PORTFOLIO_METADATA[name]
     except KeyError as exc:
@@ -66,34 +66,34 @@ def get_solver_metadata(name: str) -> SolverPortfolioMetadata:
 
 
 def solver_portfolio_metadata() -> list[SolverPortfolioMetadata]:
-    """Return interpretation metadata for all registered solvers."""
 
+    # Return interpretation metadata for all registered solvers.
     return [get_solver_metadata(name) for name in available_solvers()]
 
 
 def _create_random_baseline(**kwargs: object) -> Solver:
-    """Create the random baseline solver."""
 
+    # Create the random baseline solver.
     return RandomBaselineSolver(**kwargs)
 
 
 def _create_cpsat_solver(**kwargs: object) -> Solver:
-    """Create the CP-SAT solver lazily to keep the registry easy to extend."""
 
+    # Create the CP-SAT solver lazily to keep the registry easy to extend.
     from src.solvers.cpsat_solver import CPSatSolver
 
     return CPSatSolver(**kwargs)
 
 
 def _create_simulated_annealing_solver(**kwargs: object) -> Solver:
-    """Create the simulated annealing baseline solver."""
 
+    # Create the simulated annealing baseline solver.
     return SimulatedAnnealingSolver(**kwargs)
 
 
 def _create_timefold_solver(**kwargs: object) -> Solver:
-    """Create the external Timefold solver wrapper."""
 
+    # Create the external Timefold solver wrapper.
     return TimefoldSolver(**kwargs)
 
 

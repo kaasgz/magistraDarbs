@@ -1,4 +1,4 @@
-"""End-to-end smoke test for the core thesis pipeline."""
+# End-to-end smoke test for the core thesis pipeline.
 
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ FIXED_TIMESTAMP = "2026-04-04T12:00:00+00:00"
 
 
 def test_core_pipeline_smoke_runs_from_instances_to_selector_artifacts(tmp_path: Path) -> None:
-    """A tiny deterministic synthetic batch should exercise the full core pipeline."""
 
+    # A tiny deterministic synthetic batch should exercise the full core pipeline.
     input_dir = tmp_path / "data" / "raw" / "synthetic" / "smoke_instances"
     manifest_path = tmp_path / "data" / "processed" / "smoke_manifest.json"
     features_csv = tmp_path / "data" / "processed" / "smoke_features.csv"

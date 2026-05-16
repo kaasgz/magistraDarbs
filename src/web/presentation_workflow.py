@@ -1,4 +1,4 @@
-"""Build the practical-workflow section for the thesis-defense dashboard."""
+# Build the practical-workflow section for the thesis-defense dashboard.
 
 from __future__ import annotations
 
@@ -42,8 +42,8 @@ def build_workflow_section(
     workspace_root: Path,
     intro: str,
 ) -> dict[str, Any]:
-    """Build the section that maps the thesis practical part to the implementation."""
 
+    # Build the section that maps the thesis practical part to the implementation.
     total_instances = _summary_count(dataset_summary, "Kopējais instanču skaits")
     real_instances = _summary_count(dataset_summary, "Reālo instanču skaits")
     synthetic_instances = _summary_count(dataset_summary, "Sintētisko instanču skaits")

@@ -1,0 +1,163 @@
+split_id,split_strategy,repeat_index,fold_index,stratified_split,instance_name,selected_solver,true_best_solver,prediction_correct,selected_solver_objective,best_possible_objective,single_best_solver,single_best_solver_objective,selected_objective_for_scoring,single_best_objective_for_scoring,regret_vs_virtual_best,delta_vs_single_best,improvement_vs_single_best
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Early 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Late 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Late 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Late 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Late 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Middle 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Middle 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Middle 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Middle 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Test Instance 4,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Test Instance 5,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,Test Instance 8,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Early 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Early 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Early 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Early 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Late 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Late 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Late 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Late 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Late 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Middle 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Middle 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Middle 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Middle 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Middle 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Test Instance 1,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Test Instance 2,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Test Instance 3,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,Test Instance 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Early 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Early 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Early 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Early 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Late 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Late 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Late 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Late 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Late 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Late 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Middle 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Middle 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Middle 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Middle 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Middle 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Middle 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Test Instance 7,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,Test Instance Demo,simulated_annealing_baseline,simulated_annealing_baseline,True,3.0,3.0,simulated_annealing_baseline,3.0,3.0,3.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Early 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Early 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Early 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Early 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Early 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Early 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Late 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Late 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Late 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Late 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Middle 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Middle 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Middle 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Middle 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Test Instance 1,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Test Instance 3,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Test Instance 4,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,Test Instance 7,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Early 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Early 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Early 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Late 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Middle 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Middle 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Middle 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Middle 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Middle 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Middle 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Test Instance 5,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,Test Instance 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Early 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Early 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Early 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Early 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Early 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Early 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Late 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Late 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Late 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Late 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Middle 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Middle 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Middle 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Middle 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Middle 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Test Instance 2,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Test Instance 8,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,Test Instance Demo,simulated_annealing_baseline,simulated_annealing_baseline,True,3.0,3.0,simulated_annealing_baseline,3.0,3.0,3.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Early 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Early 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Early 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Early 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Late 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Late 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Late 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Late 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Late 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Late 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Middle 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Middle 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Middle 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Middle 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Middle 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Test Instance 1,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Test Instance 4,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,Test Instance 5,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Early 1,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Early 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Early 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Early 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Early 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Early 9,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Late 10,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Late 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Late 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Late 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Middle 14,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Middle 4,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Middle 8,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Test Instance 2,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Test Instance 3,simulated_annealing_baseline,simulated_annealing_baseline,True,5.0,5.0,simulated_annealing_baseline,5.0,5.0,5.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Test Instance 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Test Instance 7,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,Test Instance 8,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Early 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Early 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Early 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Early 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Early 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Late 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Late 2,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Late 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Late 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Late 7,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 11,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 12,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 13,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 15,simulated_annealing_baseline,simulated_annealing_baseline,True,38.0,38.0,simulated_annealing_baseline,38.0,38.0,38.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 3,simulated_annealing_baseline,simulated_annealing_baseline,True,27.0,27.0,simulated_annealing_baseline,27.0,27.0,27.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 5,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Middle 6,simulated_annealing_baseline,simulated_annealing_baseline,True,32.0,32.0,simulated_annealing_baseline,32.0,32.0,32.0,0.0,0.0,-0.0
+plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,Test Instance Demo,simulated_annealing_baseline,simulated_annealing_baseline,True,3.0,3.0,simulated_annealing_baseline,3.0,3.0,3.0,0.0,0.0,-0.0

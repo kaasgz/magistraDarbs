@@ -1,4 +1,4 @@
-"""Shared presentation metadata for thesis-facing tables, figures, and sections."""
+# Shared presentation metadata for thesis-facing tables, figures, and sections.
 
 from __future__ import annotations
 
@@ -7,8 +7,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True, slots=True)
 class PresentationSection:
-    """One dashboard section shown in the presentation-ready UI."""
 
+    # One dashboard section shown in the presentation-ready UI.
     identifier: str
     title: str
     intro: str
@@ -16,8 +16,8 @@ class PresentationSection:
 
 @dataclass(frozen=True, slots=True)
 class FigureSpec:
-    """One thesis-facing figure and its explanatory metadata."""
 
+    # One thesis-facing figure and its explanatory metadata.
     identifier: str
     file_name: str
     section_id: str

@@ -1,4 +1,4 @@
-"""Tests for thesis-friendly experiment reporting exports."""
+# Tests for thesis-friendly experiment reporting exports.
 
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ from src.experiments.thesis_report import generate_thesis_benchmark_report, main
 
 
 def test_generate_thesis_artifacts_writes_tables_plots_and_markdown(tmp_path: Path) -> None:
-    """Reporting exports should create thesis-friendly CSV, PNG, and Markdown artifacts."""
 
+    # Reporting exports should create thesis-friendly CSV, PNG, and Markdown artifacts.
     benchmark_csv = tmp_path / "benchmark_results.csv"
     evaluation_summary_csv = tmp_path / "selector_evaluation_summary.csv"
     feature_importance_csv = tmp_path / "feature_importance.csv"
@@ -172,8 +172,8 @@ def test_generate_thesis_artifacts_writes_tables_plots_and_markdown(tmp_path: Pa
 
 
 def test_generate_thesis_benchmark_report_writes_csv_and_markdown_tables(tmp_path: Path) -> None:
-    """The thesis report generator should export reusable CSV and Markdown summaries."""
 
+    # The thesis report generator should export reusable CSV and Markdown summaries.
     benchmark_csv = tmp_path / "full_benchmark_results.csv"
     evaluation_summary_csv = tmp_path / "selector_evaluation_summary.csv"
     feature_importance_csv = tmp_path / "feature_importance.csv"
@@ -234,8 +234,8 @@ def test_generate_thesis_benchmark_report_writes_csv_and_markdown_tables(tmp_pat
 
 
 def test_thesis_report_cli_uses_default_style_arguments(tmp_path: Path) -> None:
-    """The CLI should generate reports with explicit input and output paths."""
 
+    # The CLI should generate reports with explicit input and output paths.
     benchmark_csv = tmp_path / "full_benchmark_results.csv"
     evaluation_summary_csv = tmp_path / "selector_evaluation_summary.csv"
     feature_importance_csv = tmp_path / "feature_importance.csv"
@@ -268,8 +268,8 @@ def test_thesis_report_cli_uses_default_style_arguments(tmp_path: Path) -> None:
 
 
 def _write_report_benchmark_fixture(path: Path) -> None:
-    """Write a mixed synthetic/real benchmark fixture."""
 
+    # Write a mixed synthetic/real benchmark fixture.
     pd.DataFrame(
         [
             {
@@ -317,8 +317,8 @@ def _write_report_benchmark_fixture(path: Path) -> None:
 
 
 def _write_report_evaluation_fixture(path: Path) -> None:
-    """Write a selector evaluation summary fixture."""
 
+    # Write a selector evaluation summary fixture.
     pd.DataFrame(
         [
             {
@@ -356,8 +356,8 @@ def _write_report_evaluation_fixture(path: Path) -> None:
 
 
 def _write_report_feature_importance_fixture(path: Path) -> None:
-    """Write a feature importance fixture."""
 
+    # Write a feature importance fixture.
     pd.DataFrame(
         [
             {

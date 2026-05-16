@@ -1,4 +1,4 @@
-"""Tests for selector evaluation in algorithm-selection terms."""
+# Tests for selector evaluation in algorithm-selection terms.
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from src.selection.train_selector import train_selector
 
 
 def test_evaluate_selector_creates_detailed_report_and_summaries(tmp_path: Path) -> None:
-    """Selector evaluation should compare against single-best and virtual-best baselines."""
 
+    # Selector evaluation should compare against single-best and virtual-best baselines.
     dataset_csv = tmp_path / "selection_dataset.csv"
     benchmark_csv = tmp_path / "benchmark_results.csv"
     model_path = tmp_path / "selector.joblib"
@@ -129,8 +129,8 @@ def test_evaluate_selector_creates_detailed_report_and_summaries(tmp_path: Path)
 
 
 def test_evaluate_selector_uses_fallback_scoring_for_missing_selected_objective(tmp_path: Path) -> None:
-    """Missing selected objectives should still yield a deterministic score."""
 
+    # Missing selected objectives should still yield a deterministic score.
     dataset_csv = tmp_path / "selection_dataset.csv"
     benchmark_csv = tmp_path / "benchmark_results.csv"
     model_path = tmp_path / "selector.joblib"
@@ -201,8 +201,8 @@ def test_evaluate_selector_uses_fallback_scoring_for_missing_selected_objective(
 
 
 def test_evaluate_selector_cli_supports_full_mixed_dataset_metrics(tmp_path: Path) -> None:
-    """Full-dataset evaluation should report overall and per-source metrics separately."""
 
+    # Full-dataset evaluation should report overall and per-source metrics separately.
     dataset_csv = tmp_path / "selection_dataset_full.csv"
     synthetic_benchmark_csv = tmp_path / "synthetic_benchmarks.csv"
     real_benchmark_csv = tmp_path / "real_benchmarks.csv"

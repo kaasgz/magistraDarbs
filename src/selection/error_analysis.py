@@ -1,23 +1,22 @@
-"""Error analysis for selector decisions.
-
-This module analyzes selector evaluation outputs with a focus on algorithm
-selection quality rather than only classifier accuracy.
-
-Version 1 workflow:
-
-- Load the detailed selector evaluation report.
-- Merge it with the selection dataset to recover instance features.
-- Mark "hard instances" as the upper quartile of positive regret values.
-- Summarize the most common solver confusions.
-- Compare simple numeric feature averages for hard vs non-hard instances.
-
-Saved artefacts are intended to be compact and thesis-friendly:
-
-- ``hard_instances.csv`` for close qualitative inspection.
-- ``hard_instance_regret.png`` for the worst underperforming instances.
-- ``confused_solver_pairs.png`` for the most frequent mis-selections.
-- ``hard_instance_feature_patterns.png`` for simple feature differences.
-"""
+# Error analysis for selector decisions.
+#
+# This module analyzes selector evaluation outputs with a focus on algorithm
+# selection quality rather than only classifier accuracy.
+#
+# Version 1 workflow:
+#
+# - Load the detailed selector evaluation report.
+# - Merge it with the selection dataset to recover instance features.
+# - Mark "hard instances" as the upper quartile of positive regret values.
+# - Summarize the most common solver confusions.
+# - Compare simple numeric feature averages for hard vs non-hard instances.
+#
+# Saved artefacts are intended to be compact and thesis-friendly:
+#
+# - ``hard_instances.csv`` for close qualitative inspection.
+# - ``hard_instance_regret.png`` for the worst underperforming instances.
+# - ``confused_solver_pairs.png`` for the most frequent mis-selections.
+# - ``hard_instance_feature_patterns.png`` for simple feature differences.
 
 from __future__ import annotations
 
@@ -63,8 +62,8 @@ REQUIRED_EVALUATION_COLUMNS = {
 
 @dataclass(slots=True)
 class ErrorAnalysisResult:
-    """Summary of generated error-analysis artefacts."""
 
+    # Summary of generated error-analysis artefacts.
     output_dir: Path
     hard_instances_csv: Path
     confusion_pairs_csv: Path
@@ -86,8 +85,8 @@ def analyze_selector_errors(
     config: dict[str, Any] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> ErrorAnalysisResult:
-    """Analyze selector errors and save thesis-friendly artefacts."""
 
+    # Analyze selector errors and save thesis-friendly artefacts.
     evaluation_path = Path(evaluation_report_csv)
     dataset_path = Path(selection_dataset_csv)
     output_path = Path(output_dir)
@@ -200,8 +199,8 @@ def analyze_selector_errors(
 
 
 def analyze_selector_errors_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> ErrorAnalysisResult:
-    """Analyze selector errors using values loaded from a YAML configuration file."""
 
+    # Analyze selector errors using values loaded from a YAML configuration file.
     config = load_yaml_config(config_path)
     output_dir = get_compat_path(
         config,
@@ -224,8 +223,8 @@ def analyze_selector_errors_from_config(config_path: str | Path = DEFAULT_CONFIG
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for selector error analysis."""
 
+    # Create the command-line parser for selector error analysis.
     parser = argparse.ArgumentParser(
         description="Analyze selector errors from evaluation outputs.",
     )
@@ -253,8 +252,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run selector error analysis from the command line."""
 
+    # Run selector error analysis from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -289,8 +288,8 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _validate_evaluation_report(report: pd.DataFrame) -> None:
-    """Validate the expected selector evaluation report schema."""
 
+    # Validate the expected selector evaluation report schema.
     missing_columns = sorted(REQUIRED_EVALUATION_COLUMNS.difference(report.columns))
     if missing_columns:
         missing = ", ".join(missing_columns)
@@ -298,8 +297,8 @@ def _validate_evaluation_report(report: pd.DataFrame) -> None:
 
 
 def _validate_selection_dataset(dataset: pd.DataFrame) -> None:
-    """Validate that the selection dataset can be joined by instance name."""
 
+    # Validate that the selection dataset can be joined by instance name.
     if "instance_name" not in dataset.columns:
         raise ValueError("Selection dataset must contain an 'instance_name' column.")
     if dataset["instance_name"].duplicated().any():
@@ -307,14 +306,14 @@ def _validate_selection_dataset(dataset: pd.DataFrame) -> None:
 
 
 def _identify_hard_instances(merged: pd.DataFrame) -> pd.DataFrame:
-    """Return the most severe underperforming instances.
 
-    Version 1 definition:
-    Hard instances are those with positive regret that are at or above the
-    75th percentile of positive regrets. This yields a deterministic subset
-    that focuses on the most costly selector mistakes.
-    """
-
+    # Return the most severe underperforming instances.
+    #
+    # Version 1 definition:
+    # Hard instances are those with positive regret that are at or above the
+    # 75th percentile of positive regrets. This yields a deterministic subset
+    # that focuses on the most costly selector mistakes.
+    #
     positive_regret = merged["regret_vs_virtual_best"].dropna()
     positive_regret = positive_regret[positive_regret > 0.0]
 
@@ -331,8 +330,8 @@ def _identify_hard_instances(merged: pd.DataFrame) -> pd.DataFrame:
 
 
 def _most_confused_solver_pairs(merged: pd.DataFrame) -> pd.DataFrame:
-    """Count the most frequent selected-vs-true solver confusions."""
 
+    # Count the most frequent selected-vs-true solver confusions.
     confusions = merged[
         merged["selected_solver"].notna()
         & merged["true_best_solver"].notna()
@@ -358,8 +357,8 @@ def _most_confused_solver_pairs(merged: pd.DataFrame) -> pd.DataFrame:
 
 
 def _feature_pattern_summary(merged: pd.DataFrame, hard_instances: pd.DataFrame) -> pd.DataFrame:
-    """Summarize standardized numeric feature differences for hard predictions."""
 
+    # Summarize standardized numeric feature differences for hard predictions.
     numeric_feature_columns = [
         column
         for column in merged.columns
@@ -430,8 +429,8 @@ def _feature_pattern_summary(merged: pd.DataFrame, hard_instances: pd.DataFrame)
 
 
 def _error_cluster_summary(merged: pd.DataFrame, feature_summary: pd.DataFrame) -> pd.DataFrame:
-    """Summarize whether errors cluster by difficulty or feature group."""
 
+    # Summarize whether errors cluster by difficulty or feature group.
     difficulty_summary = _difficulty_cluster_summary(merged)
     feature_group_summary = _feature_group_cluster_summary(feature_summary)
     summaries = [frame for frame in [difficulty_summary, feature_group_summary] if not frame.empty]
@@ -454,8 +453,8 @@ def _error_cluster_summary(merged: pd.DataFrame, feature_summary: pd.DataFrame) 
 
 
 def _difficulty_cluster_summary(merged: pd.DataFrame) -> pd.DataFrame:
-    """Summarize error concentration by difficulty-like categorical columns."""
 
+    # Summarize error concentration by difficulty-like categorical columns.
     candidate_columns = [
         column
         for column in merged.columns
@@ -502,8 +501,8 @@ def _difficulty_cluster_summary(merged: pd.DataFrame) -> pd.DataFrame:
 
 
 def _feature_group_cluster_summary(feature_summary: pd.DataFrame) -> pd.DataFrame:
-    """Aggregate feature-pattern gaps to the feature-group level."""
 
+    # Aggregate feature-pattern gaps to the feature-group level.
     if feature_summary.empty:
         return pd.DataFrame()
 
@@ -537,8 +536,8 @@ def _feature_group_cluster_summary(feature_summary: pd.DataFrame) -> pd.DataFram
 
 
 def _plot_hard_instances(hard_instances: pd.DataFrame, output_path: Path) -> None:
-    """Plot selector regret for the hardest instances."""
 
+    # Plot selector regret for the hardest instances.
     figure, axis = plt.subplots(figsize=(10, 5))
     if hard_instances.empty:
         axis.text(0.5, 0.5, "No hard instances identified", ha="center", va="center")
@@ -560,8 +559,8 @@ def _plot_hard_instances(hard_instances: pd.DataFrame, output_path: Path) -> Non
 
 
 def _plot_confusion_pairs(confusion_pairs: pd.DataFrame, output_path: Path) -> None:
-    """Plot the most frequent solver confusions."""
 
+    # Plot the most frequent solver confusions.
     figure, axis = plt.subplots(figsize=(10, 5))
     if confusion_pairs.empty:
         axis.text(0.5, 0.5, "No solver confusions observed", ha="center", va="center")
@@ -579,8 +578,8 @@ def _plot_confusion_pairs(confusion_pairs: pd.DataFrame, output_path: Path) -> N
 
 
 def _plot_feature_patterns(feature_summary: pd.DataFrame, output_path: Path) -> None:
-    """Plot standardized numeric feature differences for hard predictions."""
 
+    # Plot standardized numeric feature differences for hard predictions.
     figure, axis = plt.subplots(figsize=(10, 5))
     if feature_summary.empty:
         axis.text(0.5, 0.5, "Not enough data for feature-pattern analysis", ha="center", va="center")
@@ -622,8 +621,8 @@ def _build_error_analysis_markdown(
     confusion_pairs: pd.DataFrame,
     cluster_summary: pd.DataFrame,
 ) -> str:
-    """Render a concise error-analysis summary for thesis writing."""
 
+    # Render a concise error-analysis summary for thesis writing.
     lines = [
         "# Selector Error Analysis Summary",
         "",
@@ -697,8 +696,8 @@ def _build_error_analysis_markdown(
 
 
 def _non_feature_columns() -> set[str]:
-    """Return columns that should not be treated as structural features."""
 
+    # Return columns that should not be treated as structural features.
     return {
         "split_id",
         "split_strategy",
@@ -724,8 +723,8 @@ def _non_feature_columns() -> set[str]:
 
 
 def _error_mask(merged: pd.DataFrame) -> pd.Series:
-    """Return a stable boolean mask for selector mistakes."""
 
+    # Return a stable boolean mask for selector mistakes.
     prediction_correct = merged.get("prediction_correct")
     if prediction_correct is not None:
         normalized = (
@@ -741,8 +740,8 @@ def _error_mask(merged: pd.DataFrame) -> pd.Series:
 
 
 def _format_metric(value: object) -> str:
-    """Format one metric value for Markdown summaries."""
 
+    # Format one metric value for Markdown summaries.
     numeric = pd.to_numeric(pd.Series([value]), errors="coerce").iloc[0]
     if pd.isna(numeric):
         return "NA"
@@ -750,8 +749,8 @@ def _format_metric(value: object) -> str:
 
 
 def _analysis_case_id(merged: pd.DataFrame) -> pd.Series:
-    """Return one stable identifier for an evaluated split-instance case."""
 
+    # Return one stable identifier for an evaluated split-instance case.
     if "split_id" in merged.columns:
         return (
             merged["split_id"].astype("string").fillna("split")

@@ -1,0 +1,3 @@
+Datu kopa,Precizitāte,Sabalansētā precizitāte,Vidējā izvēlētā kvalitāte,Vidējā virtual best kvalitāte,Vidējā single best kvalitāte,Regret pret virtual best,Uzlabojums pret single best
+Reālie dati,0.9814814814814815,,30.814814814814813,30.759259259259263,32.444444444444436,0.055555555555555164,1.6296296296296293
+Sintētiskie dati,1.0,,16.13888888888889,16.13888888888889,16.13888888888889,0.0,-0.0

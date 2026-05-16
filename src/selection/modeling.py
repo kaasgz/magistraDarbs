@@ -1,4 +1,4 @@
-"""Shared selector dataset-preparation and modeling helpers."""
+# Shared selector dataset-preparation and modeling helpers.
 
 from __future__ import annotations
 
@@ -74,8 +74,8 @@ BENCHMARK_DERIVED_PREFIXES = LEAKAGE_COLUMN_PREFIXES
 
 @dataclass(frozen=True, slots=True)
 class PreparedSelectionData:
-    """Selection dataset columns prepared for leakage-safe training."""
 
+    # Selection dataset columns prepared for leakage-safe training.
     features: pd.DataFrame
     target: pd.Series
     instance_names: pd.Series
@@ -84,8 +84,8 @@ class PreparedSelectionData:
 
 
 def prepare_selection_data(dataset: pd.DataFrame) -> PreparedSelectionData:
-    """Return labeled selector data with leakage-prone columns excluded."""
 
+    # Return labeled selector data with leakage-prone columns excluded.
     if INSTANCE_COLUMN not in dataset.columns:
         raise ValueError("Selection dataset must contain an 'instance_name' column.")
     if TARGET_COLUMN not in dataset.columns:
@@ -119,8 +119,8 @@ def prepare_selection_data(dataset: pd.DataFrame) -> PreparedSelectionData:
 
 
 def is_leakage_column(column: object) -> bool:
-    """Return whether a column is unsafe as a pre-solving structural feature."""
 
+    # Return whether a column is unsafe as a pre-solving structural feature.
     normalized = str(column).strip().casefold()
     return normalized in LEAKAGE_COLUMN_NAMES or normalized.startswith(LEAKAGE_COLUMN_PREFIXES)
 
@@ -130,8 +130,8 @@ def build_selector_pipeline(
     random_seed: int,
     dataset: pd.DataFrame,
 ) -> Pipeline:
-    """Build one selector training pipeline for mixed-type structural features."""
 
+    # Build one selector training pipeline for mixed-type structural features.
     preprocessor = _build_preprocessor(dataset)
 
     if model_name == "random_forest":
@@ -153,8 +153,8 @@ def build_selector_pipeline(
 
 
 def save_feature_importance(pipeline: Pipeline, output_path: str | Path | None) -> Path | None:
-    """Save feature importance values when the estimator exposes them."""
 
+    # Save feature importance values when the estimator exposes them.
     if output_path is None:
         return None
 
@@ -196,8 +196,8 @@ def save_feature_importance(pipeline: Pipeline, output_path: str | Path | None) 
 
 
 def _build_preprocessor(dataset: pd.DataFrame) -> ColumnTransformer:
-    """Build a preprocessing transformer for numeric and categorical features."""
 
+    # Build a preprocessing transformer for numeric and categorical features.
     categorical_columns = [
         column
         for column in dataset.columns
@@ -232,8 +232,8 @@ def _build_preprocessor(dataset: pd.DataFrame) -> ColumnTransformer:
 
 
 def _original_feature_columns(preprocessor: ColumnTransformer) -> tuple[str, ...]:
-    """Return the original input feature columns seen by the fitted preprocessor."""
 
+    # Return the original input feature columns seen by the fitted preprocessor.
     columns: list[str] = []
     for _, _, transformer_columns in preprocessor.transformers_:
         if transformer_columns == "drop":
@@ -250,8 +250,8 @@ def _resolve_source_feature_name(
     transformed_feature_name: str,
     original_columns: tuple[str, ...],
 ) -> str:
-    """Map one transformed model feature name back to its source feature column."""
 
+    # Map one transformed model feature name back to its source feature column.
     raw_name = transformed_feature_name
     if "__" in raw_name:
         _, raw_name = raw_name.split("__", maxsplit=1)

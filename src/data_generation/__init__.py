@@ -1,4 +1,4 @@
-"""Synthetic data generation helpers for experiment-scale datasets."""
+# Synthetic data generation helpers for experiment-scale datasets.
 
 from src.data_generation.synthetic_generator import (
     GeneratedSyntheticDatasetRow,

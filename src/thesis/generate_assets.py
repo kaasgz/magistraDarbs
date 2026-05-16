@@ -1,4 +1,4 @@
-"""Generate thesis-facing validation files, tables, and figures."""
+# Generate thesis-facing validation files, tables, and figures.
 
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ from src.thesis.validation import (
     build_source_link_entries,
     build_validation_markdown,
     build_validation_records,
+    resolve_thesis_docx,
 )
 
 
@@ -34,8 +35,8 @@ UI_FIGURE_EXPORTS: tuple[str, ...] = (
 
 @dataclass(frozen=True, slots=True)
 class ThesisAssetPaths:
-    """Filesystem layout for thesis-facing generated assets."""
 
+    # Filesystem layout for thesis-facing generated assets.
     workspace_root: Path
     validation_csv: Path
     validation_markdown: Path
@@ -51,8 +52,8 @@ class ThesisAssetPaths:
 
     @classmethod
     def from_workspace(cls, workspace_root: str | Path) -> "ThesisAssetPaths":
-        """Build output paths anchored at one workspace root."""
 
+        # Build output paths anchored at one workspace root.
         root = Path(workspace_root)
         return cls(
             workspace_root=root,
@@ -72,8 +73,8 @@ class ThesisAssetPaths:
 
 @dataclass(frozen=True, slots=True)
 class ThesisAssetsResult:
-    """Summary of the generated thesis-facing assets."""
 
+    # Summary of the generated thesis-facing assets.
     validation_csv: Path
     validation_markdown: Path
     data_references_json: Path
@@ -87,8 +88,8 @@ class ThesisAssetsResult:
 
 
 def generate_thesis_assets(workspace_root: str | Path = ".") -> ThesisAssetsResult:
-    """Generate validation outputs, clean tables, and ready-to-use thesis figures."""
 
+    # Generate validation outputs, clean tables, and ready-to-use thesis figures.
     paths = ThesisAssetPaths.from_workspace(workspace_root)
     paths.validation_csv.parent.mkdir(parents=True, exist_ok=True)
     paths.figures_dir.mkdir(parents=True, exist_ok=True)
@@ -97,7 +98,7 @@ def generate_thesis_assets(workspace_root: str | Path = ".") -> ThesisAssetsResu
     paths.thesis_ready_figures_dir.mkdir(parents=True, exist_ok=True)
     paths.latvian_figures_dir.mkdir(parents=True, exist_ok=True)
 
-    validation_records = build_validation_records(paths.workspace_root)
+    validation_records = _load_or_build_validation_records(paths)
     validation_frame = pd.DataFrame(record.to_csv_row() for record in validation_records)
     validation_frame.to_csv(paths.validation_csv, index=False)
 
@@ -119,11 +120,14 @@ def generate_thesis_assets(workspace_root: str | Path = ".") -> ThesisAssetsResu
         for record in validation_records
     }
     context = ValidationContext.load(paths.workspace_root)
-    patched_markdown = thesis_markdown(
-        context.paths.thesis_docx,
-        sentence_references=sentence_references,
-    )
-    patched_markdown += _build_data_references_section(validation_records, paths.workspace_root)
+    if context.paths.thesis_docx.exists():
+        patched_markdown = thesis_markdown(
+            context.paths.thesis_docx,
+            sentence_references=sentence_references,
+        )
+        patched_markdown += _build_data_references_section(validation_records, paths.workspace_root)
+    else:
+        patched_markdown = _missing_docx_markdown(validation_records)
     patched_thesis_markdown_path = _safe_write_text(
         paths.patched_thesis_markdown,
         patched_markdown,
@@ -184,12 +188,63 @@ def generate_thesis_assets(workspace_root: str | Path = ".") -> ThesisAssetsResu
     )
 
 
+def _load_or_build_validation_records(paths: ThesisAssetPaths) -> list[ValidationRecord]:
+    thesis_docx = resolve_thesis_docx(paths.workspace_root)
+    if thesis_docx.exists():
+        return build_validation_records(paths.workspace_root)
+    if paths.validation_csv.exists():
+        return _read_validation_records(paths.validation_csv)
+    raise FileNotFoundError(
+        "Thesis DOCX is not included in the repository and no existing "
+        f"validation CSV was found at {paths.validation_csv}."
+    )
+
+
+def _read_validation_records(path: Path) -> list[ValidationRecord]:
+    frame = pd.read_csv(path)
+    return [
+        ValidationRecord(
+            thesis_section=_cell_text(row.get("thesis_section")),
+            statement_text=_cell_text(row.get("statement_text")),
+            value_in_text=_cell_text(row.get("value_in_text")),
+            source_file=_cell_text(row.get("source_file")),
+            source_column=_cell_text(row.get("source_column")),
+            actual_value=_cell_text(row.get("actual_value")),
+            status=_cell_text(row.get("status")),
+            notes=_cell_text(row.get("notes")),
+            data_reference=_cell_text(row.get("data_reference")),
+        )
+        for row in frame.to_dict("records")
+    ]
+
+
+def _cell_text(value: object) -> str:
+    if value is None or pd.isna(value):
+        return ""
+    return str(value)
+
+
+def _missing_docx_markdown(validation_records: list[ValidationRecord]) -> str:
+    lines = [
+        "# Thesis Text Export",
+        "",
+        "The source DOCX is intentionally not included in this repository.",
+        "Use `data/results/thesis_text_validation.md` for the repository-backed validation report.",
+        "",
+        "## Data References",
+        "",
+        f"Validation records available: {len(validation_records)}",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def _build_thesis_tables(
     context: ValidationContext,
     validation_frame: pd.DataFrame,
 ) -> dict[str, pd.DataFrame]:
-    """Build clean thesis-facing summary tables from canonical artifacts."""
 
+    # Build clean thesis-facing summary tables from canonical artifacts.
     selection_dataset = context.selection_dataset.copy()
     run_summary = context.full_evaluation_run_summary
     results = run_summary.get("results", {})
@@ -353,8 +408,8 @@ def _build_thesis_tables(
 
 
 def _write_table_exports(output_dir: Path, tables: dict[str, pd.DataFrame]) -> None:
-    """Write thesis tables as CSV and Markdown documents."""
 
+    # Write thesis tables as CSV and Markdown documents.
     output_dir.mkdir(parents=True, exist_ok=True)
     for name, table in tables.items():
         if name.startswith("validation_"):
@@ -370,8 +425,8 @@ def _write_legacy_table_exports(
     tables: dict[str, pd.DataFrame],
     validation_frame: pd.DataFrame,
 ) -> None:
-    """Maintain the previous thesis_ready export layout for compatibility."""
 
+    # Maintain the previous thesis_ready export layout for compatibility.
     output_dir.mkdir(parents=True, exist_ok=True)
     _write_table_exports(output_dir, tables)
 
@@ -399,15 +454,15 @@ def _write_legacy_table_exports(
 
 
 def _markdown_table_document(name: str, table: pd.DataFrame) -> str:
-    """Render one clean Markdown document for a thesis-facing table."""
 
+    # Render one clean Markdown document for a thesis-facing table.
     title = name.replace("_", " ").title()
     return f"# {title}\n\n{_dataframe_to_markdown(table)}\n"
 
 
 def _dataframe_to_markdown(table: pd.DataFrame) -> str:
-    """Render one DataFrame into a simple GitHub-flavored Markdown table."""
 
+    # Render one DataFrame into a simple GitHub-flavored Markdown table.
     if table.empty:
         return "_No rows available._"
 
@@ -424,16 +479,16 @@ def _dataframe_to_markdown(table: pd.DataFrame) -> str:
 
 
 def _markdown_cell(value: object) -> str:
-    """Normalize one Markdown table cell."""
 
+    # Normalize one Markdown table cell.
     if isinstance(value, float):
         return f"{value:.6f}".rstrip("0").rstrip(".")
     return str(value).replace("\n", " ").replace("|", "\\|")
 
 
 def _model_label(model_name: str) -> str:
-    """Return one thesis-friendly model label."""
 
+    # Return one thesis-friendly model label.
     mapping = {
         "random_forest": "Random Forest klasifikators",
     }
@@ -441,8 +496,8 @@ def _model_label(model_name: str) -> str:
 
 
 def _solver_label(value: object) -> str:
-    """Return one readable solver label."""
 
+    # Return one readable solver label.
     mapping = {
         "random_baseline": "Nejaušā bāzlīnija",
         "cpsat_solver": "CP-SAT",
@@ -454,8 +509,8 @@ def _solver_label(value: object) -> str:
 
 
 def _solver_role_label(value: object) -> str:
-    """Return one thesis-safe solver role label."""
 
+    # Return one thesis-safe solver role label.
     try:
         metadata = get_solver_metadata(str(value))
     except KeyError:
@@ -471,8 +526,8 @@ def _solver_role_label(value: object) -> str:
 
 
 def _solver_interpretation(value: object) -> str:
-    """Return one short limitation-aware interpretation note."""
 
+    # Return one short limitation-aware interpretation note.
     try:
         metadata = get_solver_metadata(str(value))
     except KeyError:
@@ -488,8 +543,8 @@ def _solver_interpretation(value: object) -> str:
 
 
 def _dataset_label(value: object) -> str:
-    """Return one readable dataset label."""
 
+    # Return one readable dataset label.
     mapping = {
         "all": "Jauktā kopa",
         "real": "Reālie dati",
@@ -500,8 +555,8 @@ def _dataset_label(value: object) -> str:
 
 
 def _feature_group_label(value: object) -> str:
-    """Return one readable feature-group label."""
 
+    # Return one readable feature-group label.
     mapping = {
         "size": "Izmērs",
         "density": "Blīvums",
@@ -514,22 +569,22 @@ def _feature_group_label(value: object) -> str:
 
 
 def _feature_label(value: object) -> str:
-    """Return one readable feature label."""
 
+    # Return one readable feature label.
     return str(value)
 
 
 def _improvement_from_delta(delta_value: object) -> float | None:
-    """Convert delta-vs-single-best into positive improvement when possible."""
 
+    # Convert delta-vs-single-best into positive improvement when possible.
     if delta_value is None or pd.isna(delta_value):
         return None
     return -float(delta_value)
 
 
 def _safe_write_text(path: Path, content: str, *, encoding: str) -> Path:
-    """Write text to one path, or use a deterministic fallback when the target is locked."""
 
+    # Write text to one path, or use a deterministic fallback when the target is locked.
     try:
         path.write_text(content, encoding=encoding)
         return path
@@ -540,8 +595,8 @@ def _safe_write_text(path: Path, content: str, *, encoding: str) -> Path:
 
 
 def _safe_copy2(source: Path, destination: Path) -> Path:
-    """Copy one file, or use a deterministic fallback destination when locked."""
 
+    # Copy one file, or use a deterministic fallback destination when locked.
     try:
         shutil.copy2(source, destination)
         return destination
@@ -552,8 +607,8 @@ def _safe_copy2(source: Path, destination: Path) -> Path:
 
 
 def _build_figures_index_markdown(figures: dict[str, Path], workspace_root: Path) -> str:
-    """Build the Latvian thesis figure index."""
 
+    # Build the Latvian thesis figure index.
     lines = ["# Darbam sagatavoto attēlu indekss", ""]
     for spec in FIGURE_SPECS:
         path = figures[spec.identifier]
@@ -570,8 +625,8 @@ def _build_figures_index_markdown(figures: dict[str, Path], workspace_root: Path
 
 
 def _format_github_source_line(source_file: str, workspace_root: Path) -> str:
-    """Render one source path into a human-readable GitHub link line."""
 
+    # Render one source path into a human-readable GitHub link line.
     entries = build_source_link_entries(source_file, workspace_root)
     if not entries:
         return f"`{source_file}`"
@@ -585,8 +640,8 @@ def _format_github_source_line(source_file: str, workspace_root: Path) -> str:
 
 
 def _build_data_references_section(records: list[ValidationRecord], workspace_root: Path) -> str:
-    """Append one thesis-friendly `[DATA-x]` reference appendix."""
 
+    # Append one thesis-friendly `[DATA-x]` reference appendix.
     lines = ["", "# Datu atsauces", ""]
     for record in records:
         lines.append(f"- [{record.data_reference}] {record.thesis_section}: {record.statement_text}")
@@ -606,8 +661,8 @@ def _build_data_references_section(records: list[ValidationRecord], workspace_ro
 
 
 def _format_reference_links(source_file: str, workspace_root: Path) -> str:
-    """Format one multi-file source field into Markdown links."""
 
+    # Format one multi-file source field into Markdown links.
     entries = build_source_link_entries(source_file, workspace_root)
     parts: list[str] = []
     for entry in entries:
@@ -618,8 +673,8 @@ def _format_reference_links(source_file: str, workspace_root: Path) -> str:
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for thesis-asset generation."""
 
+    # Create the CLI parser for thesis-asset generation.
     parser = argparse.ArgumentParser(
         description="Generate thesis validation files, clean tables, and figures.",
     )
@@ -632,8 +687,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run thesis-asset generation from the command line."""
 
+    # Run thesis-asset generation from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
     result = generate_thesis_assets(args.workspace_root)

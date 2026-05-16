@@ -1,20 +1,19 @@
-"""Evaluation helpers for solver and selector experiments.
-
-These helpers operate on benchmark tables with the same schema as
-``benchmark_results.csv`` produced by ``src.experiments.run_benchmarks``.
-
-Assumptions in this first version:
-
-- Lower objective values are better.
-- Only rows with ``feasible == True`` and a numeric ``objective_value`` are
-  eligible for "best solver" comparisons.
-- Runtime averages are computed over all recorded runs, including failed ones,
-  because benchmark time still matters when a solver does not succeed.
-- When an instance has no feasible solver result, ``best_solver_per_instance``
-  returns a placeholder row with ``status == 'NO_FEASIBLE_SOLVER'``.
-- ``single_best_solver`` prioritizes solver coverage first, then lower average
-  objective, then lower average runtime.
-"""
+# Evaluation helpers for solver and selector experiments.
+#
+# These helpers operate on benchmark tables with the same schema as
+# ``benchmark_results.csv`` produced by ``src.experiments.run_benchmarks``.
+#
+# Assumptions in this first version:
+#
+# - Lower objective values are better.
+# - Only rows with ``feasible == True`` and a numeric ``objective_value`` are
+# eligible for "best solver" comparisons.
+# - Runtime averages are computed over all recorded runs, including failed ones,
+# because benchmark time still matters when a solver does not succeed.
+# - When an instance has no feasible solver result, ``best_solver_per_instance``
+# returns a placeholder row with ``status == 'NO_FEASIBLE_SOLVER'``.
+# - ``single_best_solver`` prioritizes solver coverage first, then lower average
+# objective, then lower average runtime.
 
 from __future__ import annotations
 
@@ -34,16 +33,16 @@ REQUIRED_COLUMNS = {
 
 
 def best_solver_per_instance(results: pd.DataFrame) -> pd.DataFrame:
-    """Return the best feasible solver result for each instance.
 
-    Args:
-        results: Benchmark results in ``benchmark_results.csv`` style format.
-
-    Returns:
-        A table with one row per instance. If no feasible solver result exists
-        for an instance, a placeholder row is returned instead.
-    """
-
+    # Return the best feasible solver result for each instance.
+    #
+    # Args:
+    # results: Benchmark results in ``benchmark_results.csv`` style format.
+    #
+    # Returns:
+    # A table with one row per instance. If no feasible solver result exists
+    # for an instance, a placeholder row is returned instead.
+    #
     frame = _prepare_results_frame(results)
     all_instances = sorted(frame["instance_name"].dropna().unique())
     eligible = _eligible_results(frame)
@@ -71,23 +70,23 @@ def best_solver_per_instance(results: pd.DataFrame) -> pd.DataFrame:
 
 
 def single_best_solver(results: pd.DataFrame) -> pd.Series:
-    """Return the best fixed solver under simple benchmark assumptions.
 
-    The current definition prioritizes:
-
-    1. More solved instances.
-    2. Lower average feasible objective.
-    3. Lower average runtime across all runs.
-
-    Args:
-        results: Benchmark results in ``benchmark_results.csv`` style format.
-
-    Returns:
-        A pandas series summarizing the selected single best solver. If no
-        solver has a feasible result, the returned series contains safe
-        placeholder values.
-    """
-
+    # Return the best fixed solver under simple benchmark assumptions.
+    #
+    # The current definition prioritizes:
+    #
+    # 1. More solved instances.
+    # 2. Lower average feasible objective.
+    # 3. Lower average runtime across all runs.
+    #
+    # Args:
+    # results: Benchmark results in ``benchmark_results.csv`` style format.
+    #
+    # Returns:
+    # A pandas series summarizing the selected single best solver. If no
+    # solver has a feasible result, the returned series contains safe
+    # placeholder values.
+    #
     objective_summary = average_objective_by_solver(results)
     if objective_summary.empty:
         return pd.Series(
@@ -115,18 +114,18 @@ def single_best_solver(results: pd.DataFrame) -> pd.Series:
 
 
 def virtual_best_solver(results: pd.DataFrame) -> pd.Series:
-    """Return an aggregate summary of the virtual best solver.
 
-    The virtual best solver is the oracle that picks the best feasible solver
-    independently for each instance.
-
-    Args:
-        results: Benchmark results in ``benchmark_results.csv`` style format.
-
-    Returns:
-        A pandas series with aggregate virtual-best metrics.
-    """
-
+    # Return an aggregate summary of the virtual best solver.
+    #
+    # The virtual best solver is the oracle that picks the best feasible solver
+    # independently for each instance.
+    #
+    # Args:
+    # results: Benchmark results in ``benchmark_results.csv`` style format.
+    #
+    # Returns:
+    # A pandas series with aggregate virtual-best metrics.
+    #
     best_rows = best_solver_per_instance(results)
     feasible_rows = best_rows[best_rows["feasible"]].copy()
 
@@ -142,16 +141,16 @@ def virtual_best_solver(results: pd.DataFrame) -> pd.Series:
 
 
 def average_objective_by_solver(results: pd.DataFrame) -> pd.DataFrame:
-    """Compute average feasible objective values by solver.
 
-    Args:
-        results: Benchmark results in ``benchmark_results.csv`` style format.
-
-    Returns:
-        A table with one row per solver, using only feasible runs with numeric
-        objectives.
-    """
-
+    # Compute average feasible objective values by solver.
+    #
+    # Args:
+    # results: Benchmark results in ``benchmark_results.csv`` style format.
+    #
+    # Returns:
+    # A table with one row per solver, using only feasible runs with numeric
+    # objectives.
+    #
     eligible = _eligible_results(_prepare_results_frame(results))
     if eligible.empty:
         return pd.DataFrame(columns=["solver_name", "average_objective", "num_instances_solved"])
@@ -169,15 +168,15 @@ def average_objective_by_solver(results: pd.DataFrame) -> pd.DataFrame:
 
 
 def average_runtime_by_solver(results: pd.DataFrame) -> pd.DataFrame:
-    """Compute average runtime by solver across all recorded runs.
 
-    Args:
-        results: Benchmark results in ``benchmark_results.csv`` style format.
-
-    Returns:
-        A table with one row per solver.
-    """
-
+    # Compute average runtime by solver across all recorded runs.
+    #
+    # Args:
+    # results: Benchmark results in ``benchmark_results.csv`` style format.
+    #
+    # Returns:
+    # A table with one row per solver.
+    #
     frame = _prepare_results_frame(results)
     summary = (
         frame.groupby("solver_name", as_index=False)
@@ -193,8 +192,8 @@ def average_runtime_by_solver(results: pd.DataFrame) -> pd.DataFrame:
 
 
 def _prepare_results_frame(results: pd.DataFrame) -> pd.DataFrame:
-    """Validate and normalize benchmark results for metric computation."""
 
+    # Validate and normalize benchmark results for metric computation.
     missing_columns = sorted(REQUIRED_COLUMNS.difference(results.columns))
     if missing_columns:
         missing = ", ".join(missing_columns)
@@ -211,14 +210,14 @@ def _prepare_results_frame(results: pd.DataFrame) -> pd.DataFrame:
 
 
 def _eligible_results(frame: pd.DataFrame) -> pd.DataFrame:
-    """Return results eligible for objective-based comparison."""
 
+    # Return results eligible for objective-based comparison.
     return frame[frame["feasible"] & frame["objective_value"].notna()].copy()
 
 
 def _no_feasible_rows(instance_names: list[str]) -> pd.DataFrame:
-    """Create placeholder rows for instances with no feasible solver result."""
 
+    # Create placeholder rows for instances with no feasible solver result.
     rows: list[dict[str, Any]] = []
     for instance_name in instance_names:
         rows.append(
@@ -235,8 +234,8 @@ def _no_feasible_rows(instance_names: list[str]) -> pd.DataFrame:
 
 
 def _benchmark_columns() -> list[str]:
-    """Return the stable benchmark column order used by the metrics helpers."""
 
+    # Return the stable benchmark column order used by the metrics helpers.
     return [
         "instance_name",
         "solver_name",
@@ -248,8 +247,8 @@ def _benchmark_columns() -> list[str]:
 
 
 def _coerce_feasible(value: object) -> bool:
-    """Normalize a CSV-style feasibility value to a Python boolean."""
 
+    # Normalize a CSV-style feasibility value to a Python boolean.
     if isinstance(value, bool):
         return value
     if pd.isna(value):

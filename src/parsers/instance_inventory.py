@@ -1,4 +1,4 @@
-"""Build and print a parseability inventory for RobinX / ITC2021 XML folders."""
+# Build and print a parseability inventory for RobinX / ITC2021 XML folders.
 
 from __future__ import annotations
 
@@ -28,8 +28,8 @@ def build_instance_inventory(
     input_folder: str | Path = DEFAULT_INPUT_FOLDER,
     output_csv: str | Path = DEFAULT_OUTPUT_PATH,
 ) -> Path:
-    """Scan one XML folder, validate parseability, and save an inventory CSV."""
 
+    # Scan one XML folder, validate parseability, and save an inventory CSV.
     input_path = Path(input_folder)
     if not input_path.exists():
         raise FileNotFoundError(f"Input folder does not exist: {input_path}")
@@ -62,8 +62,8 @@ def build_instance_inventory(
 
 
 def instance_inventory_report(inventory_csv: str | Path) -> str:
-    """Build a concise readable summary for one instance inventory CSV."""
 
+    # Build a concise readable summary for one instance inventory CSV.
     path = Path(inventory_csv)
     frame = pd.read_csv(path)
 
@@ -109,8 +109,8 @@ def instance_inventory_report(inventory_csv: str | Path) -> str:
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for instance inventory generation."""
 
+    # Create the command-line parser for instance inventory generation.
     parser = argparse.ArgumentParser(
         description="Scan XML instances, validate parseability, and save an inventory CSV.",
     )
@@ -129,8 +129,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the instance inventory helper from the command line."""
 
+    # Run the instance inventory helper from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
     try:
@@ -149,8 +149,8 @@ def _build_inventory_row(
     input_path: Path,
     expected_source: str | None,
 ) -> dict[str, Any]:
-    """Build one auditable inventory row for a single XML file."""
 
+    # Build one auditable inventory row for a single XML file.
     instance = None
     try:
         instance = load_instance(str(xml_file))
@@ -204,8 +204,8 @@ def _build_inventory_row(
 
 
 def _inventory_columns() -> list[str]:
-    """Return a stable inventory CSV column order."""
 
+    # Return a stable inventory CSV column order.
     return [
         "filename",
         "relative_path",
@@ -223,8 +223,8 @@ def _inventory_columns() -> list[str]:
 
 
 def _parseability_error(instance: object) -> str | None:
-    """Return a parseability error when the parsed instance is unusable downstream."""
 
+    # Return a parseability error when the parsed instance is unusable downstream.
     team_count = getattr(instance, "team_count", 0)
     if not isinstance(team_count, int) or team_count <= 0:
         return "Parsed instance does not expose any teams."
@@ -232,8 +232,8 @@ def _parseability_error(instance: object) -> str | None:
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style boolean values into booleans."""
 
+    # Convert CSV-style boolean values into booleans.
     if isinstance(value, bool):
         return value
     if pd.isna(value):
@@ -242,8 +242,8 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _parser_warning_summary(instance: object | None) -> str | None:
-    """Render warning-level parser notes into a compact inventory field."""
 
+    # Render warning-level parser notes into a compact inventory field.
     if instance is None:
         return None
 

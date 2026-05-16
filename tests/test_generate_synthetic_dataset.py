@@ -1,4 +1,4 @@
-"""Tests for the synthetic study dataset experiment generator."""
+# Tests for the synthetic study dataset experiment generator.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from src.parsers import load_instance
 
 
 def test_generate_synthetic_study_dataset_is_deterministic(tmp_path: Path) -> None:
-    """Same seeds and timestamp should reproduce XML, metadata, and manifest content."""
 
+    # Same seeds and timestamp should reproduce XML, metadata, and manifest content.
     first_root = tmp_path / "first"
     second_root = tmp_path / "second"
 
@@ -33,8 +33,8 @@ def test_generate_synthetic_study_dataset_is_deterministic(tmp_path: Path) -> No
 
 
 def test_generate_synthetic_study_dataset_manifest_integrity(tmp_path: Path) -> None:
-    """The manifest should describe every generated XML and match metadata rows."""
 
+    # The manifest should describe every generated XML and match metadata rows.
     output_root = tmp_path / "study"
 
     exit_code = main(
@@ -87,15 +87,15 @@ def test_generate_synthetic_study_dataset_manifest_integrity(tmp_path: Path) -> 
 
 
 def _read_metadata(metadata_csv: Path) -> list[dict[str, str]]:
-    """Read metadata CSV rows."""
 
+    # Read metadata CSV rows.
     with metadata_csv.open("r", encoding="utf-8", newline="") as handle:
         return list(csv.DictReader(handle))
 
 
 def _metadata_without_paths(metadata_csv: Path) -> list[dict[str, str]]:
-    """Return metadata rows after removing output-root-specific paths."""
 
+    # Return metadata rows after removing output-root-specific paths.
     rows = _read_metadata(metadata_csv)
     for row in rows:
         row.pop("file_path", None)
@@ -103,8 +103,8 @@ def _metadata_without_paths(metadata_csv: Path) -> list[dict[str, str]]:
 
 
 def _manifest_without_paths(manifest_json: Path) -> dict[str, Any]:
-    """Return manifest content after removing output-root-specific paths."""
 
+    # Return manifest content after removing output-root-specific paths.
     manifest = json.loads(manifest_json.read_text(encoding="utf-8"))
     manifest.pop("output_root", None)
     manifest.pop("metadata_csv", None)

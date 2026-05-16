@@ -1,0 +1,2936 @@
+{
+  "DATA-1": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Šajā nodaļā aprakstīta maģistra darba eksperimentālā daļa, kurā pārbaudīts, vai sporta turnīru kalendāru sastādīšanas instanču strukturālās pazīmes var izmantot piemērotākā risinātāja prognozēšanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-2": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Šim nolūkam, izmantojot Python, izveidots reproducējams eksperimentālais process, kas ietver instanču nolasīšanu, strukturālo pazīmju iegūšanu, risinātāju portfeļa izpildi, algoritmu izvēles datu kopas izveidi un mašīnmācīšanās modeļa novērtēšanu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-3": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Eksperimentālajā izpētē izmantota datu kopa ar 234 instancēm, kas apvieno reālas un sintētiski ģenerētas sporta turnīru kalendāru sastādīšanas instances.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-4": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: No tām 54 ir reālas instances, kas iegūtas no RobinX un ITC2021 problēmu aprakstiem, bet 180 ir sintētiski ģenerētas instances.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-5": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Šāds datu kopas sastāvs ļauj vienā eksperimentālajā procesā analizēt gan reālu instanču struktūru, gan kontrolēti ģenerētu instanču strukturālās īpašības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-6": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Eksperimentālajā daļā īpaši nodalīta informācija, kas ir pieejama pirms instances risināšanas, no informācijas, kas rodas tikai pēc risinātāju izpildes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-7": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Algoritmu izvēles modeļa ievaddatos tiek izmantotas tikai strukturālās pazīmes, savukārt risinātāju rezultāti, mērķa mainīgie, datu izcelsmes metadati un citi ar mērķa mainīgo saistīti lauki modeļa apmācībā netiek izmantoti.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-8": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Šāds nodalījums nepieciešams, lai mazinātu informācijas noplūdes risku un saglabātu algoritmu izvēles uzdevuma korektu interpretāciju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-9": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Šajā darbā izmantotais risinātāju portfelis interpretējams kā reproducējams atskaites risinātāju portfelis, nevis kā pilnvērtīgs RobinX vai ITC2021 sacensību līmeņa risinātāju kopums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-10": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Portfelī iekļautie risinātāji atšķiras pēc lomas un modelēšanas tvēruma, tādēļ rezultāti jāinterpretē kopā ar risinātāju atbalsta statusiem un rezultātu vērtēšanas nosacījumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-11": {
+    "file": null,
+    "column": null,
+    "description": "ALGORITMU IZVĒLES EKSPERIMENTĀLĀ IZPĒTE SPORTA TURNĪRU KALENDĀRU SASTĀDĪŠANĀ: Šāda pieeja ļauj novērtēt izstrādāto algoritmu izvēles ietvaru, vienlaikus skaidri norādot tā praktiskos ierobežojumus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-12": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Eksperimentālās daļas mērķis ir izveidot reproducējamu eksperimentālo procesu, kas ļauj sporta turnīru kalendāru sastādīšanas instances raksturot ar strukturālām pazīmēm, izpildīt definētu risinātāju portfeli un uz šā pamata novērtēt algoritmu izvēles modeli.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-13": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Process veidots tā, lai katrā posmā būtu skaidri nodalīti ievaddati, veiktā apstrāde un iegūtais rezultāts.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-14": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Eksperimentālā sistēma sastāv no vairākiem secīgiem posmiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-15": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Vispirms tiek identificētas un nolasītas pieejamās RobinX formāta un ITC2021 etalona instances.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-16": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Pēc tam no instanču aprakstiem tiek iegūtas strukturālās pazīmes, kas raksturo instances izmēru, ierobežojumu sastāvu, blīvumu un daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-17": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Nākamajā posmā šīm instancēm tiek izpildīts risinātāju portfelis, un iegūtie rezultāti tiek saglabāti vienotā formātā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-18": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Pēc tam strukturālās pazīmes tiek apvienotas ar risinātāju veiktspējas datiem, lai izveidotu algoritmu izvēles datu kopu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-19": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Modeļa novērtēšana tiek veikta, izmantojot atkārtotu krustotās pārbaudes procedūru, lai rezultāti nebūtu atkarīgi tikai no viena datu sadalījuma.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-20": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Novērtējumā tiek ņemta vērā ne tikai klasifikācijas precizitāte, bet arī modeļa izvēles rezultātu salīdzinājums ar labāko fiksēto risinātāju un virtuāli labāko risinātāju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-21": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Tas ļauj vērtēt gan prognozēšanas kvalitāti, gan praktisko ieguvumu no algoritmu izvēles pieejas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-22": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Eksperimentālās sistēmas galvenie posmi apkopoti tabulā “Eksperimentālās sistēmas galvenie posmi”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-23": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Tabulā “Eksperimentālās sistēmas galvenie posmi” apkopotais posmu sadalījums parāda, ka algoritmu izvēles eksperiments nav tikai modeļa apmācība.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-24": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Tā kvalitāte ir atkarīga arī no instanču sagatavošanas, pazīmju iegūšanas, risinātāju rezultātu korektas saglabāšanas un mērķa mainīgā definēšanas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-25": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Ja kādā no šiem posmiem rodas nekonsekvence, tā var ietekmēt gan algoritmu izvēles datu kopu, gan modeļa novērtējumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-26": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Tāpēc eksperimentālajā sistēmā atsevišķi nodalīta informācija, kas pieejama pirms instances risināšanas, un informācija, kas rodas tikai pēc risinātāju izpildes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-27": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Strukturālās pazīmes veido modeļa ievaddatus, savukārt risinātāju rezultāti un ar tiem saistītie statusi tiek izmantoti mērķa mainīgā definēšanai un rezultātu interpretācijai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-28": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Šāds nodalījums ir nepieciešams, lai mazinātu informācijas noplūdes risku un saglabātu algoritmu izvēles uzdevuma korektu interpretāciju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-29": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Šajā apakšnodaļā eksperimentālā sistēma raksturota vispārīgā līmenī.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-30": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentālās daļas mērķis un vispārējā uzbūve: Turpmākajās apakšnodaļās atsevišķi aplūkota instanču kopa, pazīmju iegūšana, risinātāju portfelis, algoritmu izvēles datu kopas izveide, modeļa apmācība un iegūto rezultātu interpretācija.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-31": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Eksperimentālajā daļā izmantota datu kopa, kurā iekļautas 234 sporta turnīru kalendāru sastādīšanas instances.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-32": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Tā apvieno 54 reālas instances, kas iegūtas no RobinX formāta un ITC2021 etalona datiem, un 180 sintētiski ģenerētas instances.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-33": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Reālās instances nodrošina saikni ar standartizētiem sporta turnīru kalendāru sastādīšanas uzdevumiem, savukārt sintētiskās instances izmantotas, lai kontrolēti paplašinātu instanču kopu pēc komandu skaita, laika posmu skaita, turnīra formāta un ierobežojumu struktūras.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-34": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Attēlā “ Eksperimentā izmantotās datu kopas sastāvs” , parādīts eksperimentā izmantotās datu kopas sastāvs.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-35": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Sintētiskās instances veido lielāko datu kopas daļu - 180 no 234 instancēm jeb 76,9 %.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-36": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Tāpēc turpmākie rezultāti interpretējami kā jauktas datu kopas eksperiments, nevis kā secinājumi tikai par reālajām RobinX un ITC2021 instancēm.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-37": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Sintētiskās instances tika ģenerētas reproducējamā Python procedūrā, izmantojot fiksētas nejaušības ģeneratora sākumvērtības 42, 43 un 44.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-38": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Datu kopa tika sadalīta trīs ģenerēšanas profilos: 60 vienkāršās, 60 vidējas sarežģītības un 60 sarežģītās instancēs.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-39": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Šis sadalījums ļauj kontrolēti variēt instanču struktūru, vienlaikus saglabājot iespēju atkārtot ģenerēšanas procesu ar tiem pašiem sākuma nosacījumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-40": {
+    "file": "data/processed/selection_dataset_full.csv",
+    "column": "size",
+    "description": "4. Datu avoti un datu sagatavošana: Ģenerēšanas procesā tika variēts turnīra formāts, komandu skaits, laika posmu skaits, spēļu skaits, ierobežojumu skaits, ierobežojumu blīvums, ierobežojumu grupu daudzveidība un soda svaru diapazons.",
+    "status": "OK",
+    "actual_value": "num_constraints, num_slots, num_teams",
+    "notes": "All listed feature columns are present in the mixed selection dataset.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      }
+    ]
+  },
+  "DATA-41": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Kopumā izveidotas 93 vienkārtēja pilna savstarpējo spēļu turnīra instances un 87 divkārtēja pilna savstarpējo spēļu turnīra instances.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-42": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Galvenie sintētisko instanču ģenerēšanā izmantotie parametri apkopoti tabulā “Sintētisko instanču ģenerēšanā variētie strukturālie parametri”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-43": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: “Sintētisko instanču ģenerēšanā variētie strukturālie parametri” apkopotie parametri parāda, ka sintētisko instanču ģenerēšanā tika variēts ne tikai instances izmērs, bet arī tās strukturālais raksturojums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-44": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Komandu, laika posmu un spēļu skaits nosaka instances mērogu, savukārt ierobežojumu skaits, blīvums, grupu daudzveidība un soda svaru diapazons raksturo ierobežojumu struktūru.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-45": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Šāda parametru izvēle ir būtiska algoritmu izvēles kontekstā, jo tā ļauj izveidot instances, kas atšķiras ne tikai pēc apjoma, bet arī pēc risinājumu telpas ierobežotības un kvalitātes kritēriju nozīmīguma.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-46": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Svarīgi atšķirt ģenerēšanas parametrus, metadatus un modeļa ievades pazīmes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-47": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Ģenerēšanas sākumvērtība, ģenerēšanas profils un citi ar datu kopas izveidi saistītie lauki tika saglabāti izsekojamībai, taču tie netiek izmantoti kā algoritmu izvēles modeļa ievaddati.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-48": {
+    "file": "data/processed/selection_dataset_full.csv",
+    "column": "size",
+    "description": "4. Datu avoti un datu sagatavošana: Modeļa ievaddatus veido strukturālās pazīmes, kas aprēķinātas no instances apraksta pirms risināšanas, piemēram, komandu skaits, laika posmu skaits, ierobežojumu skaits, stingro un mīksto ierobežojumu sadalījums, ierobežojumu blīvums un ierobežojumu daudzveidība.",
+    "status": "OK",
+    "actual_value": "num_constraints, num_slots, num_teams",
+    "notes": "All listed feature columns are present in the mixed selection dataset.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      }
+    ]
+  },
+  "DATA-49": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Sintētiskajās instancēs tika izmantotas vairākas ierobežojumu grupas: kapacitāte (Capacity), pieejamība (Availability), norises vieta (Venue), atdalījums (Separation), pārtraukumi (Break), mājas un izbraukuma spēles (HomeAway), taisnīgums (Fairness) un ceļošana (Travel).",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-50": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Šīs grupas šajā darbā nav interpretējamas kā pilnīgs sporta turnīru kalendāru sastādīšanas ierobežojumu semantiskais modelis.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-51": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Tās galvenokārt izmantotas kā strukturāli apzīmējumi, kas ļauj kontrolēti mainīt ierobežojumu skaitu, sadalījumu un daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-52": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Tāpēc sintētisko instanču rezultāti raksturo algoritmu izvēles pieejas darbību kontrolētā eksperimentālā vidē, nevis pierāda tās tiešu pārnesamību uz visiem reāliem turnīru kalendāru sastādīšanas gadījumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-53": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Katra sintētiskā instance tika saglabāta RobinX tipa XML pierakstā un papildināta ar metadatiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-54": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Metadatos iekļauta informācija par instances izcelsmi, ģenerēšanas parametriem, ierobežojumu struktūru un soda svaru diapazoniem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-55": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Šie dati ļauj pārbaudīt, kā katra instance izveidota un kā tā iekļauta kopējā eksperimentālajā procesā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-56": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Pēc ģenerēšanas sintētiskās instances tika apstrādātas kopā ar reālajām instancēm.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-57": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Abām datu grupām tika piemērota viena un tā pati strukturālo pazīmju iegūšanas, risinātāju izpildes un rezultātu saglabāšanas procedūra.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-58": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Vienots apstrādes process nepieciešams, lai reālās un sintētiskās instances būtu salīdzināmas pēc vienotas pazīmju shēmas un vienotiem rezultātu marķēšanas principiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-59": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Datu sagatavošanas posmā iegūtā datu kopa nodrošina gan saikni ar reāliem sporta turnīru kalendāru sastādīšanas etaloniem, gan kontrolētu sintētisko instanču kopu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-60": {
+    "file": null,
+    "column": null,
+    "description": "4. Datu avoti un datu sagatavošana: Vienlaikus sintētisko instanču lielais īpatsvars nozīmē, ka modeļa rezultāti jāinterpretē piesardzīgi, īpaši vērtējot to pārnesamību uz reāliem sporta turnīru kalendāru sastādīšanas uzdevumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-61": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Pēc datu kopas sagatavošanas eksperimentālajā procesā tika veikta instanču nolasīšana un strukturālo pazīmju iegūšana.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-62": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Šajā posmā RobinX formāta un ITC2021 etalona instanču XML apraksti tika pārveidoti tabulārā formā, kur katru instanci raksturo viena rinda ar identifikatoru instance_name.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-63": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Šāda pārveide bija nepieciešama, jo algoritmu izvēles modelis nevar tieši izmantot XML failu hierarhisko struktūru.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-64": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Lai instances varētu izmantot modeļa apmācībā, tās bija jāapraksta ar vienotām skaitliskām vai kategoriskām pazīmēm.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-65": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Instanču nolasīšanas mehānisms tika veidots tā, lai tas spētu apstrādāt arī praktiskos datos sastopamas XML īpatnības, piemēram, XML nosaukumtelpas, trūkstošas neobligātās sadaļas un atsevišķas labojamas sintakses nepilnības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-66": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Apstrādes laikā tika reģistrētas arī konstatētās neatbilstības, piemēram, dublēti ieraksti, trūkstoši lauki vai nesakritības starp deklarēto un faktiski iegūto elementu skaitu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-67": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Šī informācija izmantota pārbaudei un izsekojamībai, bet nav iekļauta modeļa ievades pazīmēs.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-68": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Strukturālo pazīmju iegūšanā tika izmantota tikai informācija, kas pieejama pirms instances risināšanas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-69": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tādēļ pazīmes tika aprēķinātas no instances apraksta, nevis no risinātāju izpildes rezultātiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-70": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Iegūtās pazīmes raksturo instances uzbūvi - komandu un laika posmu skaitu, ierobežojumu sastāvu, ierobežojumu blīvumu un ierobežojumu daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-71": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tādējādi pazīmju tabula veido instances strukturālu aprakstu, ko tālāk var izmantot algoritmu izvēles modelī.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-72": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Šajā darbā strukturālās pazīmes tiek interpretētas kā konkrētas instances raksturlielumi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-73": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Sporta turnīru kalendāru sastādīšanas problēmu klase nosaka kopīgo ietvaru - komandas, laika posmus, spēļu pārus un ierobežojumus, taču algoritmu izvēles modelim būtiskas ir tieši atšķirības starp atsevišķām instancēm.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-74": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Piemēram, ierobežojumu skaits ir konkrētas instances ievaddatu īpašība.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-75": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Risināšanas laikā tas nemainās, taču starp instancēm šis rādītājs var būt atšķirīgs, tāpēc to var izmantot kā instances līmeņa pazīmi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-76": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Strukturālās pazīmes tika sadalītas četrās grupās.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-77": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Izmēra pazīmes raksturo instances mērogu, piemēram, komandu un laika posmu skaitu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-78": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Ierobežojumu sastāva pazīmes apraksta kopējo ierobežojumu skaitu un stingro un mīksto ierobežojumu sadalījumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-79": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Ierobežojumu blīvuma pazīmes raksturo ierobežojumu daudzumu attiecībā pret instances izmēru, piemēram, pret komandu vai laika posmu skaitu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-80": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Savukārt ierobežojumu daudzveidības pazīmes raksturo atšķirīgo ierobežojumu tipu, kategoriju un marķieru skaitu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-81": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tabulā “Strukturālo pazīmju grupējums un piemēri” redzams, ka izmantotā pazīmju kopa neaprobežojas tikai ar instances izmēru.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-82": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Komandu un laika posmu skaits raksturo problēmas apjomu, bet ierobežojumu sastāva, blīvuma un daudzveidības pazīmes ļauj aprakstīt ierobežojumu struktūru.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-83": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tas ir būtiski algoritmu izvēles kontekstā, jo divas vienāda izmēra instances var būt atšķirīgas pēc ierobežojumu skaita, stingro un mīksto ierobežojumu sadalījuma un prasību daudzveidības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-84": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Reālo un sintētisko instanču izcelsme tika saglabāta metadatos, lai rezultātus vēlāk būtu iespējams analizēt pa instanču grupām.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-85": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tomēr datu izcelsme netika izmantota kā modeļa ievades pazīme.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-86": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Šāds lēmums pieņemts, lai modelis piemērotāko risinātāju noteiktu pēc instances strukturālajām īpašībām, nevis pēc tā, vai instance ir reāla vai sintētiski ģenerēta.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-87": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Šajā posmā iegūtā pazīmju tabula nosaka, kā sporta turnīru kalendāru sastādīšanas instance tiek attēlota algoritmu izvēles modelī.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-88": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tāpēc pazīmju iegūšana nav tikai tehniska XML failu pārveidošana tabulā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-89": {
+    "file": null,
+    "column": null,
+    "description": "4. Instanču nolasīšana, apstrāde un strukturālo pazīmju iegūšana: Tā ir metodoloģiska izvēle par to, kuri instances raksturlielumi tiek uzskatīti par būtiskiem piemērotākā risinātāja prognozēšanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-90": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Eksperimentālajā daļā izmantots atskaites risinātāju portfelis, kura uzdevums ir nodrošināt reproducējamu vidi algoritmu izvēles pieejas pārbaudei.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-91": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šis portfelis nav uzskatāms par pilnvērtīgu RobinX vai ITC2021 sacensību līmeņa risinātāju kopumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-92": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tajā iekļautie risinātāji atšķiras pēc lomas, modelēšanas tvēruma un rezultātu interpretācijas nosacījumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-93": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Darbā jānošķir reģistrētais risinātāju portfelis un rezultāti, kurus var izmantot salīdzināšanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-94": {
+    "file": "src/experiments/full_benchmark.py",
+    "column": "DEFAULT_FULL_SOLVER_PORTFOLIO",
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Reģistrētajā portfelī iekļauti četri risinātāji: nejaušā diagnostiskā atskaites pieeja, CP-SAT modelis, simulētās rūdīšanas heiristika un Timefold integrācija.",
+    "status": "OK",
+    "actual_value": "random_baseline, cpsat_solver, simulated_annealing_solver, timefold",
+    "notes": "The full benchmark portfolio is defined centrally and matches the four solver variants described in the thesis.",
+    "source_links": [
+      {
+        "path": "src/experiments/full_benchmark.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/experiments/full_benchmark.py"
+      }
+    ]
+  },
+  "DATA-95": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tomēr konkrētajā eksperimentālajā konfigurācijā ne visi šie risinātāji sniedz pilnvērtīgi salīdzināmus veiktspējas rezultātus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-96": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Timefold šajā darbā iekļauts kā ārējas integrācijas pārbaudes punkts.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-97": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tā kā ārējais izpildāmais fails nebija konfigurēts, Timefold rezultātu rindas saglabātas auditēšanai, bet netiek interpretētas kā šī risinātāja veiktspējas novērtējums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-98": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Eksperimenta izpildes pamatvienība bija instances, risinātāja un nejaušības sākumvērtības kombinācija.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-99": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Reālajām instancēm katrs no četriem reģistrētajiem risinātājiem tika izpildīts vienu reizi, kopā veidojot 216 rezultātu rindas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-100": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Sintētiskajām instancēm izpilde tika veikta ar trim nejaušības sākumvērtībām, kopā veidojot 2160 rezultātu rindas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-101": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tādējādi pilnajā rezultātu tabulā tika iegūtas 2376 rindas, kuru tālāka izmantošana bija atkarīga no risinātāja atbalsta un vērtēšanas statusa.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-102": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Risinātāju pārklājums un galvenie interpretācijas nosacījumi apkopoti “Risinātāju izpildes pārklājums un interpretācija” tabulā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-103": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: “Risinātāju izpildes pārklājums un interpretācija” parāda, ka portfelī reģistrētie risinātāji atšķiras gan pēc pārklājuma, gan pēc modelēšanas tvēruma.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-104": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: CP-SAT modelis nodrošina pamatstruktūras optimizāciju gan vienkārtēja, gan divkārtēja pilna savstarpējo spēļu turnīra gadījumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-105": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Simulētā rūdīšana darbojas tikai vienkārtēja turnīra vienkāršotā attēlojumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-106": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Nejaušā diagnostiskā atskaites pieeja neveido sporta kalendāru, bet kalpo eksperimentālās datu plūsmas pārbaudei.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-107": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Timefold integrācija šajā konfigurācijā nav izmantojama veiktspējas salīdzināšanai, jo ārējais izpildāmais fails nav iestatīts.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-108": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šis nošķīrums ir būtisks turpmākajā rezultātu interpretācijā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-109": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šajā darbā netiek salīdzināti četri pilnvērtīgi ITC2021 risinātāji.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-110": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Salīdzinājums tiek veikts atskaites portfelī, kur katram risinātājam ir noteikta loma un ierobežots modelēšanas tvērums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-111": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Nejaušā diagnostiskā atskaites pieeja šajā darbā nav nejauša sporta kalendāra konstruktors.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-112": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tā aprēķina reproducējamu diagnostisku mērķvērtību, izmantojot instances izmēra rādītājus un fiksētu nejaušības komponenti.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-113": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šī pieeja palīdz pārbaudīt datu plūsmu un salīdzināšanas mehānismu, bet tās rezultāti nav interpretējami kā praktisks kalendāru sastādīšanas risinājums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-114": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: CP-SAT modelis izmantots kā strukturāla optimizācijas atskaites pieeja.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-115": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tajā spēļu izvietošana formulēta ar bināriem piešķiršanas mainīgajiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-116": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Modelis nosaka, ka katra spēle jāpiešķir tieši vienam laika posmam, kā arī ierobežo komandu dalību tā, lai vienā laika posmā komandai nebūtu vairāk par vienu spēli.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-117": {
+    "file": "src/solvers/cpsat_solver.py",
+    "column": "constraints; objective",
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Mērķfunkcija minimizē izmantoto laika posmu skaitu.",
+    "status": "OK",
+    "actual_value": "one required match per pair/leg; at most one match per team per slot; minimize used slots",
+    "notes": "The CP-SAT baseline enforces the compact schedule skeleton described in the thesis.",
+    "source_links": [
+      {
+        "path": "src/solvers/cpsat_solver.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/solvers/cpsat_solver.py"
+      }
+    ]
+  },
+  "DATA-118": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šāds modelis nodrošina turnīra pamatstruktūras korektumu, tomēr neietver pilnu RobinX vai ITC2021 papildu ierobežojumu semantiku.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-119": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tāpēc instancēs ar papildu ierobežojumiem CP-SAT rezultāti interpretējami kā daļēji modelēti.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-120": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Simulētās rūdīšanas risinātājs veidots kā vienkāršota heiristiska atskaites pieeja.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-121": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tas darbojas vienkārtēja pilna savstarpējo spēļu turnīra attēlojumā, kur katrs komandu pāris tiek ieplānots vienu reizi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-122": {
+    "file": "src/solvers/simulated_annealing_solver.py",
+    "column": "solver metadata",
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Meklēšanā izmantoti divi apkaimes operatori: spēles pārvietošana uz citu laika posmu (reassign) un divu spēļu izvietojuma apmaiņa (swap).",
+    "status": "OK",
+    "actual_value": "single round-robin simulated annealing baseline with reassign and swap neighborhoods",
+    "notes": "The simulated annealing solver is intentionally a lightweight heuristic baseline.",
+    "source_links": [
+      {
+        "path": "src/solvers/simulated_annealing_solver.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/solvers/simulated_annealing_solver.py"
+      }
+    ]
+  },
+  "DATA-123": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Risinājuma novērtējumā primāri tiek sodīti komandu konflikti, bet sekundāri tiek samazināts izmantoto laika posmu skaits.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-124": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šī pieeja nav pilns RobinX vai ITC2021 kvalitātes mērs un neatbalsta divkārtēja pilna savstarpējo spēļu turnīra gadījumus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-125": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Timefold risinātājs šajā darbā izmantots kā ārējas sistēmas integrācijas punkts.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-126": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Python pusē tiek sagatavots turnīra struktūras attēlojums un datu apraksts, ko iespējams nodot ārējai sistēmai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-127": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tomēr šajā konfigurācijā Timefold ārējais izpildāmais fails nebija iestatīts, tāpēc rezultātu rindām piešķirts statuss not_configured.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-128": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šis statuss nozīmē, ka attiecīgais rezultāts nav interpretējams kā Timefold algoritma veiktspējas mērījums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-129": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Lai nodrošinātu reproducējamību, risinātāji tika darbināti ar fiksētiem galvenajiem parametriem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-130": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tie apkopoti tabulā “Risinātāju galvenā konfigurācija eksperimentā” apkopots galveno modelēto elementu pārklājums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-131": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šī konfigurācija apzināti dod priekšroku reproducējamībai, nevis katra risinātāja maksimālai noskaņošanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-132": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Līdz ar to eksperiments nepierāda kāda konkrēta algoritma absolūtu pārākumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-133": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tas pārbauda, vai strukturālās pazīmes palīdz atšķirt risinātāju piemērotību konkrētā, iepriekš definētā atskaites portfelī.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-134": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Rezultātu interpretācijai katram risinātāja iznākumam tika saglabāta ne tikai mērķfunkcijas vērtība un izpildes laiks, bet arī statusa un interpretācijas lauki.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-135": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šo statusu nozīme apkopota tabulā “Risinātāju rezultātu statusu interpretācija”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-136": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Statusu saglabāšana ir nepieciešama, jo viena un tā pati skaitliskā mērķfunkcijas vērtība var būt atšķirīgi interpretējama atkarībā no risinātāja modelēšanas tvēruma.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-137": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Piemēram, vienkāršotas atskaites pieejas rezultāts nav salīdzināms ar pilnu RobinX vai ITC2021 ierobežojumu semantiku tādā pašā nozīmē kā pilnībā atbalstīts rezultāts.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-138": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Tāpēc risinātāju rezultāti šajā darbā tiek interpretēti kopā ar atbalsta statusu, vērtēšanas statusu un modelēšanas tvērumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-139": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šīs apakšnodaļas galvenais secinājums ir, ka izmantotais risinātāju portfelis veido kontrolētu atskaites vidi, nevis pilnvērtīgu RobinX vai ITC2021 sacensību līmeņa risinātāju salīdzinājumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-140": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Portfelī iekļautajiem risinātājiem ir atšķirīgas lomas un atšķirīgs modelēšanas tvērums, tāpēc to rezultāti nav interpretējami mehāniski tikai pēc mērķfunkcijas vērtības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-141": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu portfelis un rezultātu interpretācija: Šis nošķīrums ir pamats nākamajā apakšnodaļā aprakstītajai algoritmu izvēles datu kopas izveidei.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-142": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Pēc risinātāju portfeļa izpildes tika izveidota jaukta algoritmu izvēles datu kopa.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-143": {
+    "file": "data/processed/selection_dataset_full.csv | src/selection/modeling.py",
+    "column": "TARGET_COLUMN",
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Tajā katra rinda atbilst vienai sporta turnīru kalendāru sastādīšanas instancei, savukārt mērķa mainīgais best_solver norāda risinātāju, kas konkrētajā atskaites portfelī un izvēlētajā vērtēšanas tvērumā uzskatāms par piemērotāko.",
+    "status": "OK",
+    "actual_value": "TARGET_COLUMN=best_solver",
+    "notes": "The selection dataset and modeling helper use best_solver as the supervised target column.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      },
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      }
+    ]
+  },
+  "DATA-144": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Datu kopas izveides mērķis bija sasaistīt pirms risināšanas iegūstamās strukturālās pazīmes ar risinātāju empīriskajiem rezultātiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-145": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Datu kopas izveide notika vairākos soļos.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-146": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Vispirms strukturālo pazīmju tabula tika apvienota ar risinātāju izpildes rezultātiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-147": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Pēc tam tika piemēroti rezultātu derīguma nosacījumi, lai no best_solver kandidātu kopas izslēgtu neatbalstītus, neiestatītus un kļūdainus iznākumus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-148": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Sintētisko instanču gadījumā, kur vienai instancei bija vairāki izpildes atkārtojumi, rezultāti vispirms tika apkopoti instances un risinātāja līmenī.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-149": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Tikai pēc tam katrai instancei tika noteikts piemērotākais risinātājs.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-150": {
+    "file": "data/processed/selection_dataset_full.csv | src/selection/modeling.py",
+    "column": "TARGET_COLUMN",
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Mērķa mainīgais best_solver netika noteikts, vienkārši izvēloties mazāko mērķfunkcijas vērtību no visām rezultātu rindām.",
+    "status": "OK",
+    "actual_value": "TARGET_COLUMN=best_solver",
+    "notes": "The selection dataset and modeling helper use best_solver as the supervised target column.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      },
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      }
+    ]
+  },
+  "DATA-151": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Pirms izvēles tika pārbaudīts, vai konkrētais rezultāts ir izmantojams šī darba vērtēšanas tvērumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-152": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šāda pārbaude bija nepieciešama, jo portfelī iekļautajiem risinātājiem ir atšķirīgs modelēšanas tvērums, turklāt daļa rezultātu rindu attiecas uz neatbalstītām instancēm, neiestatītu ārējo integrāciju vai kļūdainu izpildi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-153": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Galvenie mērķa mainīgā izveides nosacījumi apkopoti tabulā “Mērķa mainīgā best_solver izveides nosacījumi”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-154": {
+    "file": "data/processed/selection_dataset_full.csv | src/selection/modeling.py",
+    "column": "TARGET_COLUMN",
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Tabulā “Mērķa mainīgā best_solver izveides nosacījumi” redzams, ka mērķa mainīgais veidots kontrolēti.",
+    "status": "OK",
+    "actual_value": "TARGET_COLUMN=best_solver",
+    "notes": "The selection dataset and modeling helper use best_solver as the supervised target column.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      },
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      }
+    ]
+  },
+  "DATA-155": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Neatbalstīti, neiestatīti un kļūdaini iznākumi netika izmantoti piemērotākā risinātāja noteikšanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-156": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Savukārt daļēji modelēti rezultāti varēja palikt kandidātu kopā, ja tie bija tehniski derīgi un skaitliski salīdzināmi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-157": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Tāpēc best_solver šajā darbā jāinterpretē kā piemērotākais risinātājs konkrētajā atskaites portfelī, nevis kā absolūti labākais risinātājs pilnā RobinX vai ITC2021 semantikā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-158": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Sintētiskajām instancēm pirms best_solver noteikšanas tika veikta rezultātu apkopošana, jo katrai instancei bija vairāki izpildes atkārtojumi ar dažādām nejaušības sākumvērtībām.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-159": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Rezultāti tika grupēti pēc instances un risinātāja, aprēķinot vidējo mērķfunkcijas vērtību, vidējo izpildes laiku un derīgo izpildes reižu skaitu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-160": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šāda apkopošana mazina atsevišķas izpildes nejaušības ietekmi, kas ir īpaši svarīgi heiristiskām pieejām.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-161": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Ja pēc rezultātu apkopošanas vairākiem risinātājiem bija vienāda mērķfunkcijas vērtība, tika izmantota deterministiska vienādu rezultātu izšķiršanas kārtība.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-162": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Vispirms priekšroka tika dota zemākai vidējai mērķfunkcijas vērtībai, pēc tam - zemākam vidējam izpildes laikam.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-163": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Ja arī šie rādītāji sakrita, izvēle tika veikta pēc risinātāja nosaukuma leksikogrāfiskā secībā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-164": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šāda kārtība nodrošina, ka best_solver vērtības ir atkārtojami iegūstamas arī vienādu rezultātu gadījumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-165": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Papildus strukturālajām pazīmēm un mērķa mainīgajam pilnajā datu kopā tika saglabāti arī pārbaudes un interpretācijas lauki.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-166": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Tie ietver risinātāju statusus, apkopotās mērķfunkcijas vērtības, izpildes laikus, derīgo izpildes reižu skaitu un pārklājuma informāciju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-167": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šie lauki palīdz pārbaudīt, kāpēc konkrētai instancei piešķirta noteikta best_solver vērtība, taču tie netiek izmantoti kā modeļa ievades pazīmes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-168": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Modeļa apmācības ievade tika veidota piesardzīgi, lai mazinātu informācijas noplūdes risku.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-169": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: No ievades pazīmēm tika izslēgti risinātāju rezultāti, mērķa mainīgie, datu izcelsmes lauki un citi pārbaudes lauki.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-170": {
+    "file": "data/processed/selection_dataset_full.csv | src/selection/modeling.py",
+    "column": "TARGET_COLUMN",
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Praktiski tas nozīmē, ka no apmācības pazīmēm tika izslēgtas kolonnas ar prefiksiem objective_, benchmark_, label_, target_ un dataset_, kā arī pats mērķa mainīgais best_solver.",
+    "status": "OK",
+    "actual_value": "TARGET_COLUMN=best_solver",
+    "notes": "The selection dataset and modeling helper use best_solver as the supervised target column.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      },
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      }
+    ]
+  },
+  "DATA-171": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Atsevišķi jāprecizē objective_* kolonnu nozīme.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-172": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Daļa šo kolonnu apraksta instances mērķfunkcijas informāciju, piemēram, tās esamību vai virzienu, savukārt citas objective_<solver> tipa kolonnas ir saistītas ar risinātāju izpildes rezultātiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-173": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Konservatīvajā apmācības konfigurācijā abas kolonnu grupas tika izslēgtas no modeļa ievades.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-174": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šāds lēmums pieņemts, lai modelis balstītos uz strukturālām pazīmēm, kas pieejamas pirms risināšanas, nevis uz informāciju, kas varētu tieši vai netieši atspoguļot rezultātu vai mērķa mainīgā izveidi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-175": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Lai reālās un sintētiskās instances būtu aprakstītas vienotā pazīmju telpā, gala datu kopā tika izmantota abām datu grupām kopīga kolonnu shēma.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-176": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Pilnajā datu kopā saglabātas 30 pazīmju kolonnas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-177": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: No tām 25 raksturo instances struktūru šaurākā nozīmē, piemēram, komandu skaitu, laika posmu skaitu, ierobežojumu skaitu, ierobežojumu blīvumu un ierobežojumu daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-178": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Pārējās 5 kolonnas ir ar mērķfunkcijas aprakstu saistītas objective_* kolonnas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-179": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Tās saglabātas pilnajā datu kopā, bet netiek izmantotas konservatīvajā modeļa apmācības konfigurācijā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-180": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Datu kopas struktūra apkopota tabulā “Algoritmu izvēles datu kopas struktūra”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-181": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: “Algoritmu izvēles datu kopas struktūra” tabula parāda, ka pilnā datu kopa ir plašāka nekā modeļa apmācībā izmantotā pazīmju matrica.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-182": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Pilnajā datu kopā saglabāti gan strukturālie rādītāji, gan mērķa mainīgais, gan pārbaudes un interpretācijas lauki.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-183": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šāds risinājums ļauj pārbaudīt mērķa mainīgā izveidi, vienlaikus nepieļaujot, ka modeļa apmācībā tiek izmantota informācija par risinātāju rezultātiem vai datu izcelsmi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-184": {
+    "file": "data/processed/selection_dataset_full_run_summary.json",
+    "column": "results.num_selection_rows; results.rows_by_dataset_type",
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Kopumā tika izveidotas 234 algoritmu izvēles rindas: 54 reālajām un 180 sintētiskajām instancēm.",
+    "status": "OK",
+    "actual_value": "234; 54; 180",
+    "notes": "Selection-row counts come from the full dataset build summary.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full_run_summary.json",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full_run_summary.json"
+      }
+    ]
+  },
+  "DATA-185": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Visām instancēm tika noteikta best_solver vērtība, tātad katrai instancei bija vismaz viens rezultāts, kas atbilda mērķa mainīgā definēšanas nosacījumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-186": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Gala mērķa mainīgajā faktiski parādījās divi risinātāji: reālajām instancēm - simulētās rūdīšanas risinātājs (simulated_annealing_solver), bet sintētiskajām instancēm - CP-SAT modelis (cpsat_solver).",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-187": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šis sadalījums turpmāk ņemts vērā modeļa novērtēšanā un rezultātu interpretācijā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-188": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šīs apakšnodaļas galvenais secinājums ir, ka algoritmu izvēles datu kopas izveide nav tikai pazīmju un rezultātu mehāniska apvienošana vienā tabulā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-189": {
+    "file": null,
+    "column": null,
+    "description": "4. Jauktās algoritmu izvēles datu kopas izveide: Šajā posmā tiek noteikts, kuri risinātāju rezultāti var kļūt par best_solver kandidātiem, kā apstrādājami vairāki vienas instances izpildes atkārtojumi un kā nodalāma modeļa ievades informācija no pārbaudes un interpretācijas laukiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-190": {
+    "file": "src/selection/modeling.py",
+    "column": "RandomForestClassifier",
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Algoritmu izvēles modelis šajā darbā veidots kā nejaušo mežu klasifikators.",
+    "status": "OK",
+    "actual_value": "RandomForestClassifier",
+    "notes": "The selector model is implemented as a random-forest classifier.",
+    "source_links": [
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      }
+    ]
+  },
+  "DATA-191": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Šāda modeļa izvēle pamatota ar vairākiem apsvērumiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-192": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Pirmkārt, nejaušo mežu modelis var strādāt ar dažāda mēroga skaitliskām pazīmēm bez sarežģītas normalizācijas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-193": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Otrkārt, tas ir salīdzinoši noturīgs pret trokšņainiem datiem un pazīmju savstarpējām korelācijām, kas var rasties, ja vairākas pazīmes raksturo līdzīgus instances aspektus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-194": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Treškārt, modelis ļauj iegūt pazīmju nozīmīguma novērtējumu, kas ir noderīgs rezultātu interpretācijā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-195": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modelis tika veidots kā reproducējama atskaites pieeja, nevis kā maksimāli noskaņots klasifikators.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-196": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tika izmantoti 200 koki, sabalansēta klašu svarošana un fiksēta nejaušības sākumvērtība.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-197": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Paralēlā izpilde netika izmantota, lai mazinātu nekontrolētu izpildes atšķirību ietekmi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-198": {
+    "file": "src/selection/modeling.py | configs/real_pipeline_current.yaml",
+    "column": "selector.model_name",
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Hiperparametru optimizācija netika veikta, jo galvenais mērķis bija pārbaudīt algoritmu izvēles pieejas realizējamību ar kontrolētu un atkārtojamu modeli..",
+    "status": "OK",
+    "actual_value": "fixed random_forest baseline configuration",
+    "notes": "The project uses a fixed selector configuration rather than a hyperparameter-search stage.",
+    "source_links": [
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      },
+      {
+        "path": "configs/real_pipeline_current.yaml",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/configs/real_pipeline_current.yaml"
+      }
+    ]
+  },
+  "DATA-199": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modeļa konfigurācija apkopota tabulā “Algoritmu izvēles modeļa konfigurācija”",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-200": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: “Algoritmu izvēles modeļa konfigurācija” apkopotā konfigurācija parāda, ka modeļa izveidē priekšroka dota reproducējamībai un interpretējamībai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-201": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Šāda izvēle atbilst darba mērķim - pārbaudīt, vai pirms risināšanas iegūstamās strukturālās pazīmes ietver informāciju, ko iespējams izmantot piemērotākā risinātāja prognozēšanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-202": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modeļa ievadi veidoja 25 strukturālās pazīmes, kas raksturo instances izmēru, ierobežojumu sastāvu, blīvumu un daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-203": {
+    "file": "data/processed/selection_dataset_full.csv | src/selection/modeling.py",
+    "column": "TARGET_COLUMN",
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Mērķa mainīgais bija best_solver, kas definēts iepriekšējā apakšnodaļā.",
+    "status": "OK",
+    "actual_value": "TARGET_COLUMN=best_solver",
+    "notes": "The selection dataset and modeling helper use best_solver as the supervised target column.",
+    "source_links": [
+      {
+        "path": "data/processed/selection_dataset_full.csv",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/processed/selection_dataset_full.csv"
+      },
+      {
+        "path": "src/selection/modeling.py",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/src/selection/modeling.py"
+      }
+    ]
+  },
+  "DATA-204": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: No modeļa ievades tika izslēgti risinātāju rezultāti, mērķa mainīgie, datu izcelsmes lauki un citas pārbaudes kolonnas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-205": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tādējādi modelis tika apmācīts tikai ar informāciju, kas pieejama pirms konkrētās instances risināšanas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-206": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Pirms rezultātu interpretācijas jāņem vērā mērķa mainīgā sadalījums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-207": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Datu kopā faktiski parādās divas best_solver klases: reālajām instancēm par piemērotāko risinātāju noteikta simulētā rūdīšana (simulated_annealing_solver), savukārt sintētiskajām instancēm - CP-SAT modelis (cpsat_solver).",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-208": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Lai gan datu izcelsmes kolonnas netika izmantotas modeļa ievadē, reālās un sintētiskās instances var būt netieši atšķiramas pēc strukturālajām pazīmēm.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-209": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tāpēc augsta klasifikācijas precizitāte šajā uzstādījumā jāinterpretē piesardzīgi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-210": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modeļa novērtēšana tika veikta ar atkārtotu stratificētu krustoto pārbaudi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-211": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Katrā pārbaudes sadalījumā modelis tika apmācīts no jauna, izmantojot tikai attiecīgās apmācības daļas datus, un pēc tam pārbaudīts testa daļā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-212": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Gala modelis, kas apmācīts uz pilnās datu kopas, tika saglabāts tikai pēc pārbaudes procedūras pabeigšanas, tāpēc tas neietekmēja novērtēšanas rezultātus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-213": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Pārbaudes uzstādījums apkopots tabulā “Algoritmu izvēles modeļa pārbaudes uzstādījums”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-214": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Salīdzinājuma etaloni katrā pārbaudes sadalījumā tika aprēķināti tā, lai netiktu izmantota informācija no testa datiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-215": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Labākais fiksētais risinātājs jeb SBS tika noteikts tikai no attiecīgās apmācības daļas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-216": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Savukārt virtuāli labākais risinātājs jeb VBS tika aprēķināts testa daļai kā teorētisks etalons, kas katrai instancei izvēlas labāko pieejamo portfeļa risinātāju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-217": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: VBS nav praktiski izmantojams modelis, jo tas balstās uz informāciju par faktisko rezultātu pēc risinātāju izpildes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-218": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tomēr tas ļauj noteikt teorētiski labāko iespējamo rezultātu konkrētajā portfelī.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-219": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modeļa kvalitātes novērtēšanai izmantoti gan klasifikācijas, gan optimizācijas kvalitātes rādītāji.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-220": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Klasifikācijas precizitāte parāda, cik bieži modelis pareizi prognozē best_solver, savukārt sabalansētā precizitāte ļauj ņemt vērā klašu nelīdzsvaru.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-221": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Optimizācijas kvalitātes interpretācijai izmantota vidējā mērķfunkcijas vērtība, nožēlas rādītājs attiecībā pret VBS un ieguvums attiecībā pret SBS.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-222": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Algoritmu izvēles modeļa veiktspējas kopsavilkums dots tabulā “Algoritmu izvēles modeļa veiktspējas kopsavilkums”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-223": {
+    "file": "data/results/full_selection/selector_evaluation_run_summary.json",
+    "column": "results.classification_accuracy; results.balanced_accuracy",
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tabulā “Algoritmu izvēles modeļa veiktspējas kopsavilkums” redzams, ka modelis sasniedza augstu klasifikācijas precizitāti un sabalansēto precizitāti.",
+    "status": "OK",
+    "actual_value": "accuracy=0.9957; balanced_accuracy=0.9907",
+    "notes": "The mixed selector evaluation summary supports the qualitative statement about high accuracy.",
+    "source_links": [
+      {
+        "path": "data/results/full_selection/selector_evaluation_run_summary.json",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/results/full_selection/selector_evaluation_run_summary.json"
+      }
+    ]
+  },
+  "DATA-224": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tā kā šajā eksperimentā zemāka mērķfunkcijas vērtība nozīmē labāku rezultātu, modeļa vidējā mērķfunkcijas vērtība ir labāka nekā SBS un ļoti tuva VBS vērtībai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-225": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tas nozīmē, ka konkrētajā atskaites portfelī modelis vidēji uzlabo viena fiksēta risinātāja izvēli un pietuvojas teorētiski labākajai izvēlei.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-226": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Papildus kopējiem rādītājiem rezultāti aplūkoti arī pa datu grupām.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-227": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Šāds dalījums ir būtisks, jo kopējie rādītāji var noslēpt atšķirīgu modeļa uzvedību reālajās un sintētiskajās instancēs.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-228": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Šajā griezumā sabalansētā precizitāte netiek interpretēta atsevišķi, jo katrā datu grupā dominē viena mērķa klase.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-229": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Rezultāti apkopoti tabulā “Algoritmu izvēles modeļa rezultāti pa datu grupām”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-230": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: “Algoritmu izvēles modeļa rezultāti pa datu grupām” parāda, ka sintētiskajās instancēs modelis pilnībā atjaunoja mērķa klasi, savukārt reālajās instancēs saglabājās neliela kļūdu daļa.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-231": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tas apstiprina, ka kopējā precizitāte jāinterpretē kopā ar datu grupu sadalījumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-232": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Šajā eksperimentālajā konfigurācijā sintētisko instanču daļā uzdevums ir stabilāks, bet reālo instanču daļā algoritmu izvēle ir nedaudz sarežģītāka.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-233": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modeļa, SBS un VBS vidējo mērķfunkcijas vērtību salīdzinājums parādīts attēlā “Algoritmu izvēles modeļa salīdzinājums ar SBS un VBS”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-234": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: “Algoritmu izvēles modeļa salīdzinājums ar SBS un VBS” attēlā redzams, ka modeļa vidējā mērķfunkcijas vērtība ir tuvāka VBS nekā SBS rezultātam.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-235": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Modelis sasniedz vidējo vērtību 19,53, VBS - 19,51, bet SBS - 19,90.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-236": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tādējādi modelis samazina vidējo mērķfunkcijas vērtību salīdzinājumā ar viena fiksēta risinātāja pieeju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-237": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Vienlaikus kļūdu stabiņi attēlā pārklājas, tāpēc šis rezultāts jāinterpretē kā praktiska tendence konkrētajā pārbaudes shēmā, nevis kā pierādījums universālam algoritmu izvēles modeļa pārākumam.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-238": {
+    "file": "data/results/full_selection/selector_evaluation_run_summary.json",
+    "column": "results.num_validation_splits",
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Kļūdu stabiņi attēlo rezultātu mainīgumu deviņos pārbaudes sadalījumos.",
+    "status": "OK",
+    "actual_value": "9",
+    "notes": "The full mixed selector evaluation uses nine repeated stratified validation splits.",
+    "source_links": [
+      {
+        "path": "data/results/full_selection/selector_evaluation_run_summary.json",
+        "url": "https://github.com/kaasgz/magistraDarbs/blob/main/data/results/full_selection/selector_evaluation_run_summary.json"
+      }
+    ]
+  },
+  "DATA-239": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Novērtēšanas rezultāti bija samērā stabili dažādos datu sadalījumos.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-240": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Klasifikācijas precizitātes standartnovirze bija 0,0064, sabalansētās precizitātes standartnovirze - 0,0139, bet nožēlas rādītāja standartnovirze - 0,0192.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-241": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tas norāda, ka rezultāts nav balstīts tikai uz vienu veiksmīgu datu sadalījumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-242": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tomēr šāda stabilitāte nenozīmē, ka modelis automātiski būtu vispārināms uz citām datu kopām vai pilnīgāku risinātāju portfeli.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-243": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Svarīgākais interpretācijas ierobežojums ir saistīts ar mērķa mainīgā sadalījumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-244": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Pašreizējā jauktajā datu kopā best_solver cieši sakrīt ar datu apakškopas raksturu: sintētiskajās instancēs par piemērotāko risinātāju noteikts cpsat_solver, savukārt reālajās instancēs - simulated_annealing_solver.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-245": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Lai gan datu izcelsmes lauki netika izmantoti modeļa ievadē, reālās un sintētiskās instances var būt netieši atšķiramas pēc strukturālajām pazīmēm, piemēram, komandu skaita, laika posmu skaita, ierobežojumu skaita, ierobežojumu blīvuma vai ierobežojumu daudzveidības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-246": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tāpēc augstā precizitāte šajā darbā galvenokārt parāda, ka izveidotajā jauktajā datu kopā strukturālās pazīmes ir pietiekamas best_solver vērtības atjaunošanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-247": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Tā vēl nepierāda, ka modelis spētu vispārināties uz jaunu reālo instanču kopu vai uz portfeli ar pilnīgāku RobinX un ITC2021 ierobežojumu semantikas atbalstu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-248": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Šīs apakšnodaļas galvenais secinājums ir, ka algoritmu izvēles pieeja konkrētajā eksperimentālajā uzstādījumā darbojas un sniedz izmērāmu ieguvumu salīdzinājumā ar labāko fiksēto risinātāju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-249": {
+    "file": null,
+    "column": null,
+    "description": "4. Algoritmu izvēles modeļa izveide un novērtēšana: Vienlaikus rezultātu vispārināšanai nepieciešama plašāka un līdzsvarotāka datu kopa, kurā mērķa klašu sadalījums nav tik cieši saistīts ar datu izcelsmi, kā arī pilnīgāks risinātāju portfelis ar plašāku RobinX un ITC2021 ierobežojumu semantikas atbalstu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-250": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šajā apakšnodaļā algoritmu izvēles modeļa rezultāti aplūkoti detalizētāk nekā kopējā veiktspējas novērtējumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-251": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Galvenā uzmanība pievērsta mērķa klašu sadalījumam, klasifikācijas kļūdām un pazīmju nozīmīguma interpretācijai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-252": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šāda analīze ir nepieciešama, jo augsta kopējā precizitāte pati par sevi vēl neparāda, pēc kādas informācijas modelis veic prognozes un kādos gadījumos tas kļūdās.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-253": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Būtiska eksperimenta īpatnība ir mērķa mainīgā best_solver sadalījums.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-254": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Pašreizējā jauktajā datu kopā sintētiskajām instancēm par piemērotāko risinātāju visos gadījumos noteikts CP-SAT modelis (cpsat_solver), savukārt reālajām instancēm - simulētās rūdīšanas risinātājs (simulated_annealing_solver).",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-255": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tādēļ algoritmu izvēles uzdevums šajā eksperimentālajā uzstādījumā daļēji pārklājas ar strukturāli atšķirīgu instanču grupu nošķiršanu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-256": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šis apstāklis jāņem vērā, interpretējot gan augsto klasifikācijas precizitāti, gan pazīmju nozīmīguma rezultātus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-257": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Kļūdu analīze rāda, ka deviņos pārbaudes sadalījumos tika novērotas tikai trīs klasifikācijas kļūdas.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-258": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Visas kļūdas attiecās uz vienu un to pašu reālo instanci - Test Instance Demo, kas atkārtotās krustotās pārbaudes dēļ vairākos sadalījumos nonāca testa daļā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-259": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šajos gadījumos modelis prognozēja cpsat_solver, lai gan pēc mērķa mainīgā definīcijas piemērotākais risinātājs bija simulated_annealing_solver.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-260": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Katras šādas kļūdas nožēlas rādītājs pret VBS bija 3,0 mērķfunkcijas vienības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-261": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Kļūdas nebija vienmērīgi izkliedētas visā datu kopā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-262": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: cpsat_solver klase tika prognozēta pareizi 540 gadījumos no 540, savukārt simulated_annealing_solver klase - 159 gadījumos no 162.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-263": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Trīs atlikušajos gadījumos simulated_annealing_solver tika sajaukts ar cpsat_solver.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-264": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tas nozīmē, ka kļūdas koncentrējas vienā konkrētā robežgadījumā, nevis atkārtojas dažādos instanču tipos.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-265": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šāda kļūdu koncentrācija ir būtiska rezultātu interpretācijai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-266": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tā norāda, ka modelis kopumā stabili nošķir abas mērķa klases, tomēr viena reālā instance pēc strukturālajām pazīmēm, visticamāk, ir tuvāka sintētisko instanču profilam vai neatbilst tipiskajam reālo instanču raksturojumam.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-267": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tā kā mērķa telpā faktiski parādās tikai divi risinātāji, kļūdu analīze šajā eksperimentā galvenokārt nozīmē to gadījumu izpēti, kuros modelis sajauc cpsat_solver un simulated_annealing_solver.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-268": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Svarīgāko pazīmju nozīmīgums nejaušo mežu modelī parādīts attēlā “Svarīgāko strukturālo pazīmju nozīmīgums algoritmu izvēles modelī”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-269": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Attēlā “Svarīgāko strukturālo pazīmju nozīmīgums algoritmu izvēles modelī” redzams, ka nozīmīgākās pazīmes galvenokārt saistītas ar ierobežojumu blīvumu, ierobežojumu sastāvu un ierobežojumu daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-270": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Augstāko nozīmīgumu ieguva constraints_per_slot, ratio_constraint_tags_to_constraints, num_soft_constraints, ratio_constraint_types_to_constraints un constraints_per_team.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-271": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Lai gan šie nosaukumi ir datu kopas kolonnu nosaukumi, to saturs ir interpretējams arī plašākā strukturālā nozīmē.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-272": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šīs pazīmes var sasaistīt ar vairākiem vispārīgiem strukturāliem rādītājiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-273": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: constraints_per_slot, slot_pressure un slot_surplus raksturo ierobežojumu slodzi attiecībā pret laika resursu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-274": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: constraints_per_team raksturo ierobežojumu slodzi attiecībā pret plānojamajiem objektiem, šajā gadījumā komandām.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-275": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: num_soft_constraints un num_hard_constraints raksturo attiecīgi kvalitātes kritēriju apjomu un pieļaujamības nosacījumu apjomu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-276": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Savukārt ratio_constraint_tags_to_constraints, ratio_constraint_types_to_constraints un ratio_constraint_categories_to_constraints raksturo ierobežojumu daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-277": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tādējādi modelī nozīmīgās pazīmes nav tikai tehniski kolonnu nosaukumi, bet rādītāji, kas apraksta risinājumu telpas ierobežotību, kvalitātes kritēriju nozīmi un prasību struktūras daudzveidību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-278": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Lai novērtētu, vai modelis balstās galvenokārt uz instances izmēru vai izmanto arī ierobežojumu struktūras informāciju, pazīmju nozīmīgums tika apkopots pa pazīmju grupām.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-279": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Rezultāti apkopoti tabulā “Pazīmju grupu kopējais nozīmīgums”.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-280": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tabulā “Pazīmju grupu kopējais nozīmīgums” redzams, ka lielāko kopējo nozīmīgumu veido ierobežojumu daudzveidības un blīvuma pazīmes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-281": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tas ir būtiski darba interpretācijai, jo modelis nebalstās tikai uz instances izmēru, piemēram, komandu vai laika posmu skaitu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-282": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Lielāka nozīme ir tam, kā ierobežojumi sadalās, cik intensīvi tie noslogo laika posmus un komandas, kā arī cik daudzveidīga ir ierobežojumu struktūra.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-283": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šis rezultāts atbalsta darba pieņēmumu, ka algoritmu izvēlē nozīmīga var būt ne tikai problēmas mēroga informācija, bet arī ierobežojumu organizācija.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-284": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Vienlaikus pazīmju nozīmīguma rezultāti jāinterpretē piesardzīgi.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-285": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Nejaušo mežu pazīmju nozīmīgums parāda, kuras pazīmes modelis izmanto prognozēšanā, bet nepierāda cēlonisku saistību starp konkrētu pazīmi un risinātāja pārākumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-286": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Turklāt reālās un sintētiskās instances šajā datu kopā būtiski atšķiras pēc struktūras, tāpēc daļa pazīmju nozīmīguma var atspoguļot šo divu datu grupu atšķirības.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-287": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tādēļ šie rezultāti nav jāinterpretē tā, ka, piemēram, lielāka constraints_per_slot vērtība vienmēr nozīmē konkrēta risinātāja priekšrocību.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-288": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tie drīzāk rāda, ka šāda strukturālā informācija šajā eksperimentālajā uzstādījumā ir noderīga modeļa lēmumu pieņemšanā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-289": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Šīs apakšnodaļas galvenais secinājums ir, ka strukturālās pazīmes ietver informāciju, ko modelis izmanto best_solver prognozēšanai konkrētajā jauktajā datu kopā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-290": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tomēr iegūtie rezultāti nav uzskatāmi par galīgu pierādījumu universālai algoritmu izvēles metodei sporta turnīru kalendāru sastādīšanā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-291": {
+    "file": null,
+    "column": null,
+    "description": "4. Eksperimentu rezultāti: Tie apstiprina pieejas realizējamību konkrētajā eksperimentālajā vidē, vienlaikus norādot uz nepieciešamību pārbaudīt pieeju līdzsvarotākā datu kopā un ar pilnīgāku risinātāju portfeli.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-292": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Eksperimentālās daļas rezultāti parāda, ka algoritmu izvēles pieeju sporta turnīru kalendāru sastādīšanā var īstenot reproducējamā veidā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-293": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Izveidotā procedūra ļauj sasaistīt instanču strukturālās pazīmes ar risinātāju portfeļa rezultātiem, definēt mērķa mainīgo best_solver un novērtēt modeli piemērotākā risinātāja prognozēšanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-294": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Vienlaikus rezultāti jāinterpretē konkrētā eksperimentālā uzstādījuma robežās, jo datu kopas sastāvs, risinātāju portfelis un vērtēšanas tvērums būtiski ietekmē gan mērķa mainīgo, gan modeļa novērtējumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-295": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Būtiskākais praktiskais rezultāts ir izveidotā un pārbaudāmā algoritmu izvēles eksperimentālā procedūra.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-296": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Instances tiek raksturotas ar pirms risināšanas iegūstamām strukturālām pazīmēm, risinātāju rezultāti tiek saglabāti kopā ar interpretācijas statusiem, bet mērķa mainīgais tiek veidots tikai no tehniski izmantojamiem rezultātiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-297": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Šāds nodalījums mazina informācijas noplūdes risku un ļauj pārbaudīt, kā katrai instancei iegūta konkrētā best_solver vērtība.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-298": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Empīriskie rezultāti rāda, ka konkrētajā jauktajā datu kopā modelis sasniedza augstu prognozēšanas precizitāti un uzlaboja vidējo mērķfunkcijas vērtību salīdzinājumā ar labāko fiksēto risinātāju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-299": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Tomēr šis rezultāts nav uzskatāms par pierādījumu universālai algoritmu izvēles modeļa efektivitātei.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-300": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Pašreizējā datu kopā mērķa klašu sadalījums ir cieši saistīts ar datu grupām, tāpēc augstā precizitāte galvenokārt parāda, ka strukturālās pazīmes ir pietiekamas šīs konkrētās mērķa vērtības atjaunošanai.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-301": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Pazīmju nozīmīguma analīze norāda, ka modelis prognozēšanā izmantoja ne tikai instances izmēra pazīmes, bet arī ierobežojumu blīvuma, sastāva un daudzveidības rādītājus.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-302": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Tas atbilst darba pieņēmumam, ka algoritmu izvēlē nozīme var būt ne tikai komandu vai laika posmu skaitam, bet arī ierobežojumu organizācijai konkrētajā instancē.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-303": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Vienlaikus šie rezultāti jāinterpretē piesardzīgi, jo pazīmju nozīmīgums nepierāda cēlonisku saistību starp konkrētu pazīmi un risinātāja pārākumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-304": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Galvenie eksperimenta ierobežojumi apkopoti “Eksperimenta ierobežojumu kopsavilkums” tabulā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-305": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Tabulā “Eksperimenta ierobežojumu kopsavilkums” apkopotie ierobežojumi parāda, ka galvenie piesardzības iemesli saistīti nevis ar modeļa tehnisku darbību, bet ar eksperimenta uzstādījumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-306": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Īpaši svarīgi ir tas, ka best_solver nenozīmē objektīvi labāko algoritmu visai sporta turnīru kalendāru sastādīšanas problēmu klasei.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-307": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Tas apzīmē piemērotāko tehniski izmantojamo risinātāju šajā datu kopā, šajā atskaites portfelī un šajā vērtēšanas tvērumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-308": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Ja portfelī tiktu iekļauti pilnīgāki risinātāji ar plašāku RobinX un ITC2021 ierobežojumu semantikas atbalstu, mērķa mainīgā sadalījums un modeļa secinājumi varētu mainīties.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-309": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: No metodoloģiskā viedokļa darba praktiskās daļas vērtība nav tikai sasniegtā klasifikācijas precizitāte.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-310": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Būtiska ir arī pati eksperimentālā procedūra: tajā atsevišķi nodalīts instances strukturālais apraksts, risinātāju izpildes rezultāti, rezultātu derīguma statusi, mērķa mainīgā izveides informācija un modeļa apmācībā izmantojamās pazīmes.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-311": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Šāds nodalījums ļauj pārbaudīt datu kopas izveidi un uztur algoritmu izvēles uzdevuma korektu interpretāciju.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-312": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Kopumā rezultāti apstiprina algoritmu izvēles pieejas realizējamību konkrētajā pētījuma uzstādījumā.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-313": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Strukturālās pazīmes šajā datu kopā ietver informāciju, ar kuru iespējams prognozēt best_solver, un modelis sasniedz labākus rezultātus nekā labākais fiksētais risinātājs.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-314": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Tomēr šis secinājums attiecas uz šajā darbā definēto datu kopu, atskaites portfeli un vērtēšanas tvērumu.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  },
+  "DATA-315": {
+    "file": null,
+    "column": null,
+    "description": "4. Rezultātu interpretācija un ierobežojumi: Pieejas vispārināmības pārbaudei nepieciešama plašāka un līdzsvarotāka instanču kopa, neatkarīga pārbaude un portfelis ar vairākiem pilnvērtīgiem, savstarpēji konkurējošiem risinātājiem.",
+    "status": "NOT_FOUND",
+    "actual_value": "",
+    "notes": "This sentence is interpretive or too broad for exact machine validation from repository artifacts.",
+    "source_links": []
+  }
+}

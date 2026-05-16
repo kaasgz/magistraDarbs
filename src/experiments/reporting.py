@@ -1,4 +1,4 @@
-"""Thesis-friendly reporting utilities for benchmark and selector artifacts."""
+# Thesis-friendly reporting utilities for benchmark and selector artifacts.
 
 from __future__ import annotations
 
@@ -32,8 +32,8 @@ DEFAULT_OUTPUT_DIR = Path("data/results/thesis_artifacts")
 
 @dataclass(slots=True)
 class ThesisArtifactResult:
-    """Summary of exported thesis-friendly experiment artifacts."""
 
+    # Summary of exported thesis-friendly experiment artifacts.
     output_dir: Path
     solver_comparison_csv: Path
     selector_summary_csv: Path
@@ -51,8 +51,8 @@ def generate_thesis_artifacts(
     *,
     run_summary_path: str | Path | None = None,
 ) -> ThesisArtifactResult:
-    """Generate thesis-facing tables, figures, and Markdown summaries."""
 
+    # Generate thesis-facing tables, figures, and Markdown summaries.
     benchmark_path = Path(benchmark_csv)
     evaluation_summary_path = Path(evaluation_summary_csv)
     importance_path = Path(feature_importance_csv)
@@ -137,8 +137,8 @@ def generate_thesis_artifacts(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for thesis artifact export."""
 
+    # Create the command-line parser for thesis artifact export.
     parser = argparse.ArgumentParser(
         description="Generate thesis-friendly tables and plots from experiment artifacts.",
     )
@@ -166,8 +166,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run thesis artifact export from the command line."""
 
+    # Run thesis artifact export from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
     try:
@@ -186,8 +186,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _build_solver_comparison_table(benchmark_frame: pd.DataFrame) -> pd.DataFrame:
-    """Build one thesis-friendly solver comparison table from benchmark results."""
 
+    # Build one thesis-friendly solver comparison table from benchmark results.
     objective_summary = average_objective_by_solver(benchmark_frame)
     runtime_summary = average_runtime_by_solver(benchmark_frame)
     virtual_best_rows = best_solver_per_instance(benchmark_frame)
@@ -236,8 +236,8 @@ def _build_solver_comparison_table(benchmark_frame: pd.DataFrame) -> pd.DataFram
 
 
 def _build_selector_summary_table(evaluation_summary: pd.DataFrame) -> pd.DataFrame:
-    """Build a concise selector vs SBS vs VBS comparison table."""
 
+    # Build a concise selector vs SBS vs VBS comparison table.
     mean_row = _select_summary_row(evaluation_summary, "aggregate_mean")
     std_row = _select_summary_row(evaluation_summary, "aggregate_std")
     split_count = int(
@@ -294,8 +294,8 @@ def _build_selector_summary_table(evaluation_summary: pd.DataFrame) -> pd.DataFr
 
 
 def _build_feature_importance_table(feature_importance: pd.DataFrame) -> pd.DataFrame:
-    """Build a cleaned feature importance export for thesis reuse."""
 
+    # Build a cleaned feature importance export for thesis reuse.
     required_columns = {"feature", "importance"}
     missing_columns = sorted(required_columns.difference(feature_importance.columns))
     if missing_columns:
@@ -337,8 +337,8 @@ def _build_feature_importance_table(feature_importance: pd.DataFrame) -> pd.Data
 
 
 def _plot_solver_runtime_comparison(summary: pd.DataFrame, output_path: Path) -> None:
-    """Plot average runtime per solver with a clean thesis-friendly style."""
 
+    # Plot average runtime per solver with a clean thesis-friendly style.
     figure, axis = plt.subplots(figsize=(8.5, 4.5))
     available = summary.dropna(subset=["average_runtime"]).copy()
     if available.empty:
@@ -365,8 +365,8 @@ def _plot_solver_runtime_comparison(summary: pd.DataFrame, output_path: Path) ->
 
 
 def _plot_selector_objective_comparison(summary: pd.DataFrame, output_path: Path) -> None:
-    """Plot selector, SBS, and VBS objective comparison."""
 
+    # Plot selector, SBS, and VBS objective comparison.
     figure, axis = plt.subplots(figsize=(8.5, 4.5))
     available = summary.dropna(subset=["average_objective"]).copy()
     if available.empty:
@@ -409,8 +409,8 @@ def _build_summary_markdown(
     selector_summary: pd.DataFrame,
     importance_table: pd.DataFrame,
 ) -> str:
-    """Render a concise Markdown summary for thesis writing."""
 
+    # Render a concise Markdown summary for thesis writing.
     lines = [
         "# Thesis Artifact Summary",
         "",
@@ -472,8 +472,8 @@ def _build_summary_markdown(
 
 
 def _select_summary_row(summary: pd.DataFrame, row_type: str) -> pd.Series:
-    """Return one evaluation summary row by type with a stable fallback."""
 
+    # Return one evaluation summary row by type with a stable fallback.
     if "summary_row_type" not in summary.columns:
         raise ValueError("Evaluation summary CSV must contain a 'summary_row_type' column.")
     matches = summary[summary["summary_row_type"] == row_type]
@@ -485,8 +485,8 @@ def _select_summary_row(summary: pd.DataFrame, row_type: str) -> pd.Series:
 
 
 def _markdown_table(frame: pd.DataFrame, *, columns: list[str]) -> str:
-    """Render a small dataframe as a simple Markdown table."""
 
+    # Render a small dataframe as a simple Markdown table.
     available_columns = [column for column in columns if column in frame.columns]
     if frame.empty or not available_columns:
         return "_No rows available._"
@@ -503,8 +503,8 @@ def _markdown_table(frame: pd.DataFrame, *, columns: list[str]) -> str:
 
 
 def _format_markdown_value(value: object) -> str:
-    """Format one scalar value for Markdown output."""
 
+    # Format one scalar value for Markdown output.
     if value is None:
         return "NA"
     numeric = _to_float(value)
@@ -517,14 +517,14 @@ def _format_markdown_value(value: object) -> str:
 
 
 def _labelize(value: str) -> str:
-    """Convert one identifier-like string into a readable label."""
 
+    # Convert one identifier-like string into a readable label.
     return value.replace("_", " ").strip().title()
 
 
 def _to_float(value: object) -> float:
-    """Convert a scalar value to float with NaN fallback."""
 
+    # Convert a scalar value to float with NaN fallback.
     if value is None:
         return float("nan")
     try:

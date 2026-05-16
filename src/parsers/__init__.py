@@ -1,4 +1,4 @@
-"""Parsing utilities for sports timetabling instances."""
+# Parsing utilities for sports timetabling instances.
 
 from src.parsers.instance_inventory import build_instance_inventory, instance_inventory_report
 from src.parsers.real_dataset_inventory import (

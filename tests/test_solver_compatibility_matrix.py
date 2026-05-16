@@ -1,4 +1,4 @@
-"""Tests for the real-instance solver compatibility matrix."""
+# Tests for the real-instance solver compatibility matrix.
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ from src.experiments.full_benchmark import DEFAULT_FULL_SOLVER_PORTFOLIO
 
 
 def test_build_solver_compatibility_matrix_classifies_core_solver_scope(tmp_path: Path) -> None:
-    """The matrix should report conservative per-solver support decisions."""
 
+    # The matrix should report conservative per-solver support decisions.
     input_dir = tmp_path / "data" / "raw" / "real"
     input_dir.mkdir(parents=True)
     (input_dir / "single_clean.xml").write_text(_single_clean_xml(), encoding="utf-8")
@@ -64,8 +64,8 @@ def test_build_solver_compatibility_matrix_classifies_core_solver_scope(tmp_path
 
 
 def test_solver_compatibility_matrix_records_parser_failures(tmp_path: Path) -> None:
-    """Unparseable XML files should produce explicit unsupported rows."""
 
+    # Unparseable XML files should produce explicit unsupported rows.
     input_dir = tmp_path / "real"
     input_dir.mkdir()
     (input_dir / "broken.xml").write_text("", encoding="utf-8")
@@ -92,14 +92,14 @@ def test_solver_compatibility_matrix_records_parser_failures(tmp_path: Path) -> 
 
 
 def _status(matrix: pd.DataFrame, instance_name: str, solver_name: str) -> str:
-    """Return the support status for one matrix row."""
 
+    # Return the support status for one matrix row.
     return _field(matrix, instance_name, solver_name, "support_status")
 
 
 def _field(matrix: pd.DataFrame, instance_name: str, solver_name: str, column: str) -> str:
-    """Return one field from the compatibility matrix."""
 
+    # Return one field from the compatibility matrix.
     row = matrix[
         (matrix["instance_name"] == instance_name)
         & (matrix["solver_name"] == solver_name)
@@ -108,8 +108,8 @@ def _field(matrix: pd.DataFrame, instance_name: str, solver_name: str, column: s
 
 
 def _single_clean_xml() -> str:
-    """Return a small single round-robin instance without declared constraints."""
 
+    # Return a small single round-robin instance without declared constraints.
     return "\n".join(
         [
             '<Instance name="SingleClean">',
@@ -133,8 +133,8 @@ def _single_clean_xml() -> str:
 
 
 def _double_constrained_xml() -> str:
-    """Return a double round-robin instance with one parsed constraint family."""
 
+    # Return a double round-robin instance with one parsed constraint family.
     return "\n".join(
         [
             '<Instance name="DoubleConstrained">',

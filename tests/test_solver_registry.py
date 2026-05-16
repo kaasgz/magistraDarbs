@@ -1,4 +1,4 @@
-"""Tests for the solver registry."""
+# Tests for the solver registry.
 
 import pytest
 
@@ -10,8 +10,8 @@ from src.solvers.timefold_solver import TimefoldSolver
 
 
 def test_available_solvers_lists_registered_names() -> None:
-    """The registry should expose the configured solver names."""
 
+    # The registry should expose the configured solver names.
     assert available_solvers() == [
         "cpsat_solver",
         "random_baseline",
@@ -21,8 +21,8 @@ def test_available_solvers_lists_registered_names() -> None:
 
 
 def test_get_solver_returns_requested_solver_instances() -> None:
-    """Registered names should construct the matching solver classes."""
 
+    # Registered names should construct the matching solver classes.
     assert isinstance(get_solver("random_baseline"), RandomBaselineSolver)
     assert isinstance(get_solver("cpsat_solver"), CPSatSolver)
     assert isinstance(
@@ -33,8 +33,8 @@ def test_get_solver_returns_requested_solver_instances() -> None:
 
 
 def test_get_solver_forwards_constructor_kwargs() -> None:
-    """Registry lookup should pass keyword arguments to solver constructors."""
 
+    # Registry lookup should pass keyword arguments to solver constructors.
     solver = get_solver("simulated_annealing_solver", max_iterations=123)
 
     assert isinstance(solver, SimulatedAnnealingSolver)
@@ -42,15 +42,15 @@ def test_get_solver_forwards_constructor_kwargs() -> None:
 
 
 def test_get_solver_raises_clear_error_for_unknown_name() -> None:
-    """Unknown registry names should raise a helpful error."""
 
+    # Unknown registry names should raise a helpful error.
     with pytest.raises(KeyError, match="Unknown solver 'missing_solver'"):
         get_solver("missing_solver")
 
 
 def test_solver_registry_exposes_conservative_portfolio_metadata() -> None:
-    """Every solver should declare its thesis-facing role and maturity."""
 
+    # Every solver should declare its thesis-facing role and maturity.
     metadata = solver_portfolio_metadata()
 
     assert [entry.registry_name for entry in metadata] == available_solvers()

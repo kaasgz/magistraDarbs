@@ -1,0 +1,80 @@
+{
+  "stage_name": "selector_evaluation",
+  "generated_at": "2026-04-19T20:11:38+03:00",
+  "config_path": "configs/real_pipeline_current.yaml",
+  "settings": {
+    "random_seed": 42,
+    "model_name": "random_forest",
+    "split_strategy": "repeated_stratified_kfold",
+    "test_size": 0.25,
+    "cross_validation_folds": 3,
+    "repeats": 3,
+    "split_notes": [
+      "Cross-validation fell back to non-stratified folds because only one class is present."
+    ],
+    "evaluation_uses_out_of_sample_validation": true,
+    "model_path_recorded_for_traceability_only": true
+  },
+  "inputs": {
+    "selection_dataset_csv": "data/processed/real_pipeline_current/selection_dataset.csv",
+    "benchmark_results_csv": "data/results/real_pipeline_current/benchmark_results.csv",
+    "model_output": "data/results/real_pipeline_current/random_forest_selector.joblib"
+  },
+  "outputs": {
+    "evaluation_report_csv": "data/results/real_pipeline_current/selector_evaluation.csv",
+    "evaluation_summary_csv": "data/results/real_pipeline_current/selector_evaluation_summary.csv",
+    "evaluation_summary_markdown": "data/results/real_pipeline_current/selector_evaluation_summary.md",
+    "run_summary": "data/results/real_pipeline_current/selector_evaluation_run_summary.json"
+  },
+  "results": {
+    "single_best_solver_name": "simulated_annealing_baseline",
+    "classification_accuracy": 1.0,
+    "balanced_accuracy": null,
+    "average_selected_objective": 30.759259259259256,
+    "average_virtual_best_objective": 30.759259259259256,
+    "average_single_best_objective": 30.759259259259256,
+    "regret_vs_virtual_best": 0.0,
+    "delta_vs_single_best": 0.0,
+    "improvement_vs_single_best": -0.0,
+    "num_test_instances": 162,
+    "num_validation_splits": 9,
+    "metrics_by_dataset_type": {}
+  },
+  "config_snapshot": {
+    "paths": {
+      "instance_folder": "data/raw/real",
+      "processed_dir": "data/processed/real_pipeline_current",
+      "results_dir": "data/results/real_pipeline_current"
+    },
+    "run": {
+      "random_seed": 42,
+      "time_limit_seconds": 60,
+      "fail_on_unparseable_inventory": false
+    },
+    "solvers": {
+      "settings": {
+        "timefold": {
+          "executable_path": null,
+          "time_limit_seconds": 60,
+          "command_arguments": []
+        }
+      }
+    },
+    "split": {
+      "strategy": "repeated_stratified_kfold",
+      "test_size": 0.25,
+      "cross_validation_folds": 3,
+      "repeats": 3
+    },
+    "selector": {
+      "model_choice": "random_forest"
+    },
+    "dataset": {
+      "include_solver_objectives": true
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2",
+    "platform": "Windows-11-10.0.26200-SP0"
+  }
+}

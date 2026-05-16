@@ -1,4 +1,4 @@
-"""Tests for structural feature extraction."""
+# Tests for structural feature extraction.
 
 from pathlib import Path
 
@@ -12,16 +12,16 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 class ObjectiveMetadata(TournamentMetadata):
-    """Metadata variant used to test optional objective features."""
 
+    # Metadata variant used to test optional objective features.
     objective_name: str | None = None
     objective_sense: str | None = None
     round_robin_mode: str | None = None
 
 
 def test_extract_features_returns_expected_grouped_values_for_valid_instance() -> None:
-    """The extractor should return stable, interpretable feature values."""
 
+    # The extractor should return stable, interpretable feature values.
     instance = load_instance(str(FIXTURES_DIR / "sample_robinx.xml"))
 
     features = extract_features(instance)
@@ -63,8 +63,8 @@ def test_extract_features_returns_expected_grouped_values_for_valid_instance() -
 
 
 def test_extract_features_returns_safe_defaults_for_sparse_instance() -> None:
-    """Missing optional sections should produce stable zero-like fallbacks."""
 
+    # Missing optional sections should produce stable zero-like fallbacks.
     instance = load_instance(str(FIXTURES_DIR / "sample_robinx_missing_sections.xml"))
 
     features = extract_features(instance)
@@ -99,8 +99,8 @@ def test_extract_features_returns_safe_defaults_for_sparse_instance() -> None:
 
 
 def test_extract_features_reads_objective_metadata_when_present() -> None:
-    """Objective-related features should be populated when metadata provides them."""
 
+    # Objective-related features should be populated when metadata provides them.
     instance = InstanceSummary(
         metadata=ObjectiveMetadata(
             name="ObjectiveFixture",
@@ -126,8 +126,8 @@ def test_extract_features_reads_objective_metadata_when_present() -> None:
 
 
 def test_extract_features_is_deterministic_for_same_fixture() -> None:
-    """The same parsed instance should always produce the same feature mapping."""
 
+    # The same parsed instance should always produce the same feature mapping.
     instance = load_instance(str(FIXTURES_DIR / "sample_robinx.xml"))
 
     first = extract_features(instance)

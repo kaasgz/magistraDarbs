@@ -1,4 +1,4 @@
-"""Helpers for loading simple YAML experiment configuration files."""
+# Helpers for loading simple YAML experiment configuration files.
 
 from __future__ import annotations
 
@@ -13,18 +13,18 @@ _MISSING = object()
 
 
 def load_yaml_config(config_path: str | Path) -> dict[str, Any]:
-    """Load a YAML configuration file into a dictionary.
 
-    Args:
-        config_path: Path to a YAML file.
-
-    Returns:
-        Parsed configuration data as a dictionary.
-
-    Raises:
-        ValueError: If the YAML file does not contain a mapping at the top level.
-    """
-
+    # Load a YAML configuration file into a dictionary.
+    #
+    # Args:
+    # config_path: Path to a YAML file.
+    #
+    # Returns:
+    # Parsed configuration data as a dictionary.
+    #
+    # Raises:
+    # ValueError: If the YAML file does not contain a mapping at the top level.
+    #
     path = Path(config_path)
     with path.open("r", encoding="utf-8") as handle:
         data = yaml.safe_load(handle)
@@ -41,8 +41,8 @@ def get_config_value(
     dotted_key: str,
     default: object = _MISSING,
 ) -> Any:
-    """Read a nested configuration value using dotted-key lookup."""
 
+    # Read a nested configuration value using dotted-key lookup.
     current: Any = config
     for part in dotted_key.split("."):
         if not isinstance(current, Mapping) or part not in current:
@@ -58,8 +58,8 @@ def get_config_path(
     dotted_key: str,
     default: object = _MISSING,
 ) -> Path:
-    """Read a path-like configuration value and coerce it to ``Path``."""
 
+    # Read a path-like configuration value and coerce it to ``Path``.
     value = get_config_value(config, dotted_key, default=default)
     if value is None:
         raise ValueError(f"Configuration key '{dotted_key}' must not be null.")
@@ -73,8 +73,8 @@ def get_config_string_list(
     dotted_key: str,
     default: object = _MISSING,
 ) -> list[str]:
-    """Read a list of non-empty strings from a configuration mapping."""
 
+    # Read a list of non-empty strings from a configuration mapping.
     value = get_config_value(config, dotted_key, default=default)
     if not isinstance(value, list):
         raise ValueError(f"Configuration key '{dotted_key}' must be a list.")

@@ -1,4 +1,4 @@
-"""Real-data inventory helper for RobinX / ITC2021 XML folders."""
+# Real-data inventory helper for RobinX / ITC2021 XML folders.
 
 from __future__ import annotations
 
@@ -19,14 +19,14 @@ def build_real_dataset_inventory(
     input_folder: str | Path = DEFAULT_REAL_INPUT_FOLDER,
     output_csv: str | Path = DEFAULT_REAL_OUTPUT_PATH,
 ) -> Path:
-    """Build a recursive inventory for real RobinX / ITC2021 XML files."""
 
+    # Build a recursive inventory for real RobinX / ITC2021 XML files.
     return build_instance_inventory(input_folder=input_folder, output_csv=output_csv)
 
 
 def real_dataset_inventory_report(inventory_csv: str | Path = DEFAULT_REAL_OUTPUT_PATH) -> str:
-    """Return a concise terminal summary for a real-data inventory CSV."""
 
+    # Return a concise terminal summary for a real-data inventory CSV.
     path = Path(inventory_csv)
     frame = pd.read_csv(path)
 
@@ -44,8 +44,8 @@ def real_dataset_inventory_report(inventory_csv: str | Path = DEFAULT_REAL_OUTPU
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for real-data inventory generation."""
 
+    # Create the command-line parser for real-data inventory generation.
     parser = argparse.ArgumentParser(
         description="Scan data/raw/real recursively and save a real-data inventory CSV.",
     )
@@ -64,8 +64,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the real-data inventory helper from the command line."""
 
+    # Run the real-data inventory helper from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
     try:
@@ -79,8 +79,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _coerce_bool(value: object) -> bool:
-    """Convert CSV-style booleans into Python booleans."""
 
+    # Convert CSV-style booleans into Python booleans.
     if isinstance(value, bool):
         return value
     if pd.isna(value):

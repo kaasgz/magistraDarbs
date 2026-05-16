@@ -1,4 +1,4 @@
-"""Tests for XML instance inventory generation and reporting."""
+# Tests for XML instance inventory generation and reporting.
 
 from __future__ import annotations
 
@@ -18,8 +18,8 @@ FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 def test_build_instance_inventory_writes_summary_for_real_folder(tmp_path: Path) -> None:
-    """The inventory helper should summarize parseable XML files in a real-data folder."""
 
+    # The inventory helper should summarize parseable XML files in a real-data folder.
     input_dir = tmp_path / "data" / "raw" / "real"
     input_dir.mkdir(parents=True)
     (input_dir / "sample.xml").write_text(
@@ -61,8 +61,8 @@ def test_build_instance_inventory_writes_summary_for_real_folder(tmp_path: Path)
 
 
 def test_build_instance_inventory_marks_unparseable_files(tmp_path: Path) -> None:
-    """Malformed or unusable XML files should stay visible in the inventory."""
 
+    # Malformed or unusable XML files should stay visible in the inventory.
     input_dir = tmp_path / "data" / "raw" / "real"
     input_dir.mkdir(parents=True)
     (input_dir / "broken.xml").write_text("<Instance><Teams>", encoding="utf-8")
@@ -78,8 +78,8 @@ def test_build_instance_inventory_marks_unparseable_files(tmp_path: Path) -> Non
 
 
 def test_build_real_dataset_inventory_scans_recursively_and_reports_totals(tmp_path: Path) -> None:
-    """The real-data wrapper should recurse under data/raw/real and print concise totals."""
 
+    # The real-data wrapper should recurse under data/raw/real and print concise totals.
     input_dir = tmp_path / "data" / "raw" / "real"
     nested_dir = input_dir / "league_a"
     nested_dir.mkdir(parents=True)
@@ -105,8 +105,8 @@ def test_build_real_dataset_inventory_scans_recursively_and_reports_totals(tmp_p
 
 
 def test_build_real_dataset_inventory_records_parser_warning_messages(tmp_path: Path) -> None:
-    """Recoverable XML warnings should stay visible in the real-data inventory CSV."""
 
+    # Recoverable XML warnings should stay visible in the real-data inventory CSV.
     input_dir = tmp_path / "data" / "raw" / "real"
     input_dir.mkdir(parents=True)
     xml_path = input_dir / "recoverable.xml"
@@ -137,8 +137,8 @@ def test_build_real_dataset_inventory_records_parser_warning_messages(tmp_path: 
 
 
 def test_build_real_dataset_inventory_marks_itc2021_style_xml_as_parseable(tmp_path: Path) -> None:
-    """Official-style ITC2021 XML structure should appear as parseable in the inventory."""
 
+    # Official-style ITC2021 XML structure should appear as parseable in the inventory.
     input_dir = tmp_path / "data" / "raw" / "real"
     input_dir.mkdir(parents=True)
     (input_dir / "itc2021_style.xml").write_text(

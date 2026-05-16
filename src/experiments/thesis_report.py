@@ -1,4 +1,4 @@
-"""Generate thesis-facing benchmark and selector summary reports."""
+# Generate thesis-facing benchmark and selector summary reports.
 
 from __future__ import annotations
 
@@ -40,8 +40,8 @@ _REQUIRED_BENCHMARK_COLUMNS = {
 
 @dataclass(frozen=True, slots=True)
 class ThesisBenchmarkReportResult:
-    """Paths written by the thesis-facing benchmark report generator."""
 
+    # Paths written by the thesis-facing benchmark report generator.
     output_dir: Path
     solver_comparison_csv: Path
     solver_comparison_markdown: Path
@@ -76,8 +76,8 @@ def generate_thesis_benchmark_report(
     real_evaluation_summary_csv: str | Path = DEFAULT_REAL_EVALUATION_SUMMARY_CSV,
     compatibility_matrix_csv: str | Path | None = DEFAULT_COMPATIBILITY_MATRIX_CSV,
 ) -> ThesisBenchmarkReportResult:
-    """Generate CSV and Markdown summaries suitable for thesis writing."""
 
+    # Generate CSV and Markdown summaries suitable for thesis writing.
     output_path = ensure_directory(output_dir)
 
     benchmark_frame, benchmark_inputs = _load_benchmark_inputs(
@@ -304,8 +304,8 @@ def generate_thesis_benchmark_report(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for thesis benchmark report generation."""
 
+    # Create the CLI parser for thesis benchmark report generation.
     parser = argparse.ArgumentParser(
         description="Generate thesis-facing CSV and Markdown benchmark reports.",
     )
@@ -381,8 +381,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the thesis benchmark report generator from the command line."""
 
+    # Run the thesis benchmark report generator from the command line.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
     try:
@@ -409,8 +409,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 def _report_output_paths(output_dir: Path) -> dict[str, Path]:
-    """Return stable output file paths for report artifacts."""
 
+    # Return stable output file paths for report artifacts.
     return {
         "solver_comparison_csv": output_dir / "solver_comparison.csv",
         "solver_comparison_markdown": output_dir / "solver_comparison.md",
@@ -436,8 +436,8 @@ def _load_benchmark_inputs(
     synthetic_benchmark_csv: str | Path,
     real_benchmark_csv: str | Path,
 ) -> tuple[pd.DataFrame, dict[str, Path]]:
-    """Load either one benchmark file or the refreshed synthetic/real pair."""
 
+    # Load either one benchmark file or the refreshed synthetic/real pair.
     if benchmark_csv is not None:
         path = Path(benchmark_csv)
         return pd.read_csv(path), {"benchmark_csv": path}
@@ -468,8 +468,8 @@ def _load_evaluation_inputs(
     real_evaluation_summary_csv: str | Path,
     report_scope: str,
 ) -> tuple[pd.DataFrame, dict[str, Path]]:
-    """Load selector evaluation summaries with explicit result scopes."""
 
+    # Load selector evaluation summaries with explicit result scopes.
     if evaluation_summary_csv is not None:
         path = Path(evaluation_summary_csv)
         summary = pd.read_csv(path)
@@ -493,8 +493,8 @@ def _load_evaluation_inputs(
 
 
 def _load_feature_importance(feature_importance_csv: str | Path | None) -> tuple[pd.DataFrame, Path | None]:
-    """Load optional feature-importance data."""
 
+    # Load optional feature-importance data.
     if feature_importance_csv is None:
         return pd.DataFrame(), None
     path = Path(feature_importance_csv)
@@ -502,8 +502,8 @@ def _load_feature_importance(feature_importance_csv: str | Path | None) -> tuple
 
 
 def _load_compatibility_summary(compatibility_matrix_csv: str | Path | None) -> pd.DataFrame:
-    """Summarize the real compatibility matrix when available."""
 
+    # Summarize the real compatibility matrix when available.
     columns = [
         "result_scope",
         "solver_registry_name",
@@ -554,8 +554,8 @@ def _load_compatibility_summary(compatibility_matrix_csv: str | Path | None) -> 
 
 
 def _prepare_benchmark_frame(benchmark_frame: pd.DataFrame, *, result_scope: ResultScope) -> pd.DataFrame:
-    """Validate and normalize benchmark rows for thesis reports."""
 
+    # Validate and normalize benchmark rows for thesis reports.
     missing_columns = sorted(_REQUIRED_BENCHMARK_COLUMNS.difference(benchmark_frame.columns))
     if missing_columns:
         joined = ", ".join(missing_columns)
@@ -609,8 +609,8 @@ def _prepare_benchmark_frame(benchmark_frame: pd.DataFrame, *, result_scope: Res
 
 
 def _resolve_result_scopes(frame: pd.DataFrame, *, result_scope: ResultScope) -> pd.Series:
-    """Resolve explicit synthetic/real result scopes for benchmark rows."""
 
+    # Resolve explicit synthetic/real result scopes for benchmark rows.
     if result_scope != "auto":
         return pd.Series([result_scope] * len(frame.index), index=frame.index, dtype="string")
     if "result_scope" in frame.columns:
@@ -625,8 +625,8 @@ def _build_solver_comparison_table(
     *,
     compatibility_summary: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Build the main solver comparison report table."""
 
+    # Build the main solver comparison report table.
     group_columns = ["result_scope", "solver_registry_name", "solver_name"]
     runtime_summary = (
         frame.groupby(group_columns, as_index=False)
@@ -767,8 +767,8 @@ def _build_solver_comparison_table(
 
 
 def _build_win_counts_table(solver_comparison: pd.DataFrame) -> pd.DataFrame:
-    """Extract the thesis win-count table."""
 
+    # Extract the thesis win-count table.
     return solver_comparison.loc[
         :,
         ["result_scope", "solver_registry_name", "solver_name", "win_count"],
@@ -784,8 +784,8 @@ def _build_solver_support_summary(
     *,
     compatibility_summary: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Build support-status and scoring-status breakdown rows."""
 
+    # Build support-status and scoring-status breakdown rows.
     group_columns = [
         "result_scope",
         "solver_registry_name",
@@ -825,8 +825,8 @@ def _merge_compatibility_summary(
     table: pd.DataFrame,
     compatibility_summary: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Attach real compatibility counts when a matrix is available."""
 
+    # Attach real compatibility counts when a matrix is available.
     compatibility_columns = [
         "compatibility_total_instances",
         "compatibility_supported_instances",
@@ -850,8 +850,8 @@ def _merge_compatibility_summary(
 
 
 def _build_average_objective_table(solver_comparison: pd.DataFrame) -> pd.DataFrame:
-    """Extract average objective values by solver."""
 
+    # Extract average objective values by solver.
     return solver_comparison.loc[
         :,
         [
@@ -874,8 +874,8 @@ def _build_average_objective_table(solver_comparison: pd.DataFrame) -> pd.DataFr
 
 
 def _build_average_runtime_table(solver_comparison: pd.DataFrame) -> pd.DataFrame:
-    """Extract average runtime values by solver."""
 
+    # Extract average runtime values by solver.
     return solver_comparison.loc[
         :,
         [
@@ -900,8 +900,8 @@ def _build_selector_vs_baselines_table(
     *,
     result_scope: str,
 ) -> pd.DataFrame:
-    """Build selector vs single-best and virtual-best comparison rows."""
 
+    # Build selector vs single-best and virtual-best comparison rows.
     if "result_scope" in evaluation_summary.columns:
         rows: list[dict[str, object]] = []
         for scope, scope_summary in evaluation_summary.groupby("result_scope", sort=True):
@@ -921,8 +921,8 @@ def _selector_vs_baselines_rows(
     *,
     result_scope: str,
 ) -> list[dict[str, object]]:
-    """Build selector and baseline rows for one result scope."""
 
+    # Build selector and baseline rows for one result scope.
     mean_row = _select_summary_row(evaluation_summary, "aggregate_mean")
     std_row = _select_summary_row(evaluation_summary, "aggregate_std")
     split_count = _count_validation_splits(evaluation_summary)
@@ -989,8 +989,8 @@ def _build_feature_importance_summary(
     result_scope: str,
     top_feature_count: int,
 ) -> pd.DataFrame:
-    """Build a cleaned top-feature table for thesis reuse."""
 
+    # Build a cleaned top-feature table for thesis reuse.
     output_columns = [
         "result_scope",
         "importance_rank",
@@ -1048,8 +1048,8 @@ def _write_table_markdown(
     table: pd.DataFrame,
     columns: list[str],
 ) -> None:
-    """Write one Markdown file containing a reusable report table."""
 
+    # Write one Markdown file containing a reusable report table.
     output_path.write_text(
         "\n".join(
             [
@@ -1079,8 +1079,8 @@ def _build_summary_markdown(
     selector_vs_baselines: pd.DataFrame,
     feature_importance_summary: pd.DataFrame,
 ) -> str:
-    """Render the combined thesis benchmark report."""
 
+    # Render the combined thesis benchmark report.
     lines = [
         "# Thesis Benchmark And Selector Report",
         "",
@@ -1208,8 +1208,8 @@ def _build_summary_markdown(
 
 
 def _markdown_table(frame: pd.DataFrame, *, columns: list[str]) -> str:
-    """Render a dataframe as a compact Markdown table."""
 
+    # Render a dataframe as a compact Markdown table.
     available_columns = [column for column in columns if column in frame.columns]
     if frame.empty or not available_columns:
         return "_No rows available._"
@@ -1226,8 +1226,8 @@ def _markdown_table(frame: pd.DataFrame, *, columns: list[str]) -> str:
 
 
 def _select_summary_row(summary: pd.DataFrame, row_type: str) -> pd.Series:
-    """Return one evaluation summary row by type with a stable fallback."""
 
+    # Return one evaluation summary row by type with a stable fallback.
     if summary.empty:
         raise ValueError("Evaluation summary CSV is empty.")
     if "summary_scope" in summary.columns:
@@ -1253,8 +1253,8 @@ def _select_summary_row(summary: pd.DataFrame, row_type: str) -> pd.Series:
 
 
 def _count_validation_splits(evaluation_summary: pd.DataFrame) -> int:
-    """Count validation split rows in an evaluation summary table."""
 
+    # Count validation split rows in an evaluation summary table.
     if "summary_scope" in evaluation_summary.columns:
         per_seed_count = int(evaluation_summary["summary_scope"].astype("string").eq("per_seed").sum())
         return max(1, per_seed_count)
@@ -1265,8 +1265,8 @@ def _count_validation_splits(evaluation_summary: pd.DataFrame) -> int:
 
 
 def _summarize_report_scope(frame: pd.DataFrame) -> str:
-    """Return one compact scope label for selector-level report rows."""
 
+    # Return one compact scope label for selector-level report rows.
     scopes = sorted(str(value) for value in frame["result_scope"].dropna().unique().tolist())
     if not scopes:
         return "unknown"
@@ -1276,8 +1276,8 @@ def _summarize_report_scope(frame: pd.DataFrame) -> str:
 
 
 def _derive_scoring_status(row: pd.Series) -> str:
-    """Derive a conservative scoring status for older benchmark outputs."""
 
+    # Derive a conservative scoring status for older benchmark outputs.
     support_status = str(row.get("solver_support_status", "")).strip().casefold()
     status = str(row.get("status", "")).strip().casefold()
     if "not_configured" in support_status or "not configured" in status or "not_configured" in status:
@@ -1292,8 +1292,8 @@ def _derive_scoring_status(row: pd.Series) -> str:
 
 
 def _is_unsupported_or_not_configured_row(row: pd.Series) -> bool:
-    """Return whether a row should be excluded from objective quality metrics."""
 
+    # Return whether a row should be excluded from objective quality metrics.
     support_status = str(row.get("solver_support_status", "")).strip().casefold()
     scoring_status = str(row.get("scoring_status", "")).strip().casefold()
     status = str(row.get("status", "")).strip().casefold()
@@ -1312,8 +1312,8 @@ def _is_unsupported_or_not_configured_row(row: pd.Series) -> bool:
 
 
 def _render_input_lines(label: str, inputs: dict[str, Path]) -> list[str]:
-    """Render run input paths for the summary Markdown."""
 
+    # Render run input paths for the summary Markdown.
     if not inputs:
         return [f"- {label}: `not provided`"]
     return [
@@ -1323,8 +1323,8 @@ def _render_input_lines(label: str, inputs: dict[str, Path]) -> list[str]:
 
 
 def _coerce_bool(value: object) -> bool:
-    """Normalize bool-like CSV values."""
 
+    # Normalize bool-like CSV values.
     if isinstance(value, bool):
         return value
     if value is None or pd.isna(value):
@@ -1333,14 +1333,14 @@ def _coerce_bool(value: object) -> bool:
 
 
 def _missing_string_mask(values: pd.Series) -> pd.Series:
-    """Return True for null or blank string values in a series."""
 
+    # Return True for null or blank string values in a series.
     return values.isna() | values.astype("string").str.strip().fillna("").eq("")
 
 
 def _safe_divide(numerator: object, denominator: object) -> float:
-    """Divide two scalar values with NaN protection."""
 
+    # Divide two scalar values with NaN protection.
     top = _to_float(numerator)
     bottom = _to_float(denominator)
     if pd.isna(top) or pd.isna(bottom) or bottom == 0.0:
@@ -1349,8 +1349,8 @@ def _safe_divide(numerator: object, denominator: object) -> float:
 
 
 def _safe_subtract(left: object, right: object) -> float:
-    """Subtract two scalar values with NaN fallback."""
 
+    # Subtract two scalar values with NaN fallback.
     left_value = _to_float(left)
     right_value = _to_float(right)
     if pd.isna(left_value) or pd.isna(right_value):
@@ -1359,8 +1359,8 @@ def _safe_subtract(left: object, right: object) -> float:
 
 
 def _to_float(value: object) -> float:
-    """Convert a scalar value to float with NaN fallback."""
 
+    # Convert a scalar value to float with NaN fallback.
     if value is None or pd.isna(value):
         return float("nan")
     try:
@@ -1370,8 +1370,8 @@ def _to_float(value: object) -> float:
 
 
 def _clean_optional_string(value: object) -> str | None:
-    """Return a non-empty string or None."""
 
+    # Return a non-empty string or None.
     if value is None or pd.isna(value):
         return None
     text = str(value).strip()
@@ -1379,8 +1379,8 @@ def _clean_optional_string(value: object) -> str | None:
 
 
 def _source_feature_name(feature_name: object) -> str:
-    """Map a transformed feature name to a readable source feature name."""
 
+    # Map a transformed feature name to a readable source feature name.
     text = str(feature_name)
     if "__" in text:
         text = text.split("__", maxsplit=1)[1]
@@ -1388,8 +1388,8 @@ def _source_feature_name(feature_name: object) -> str:
 
 
 def _format_markdown_value(value: object) -> str:
-    """Format one scalar value for Markdown output."""
 
+    # Format one scalar value for Markdown output.
     if value is None or pd.isna(value):
         return "NA"
     numeric = _to_float(value)
@@ -1402,8 +1402,8 @@ def _format_markdown_value(value: object) -> str:
 
 
 def _labelize(value: str) -> str:
-    """Convert one identifier-like string into a readable label."""
 
+    # Convert one identifier-like string into a readable label.
     return value.replace("_", " ").strip().title()
 
 

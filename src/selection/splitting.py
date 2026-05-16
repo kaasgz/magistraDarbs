@@ -1,4 +1,4 @@
-"""Reproducible split helpers for selector training and evaluation."""
+# Reproducible split helpers for selector training and evaluation.
 
 from __future__ import annotations
 
@@ -18,8 +18,8 @@ from src.utils import SplitSettings
 
 @dataclass(frozen=True, slots=True)
 class SelectorSplit:
-    """One reproducible train/test split for selector validation."""
 
+    # One reproducible train/test split for selector validation.
     split_id: str
     strategy: str
     repeat_index: int
@@ -31,8 +31,8 @@ class SelectorSplit:
 
 @dataclass(frozen=True, slots=True)
 class SelectorSplitPlan:
-    """Resolved split plan with auditable notes."""
 
+    # Resolved split plan with auditable notes.
     strategy: str
     splits: tuple[SelectorSplit, ...]
     notes: tuple[str, ...]
@@ -43,8 +43,8 @@ def build_selector_split_plan(
     split_settings: SplitSettings,
     random_seed: int,
 ) -> SelectorSplitPlan:
-    """Create reproducible selector splits from configuration settings."""
 
+    # Create reproducible selector splits from configuration settings.
     normalized_target = target.astype(str).reset_index(drop=True)
     if len(normalized_target.index) < 2:
         raise ValueError("Selection dataset must contain at least two labeled rows.")
@@ -68,8 +68,8 @@ def _build_holdout_plan(
     split_settings: SplitSettings,
     random_seed: int,
 ) -> SelectorSplitPlan:
-    """Build one reproducible holdout split."""
 
+    # Build one reproducible holdout split.
     _validate_test_size(split_settings.test_size)
     stratified = _can_stratify_holdout(target, split_settings.test_size)
     splitter = (
@@ -93,8 +93,8 @@ def _build_repeated_holdout_plan(
     split_settings: SplitSettings,
     random_seed: int,
 ) -> SelectorSplitPlan:
-    """Build repeated holdout splits."""
 
+    # Build repeated holdout splits.
     _validate_test_size(split_settings.test_size)
     repeats = split_settings.repeats if split_settings.repeats > 0 else 3
     stratified = _can_stratify_holdout(target, split_settings.test_size)
@@ -121,8 +121,8 @@ def _build_repeated_kfold_plan(
     split_settings: SplitSettings,
     random_seed: int,
 ) -> SelectorSplitPlan:
-    """Build repeated stratified cross-validation splits when feasible."""
 
+    # Build repeated stratified cross-validation splits when feasible.
     requested_folds = split_settings.cross_validation_folds or 3
     if requested_folds < 2:
         raise ValueError("cross_validation_folds must be at least 2 for repeated_stratified_kfold.")
@@ -189,8 +189,8 @@ def _build_repeated_kfold_plan(
 
 
 def _iter_shuffle_splits(splitter: object, target: pd.Series, stratified: bool) -> list[SelectorSplit]:
-    """Convert shuffle-split indices into typed selector split objects."""
 
+    # Convert shuffle-split indices into typed selector split objects.
     splits: list[SelectorSplit] = []
     for split_number, (train_indices, test_indices) in enumerate(splitter.split(target, target)):
         repeat_index = split_number + 1
@@ -211,8 +211,8 @@ def _iter_shuffle_splits(splitter: object, target: pd.Series, stratified: bool) 
 
 
 def _can_stratify_holdout(target: pd.Series, test_size: float) -> bool:
-    """Return whether a stratified holdout split is feasible."""
 
+    # Return whether a stratified holdout split is feasible.
     class_counts = target.value_counts()
     if len(class_counts.index) < 2:
         return False
@@ -227,8 +227,8 @@ def _can_stratify_holdout(target: pd.Series, test_size: float) -> bool:
 
 
 def _normalize_strategy(strategy: str) -> str:
-    """Normalize supported split strategy aliases."""
 
+    # Normalize supported split strategy aliases.
     normalized = str(strategy).strip().casefold() or "holdout"
     aliases = {
         "cross_validation": "repeated_stratified_kfold",
@@ -239,7 +239,7 @@ def _normalize_strategy(strategy: str) -> str:
 
 
 def _validate_test_size(test_size: float) -> None:
-    """Validate a holdout-style test size."""
 
+    # Validate a holdout-style test size.
     if not 0.0 < test_size < 1.0:
         raise ValueError("test_size must be between 0 and 1.")

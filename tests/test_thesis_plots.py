@@ -1,4 +1,4 @@
-"""Regression tests for thesis-facing presentation plots."""
+# Regression tests for thesis-facing presentation plots.
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ def test_plot_selector_performance_uses_localized_selector_results(
     monkeypatch,
     tmp_path: Path,
 ) -> None:
-    """The main metric figure should read values from the localized thesis table."""
 
+    # The main metric figure should read values from the localized thesis table.
     selector_results = pd.DataFrame(
         [
             {
@@ -46,8 +46,8 @@ def test_plot_solver_comparison_uses_quality_not_coverage_for_synthetic_panel(
     monkeypatch,
     tmp_path: Path,
 ) -> None:
-    """The synthetic solver comparison panel should no longer plot feasible coverage."""
 
+    # The synthetic solver comparison panel should no longer plot feasible coverage.
     solver_comparison = pd.DataFrame(
         [
             {
@@ -104,8 +104,8 @@ def test_plot_dataset_distribution_shows_only_dataset_counts(
     monkeypatch,
     tmp_path: Path,
 ) -> None:
-    """The dataset figure should no longer include the best-solver class panel."""
 
+    # The dataset figure should no longer include the best-solver class panel.
     selection_dataset = pd.DataFrame(
         [
             {"dataset_type": "real", "best_solver": "simulated_annealing_solver"},
@@ -135,8 +135,8 @@ def test_plot_feature_importance_shows_only_top_10_features(
     monkeypatch,
     tmp_path: Path,
 ) -> None:
-    """The thesis feature-importance figure should not include a feature-group panel."""
 
+    # The thesis feature-importance figure should not include a feature-group panel.
     feature_importance = pd.DataFrame(
         [
             {"Rangs": index + 1, "Pazīme": f"feature {index}", "Grupa": "Izmērs", "Nozīmīgums": 0.2 - index * 0.01}
@@ -167,8 +167,8 @@ def test_plot_best_solver_class_distribution_is_generated_separately(
     monkeypatch,
     tmp_path: Path,
 ) -> None:
-    """Best-solver class balance should be exported as its own figure."""
 
+    # Best-solver class balance should be exported as its own figure.
     selection_dataset = pd.DataFrame(
         [
             {"dataset_type": "real", "best_solver": "simulated_annealing_solver"},
@@ -198,8 +198,8 @@ def test_plot_confusion_matrix_aggregates_validation_predictions(
     monkeypatch,
     tmp_path: Path,
 ) -> None:
-    """The confusion matrix should summarize all split-level predictions."""
 
+    # The confusion matrix should summarize all split-level predictions.
     evaluation = pd.DataFrame(
         [
             {"true_best_solver": "cpsat_solver", "selected_solver": "cpsat_solver"},

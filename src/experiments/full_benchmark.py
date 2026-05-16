@@ -1,4 +1,4 @@
-"""Run the full solver portfolio on one dataset of XML instances."""
+# Run the full solver portfolio on one dataset of XML instances.
 
 from __future__ import annotations
 
@@ -40,13 +40,13 @@ def run_full_benchmark(
     timefold_command_arguments: Sequence[str] | None = None,
     run_summary_path: str | Path | None = None,
 ) -> Path:
-    """Run all configured portfolio solvers on every XML instance in a folder.
 
-    The function keeps the existing benchmark runner as the source of truth for
-    solver execution and failure handling, then adds a normalized
-    ``solver_support_status`` column required by the full benchmark artifact.
-    """
-
+    # Run all configured portfolio solvers on every XML instance in a folder.
+    #
+    # The function keeps the existing benchmark runner as the source of truth for
+    # solver execution and failure handling, then adds a normalized
+    # ``solver_support_status`` column required by the full benchmark artifact.
+    #
     input_path = Path(instance_folder)
     output_path = Path(output_csv)
     LOGGER.info(
@@ -93,8 +93,8 @@ def run_full_benchmark(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the CLI parser for the full benchmark runner."""
 
+    # Create the CLI parser for the full benchmark runner.
     parser = argparse.ArgumentParser(
         description="Run the full solver portfolio on a dataset of XML instances.",
     )
@@ -147,8 +147,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run the full benchmark from the command line."""
 
+    # Run the full benchmark from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -178,8 +178,8 @@ def _build_solver_settings(
     timefold_time_limit_seconds: int | None,
     timefold_command_arguments: Sequence[str] | None,
 ) -> dict[str, dict[str, object]]:
-    """Build constructor kwargs for solvers that need external configuration."""
 
+    # Build constructor kwargs for solvers that need external configuration.
     timefold_settings: dict[str, object] = {
         "executable_path": str(timefold_executable_path) if timefold_executable_path else None,
     }
@@ -194,8 +194,8 @@ def _build_solver_settings(
 
 
 def _add_solver_support_status(table: pd.DataFrame) -> pd.DataFrame:
-    """Add a normalized solver support status column."""
 
+    # Add a normalized solver support status column.
     frame = table.copy()
     if "solver_support_status" in frame.columns:
         frame["solver_support_status"] = frame["solver_support_status"].fillna("").astype(str)
@@ -213,8 +213,8 @@ def _add_solver_support_status(table: pd.DataFrame) -> pd.DataFrame:
 
 
 def _derive_solver_support_status(row: dict[str, Any]) -> str:
-    """Derive a compact support status from solver status and metadata."""
 
+    # Derive a compact support status from solver status and metadata.
     status = str(row.get("status", "")).strip()
     normalized_status = status.casefold()
     metadata = _parse_metadata(row.get("solver_metadata_json"))
@@ -253,8 +253,8 @@ def _derive_solver_support_status(row: dict[str, Any]) -> str:
 
 
 def _parse_metadata(value: object) -> dict[str, Any]:
-    """Parse serialized solver metadata from a benchmark row."""
 
+    # Parse serialized solver metadata from a benchmark row.
     if not isinstance(value, str) or not value.strip():
         return {}
     try:
@@ -265,8 +265,8 @@ def _parse_metadata(value: object) -> dict[str, Any]:
 
 
 def _order_full_benchmark_columns(table: pd.DataFrame) -> pd.DataFrame:
-    """Keep the most important full benchmark fields near the front."""
 
+    # Keep the most important full benchmark fields near the front.
     preferred_columns = [
         "instance_name",
         "solver_name",

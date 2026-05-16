@@ -1,22 +1,21 @@
-"""Adapter layer between parsed instances and the external Timefold exchange format.
-
-The adapter intentionally models only a small, explicit subset of the parsed
-RobinX / ITC2021 instance:
-
-- teams
-- slots
-- inferred round-robin matches
-- declared constraint families as metadata only
-
-Current limitations are deliberate and thesis-baseline oriented:
-
-- instance-specific constraint families such as capacity, break, venue,
-  fairness, travel, and richer home/away rules are ignored by the adapter
-- the adapter approximates the problem as a compact single or double
-  round-robin structure inferred from teams and slots
-- slot semantics are preserved only as stable labels and indices, not as full
-  calendar or venue models
-"""
+# Adapter layer between parsed instances and the external Timefold exchange format.
+#
+# The adapter intentionally models only a small, explicit subset of the parsed
+# RobinX / ITC2021 instance:
+#
+# - teams
+# - slots
+# - inferred round-robin matches
+# - declared constraint families as metadata only
+#
+# Current limitations are deliberate and thesis-baseline oriented:
+#
+# - instance-specific constraint families such as capacity, break, venue,
+# fairness, travel, and richer home/away rules are ignored by the adapter
+# - the adapter approximates the problem as a compact single or double
+# round-robin structure inferred from teams and slots
+# - slot semantics are preserved only as stable labels and indices, not as full
+# calendar or venue models
 
 from __future__ import annotations
 
@@ -32,8 +31,8 @@ RoundRobinMode = Literal["single", "double"]
 
 @dataclass(frozen=True, slots=True)
 class TimefoldAdapterLimitations:
-    """Explicit statement of the current adapter scope and omissions."""
 
+    # Explicit statement of the current adapter scope and omissions.
     supported_scope: tuple[str, ...]
     ignored_constraints: tuple[str, ...]
     approximated_behavior: tuple[str, ...]
@@ -41,8 +40,8 @@ class TimefoldAdapterLimitations:
 
 @dataclass(frozen=True, slots=True)
 class TimefoldTeam:
-    """Stable team representation used in the Timefold exchange payload."""
 
+    # Stable team representation used in the Timefold exchange payload.
     id: str
     name: str
     index: int
@@ -50,8 +49,8 @@ class TimefoldTeam:
 
 @dataclass(frozen=True, slots=True)
 class TimefoldSlot:
-    """Stable slot representation used in the Timefold exchange payload."""
 
+    # Stable slot representation used in the Timefold exchange payload.
     id: str
     name: str
     index: int
@@ -59,8 +58,8 @@ class TimefoldSlot:
 
 @dataclass(frozen=True, slots=True)
 class TimefoldMatch:
-    """One directed round-robin match required by the simplified adapter."""
 
+    # One directed round-robin match required by the simplified adapter.
     id: str
     home_team_index: int
     away_team_index: int
@@ -73,8 +72,8 @@ class TimefoldMatch:
 
 @dataclass(frozen=True, slots=True)
 class TimefoldProblem:
-    """Compact round-robin problem passed through the adapter layer."""
 
+    # Compact round-robin problem passed through the adapter layer.
     instance_name: str
     round_robin_mode: RoundRobinMode
     teams: tuple[TimefoldTeam, ...]
@@ -90,16 +89,16 @@ class TimefoldProblem:
 
 @dataclass(frozen=True, slots=True)
 class TimefoldAssignment:
-    """Normalized match-to-slot assignment read from a Timefold solution."""
 
+    # Normalized match-to-slot assignment read from a Timefold solution.
     match_id: str
     slot_index: int
 
 
 @dataclass(frozen=True, slots=True)
 class InternalScheduleEntry:
-    """Internal schedule representation returned by the adapter."""
 
+    # Internal schedule representation returned by the adapter.
     match_id: str
     slot_index: int
     slot_id: str
@@ -111,8 +110,8 @@ class InternalScheduleEntry:
 
 @dataclass(frozen=True, slots=True)
 class InternalTimefoldSolution:
-    """Normalized solution returned by the adapter before solver wrapping."""
 
+    # Normalized solution returned by the adapter before solver wrapping.
     instance_name: str
     status: str
     feasible: bool
@@ -126,15 +125,18 @@ class InternalTimefoldSolution:
 
 
 class TimefoldAdapterError(RuntimeError):
-    """Base class for adapter-level conversion and validation failures."""
+    # Base class for adapter-level conversion and validation failures.
+    pass
 
 
 class TimefoldUnsupportedInstanceError(TimefoldAdapterError):
-    """Raised when the external adapter marks an instance unsupported."""
+    # Raised when the external adapter marks an instance unsupported.
+    pass
 
 
 class TimefoldInvalidSolutionError(TimefoldAdapterError):
-    """Raised when a Timefold output cannot be normalized safely."""
+    # Raised when a Timefold output cannot be normalized safely.
+    pass
 
 
 TIMEFOLD_ADAPTER_LIMITATIONS = TimefoldAdapterLimitations(
@@ -162,8 +164,8 @@ TIMEFOLD_ADAPTER_LIMITATIONS = TimefoldAdapterLimitations(
 
 
 def describe_timefold_adapter_limitations() -> dict[str, list[str]]:
-    """Return the current adapter limitations as a JSON-friendly mapping."""
 
+    # Return the current adapter limitations as a JSON-friendly mapping.
     return {
         "supported_scope": list(TIMEFOLD_ADAPTER_LIMITATIONS.supported_scope),
         "ignored_constraints": list(TIMEFOLD_ADAPTER_LIMITATIONS.ignored_constraints),
@@ -172,8 +174,8 @@ def describe_timefold_adapter_limitations() -> dict[str, list[str]]:
 
 
 def build_timefold_problem(instance: object) -> TimefoldProblem:
-    """Build a compact Timefold problem view from one parsed instance."""
 
+    # Build a compact Timefold problem view from one parsed instance.
     instance_name = _extract_instance_name(instance)
     round_robin_mode = _extract_round_robin_mode(instance)
 
@@ -210,8 +212,8 @@ def convert_instance_to_timefold_input(
     time_limit_seconds: int = 60,
     random_seed: int = 42,
 ) -> dict[str, object]:
-    """Convert one parsed instance directly into the Timefold input payload."""
 
+    # Convert one parsed instance directly into the Timefold input payload.
     return convert_problem_to_timefold_input(
         build_timefold_problem(instance),
         time_limit_seconds=time_limit_seconds,
@@ -225,8 +227,8 @@ def convert_problem_to_timefold_input(
     time_limit_seconds: int = 60,
     random_seed: int = 42,
 ) -> dict[str, object]:
-    """Convert one prepared Timefold problem into the external JSON payload."""
 
+    # Convert one prepared Timefold problem into the external JSON payload.
     ignored_constraint_families = list(problem.constraint_families)
     limitations = describe_timefold_adapter_limitations()
 
@@ -302,8 +304,8 @@ def convert_timefold_solution(
     problem: TimefoldProblem,
     payload: str | Mapping[str, object],
 ) -> InternalTimefoldSolution:
-    """Convert a Timefold adapter response into the internal schedule format."""
 
+    # Convert a Timefold adapter response into the internal schedule format.
     raw_payload = _parse_output_payload(payload)
     status = _extract_status(raw_payload)
     error_message = _extract_error_message(raw_payload)
@@ -359,8 +361,8 @@ def convert_timefold_solution(
 def schedule_to_solver_metadata(
     schedule: tuple[InternalScheduleEntry, ...],
 ) -> list[dict[str, object]]:
-    """Convert the internal schedule representation into solver metadata rows."""
 
+    # Convert the internal schedule representation into solver metadata rows.
     return [
         {
             "meeting_id": entry.match_id,
@@ -378,8 +380,8 @@ def schedule_to_solver_metadata(
 
 
 def _build_teams(instance: object, explicit_team_count: int) -> list[TimefoldTeam]:
-    """Build stable team identifiers from parsed teams or fallback labels."""
 
+    # Build stable team identifiers from parsed teams or fallback labels.
     teams = list(getattr(instance, "teams", []) or [])
     inferred_count = len(teams)
     team_count = explicit_team_count if explicit_team_count > 0 else inferred_count
@@ -407,8 +409,8 @@ def _build_teams(instance: object, explicit_team_count: int) -> list[TimefoldTea
 
 
 def _build_slots(instance: object, slot_count: int) -> list[TimefoldSlot]:
-    """Build stable slot identifiers from parsed slots or fallback labels."""
 
+    # Build stable slot identifiers from parsed slots or fallback labels.
     slots = list(getattr(instance, "slots", []) or [])
     built_slots: list[TimefoldSlot] = []
     for index in range(slot_count):
@@ -435,8 +437,8 @@ def _build_matches(
     teams: tuple[TimefoldTeam, ...],
     round_robin_mode: RoundRobinMode,
 ) -> list[TimefoldMatch]:
-    """Build the canonical list of inferred round-robin matches."""
 
+    # Build the canonical list of inferred round-robin matches.
     matches: list[TimefoldMatch] = []
     match_index = 0
     for home_team_index, away_team_index in combinations(range(len(teams)), 2):
@@ -474,8 +476,8 @@ def _build_matches(
 
 
 def _build_parser_notes(instance: object) -> list[dict[str, str]]:
-    """Convert structured parser notes into JSON-friendly dictionaries."""
 
+    # Convert structured parser notes into JSON-friendly dictionaries.
     notes = list(getattr(instance, "parser_notes", []) or [])
     payload: list[dict[str, str]] = []
     for note in notes:
@@ -495,8 +497,8 @@ def _build_parser_notes(instance: object) -> list[dict[str, str]]:
 
 
 def _parse_output_payload(payload: str | Mapping[str, object]) -> dict[str, object]:
-    """Parse adapter output from JSON text or reuse an existing mapping."""
 
+    # Parse adapter output from JSON text or reuse an existing mapping.
     if isinstance(payload, Mapping):
         return {str(key): value for key, value in payload.items()}
 
@@ -517,8 +519,8 @@ def _parse_output_payload(payload: str | Mapping[str, object]) -> dict[str, obje
 
 
 def _parse_text_output(text: str) -> dict[str, object]:
-    """Parse the lightweight line-based Timefold adapter output format."""
 
+    # Parse the lightweight line-based Timefold adapter output format.
     payload: dict[str, object] = {}
     assignments: list[dict[str, object]] = []
 
@@ -549,16 +551,16 @@ def _parse_text_output(text: str) -> dict[str, object]:
 
 
 def _extract_status(payload: Mapping[str, object]) -> str:
-    """Extract and normalize one adapter status string."""
 
+    # Extract and normalize one adapter status string.
     status = _extract_text_value(payload, "status", "solverStatus", "state")
     normalized = status.strip().upper() if status is not None else "UNKNOWN"
     return normalized or "UNKNOWN"
 
 
 def _extract_feasible(payload: Mapping[str, object], status: str) -> bool:
-    """Infer feasibility from explicit flags or the reported status."""
 
+    # Infer feasibility from explicit flags or the reported status.
     explicit_flag = _extract_optional_bool(payload, "feasible", "isFeasible")
     if explicit_flag is not None:
         return explicit_flag
@@ -566,8 +568,8 @@ def _extract_feasible(payload: Mapping[str, object], status: str) -> bool:
 
 
 def _extract_schedule_payload(payload: Mapping[str, object]) -> list[object]:
-    """Read the schedule list from supported output layouts."""
 
+    # Read the schedule list from supported output layouts.
     for key in ("schedule", "assignments", "matches"):
         value = payload.get(key)
         if isinstance(value, list):
@@ -583,8 +585,8 @@ def _extract_schedule_payload(payload: Mapping[str, object]) -> list[object]:
 
 
 def _extract_output_metadata(payload: Mapping[str, object]) -> dict[str, object]:
-    """Extract adapter metadata while preserving additional output fields lightly."""
 
+    # Extract adapter metadata while preserving additional output fields lightly.
     metadata: dict[str, object] = {}
     for key in ("metadata", "solverMetadata"):
         value = payload.get(key)
@@ -594,8 +596,8 @@ def _extract_output_metadata(payload: Mapping[str, object]) -> dict[str, object]
 
 
 def _extract_error_message(payload: Mapping[str, object]) -> str | None:
-    """Extract a readable adapter error message when present."""
 
+    # Extract a readable adapter error message when present.
     for key in ("error", "message", "detail"):
         value = payload.get(key)
         if value is None:
@@ -611,8 +613,8 @@ def _normalize_assignments(
     payload: list[object],
     problem: TimefoldProblem,
 ) -> tuple[TimefoldAssignment, ...]:
-    """Normalize supported Timefold solution formats into internal assignments."""
 
+    # Normalize supported Timefold solution formats into internal assignments.
     if not payload:
         raise TimefoldInvalidSolutionError("A feasible Timefold result must contain a non-empty schedule.")
 
@@ -664,8 +666,8 @@ def _normalize_assignments(
 
 
 def _validate_assignments(problem: TimefoldProblem, assignments: tuple[TimefoldAssignment, ...]) -> None:
-    """Ensure the returned assignments are structurally valid for the simplified model."""
 
+    # Ensure the returned assignments are structurally valid for the simplified model.
     expected_match_ids = {match.id for match in problem.matches}
     if len(assignments) != len(expected_match_ids):
         raise TimefoldInvalidSolutionError(
@@ -696,8 +698,8 @@ def _build_internal_schedule(
     problem: TimefoldProblem,
     assignments: tuple[TimefoldAssignment, ...],
 ) -> tuple[InternalScheduleEntry, ...]:
-    """Build the internal schedule representation from normalized assignments."""
 
+    # Build the internal schedule representation from normalized assignments.
     match_by_id = {match.id: match for match in problem.matches}
     schedule = [
         InternalScheduleEntry(
@@ -716,8 +718,8 @@ def _build_internal_schedule(
 
 
 def _extract_constraint_families(instance: object) -> set[str]:
-    """Extract stable constraint-family labels from the parsed instance."""
 
+    # Extract stable constraint-family labels from the parsed instance.
     constraints = list(getattr(instance, "constraints", []) or [])
     families: set[str] = set()
     for constraint in constraints:
@@ -732,8 +734,8 @@ def _extract_constraint_families(instance: object) -> set[str]:
 
 
 def _extract_instance_name(instance: object) -> str:
-    """Extract a readable instance name from common parsed-instance fields."""
 
+    # Extract a readable instance name from common parsed-instance fields.
     metadata = getattr(instance, "metadata", None)
     for candidate in (
         getattr(metadata, "name", None),
@@ -750,8 +752,8 @@ def _extract_instance_name(instance: object) -> str:
 
 
 def _extract_source_path(instance: object) -> str | None:
-    """Extract the source XML path when available."""
 
+    # Extract the source XML path when available.
     metadata = getattr(instance, "metadata", None)
     source_path = getattr(metadata, "source_path", None)
     if isinstance(source_path, str) and source_path.strip():
@@ -760,8 +762,8 @@ def _extract_source_path(instance: object) -> str | None:
 
 
 def _extract_round_robin_mode(instance: object) -> RoundRobinMode:
-    """Extract a normalized round-robin mode with a conservative fallback."""
 
+    # Extract a normalized round-robin mode with a conservative fallback.
     metadata = getattr(instance, "metadata", None)
     raw_value = _first_non_empty(
         [
@@ -777,8 +779,8 @@ def _extract_round_robin_mode(instance: object) -> RoundRobinMode:
 
 
 def _minimum_required_slots(num_teams: int, round_robin_mode: RoundRobinMode) -> int:
-    """Return the minimum number of slots implied by the round-robin mode."""
 
+    # Return the minimum number of slots implied by the round-robin mode.
     if num_teams <= 1:
         return 0
     single_round_slots = num_teams if num_teams % 2 == 1 else num_teams - 1
@@ -788,8 +790,8 @@ def _minimum_required_slots(num_teams: int, round_robin_mode: RoundRobinMode) ->
 
 
 def _extract_text_value(source: Mapping[str, object], *keys: str) -> str | None:
-    """Extract the first non-empty text value from a mapping."""
 
+    # Extract the first non-empty text value from a mapping.
     for key in keys:
         value = source.get(key)
         if value is None:
@@ -801,8 +803,8 @@ def _extract_text_value(source: Mapping[str, object], *keys: str) -> str | None:
 
 
 def _extract_optional_bool(source: Mapping[str, object], *keys: str) -> bool | None:
-    """Extract one boolean-like value from a mapping."""
 
+    # Extract one boolean-like value from a mapping.
     for key in keys:
         value = source.get(key)
         if isinstance(value, bool):
@@ -818,8 +820,8 @@ def _extract_optional_bool(source: Mapping[str, object], *keys: str) -> bool | N
 
 
 def _extract_optional_int(source: Mapping[str, object], *keys: str) -> int | None:
-    """Extract one integer-like value from a mapping."""
 
+    # Extract one integer-like value from a mapping.
     for key in keys:
         value = source.get(key)
         if value is None or isinstance(value, bool):
@@ -832,8 +834,8 @@ def _extract_optional_int(source: Mapping[str, object], *keys: str) -> int | Non
 
 
 def _extract_optional_float(source: Mapping[str, object], *keys: str) -> float | None:
-    """Extract one float-like value from a mapping."""
 
+    # Extract one float-like value from a mapping.
     for key in keys:
         value = source.get(key)
         if value is None or isinstance(value, bool):
@@ -846,8 +848,8 @@ def _extract_optional_float(source: Mapping[str, object], *keys: str) -> float |
 
 
 def _read_text_field(value: object, field_name: str) -> str | None:
-    """Read and normalize one text-like field from an object."""
 
+    # Read and normalize one text-like field from an object.
     field_value = getattr(value, field_name, None)
     if isinstance(field_value, str) and field_value.strip():
         return field_value.strip()
@@ -855,8 +857,8 @@ def _read_text_field(value: object, field_name: str) -> str | None:
 
 
 def _first_non_empty(values: list[str | None]) -> str | None:
-    """Return the first non-empty string from a list of candidates."""
 
+    # Return the first non-empty string from a list of candidates.
     for value in values:
         if isinstance(value, str) and value.strip():
             return value.strip()
@@ -864,8 +866,8 @@ def _first_non_empty(values: list[str | None]) -> str | None:
 
 
 def _safe_nonnegative_int(value: object) -> int:
-    """Convert a count-like value to a non-negative integer."""
 
+    # Convert a count-like value to a non-negative integer.
     if isinstance(value, bool):
         return int(value)
     if isinstance(value, int):

@@ -1,4 +1,4 @@
-"""Run benchmark experiments across multiple instances and solvers."""
+# Run benchmark experiments across multiple instances and solvers.
 
 from __future__ import annotations
 
@@ -56,24 +56,24 @@ def run_benchmarks(
     run_summary_path: str | Path | None = None,
     solver_settings_by_name: dict[str, dict[str, object]] | None = None,
 ) -> Path:
-    """Run selected solvers on all XML instances in a folder.
 
-    Args:
-        instance_folder: Folder containing RobinX / ITC2021 XML files.
-        solver_names: Registry names of solvers to run.
-        time_limit_seconds: Per-solver time limit.
-        random_seed: Random seed passed to each solver.
-        output_csv: Output CSV path for structured benchmark results.
-        config_path: Optional YAML config path used for the run.
-        config: Optional loaded config snapshot to include in metadata.
-        run_summary_path: Optional JSON sidecar path for run metadata.
-        solver_settings_by_name: Optional constructor kwargs keyed by solver
-            registry name.
-
-    Returns:
-        Path to the written benchmark results CSV.
-    """
-
+    # Run selected solvers on all XML instances in a folder.
+    #
+    # Args:
+    # instance_folder: Folder containing RobinX / ITC2021 XML files.
+    # solver_names: Registry names of solvers to run.
+    # time_limit_seconds: Per-solver time limit.
+    # random_seed: Random seed passed to each solver.
+    # output_csv: Output CSV path for structured benchmark results.
+    # config_path: Optional YAML config path used for the run.
+    # config: Optional loaded config snapshot to include in metadata.
+    # run_summary_path: Optional JSON sidecar path for run metadata.
+    # solver_settings_by_name: Optional constructor kwargs keyed by solver
+    # registry name.
+    #
+    # Returns:
+    # Path to the written benchmark results CSV.
+    #
     input_path = Path(instance_folder)
     if not input_path.exists():
         raise FileNotFoundError(f"Instance folder does not exist: {input_path}")
@@ -212,8 +212,8 @@ def run_benchmarks(
 
 
 def run_benchmarks_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) -> Path:
-    """Run benchmarks using values loaded from a YAML configuration file."""
 
+    # Run benchmarks using values loaded from a YAML configuration file.
     config = load_yaml_config(config_path)
     output_path = get_compat_path(config, ["paths.output_csv"], DEFAULT_OUTPUT_PATH)
     summary_path = get_compat_path(
@@ -235,8 +235,8 @@ def run_benchmarks_from_config(config_path: str | Path = DEFAULT_CONFIG_PATH) ->
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for benchmark execution."""
 
+    # Create the command-line parser for benchmark execution.
     parser = argparse.ArgumentParser(
         description="Run selected solvers on a folder of XML instances.",
     )
@@ -276,8 +276,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Run benchmarks from the command line."""
 
+    # Run benchmarks from the command line.
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     parser = build_argument_parser()
     args = parser.parse_args(argv)
@@ -326,8 +326,8 @@ def _run_single_solver(
     random_seed: int,
     solver_kwargs: dict[str, object] | None = None,
 ) -> dict[str, object]:
-    """Run one solver on one instance and return a result row."""
 
+    # Run one solver on one instance and return a result row.
     instance_name = _extract_instance_name(instance)
     started_at = time.perf_counter()
 
@@ -384,8 +384,8 @@ def _result_to_row(
     timestamp: str,
     error_message: str | None,
 ) -> dict[str, object]:
-    """Convert a solver result into one benchmark table row."""
 
+    # Convert a solver result into one benchmark table row.
     return {
         "instance_name": result.instance_name,
         "solver_name": result.solver_name,
@@ -418,8 +418,8 @@ def _build_batch_results_summary(
     skipped_instances: list[dict[str, str]],
     validation_issues: list[object],
 ) -> dict[str, object]:
-    """Build benchmark batch summary metrics for the run summary artifact."""
 
+    # Build benchmark batch summary metrics for the run summary artifact.
     status_counts: dict[str, int] = {}
     support_status_counts: dict[str, int] = {}
     scoring_status_counts: dict[str, int] = {}
@@ -485,8 +485,8 @@ def _build_batch_results_summary(
 
 
 def _benchmark_columns() -> list[str]:
-    """Return the stable benchmark CSV column order."""
 
+    # Return the stable benchmark CSV column order.
     return [
         "instance_name",
         "solver_name",
@@ -512,8 +512,8 @@ def _benchmark_columns() -> list[str]:
 
 
 def _extract_instance_name(instance: object) -> str:
-    """Extract a readable instance name from a parsed instance-like object."""
 
+    # Extract a readable instance name from a parsed instance-like object.
     metadata = getattr(instance, "metadata", None)
     name = getattr(metadata, "name", None)
     if isinstance(name, str) and name.strip():
@@ -522,16 +522,16 @@ def _extract_instance_name(instance: object) -> str:
 
 
 def _extract_is_synthetic(instance: object) -> bool:
-    """Extract whether the instance is marked as synthetic."""
 
+    # Extract whether the instance is marked as synthetic.
     metadata = getattr(instance, "metadata", None)
     synthetic = getattr(metadata, "synthetic", None)
     return bool(synthetic) if isinstance(synthetic, bool) else False
 
 
 def _extract_instance_source_path(instance: object) -> str | None:
-    """Extract the original XML path when available."""
 
+    # Extract the original XML path when available.
     metadata = getattr(instance, "metadata", None)
     source_path = getattr(metadata, "source_path", None)
     if isinstance(source_path, str) and source_path.strip():
@@ -540,8 +540,8 @@ def _extract_instance_source_path(instance: object) -> str | None:
 
 
 def _extract_error_message(metadata: dict[str, Any]) -> str | None:
-    """Extract a readable error string from solver metadata when present."""
 
+    # Extract a readable error string from solver metadata when present.
     value = metadata.get("error")
     if value is None:
         return None
@@ -550,20 +550,20 @@ def _extract_error_message(metadata: dict[str, Any]) -> str | None:
 
 
 def _objective_value_valid(result: SolverResult) -> bool:
-    """Return whether objective_value is a fully comparable lower-is-better score."""
 
+    # Return whether objective_value is a fully comparable lower-is-better score.
     return result.objective_value is not None and result.scoring_status == "supported_feasible_run"
 
 
 def _serialize_notes(notes: Sequence[str]) -> str:
-    """Serialize scoring notes into one compact CSV field."""
 
+    # Serialize scoring notes into one compact CSV field.
     return "; ".join(str(note).strip() for note in notes if str(note).strip())
 
 
 def _effective_time_limit_seconds(metadata: dict[str, Any], default: int) -> int:
-    """Extract the effective solver time limit from metadata when available."""
 
+    # Extract the effective solver time limit from metadata when available.
     for key in ("effective_time_limit_seconds", "time_limit_seconds"):
         value = metadata.get(key)
         if value is None or isinstance(value, bool):
@@ -576,16 +576,16 @@ def _effective_time_limit_seconds(metadata: dict[str, Any], default: int) -> int
 
 
 def _serialize_metadata(metadata: dict[str, Any]) -> str:
-    """Serialize solver metadata into one compact JSON string."""
 
+    # Serialize solver metadata into one compact JSON string.
     if not metadata:
         return "{}"
     return json.dumps(metadata, ensure_ascii=True, sort_keys=True, default=str)
 
 
 def _timestamp_now() -> str:
-    """Return the current timestamp as an ISO string."""
 
+    # Return the current timestamp as an ISO string.
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 

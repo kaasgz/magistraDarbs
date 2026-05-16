@@ -1,4 +1,4 @@
-"""Command-line entry point for inspecting one XML instance."""
+# Command-line entry point for inspecting one XML instance.
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from src.parsers import InstanceSummary, load_instance
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
-    """Create the command-line parser for the project entry point."""
 
+    # Create the command-line parser for the project entry point.
     parser = argparse.ArgumentParser(
         description="Load one RobinX / ITC2021 XML instance and print a summary.",
     )
@@ -25,8 +25,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
 
 
 def format_summary(summary: InstanceSummary) -> str:
-    """Format an instance summary as clean human-readable text."""
 
+    # Format an instance summary as clean human-readable text.
     categories = ", ".join(summary.constraint_categories) if summary.constraint_categories else "(none)"
     lines = [
         "Instance summary",
@@ -40,8 +40,8 @@ def format_summary(summary: InstanceSummary) -> str:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Parse command-line arguments, load an instance, and print its summary."""
 
+    # Parse command-line arguments, load an instance, and print its summary.
     parser = build_argument_parser()
     args = parser.parse_args(argv)
 

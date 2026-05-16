@@ -1,4 +1,4 @@
-"""Local web dashboard helpers."""
+# Local web dashboard helpers.
 
 from src.web.dashboard import DashboardService
 

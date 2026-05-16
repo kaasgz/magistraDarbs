@@ -1,4 +1,4 @@
-"""Minimal diagnostic baseline for exercising the experiment pipeline."""
+# Minimal diagnostic baseline for exercising the experiment pipeline.
 
 from __future__ import annotations
 
@@ -10,16 +10,16 @@ from src.solvers.base import Solver, SolverResult
 
 
 class RandomBaselineSolver(Solver):
-    """Diagnostic control solver that returns a reproducible synthetic score.
 
-    This solver does not construct an actual schedule. It exists so the parsing,
-    experiment, and result-collection pipeline can be checked without implying
-    that the result is a real scheduling method.
-    """
-
+    # Diagnostic control solver that returns a reproducible synthetic score.
+    #
+    # This solver does not construct an actual schedule. It exists so the parsing,
+    # experiment, and result-collection pipeline can be checked without implying
+    # that the result is a real scheduling method.
+    #
     def __init__(self, solver_name: str = "random_baseline") -> None:
-        """Initialize the baseline solver with a stable public name."""
 
+        # Initialize the baseline solver with a stable public name.
         self.solver_name = solver_name
 
     def solve(
@@ -28,17 +28,17 @@ class RandomBaselineSolver(Solver):
         time_limit_seconds: int = 60,
         random_seed: int = 42,
     ) -> SolverResult:
-        """Return a structured diagnostic result for the given instance.
 
-        Args:
-            instance: Parsed instance-like object with optional metadata and counts.
-            time_limit_seconds: Included in metadata for pipeline compatibility.
-            random_seed: Seed controlling the diagnostic objective value.
-
-        Returns:
-            A standardized solver result marked as a diagnostic baseline.
-        """
-
+        # Return a structured diagnostic result for the given instance.
+        #
+        # Args:
+        # instance: Parsed instance-like object with optional metadata and counts.
+        # time_limit_seconds: Included in metadata for pipeline compatibility.
+        # random_seed: Seed controlling the diagnostic objective value.
+        #
+        # Returns:
+        # A standardized solver result marked as a diagnostic baseline.
+        #
         start_time = time.perf_counter()
         instance_name = _extract_instance_name(instance)
 
@@ -80,8 +80,8 @@ class RandomBaselineSolver(Solver):
 
 
 def _extract_instance_name(instance: object) -> str:
-    """Extract a stable instance name from common parsed-instance attributes."""
 
+    # Extract a stable instance name from common parsed-instance attributes.
     metadata = getattr(instance, "metadata", None)
     name_candidates = [
         getattr(metadata, "name", None),
@@ -100,8 +100,8 @@ def _extract_instance_name(instance: object) -> str:
 
 
 def _safe_int(value: object) -> int:
-    """Convert a count-like value to a non-negative integer."""
 
+    # Convert a count-like value to a non-negative integer.
     if isinstance(value, bool):
         return int(value)
     if isinstance(value, int):

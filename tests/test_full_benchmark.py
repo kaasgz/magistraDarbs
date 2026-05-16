@@ -1,4 +1,4 @@
-"""Tests for the full solver portfolio benchmark runner."""
+# Tests for the full solver portfolio benchmark runner.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ FIXED_TIMESTAMP = "2026-04-19T12:00:00+00:00"
 
 
 def test_run_full_benchmark_runs_all_solvers_and_adds_support_status(tmp_path: Path) -> None:
-    """The full benchmark should run the standard portfolio and write support status."""
 
+    # The full benchmark should run the standard portfolio and write support status.
     input_dir = tmp_path / "generated"
     generate_synthetic_dataset(
         output_folder=input_dir,
@@ -62,8 +62,8 @@ def test_run_full_benchmark_runs_all_solvers_and_adds_support_status(tmp_path: P
 
 
 def test_run_full_benchmark_handles_unconfigured_timefold_cleanly(tmp_path: Path) -> None:
-    """Timefold should produce a clean non-fatal row when no executable is configured."""
 
+    # Timefold should produce a clean non-fatal row when no executable is configured.
     input_dir = tmp_path / "generated"
     generate_synthetic_dataset(
         output_folder=input_dir,
@@ -93,8 +93,8 @@ def test_run_full_benchmark_handles_unconfigured_timefold_cleanly(tmp_path: Path
 
 
 def test_full_benchmark_cli_runs_one_command(tmp_path: Path) -> None:
-    """The CLI entry point should run the full benchmark with one command."""
 
+    # The CLI entry point should run the full benchmark with one command.
     input_dir = tmp_path / "generated"
     generate_synthetic_dataset(
         output_folder=input_dir,
@@ -123,8 +123,8 @@ def test_full_benchmark_cli_runs_one_command(tmp_path: Path) -> None:
 
 
 def _write_fake_timefold_adapter(tmp_path: Path) -> Path:
-    """Write a tiny adapter that returns a deterministic greedy schedule."""
 
+    # Write a tiny adapter that returns a deterministic greedy schedule.
     adapter_path = tmp_path / "fake_timefold_adapter.py"
     adapter_path.write_text(
         "\n".join(

@@ -1,4 +1,4 @@
-"""Structural feature extraction for parsed sports timetabling instances."""
+# Structural feature extraction for parsed sports timetabling instances.
 
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ _ConstraintClass = Literal["hard", "soft", "unclassified"]
 
 @dataclass(frozen=True, slots=True)
 class ConstraintStatistics:
-    """Aggregated statistics about parsed constraint entries."""
 
+    # Aggregated statistics about parsed constraint entries.
     num_hard_constraints: int
     num_soft_constraints: int
     num_unclassified_constraints: int
@@ -29,20 +29,20 @@ class ConstraintStatistics:
 
 
 def extract_features(instance: InstanceSummary) -> dict[str, FeatureValue]:
-    """Extract an interpretable flat feature mapping from one parsed instance.
 
-    The feature set is grouped conceptually into:
-
-    - size features
-    - constraint composition features
-    - density features
-    - diversity features
-    - objective-related features
-
-    Missing information is handled conservatively through explicit fallback
-    defaults so that downstream experiments remain reproducible.
-    """
-
+    # Extract an interpretable flat feature mapping from one parsed instance.
+    #
+    # The feature set is grouped conceptually into:
+    #
+    # - size features
+    # - constraint composition features
+    # - density features
+    # - diversity features
+    # - objective-related features
+    #
+    # Missing information is handled conservatively through explicit fallback
+    # defaults so that downstream experiments remain reproducible.
+    #
     constraints = list(getattr(instance, "constraints", []) or [])
     num_teams = _safe_count(getattr(instance, "team_count", None), getattr(instance, "teams", []))
     num_slots = _safe_count(getattr(instance, "slot_count", None), getattr(instance, "slots", []))
@@ -95,8 +95,8 @@ def _size_feature_items(
     estimated_minimum_slots: int,
     slot_surplus: int,
 ) -> list[tuple[str, FeatureValue]]:
-    """Return size-oriented structural features."""
 
+    # Return size-oriented structural features.
     return [
         ("num_teams", num_teams),
         ("num_slots", num_slots),
@@ -111,8 +111,8 @@ def _size_feature_items(
 def _constraint_composition_feature_items(
     constraint_statistics: ConstraintStatistics,
 ) -> list[tuple[str, FeatureValue]]:
-    """Return features describing the composition of the constraint set."""
 
+    # Return features describing the composition of the constraint set.
     return [
         ("num_hard_constraints", constraint_statistics.num_hard_constraints),
         ("num_soft_constraints", constraint_statistics.num_soft_constraints),
@@ -130,8 +130,8 @@ def _density_feature_items(
     num_constraints: int,
     constraint_statistics: ConstraintStatistics,
 ) -> list[tuple[str, FeatureValue]]:
-    """Return density-style structural features."""
 
+    # Return density-style structural features.
     return [
         ("ratio_hard_to_all", _safe_ratio(constraint_statistics.num_hard_constraints, num_constraints)),
         ("ratio_soft_to_all", _safe_ratio(constraint_statistics.num_soft_constraints, num_constraints)),
@@ -150,8 +150,8 @@ def _diversity_feature_items(
     num_constraints: int,
     constraint_statistics: ConstraintStatistics,
 ) -> list[tuple[str, FeatureValue]]:
-    """Return diversity-style structural features."""
 
+    # Return diversity-style structural features.
     return [
         ("number_of_constraint_categories", constraint_statistics.number_of_constraint_categories),
         ("number_of_constraint_tags", constraint_statistics.number_of_constraint_tags),
@@ -177,8 +177,8 @@ def _objective_feature_items(
     objective_name: str,
     objective_sense: str,
 ) -> list[tuple[str, FeatureValue]]:
-    """Return objective-related features."""
 
+    # Return objective-related features.
     return [
         ("objective_present", objective_present),
         ("objective_name", objective_name),
@@ -189,8 +189,8 @@ def _objective_feature_items(
 
 
 def _summarize_constraints(constraints: list[object]) -> ConstraintStatistics:
-    """Return aggregate statistics about the parsed constraint list."""
 
+    # Return aggregate statistics about the parsed constraint list.
     num_hard_constraints = 0
     num_soft_constraints = 0
     num_unclassified_constraints = 0
@@ -244,8 +244,8 @@ def _summarize_constraints(constraints: list[object]) -> ConstraintStatistics:
 
 
 def _safe_count(explicit_count: object, items: object) -> int:
-    """Return a non-negative count using an explicit value or list length."""
 
+    # Return a non-negative count using an explicit value or list length.
     if isinstance(explicit_count, int):
         return max(0, explicit_count)
     if items is None:
@@ -257,24 +257,24 @@ def _safe_count(explicit_count: object, items: object) -> int:
 
 
 def _safe_ratio(numerator: int | float, denominator: int | float) -> float:
-    """Return a ratio or ``0.0`` when the denominator is missing or zero."""
 
+    # Return a ratio or ``0.0`` when the denominator is missing or zero.
     if denominator <= 0:
         return 0.0
     return float(numerator) / float(denominator)
 
 
 def _safe_grid_ratio(numerator: int, left: int, right: int) -> float:
-    """Return ``numerator / (left * right)`` with safe zero handling."""
 
+    # Return ``numerator / (left * right)`` with safe zero handling.
     if left <= 0 or right <= 0:
         return 0.0
     return float(numerator) / float(left * right)
 
 
 def _estimate_minimum_slots(num_teams: int, round_robin_mode: str) -> int:
-    """Estimate the minimum calendar size implied by round-robin structure."""
 
+    # Estimate the minimum calendar size implied by round-robin structure.
     if num_teams <= 1:
         return 0
 
@@ -285,8 +285,8 @@ def _estimate_minimum_slots(num_teams: int, round_robin_mode: str) -> int:
 
 
 def _extract_round_robin_mode(instance: InstanceSummary) -> str:
-    """Return a normalized round-robin mode with a conservative fallback."""
 
+    # Return a normalized round-robin mode with a conservative fallback.
     metadata = getattr(instance, "metadata", None)
     raw_value = _first_non_empty(
         [
@@ -304,8 +304,8 @@ def _extract_round_robin_mode(instance: InstanceSummary) -> str:
 
 
 def _constraint_classification(constraint: object) -> _ConstraintClass:
-    """Classify a constraint into hard, soft, or unclassified."""
 
+    # Classify a constraint into hard, soft, or unclassified.
     explicit_type = _read_text_field(constraint, "type_name")
     if explicit_type:
         normalized = explicit_type.casefold()
@@ -324,8 +324,8 @@ def _constraint_classification(constraint: object) -> _ConstraintClass:
 
 
 def _constraint_has_token(constraint: object, token: str) -> bool:
-    """Check a constraint's descriptive fields for a classification token."""
 
+    # Check a constraint's descriptive fields for a classification token.
     normalized_token = token.casefold()
     for value in _constraint_descriptors(constraint):
         if normalized_token in value.casefold():
@@ -334,8 +334,8 @@ def _constraint_has_token(constraint: object, token: str) -> bool:
 
 
 def _constraint_descriptors(constraint: object) -> list[str]:
-    """Collect text descriptors that characterize a constraint."""
 
+    # Collect text descriptors that characterize a constraint.
     candidates = [
         _read_text_field(constraint, "category"),
         _read_text_field(constraint, "type_name"),
@@ -345,8 +345,8 @@ def _constraint_descriptors(constraint: object) -> list[str]:
 
 
 def _extract_objective_name(instance: InstanceSummary) -> str:
-    """Extract a simple objective label if one is available."""
 
+    # Extract a simple objective label if one is available.
     metadata = getattr(instance, "metadata", None)
     return _first_non_empty(
         [
@@ -361,8 +361,8 @@ def _extract_objective_name(instance: InstanceSummary) -> str:
 
 
 def _extract_objective_sense(instance: InstanceSummary) -> str:
-    """Extract the optimization sense if it is available."""
 
+    # Extract the optimization sense if it is available.
     metadata = getattr(instance, "metadata", None)
     return _first_non_empty(
         [
@@ -377,22 +377,22 @@ def _extract_objective_sense(instance: InstanceSummary) -> str:
 
 
 def _is_minimization(value: str) -> bool:
-    """Return whether the given optimization sense represents minimization."""
 
+    # Return whether the given optimization sense represents minimization.
     normalized = value.casefold()
     return any(token in normalized for token in {"min", "minimum", "minimize", "minimization"})
 
 
 def _is_maximization(value: str) -> bool:
-    """Return whether the given optimization sense represents maximization."""
 
+    # Return whether the given optimization sense represents maximization.
     normalized = value.casefold()
     return any(token in normalized for token in {"max", "maximum", "maximize", "maximization"})
 
 
 def _read_text_field(source: object, field_name: str) -> str | None:
-    """Read a text-like field from an object or mapping."""
 
+    # Read a text-like field from an object or mapping.
     if source is None:
         return None
 
@@ -410,8 +410,8 @@ def _read_text_field(source: object, field_name: str) -> str | None:
 
 
 def _first_non_empty(values: list[str | None]) -> str | None:
-    """Return the first non-empty string from a list of candidates."""
 
+    # Return the first non-empty string from a list of candidates.
     for value in values:
         if value:
             return value

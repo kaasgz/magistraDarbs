@@ -1,0 +1,12 @@
+summary_row_type,dataset_type,split_id,split_strategy,repeat_index,fold_index,stratified_split,single_best_solver_name,num_train_rows,num_test_rows,num_train_classes,num_test_classes,classification_accuracy,balanced_accuracy,average_selected_objective,average_virtual_best_objective,average_single_best_objective,regret_vs_virtual_best,delta_vs_single_best,improvement_vs_single_best
+split,all,plain_cv_r01_f01,repeated_stratified_kfold,1,1,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,14.733333333333333,14.733333333333333,14.733333333333333,0.0,0.0,-0.0
+split,all,plain_cv_r01_f02,repeated_stratified_kfold,1,2,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,17.666666666666668,17.666666666666668,17.666666666666668,0.0,0.0,-0.0
+split,all,plain_cv_r01_f03,repeated_stratified_kfold,1,3,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,16.05,16.05,16.05,0.0,0.0,-0.0
+split,all,plain_cv_r02_f01,repeated_stratified_kfold,2,1,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,17.35,17.35,17.35,0.0,0.0,-0.0
+split,all,plain_cv_r02_f02,repeated_stratified_kfold,2,2,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,14.833333333333334,14.833333333333334,14.833333333333334,0.0,0.0,-0.0
+split,all,plain_cv_r02_f03,repeated_stratified_kfold,2,3,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,16.266666666666666,16.266666666666666,16.266666666666666,0.0,0.0,-0.0
+split,all,plain_cv_r03_f01,repeated_stratified_kfold,3,1,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,17.85,17.85,17.85,0.0,0.0,-0.0
+split,all,plain_cv_r03_f02,repeated_stratified_kfold,3,2,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,15.75,15.75,15.75,0.0,0.0,-0.0
+split,all,plain_cv_r03_f03,repeated_stratified_kfold,3,3,False,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,14.85,14.85,14.85,0.0,0.0,-0.0
+aggregate_mean,all,aggregate_mean,repeated_stratified_kfold,,,,cpsat_round_robin,120.0,60.0,1.0,1.0,1.0,,16.15,16.15,16.15,0.0,0.0,0.0
+aggregate_std,all,aggregate_std,repeated_stratified_kfold,,,,,0.0,0.0,0.0,0.0,0.0,,1.2371562373263763,1.2371562373263763,1.2371562373263763,0.0,0.0,0.0
